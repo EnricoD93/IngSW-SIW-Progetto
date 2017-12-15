@@ -13,6 +13,6 @@ public class Login extends HttpServlet {
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	HttpSession session =req.getSession();
 	session.setAttribute("matricola", "");
-	String username= (String) session.getAttribute("matricola");//Lezione di SIW ho copiato visto che ci serve
-}
+		String username = (String) session.getAttribute("matricola");
+	}
 }
