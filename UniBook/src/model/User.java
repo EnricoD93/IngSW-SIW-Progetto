@@ -2,6 +2,9 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class User {
 	private String matricola;
@@ -11,7 +14,8 @@ public abstract class User {
 	private String codicefiscale;
 	private String email;
 	private String password;
-
+	Set<Messaggio> ricevuti;
+	Set<Messaggio> inviati;
 	public User() {
 	}
 
@@ -24,6 +28,8 @@ public abstract class User {
 		this.codicefiscale = codicefiscale;
 		this.email = email;
 		this.password = password;
+		ricevuti=new HashSet<Messaggio>();
+		inviati=new HashSet<Messaggio>();
 	}
 
 	public String getMatricola() {

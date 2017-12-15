@@ -9,6 +9,7 @@ public class Corso {
 	private Docente docente;
 	private Set<Studente> studenti;
 	private Set<Avviso> avvisi;
+	private Set<Lezione> lezioni;
 	public Long getCodice() {
 		return codice;
 	}
@@ -37,6 +38,18 @@ public class Corso {
 		this.studenti.add(studente);
 	}
 	
+	public Set<Avviso> getAvvisi() {
+		return avvisi;
+	}
+	public void setAvvisi(Set<Avviso> avvisi) {
+		this.avvisi = avvisi;
+	}
+	public Set<Lezione> getLezioni() {
+		return lezioni;
+	}
+	public void setLezioni(Set<Lezione> lezioni) {
+		this.lezioni = lezioni;
+	}
 	public String toString() {
 		StringBuffer str = new StringBuffer("Corso[");
 		str.append(this.getCodice() + ", " + this.getNome());
