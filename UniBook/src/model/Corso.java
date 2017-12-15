@@ -8,7 +8,7 @@ public class Corso {
 	private String nome;
 	private Docente docente;
 	private Set<Studente> studenti;
-	
+	private Set<Avviso> avvisi;
 	public Long getCodice() {
 		return codice;
 	}
