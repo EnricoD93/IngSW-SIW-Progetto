@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Messaggio {
 	private Date data;
-	private User mittente;
-	private User destinatario;
+	private Utente mittente;
+	private Utente destinatario;
 	private String oggetto;
 	private String testo;
 
-	public Messaggio(Date data, User mittente, User destinatario, String oggetto, String testo) {
+	public Messaggio(Date data, Utente mittente, Utente destinatario, String oggetto, String testo) {
 		super();
 		this.data = data;
 		this.mittente = mittente;

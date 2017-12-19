@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class User {
+public abstract class Utente {
 	private String matricola;
 	private String nome;
 	private String cognome;
@@ -16,10 +16,10 @@ public abstract class User {
 	private String password;
 	Set<Messaggio> ricevuti;
 	Set<Messaggio> inviati;
-	public User() {
+	public Utente() {
 	}
 
-	public User(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
+	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
 			String password) {
 		this.matricola = matricola;
 		this.nome = nome;

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Studente extends User {
+public class Studente extends Utente {
 	public Studente() {
 		super();
 	}
