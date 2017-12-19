@@ -10,6 +10,7 @@ class IdBroker {
 	// Standard SQL (queste stringhe andrebbero scritte in un file di configurazione
 	// private static final String query = "SELECT NEXT VALUE FOR SEQ_ID AS id";
 	// postgresql
+	
 	private static final String query = "SELECT nextval('sequenza_id') AS id";
 
 	public static Long getId(Connection connection) {
@@ -20,7 +21,9 @@ class IdBroker {
 			result.next();
 			id = result.getLong("id");
 		} catch (SQLException e) {
+			
 			throw new PersistenceException(e.getMessage());
+			
 		}
 		return id;
 	}
