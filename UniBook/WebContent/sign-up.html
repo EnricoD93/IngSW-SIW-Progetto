@@ -38,7 +38,7 @@
 		</div>
 		<div class="card">
 			<div class="body">
-				<form id="sign_up" method="POST">
+				<form id="sign_up" method="post" action="register">
 					<div class="msg">Registra un nuovo utente</div>
 					<div class="input-group">
 					<span class="input-group-addon"> <i class="material-icons">person</i>
@@ -48,10 +48,6 @@
 									style="max-height: 410px; overflow: hidden; min-height: 92px;">
 									<ul class="dropdown-menu inner" role="menu"
 										style="max-height: 400px; overflow-y: auto; min-height: 82px;">
-										<li data-original-index="0" class="selected"><a
-											tabindex="0" class="" style="" data-tokens="null"><span
-												class="text">-- Seleziona ruolo --</span><span
-												class="glyphicon glyphicon-ok check-mark"></span></a></li>
 										<li data-original-index="1"><a tabindex="0" class=""
 											style="" data-tokens="null"><span class="text">Studente</span><span
 												class="glyphicon glyphicon-ok check-mark"></span></a></li>
@@ -60,8 +56,7 @@
 												class="glyphicon glyphicon-ok check-mark"></span></a></li>
 									</ul>
 								</div>
-								<select class="form-control show-tick" tabindex="-98">
-									<option value="">-- Seleziona il tuo ruolo --</option>
+								<select class="form-control show-tick" tabindex="-98" name="role">
 									<option value="studente">Studente</option>
 									<option value="docente">Docente</option>
 								</select>
@@ -95,8 +90,8 @@
 						<span class="input-group-addon"> <i class="material-icons">payment</i>
 						</span>
 						<div class="form-line">
-							<input type="text" class="form-control" name="usermatr"
-								placeholder="Codice Fiscale" required autofocus>
+							<input type="text" class="form-control" name="codf"
+								placeholder="CodiceFiscale" required autofocus>
 						</div>
 					</div>
 					<div class="input-group">
@@ -104,7 +99,7 @@
 						</span>
 						<div class="form-line">
 							<input type="email" class="form-control" name="email"
-								placeholder="Indirizzo Email" required>
+								placeholder="IndirizzoEmail" required>
 						</div>
 					</div>
 					<div class="input-group">
@@ -122,13 +117,6 @@
 							<input type="password" class="form-control" name="confirm"
 								minlength="6" placeholder="Conferma Password" required>
 						</div>
-					</div>
-					<div class="form-group">
-						<input type="checkbox" name="terms" id="terms"
-							class="filled-in chk-col-red"> <label for="terms">I
-							read and agree to the <a href="javascript:void(0);">terms of
-								usage</a>.
-						</label>
 					</div>
 
 					<button class="btn btn-block btn-lg bg-red waves-effect"
