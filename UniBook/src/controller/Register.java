@@ -56,8 +56,30 @@ public class Register extends HttpServlet {
 				"		</div>\r\n" + 
 				"		<div class=\"card\">\r\n" + 
 				"			<div class=\"body\">");
-		out.println("Utente:"+nome + " " + cognome + " " + matricola+" "+email+" "+codicef+" "+password+" "+ruolo+"</br>");
-		out.println("Registrato correttamente");
+		out.println("<div align=\"center\" ><b>Registrazione quasi completa!</b></div> </br> Controlla la tua posta e inserisci il codice di verifica"+"</br>"+"");
+		out.println("<div class=\"input-group\">\r\n" + 
+				"						<span class=\"input-group-addon\"> <i class=\"material-icons\">lock</i>\r\n" + 
+				"						</span>\r\n" + 
+				"						<div class=\"form-line\">\r\n" + 
+				"							<input type=\"text\" class=\"form-control\" name=\"verify\"\r\n" + 
+				"								minlength=\"6\" placeholder=\"Codice di verifica\" required>\r\n" + 
+				"						</div>\r\n" + 
+				"					</div>"
+				);
+		out.println("<div class=\"row\">"
+				
+				+ "    <button class=\"btn btn-lg bg-red waves-effect\"\r\n" + 
+				"						type=\"submit\">Verifica</button>"
+		
+			
+				+ "<button class=\"btn btn-lg bg-red waves-effect\"\r\n" + 
+						"						type=\"submit\"> Invia </button>"
+						
+
+						+ "<button class=\"btn btn-lg bg-red waves-effect\"\r\n" + 
+								"						type=\"submit\"> Cambia email </button>"
+				  
+								+ "   </div>");
 		out.println("	</div>	</div>\r\n" + 
 				"	</div>\r\n" + 
 				"\r\n" + 
