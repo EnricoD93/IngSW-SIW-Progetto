@@ -1,23 +1,34 @@
 package model;
 
 public class Aula {
-	String nome;
-	int posti;
+	private String id;
+	private int posti;
+	private Long corsoDiLaurea;
 
 	public Aula() {
 	}
 
-	public Aula(String nome, int posti) {
-		this.nome = nome;
+	public Aula(String id, int posti,Long corsoDiLaurea) {
+		this.id = id;
 		this.posti = posti;
+		this.corsoDiLaurea=corsoDiLaurea;
 	}
 
-	public String getNome() {
-		return nome;
+
+	public Long getCorsoDiLaurea() {
+		return corsoDiLaurea;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+		this.corsoDiLaurea = corsoDiLaurea;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getPosti() {

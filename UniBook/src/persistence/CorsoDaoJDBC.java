@@ -21,18 +21,10 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public void save(Corso corso) {
-		if ((corso.getStudenti() == null) || corso.getStudenti().isEmpty()) {
-			throw new PersistenceException("Corso non memorizzato: un corso deve avere almeno uno studente"); // vedere
-																												// comportamento
-																												// in
-																												// base
-																												// casi
-																												// d'uso
-		}
+	
 		Connection connection = this.dataSource.getConnection();
 		try {
-			Long id = IdBroker.getId(connection);
-			corso.setCodice(id);
+		
 			String insert = "insert into corso(codice, nome) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, corso.getCodice());
@@ -43,7 +35,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 			// chiude una transazione nuova.
 			// connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 			statement.executeUpdate();
-			// salviamo anche tutti gli studenti del gruppo in CASACATA
+			// salviamo anche tutti gli studenti del gruppo in CASCATA
 
 			/*
 			 * this.updateStudenti(corso, connection);
@@ -132,7 +124,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 					 * 
 					 * 
 					 */
-					corso.addStudente(studente);
+				/*	corso.addStudente(studente); PER ORA NON SO COME GESTIRLO*/
 				}
 			}
 		} catch (SQLException e) {

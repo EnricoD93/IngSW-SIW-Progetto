@@ -14,13 +14,13 @@ public abstract class Utente {
 	private String codicefiscale;
 	private String email;
 	private String password;
-	Set<Messaggio> ricevuti;
-	Set<Messaggio> inviati;
+	private Long corsoDiLaurea;
+
 	public Utente() {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password) {
+			String password, Long corsoDiLaurea) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -28,8 +28,8 @@ public abstract class Utente {
 		this.codicefiscale = codicefiscale;
 		this.email = email;
 		this.password = password;
-		ricevuti=new HashSet<Messaggio>();
-		inviati=new HashSet<Messaggio>();
+		this.corsoDiLaurea = corsoDiLaurea;
+
 	}
 
 	public String getMatricola() {
@@ -104,4 +104,11 @@ public abstract class Utente {
 				+ sdf.format(this.getDataNascita()) + "]";
 	}
 
+	public Long getCorsoDiLaurea() {
+		return corsoDiLaurea;
+	}
+
+	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+		this.corsoDiLaurea = corsoDiLaurea;
+	}
 }

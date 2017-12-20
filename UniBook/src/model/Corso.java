@@ -6,10 +6,63 @@ import java.util.Set;
 public class Corso {
 	private Long codice;
 	private String nome;
-	private Docente docente;
-	private Set<Studente> studenti;
-	private Set<Avviso> avvisi;
-	private Set<Lezione> lezioni;
+	private int anno;
+	private String descrizione;
+	private String materiale;
+	private String giorno;
+	private String requisiti;
+	private String docente;
+	private int oreLezione;
+	private int oreEsercitazione;
+	private Long corsoDiLaurea;
+	public int getAnno() {
+		return anno;
+	}
+	public void setAnno(int anno) {
+		this.anno = anno;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	public String getMateriale() {
+		return materiale;
+	}
+	public void setMateriale(String materiale) {
+		this.materiale = materiale;
+	}
+	public String getGiorno() {
+		return giorno;
+	}
+	public void setGiorno(String giorno) {
+		this.giorno = giorno;
+	}
+	public String getRequisiti() {
+		return requisiti;
+	}
+	public void setRequisiti(String requisiti) {
+		this.requisiti = requisiti;
+	}
+	public int getOreLezione() {
+		return oreLezione;
+	}
+	public void setOreLezione(int oreLezione) {
+		this.oreLezione = oreLezione;
+	}
+	public int getOreEsercitazione() {
+		return oreEsercitazione;
+	}
+	public void setOreEsercitazione(int oreEsercitazione) {
+		this.oreEsercitazione = oreEsercitazione;
+	}
+	public Long getCorsoDiLaurea() {
+		return corsoDiLaurea;
+	}
+	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+		this.corsoDiLaurea = corsoDiLaurea;
+	}
 	public Long getCodice() {
 		return codice;
 	}
@@ -24,46 +77,10 @@ public class Corso {
 		this.nome = nome;
 	}
 	
-	public Set<Studente> getStudenti() {
-		return studenti;
-	}
-	public void setStudenti(Set<Studente> studenti) {
-		this.studenti = studenti;
-	}
-	
-	public void addStudente(Studente studente){
-		if (this.studenti == null){
-			this.studenti = new HashSet<Studente>();
-		}
-		this.studenti.add(studente);
-	}
-	
-	public Set<Avviso> getAvvisi() {
-		return avvisi;
-	}
-	public void setAvvisi(Set<Avviso> avvisi) {
-		this.avvisi = avvisi;
-	}
-	public Set<Lezione> getLezioni() {
-		return lezioni;
-	}
-	public void setLezioni(Set<Lezione> lezioni) {
-		this.lezioni = lezioni;
-	}
-	public String toString() {
-		StringBuffer str = new StringBuffer("Corso[");
-		str.append(this.getCodice() + ", " + this.getNome());
-		str.append(", {");
-		for (Studente s : this.getStudenti()) {
-			str.append(s.toString());
-		}
-		str.append("}\n");
-		return str.toString();
-	}
-	public Docente getDocente() {
+	public String getDocente() {
 		return docente;
 	}
-	public void setDocente(Docente docente) {
+	public void setDocente(String docente) {
 		this.docente = docente;
 	}
 }

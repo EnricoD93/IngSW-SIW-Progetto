@@ -6,8 +6,7 @@ import java.util.Set;
 public class CorsoDiLaurea {
 	private Long codice;
 	private String nome;
-	private Set<Corso> corsi;
-	private Set<Aula> aule;
+
 
 	public CorsoDiLaurea() {
 	}
@@ -32,30 +31,5 @@ public class CorsoDiLaurea {
 		this.nome = nome;
 	}
 
-	public Set<Corso> getCorsi() {
-		return corsi;
-	}
-
-	public void setCorsi(Set<Corso> corsi) {
-		this.corsi = corsi;
-	}
-
-	public void addCorso(Corso corso) {
-		if (corsi == null) {
-			corsi = new HashSet<Corso>();
-		}
-		corsi.add(corso);
-	}
-
-	public String toString() {
-		StringBuffer str = new StringBuffer("CorsoDiLaurea[");
-		str.append(this.getCodice() + ", " + this.getNome());
-		str.append(", {");
-		for (Corso c : this.getCorsi()) {
-			str.append(c.toString());
-		}
-		str.append("}\n");
-		return str.toString();
-	}
 
 }

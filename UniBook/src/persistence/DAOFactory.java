@@ -13,14 +13,12 @@ public abstract class DAOFactory {
 	public static final int POSTGRESQL = 1;
 
 	public static DAOFactory getDAOFactory(int whichFactory) {
-		switch ( whichFactory ) {
-		case POSTGRESQL:
+		if (whichFactory == POSTGRESQL)
 			return new PostgresDAOFactory();
-		default:
+		else
 			return null;
-		}
 	}
-	
+
 	public abstract StudenteDao getStudenteDAO();
 
 	public abstract DocenteDao getDocenteDAO();
