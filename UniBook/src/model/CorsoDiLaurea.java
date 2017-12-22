@@ -1,25 +1,22 @@
 package model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class CorsoDiLaurea {
-	private Long codice;
+	private int codice;
 	private String nome;
-
 
 	public CorsoDiLaurea() {
 	}
 
-	public CorsoDiLaurea(String nome) {
+	public CorsoDiLaurea(int codice, String nome) {
+		this.codice = codice;
 		this.nome = nome;
 	}
 
-	public Long getCodice() {
+	public int getCodice() {
 		return codice;
 	}
 
-	public void setCodice(Long codice) {
+	public void setCodice(int codice) {
 		this.codice = codice;
 	}
 
@@ -30,6 +27,5 @@ public class CorsoDiLaurea {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 }

@@ -70,7 +70,6 @@ public class PostgresDAOFactory extends DAOFactory {
 
 	@Override
 	public CalendarioPersonaleDao getCalendarioPersonaleDAO() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -82,8 +81,7 @@ public class PostgresDAOFactory extends DAOFactory {
 
 	@Override
 	public UtilDao getUtilDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new UtilDao(dataSource);
 	}
 
 }
