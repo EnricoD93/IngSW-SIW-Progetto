@@ -1,10 +1,11 @@
 package persistence;
 
 import persistence.dao.AulaDao;
-import persistence.dao.AvvisoDao;
+import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DocenteDao;
+import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.StudenteDao;
@@ -68,8 +69,21 @@ public class PostgresDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public AvvisoDao getAvvisoDAO() {
-		return new AvvisoDaoJDBC(dataSource);
+	public CalendarioPersonaleDao getCalendarioPersonaleDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EsameDao getEsameDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UtilDao getUtilDAO() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

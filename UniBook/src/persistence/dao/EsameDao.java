@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.CorsoDiLaurea;
 
-public interface AvvisoDao {
+public interface EsameDao {
 	public void save(CorsoDiLaurea corsoDiLaurea);  // Create
 	public CorsoDiLaurea findByPrimaryKey(Long codice);     // Retrieve
 	public List<CorsoDiLaurea> findAll();       
