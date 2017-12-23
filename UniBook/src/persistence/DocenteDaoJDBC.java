@@ -1,8 +1,11 @@
 package persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
-import model.Studente;
+import model.Docente;
 import persistence.dao.DocenteDao;
 
 public class DocenteDaoJDBC implements DocenteDao {
@@ -13,45 +16,66 @@ public class DocenteDaoJDBC implements DocenteDao {
 	}
 
 	@Override
-	public void save(Studente studente) {
-		// TODO Auto-generated method stub
-
+	public void save(Docente docente) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea) values (?,?,?,?,?,?,?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, docente.getMatricola());
+			statement.setString(2, docente.getNome());
+			statement.setString(3, docente.getCognome());
+			long secs = docente.getDataNascita().getTime();
+			statement.setDate(4, new java.sql.Date(secs));
+			statement.setString(5, docente.getCodicefiscale());
+			statement.setString(6, docente.getEmail());
+			statement.setString(7, docente.getPassword());
+			statement.setLong(8, docente.getCorsoDiLaurea());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override
-	public Studente findByPrimaryKey(String matricola) {
+	public Docente findByPrimaryKey(String matricola) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Studente> findAll() {
+	public List<Docente> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Studente studente) {
+	public void update(Docente studente) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Studente studente) {
+	public void delete(Docente studente) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void setPassword(Studente studente, String password) {
+	public void setPassword(Docente studente, String password) {
 		// TODO Auto-generated method stub
 
 	}
 
-//	@Override
-//	public DocenteCredenziali findByPrimaryKeyCredential(String matricola) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	// @Override
+	// public DocenteCredenziali findByPrimaryKeyCredential(String matricola) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 }

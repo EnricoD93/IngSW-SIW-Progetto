@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.CorsoDiLaurea;
+import model.Docente;
 import model.Studente;
 import persistence.DatabaseManager;
 import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DocenteDao;
 import persistence.dao.StudenteDao;
 
 public class Register extends HttpServlet {
@@ -43,6 +45,11 @@ public class Register extends HttpServlet {
 			
 			StudenteDao studenteDao=DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 			studenteDao.save(stud);
+			
+//			Docente doc = new Docente(matricola, nome, cognome, date,codicef,email,password,cdl);
+//			
+//			DocenteDao docenteDao=DatabaseManager.getInstance().getDaoFactory().getDocenteDAO();
+//			docenteDao.save(doc);
 			
 			//studenteDao.setPassword(stud, password);
 

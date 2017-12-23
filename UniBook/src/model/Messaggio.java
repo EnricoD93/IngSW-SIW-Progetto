@@ -8,9 +8,9 @@ public class Messaggio {
 	private String mittente;
 	private String destinatario;
 	private String testo;
-	private Time ora;
+	private int ora;
 
-	public Messaggio(Date data, String mittente, String destinatario, String testo,Time ora) {
+	public Messaggio(Date data, String mittente, String destinatario, String testo,int ora) {
 		super();
 		this.data = data;
 		this.mittente = mittente;
@@ -38,7 +38,7 @@ public class Messaggio {
 		this.testo = testo;
 	}
 
-	public void setOra(Time ora) {
+	public void setOra(int ora) {
 		this.ora = ora;
 	}
 
@@ -58,7 +58,7 @@ public class Messaggio {
 		return testo;
 	}
 
-	public Time getOra() {
+	public int getOra() {
 		return ora;
 	}
 

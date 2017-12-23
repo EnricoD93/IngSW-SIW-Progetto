@@ -2,12 +2,13 @@ package persistence.dao;
 
 import java.util.List;
 
+import model.Aula;
 import model.CorsoDiLaurea;
 
 public interface AulaDao {
-	public void save(CorsoDiLaurea corsoDiLaurea);  // Create
-	public CorsoDiLaurea findByPrimaryKey(Long codice);     // Retrieve
-	public List<CorsoDiLaurea> findAll();       
-	public void update(CorsoDiLaurea corsoDiLaurea); //Update
-	public void delete(CorsoDiLaurea corsoDiLaurea); //Delete	
+	public void save(Aula aula);  // Create
+	public Aula findByPrimaryKey(Long codice);     // Retrieve
+	public List<Aula> findAll();       
+	public void update(Aula aula); //Update
+	public void delete(Aula aula); //Delete	
 }

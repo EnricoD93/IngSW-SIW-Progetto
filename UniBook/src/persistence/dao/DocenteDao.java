@@ -2,15 +2,15 @@ package persistence.dao;
 
 import java.util.List;
 
+import model.Docente;
 import model.Studente;
 
 public interface DocenteDao {
-	public void save(Studente studente);  // Create
-	public Studente findByPrimaryKey(String matricola);     // Retrieve
-	public List<Studente> findAll();       
-	public void update(Studente studente); //Update
-	public void delete(Studente studente); //Delete	
-	
-	public void setPassword(Studente studente, String password);
+	public void save(Docente studente);  // Create
+	public Docente findByPrimaryKey(String matricola);     // Retrieve
+	public List<Docente> findAll();       
+	public void update(Docente studente); //Update
+	public void delete(Docente studente); //Delete	
+	public void setPassword(Docente docente, String password);
 	//public DocenteCredenziali findByPrimaryKeyCredential(String matricola);     // Retrieve
 }

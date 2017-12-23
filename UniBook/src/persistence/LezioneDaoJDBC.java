@@ -1,8 +1,12 @@
 package persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import model.CorsoDiLaurea;
+import model.Lezione;
 import persistence.dao.LezioneDao;
 
 public class LezioneDaoJDBC implements LezioneDao {
@@ -13,31 +17,52 @@ public class LezioneDaoJDBC implements LezioneDao {
 	}
 
 	@Override
-	public void save(CorsoDiLaurea corsoDiLaurea) {
-		// TODO Auto-generated method stub
+	public void save(Lezione lezione) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into lezione(data,ora_inizio,durata,corso,aula) values (?,?,?,?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			long secs = lezione.getData().getTime();
+			statement.setDate(1, new java.sql.Date(secs));
+			statement.setInt(2, lezione.getOraInizio());
+			statement.setInt(3, lezione.getDurata());
+			statement.setLong(4, lezione.getCorso());
+			statement.setString(5, lezione.getAula());
+			
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 
 	}
 
 	@Override
-	public CorsoDiLaurea findByPrimaryKey(Long codice) {
+	public Lezione findByPrimaryKey(Long codice) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CorsoDiLaurea> findAll() {
+	public List<Lezione> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(CorsoDiLaurea corsoDiLaurea) {
+	public void update(Lezione lezione) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(CorsoDiLaurea corsoDiLaurea) {
+	public void delete(Lezione lezione) {
 		// TODO Auto-generated method stub
 
 	}

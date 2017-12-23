@@ -7,10 +7,10 @@ public class Lezione {
 	private Long corso;
 	private Date data;
 	private int oraInizio;
-	private String durata;
+	private int durata;
 	private String aula;
 
-	public Lezione(Long corso, Date data,int oraInizio, String durata, String aula) {
+	public Lezione(Long corso, Date data,int oraInizio, int durata, String aula) {
 		
 		this.corso=corso;
 		this.data = data;
@@ -46,11 +46,11 @@ public class Lezione {
 		this.oraInizio = oraInizio;
 	}
 
-	public String getDurata() {
+	public int getDurata() {
 		return durata;
 	}
 
-	public void setDurata(String durata) {
+	public void setDurata(int durata) {
 		this.durata = durata;
 	}
 

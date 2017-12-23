@@ -2,16 +2,16 @@ package persistence.dao;
 
 import java.util.List;
 
-import model.CorsoDiLaurea;
+import model.CalendarioPersonale;
 
 public interface CalendarioPersonaleDao {
-	public void save(CorsoDiLaurea corsoDiLaurea); // Create
+	public void save(CalendarioPersonale calendarioPersonale); // Create
 
-	public CorsoDiLaurea findByPrimaryKey(Long codice); // Retrieve
+	public CalendarioPersonale findByPrimaryKey(Long codice); // Retrieve
 
-	public List<CorsoDiLaurea> findAll();
+	public List<CalendarioPersonale> findAll();
 
-	public void update(CorsoDiLaurea corsoDiLaurea); // Update
+	public void update(CalendarioPersonale calendarioPersonale); // Update
 
-	public void delete(CorsoDiLaurea corsoDiLaurea); // Delete
+	public void delete(CalendarioPersonale calendarioPersonale); // Delete
 }

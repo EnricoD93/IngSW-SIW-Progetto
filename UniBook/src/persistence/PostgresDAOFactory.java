@@ -70,12 +70,11 @@ public class PostgresDAOFactory extends DAOFactory {
 
 	@Override
 	public CalendarioPersonaleDao getCalendarioPersonaleDAO() {
-		return null;
+		return new CalendarioPersonaleDaoJDBC(dataSource);
 	}
 
 	@Override
 	public EsameDao getEsameDAO() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
