@@ -18,13 +18,9 @@ public class MainJDBC {
 		UtilDao util = factory.getUtilDAO();
 		util.dropDatabase();		
 		util.createDatabase();
-		CorsoDiLaurea corso1=new CorsoDiLaurea(0733,"Informatica");
+		CorsoDiLaurea corso1=new CorsoDiLaurea(new Long(773),"Informatica");
 		CorsoDiLaureaDao corsoDao=factory.getCorsoDiLaureaDAO();
 		corsoDao.save(corso1);
-		
-		Studente studente1 = new Studente("168987","Muto","Martina", date1, "DCCNRC93H19Z112B", "martyvolley23@gmail.com", "ciccio", corso1.getCodice());
-		StudenteDao studenteDao=factory.getStudenteDAO();
-		studenteDao.save(studente1);
 	}
 
 }

@@ -28,6 +28,9 @@
 
 <!-- Custom Css -->
 <link href="css/style.css" rel="stylesheet">
+<link
+	href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+	rel="stylesheet">
 </head>
 
 <body class="signup-page">
@@ -41,26 +44,48 @@
 				<form id="sign_up" method="post" action="register">
 					<div class="msg">Registra un nuovo utente</div>
 					<div class="input-group">
-					<span class="input-group-addon"> <i class="material-icons">person</i>
+						<span class="input-group-addon"> <i class="material-icons">person</i>
 						</span>
-							<div class="btn-group bootstrap-select form-control show-tick">
-								<div class="dropdown-menu open"
-									style="max-height: 410px; overflow: hidden; min-height: 92px;">
-									<ul class="dropdown-menu inner" role="menu"
-										style="max-height: 400px; overflow-y: auto; min-height: 82px;">
-										<li data-original-index="1"><a tabindex="0" class=""
-											style="" data-tokens="null"><span class="text">Studente</span><span
-												class="glyphicon glyphicon-ok check-mark"></span></a></li>
-										<li data-original-index="2"><a tabindex="0" class=""
-											style="" data-tokens="null"><span class="text">Docente</span><span
-												class="glyphicon glyphicon-ok check-mark"></span></a></li>
-									</ul>
-								</div>
-								<select class="form-control show-tick" tabindex="-98" name="role">
-									<option value="studente">Studente</option>
-									<option value="docente">Docente</option>
-								</select>
+						<div class="btn-group bootstrap-select form-control show-tick">
+							<div class="dropdown-menu open"
+								style="max-height: 410px; overflow: hidden; min-height: 92px;">
+								<ul class="dropdown-menu inner" role="menu"
+									style="max-height: 400px; overflow-y: auto; min-height: 82px;">
+									<li data-original-index="1"><a tabindex="0" class=""
+										style="" data-tokens="null"><span class="text">Studente</span><span
+											class="glyphicon glyphicon-ok check-mark"></span></a></li>
+									<li data-original-index="2"><a tabindex="0" class=""
+										style="" data-tokens="null"><span class="text">Docente</span><span
+											class="glyphicon glyphicon-ok check-mark"></span></a></li>
+								</ul>
 							</div>
+							<select class="form-control show-tick" tabindex="-98" name="role">
+								<option value="studente">Studente</option>
+								<option value="docente">Docente</option>
+							</select>
+						</div>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"> <i class="material-icons">person</i>
+						</span>
+						<div class="btn-group bootstrap-select form-control show-tick">
+							<div class="dropdown-menu open"
+								style="max-height: 410px; overflow: hidden; min-height: 92px;">
+								<ul class="dropdown-menu inner" role="menu"
+									style="max-height: 400px; overflow-y: auto; min-height: 82px;">
+									<li data-original-index="1"><a tabindex="0" class=""
+										style="" data-tokens="null"><span class="text">Informatica</span><span
+											class="glyphicon glyphicon-ok check-mark"></span></a></li>
+									<li data-original-index="2"><a tabindex="0" class=""
+										style="" data-tokens="null"><span class="text">Matematica</span><span
+											class="glyphicon glyphicon-ok check-mark"></span></a></li>
+								</ul>
+							</div>
+							<select class="form-control show-tick" tabindex="-98" name="cdl">
+								<option value="733">Informatica</option>
+								<option value="734">Matematica</option>
+							</select>
+						</div>
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon"> <i class="material-icons">person</i>
@@ -84,6 +109,15 @@
 						<div class="form-line">
 							<input type="number" class="form-control" name="usermatr"
 								placeholder="Matricola" required autofocus>
+						</div>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"> <i class="material-icons">person</i>
+						</span>
+												<div class="col-xs-8">
+							<div class="form-line">
+								<input name="dataNascita" type="date" class="form-control">
+							</div>Data di Nascita
 						</div>
 					</div>
 					<div class="input-group">
@@ -121,15 +155,176 @@
 
 					<button class="btn btn-block btn-lg bg-red waves-effect"
 						type="submit">Registrati</button>
-					<div class="m-t-25 m-b--5 align-center">Sei già
-								registrato?
-						<a href="index.html"><font color="grey">Accedi</font></a>
+					<div class="m-t-25 m-b--5 align-center">
+						Sei già registrato? <a href="index.html"><font color="grey">Accedi</font></a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<div class="dtp hidden" id="dtp_vDokC" style="">
+		<div class="dtp-content" style="margin-left: -150px; top: 107.5px;">
+			<div class="dtp-date-view">
+				<header class="dtp-header">
+					<div class="dtp-actual-day">Friday</div>
+					<div class="dtp-close">
+						<a href="javascript:void(0);"><i class="material-icons">clear</i>
+							<!--</div--></a>
+					</div>
+				</header>
+				<div class="dtp-date">
+					<div>
+						<div class="left center p10">
+							<a href="javascript:void(0);" class="dtp-select-month-before"><i
+								class="material-icons">chevron_left</i></a>
+						</div>
+						<div class="dtp-actual-month p80">DEC</div>
+						<div class="right center p10">
+							<a href="javascript:void(0);" class="dtp-select-month-after"><i
+								class="material-icons">chevron_right</i></a>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="dtp-actual-num">22</div>
+					<div>
+						<div class="left center p10">
+							<a href="javascript:void(0);" class="dtp-select-year-before"><i
+								class="material-icons">chevron_left</i></a>
+						</div>
+						<div class="dtp-actual-year p80">2017</div>
+						<div class="right center p10">
+							<a href="javascript:void(0);" class="dtp-select-year-after"><i
+								class="material-icons">chevron_right</i></a>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="dtp-time hidden">
+					<div class="dtp-actual-maxtime">23:55</div>
+				</div>
+				<div class="dtp-picker">
+					<div class="dtp-picker-calendar">
+						<div class="dtp-picker-month">December 2017</div>
+						<table class="table dtp-picker-days">
+							<thead>
+								<tr>
+									<th>M</th>
+									<th>T</th>
+									<th>W</th>
+									<th>T</th>
+									<th>F</th>
+									<th>S</th>
+									<th>S</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr></tr>
+								<tr>
+									<td data-date="1"></td>
+									<td data-date="1"></td>
+									<td data-date="1"></td>
+									<td data-date="1"></td>
+									<td data-date="1"><a href="javascript:void(0);"
+										class="dtp-select-day">01</a></td>
+									<td data-date="2"><a href="javascript:void(0);"
+										class="dtp-select-day">02</a></td>
+									<td data-date="3"><a href="javascript:void(0);"
+										class="dtp-select-day">03</a></td>
+								</tr>
+								<tr>
+									<td data-date="4"><a href="javascript:void(0);"
+										class="dtp-select-day">04</a></td>
+									<td data-date="5"><a href="javascript:void(0);"
+										class="dtp-select-day">05</a></td>
+									<td data-date="6"><a href="javascript:void(0);"
+										class="dtp-select-day">06</a></td>
+									<td data-date="7"><a href="javascript:void(0);"
+										class="dtp-select-day">07</a></td>
+									<td data-date="8"><a href="javascript:void(0);"
+										class="dtp-select-day">08</a></td>
+									<td data-date="9"><a href="javascript:void(0);"
+										class="dtp-select-day">09</a></td>
+									<td data-date="10"><a href="javascript:void(0);"
+										class="dtp-select-day">10</a></td>
+								</tr>
+								<tr>
+									<td data-date="11"><a href="javascript:void(0);"
+										class="dtp-select-day">11</a></td>
+									<td data-date="12"><a href="javascript:void(0);"
+										class="dtp-select-day">12</a></td>
+									<td data-date="13"><a href="javascript:void(0);"
+										class="dtp-select-day">13</a></td>
+									<td data-date="14"><a href="javascript:void(0);"
+										class="dtp-select-day">14</a></td>
+									<td data-date="15"><a href="javascript:void(0);"
+										class="dtp-select-day">15</a></td>
+									<td data-date="16"><a href="javascript:void(0);"
+										class="dtp-select-day">16</a></td>
+									<td data-date="17"><a href="javascript:void(0);"
+										class="dtp-select-day">17</a></td>
+								</tr>
+								<tr>
+									<td data-date="18"><a href="javascript:void(0);"
+										class="dtp-select-day">18</a></td>
+									<td data-date="19"><a href="javascript:void(0);"
+										class="dtp-select-day">19</a></td>
+									<td data-date="20"><a href="javascript:void(0);"
+										class="dtp-select-day">20</a></td>
+									<td data-date="21"><a href="javascript:void(0);"
+										class="dtp-select-day">21</a></td>
+									<td data-date="22"><a href="javascript:void(0);"
+										class="dtp-select-day selected">22</a></td>
+									<td data-date="23"><a href="javascript:void(0);"
+										class="dtp-select-day">23</a></td>
+									<td data-date="24"><a href="javascript:void(0);"
+										class="dtp-select-day">24</a></td>
+								</tr>
+								<tr>
+									<td data-date="25"><a href="javascript:void(0);"
+										class="dtp-select-day">25</a></td>
+									<td data-date="26"><a href="javascript:void(0);"
+										class="dtp-select-day">26</a></td>
+									<td data-date="27"><a href="javascript:void(0);"
+										class="dtp-select-day">27</a></td>
+									<td data-date="28"><a href="javascript:void(0);"
+										class="dtp-select-day">28</a></td>
+									<td data-date="29"><a href="javascript:void(0);"
+										class="dtp-select-day">29</a></td>
+									<td data-date="30"><a href="javascript:void(0);"
+										class="dtp-select-day">30</a></td>
+									<td data-date="31"><a href="javascript:void(0);"
+										class="dtp-select-day">31</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="dtp-picker-datetime hidden">
+						<div class="dtp-actual-meridien">
+							<div class="left p20">
+								<a class="dtp-meridien-am" href="javascript:void(0);">AM</a>
+							</div>
+							<div class="dtp-actual-time p60"></div>
+							<div class="right p20">
+								<a class="dtp-meridien-pm" href="javascript:void(0);">PM</a>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div id="dtp-svg-clock"></div>
+					</div>
+				</div>
+			</div>
+			<div class="dtp-buttons">
+				<button class="dtp-btn-now btn btn-flat hidden btn-sm">Now</button>
+				<button class="dtp-btn-clear btn btn-flat btn-sm">Clear</button>
+				<button class="dtp-btn-cancel btn btn-flat btn-sm">Cancel</button>
+				<button class="dtp-btn-ok btn btn-flat btn-sm">OK</button>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
 
+	<script
+		src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
 

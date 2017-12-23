@@ -22,7 +22,7 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 		try {
 			String insert = "insert into corsodilaurea(codice, nome) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setInt(1, corsoDiLaurea.getCodice());
+			statement.setLong(1, corsoDiLaurea.getCodice());
 			statement.setString(2, corsoDiLaurea.getNome());
 
 			// connection.setAutoCommit(false);

@@ -14,11 +14,11 @@ public abstract class Utente {
 	private String codicefiscale;
 	private String email;
 	private String password;
-	private int corsoDiLaurea;
+	private Long corsoDiLaurea;
 
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, int corsoDiLaurea) {
+			String password, Long corsoDiLaurea) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -102,11 +102,11 @@ public abstract class Utente {
 				+ sdf.format(this.getDataNascita()) + "]";
 	}
 
-	public int getCorsoDiLaurea() {
+	public Long getCorsoDiLaurea() {
 		return corsoDiLaurea;
 	}
 
-	public void setCorsoDiLaurea(int corsoDiLaurea) {
+	public void setCorsoDiLaurea(Long corsoDiLaurea) {
 		this.corsoDiLaurea = corsoDiLaurea;
 	}
 }
