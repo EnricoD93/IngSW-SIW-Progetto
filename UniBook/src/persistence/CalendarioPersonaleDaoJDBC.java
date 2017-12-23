@@ -2,9 +2,11 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Aula;
 import model.CalendarioPersonale;
 import persistence.dao.CalendarioPersonaleDao;
 
@@ -36,9 +38,28 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 	}
 
 	@Override
-	public CalendarioPersonale findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+	public CalendarioPersonale findByPrimaryKey(String utente) {
+		Connection connection = this.dataSource.getConnection();
+		CalendarioPersonale calendarioPersonale = null;
+		try {
+			String query = "select * from calendariopersonale where matricola = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, utente);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				calendarioPersonale = new CalendarioPersonale();
+				calendarioPersonale.setUtente(result.getString("matricola"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return calendarioPersonale;
 	}
 
 	@Override

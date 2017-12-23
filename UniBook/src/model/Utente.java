@@ -16,6 +16,8 @@ public abstract class Utente {
 	private String password;
 	private Long corsoDiLaurea;
 
+	public Utente() {
+	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
 			String password, Long corsoDiLaurea) {

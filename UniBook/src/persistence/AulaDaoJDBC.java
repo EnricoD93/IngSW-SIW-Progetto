@@ -2,10 +2,12 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import model.Aula;
+import model.Studente;
 import persistence.dao.AulaDao;
 
 public class AulaDaoJDBC implements AulaDao {
@@ -38,9 +40,30 @@ public class AulaDaoJDBC implements AulaDao {
 	}
 
 	@Override
-	public Aula findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Aula findByPrimaryKey(String id) {
+		Connection connection = this.dataSource.getConnection();
+		Aula aula = null;
+		try {
+			String query = "select * from aula where id = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, id);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				aula = new Aula();
+				aula.setId(result.getString("id"));
+				aula.setPosti(result.getInt("posti"));
+				aula.setCorsoDiLaurea(result.getLong("codice"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return aula;
 	}
 
 	@Override

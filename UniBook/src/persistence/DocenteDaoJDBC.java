@@ -2,10 +2,12 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import model.Docente;
+import model.Studente;
 import persistence.dao.DocenteDao;
 
 public class DocenteDaoJDBC implements DocenteDao {
@@ -52,8 +54,36 @@ public class DocenteDaoJDBC implements DocenteDao {
 
 	@Override
 	public Docente findByPrimaryKey(String matricola) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		Docente docente = null;
+		try {
+			String query = "select * from utente,docente where utente.matricola=docente.matricola and docente.matricola = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				docente = new Docente();
+				docente.setMatricola(result.getString("matricola"));				
+				docente.setNome(result.getString("nome"));
+				docente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				docente.setDataNascita(new java.util.Date(secs));
+				docente.setEmail(result.getString("email"));
+				docente.setPassword(result.getString("password"));
+				docente.setCodicefiscale(result.getString("codice_fiscale"));
+				docente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return docente;
 	}
 
 	@Override

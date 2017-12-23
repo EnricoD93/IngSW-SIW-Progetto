@@ -1,10 +1,13 @@
 package persistence;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Aula;
 import model.CorsoDiLaurea;
 import model.Lezione;
 import persistence.dao.LezioneDao;
@@ -44,9 +47,32 @@ public class LezioneDaoJDBC implements LezioneDao {
 	}
 
 	@Override
-	public Lezione findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Lezione findByPrimaryKey(Date data) {
+		Connection connection = this.dataSource.getConnection();
+		Lezione lezione = null;
+		try {
+			String query = "select * from lezione where data = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setDate(1, new java.sql.Date(data.getTime()));
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				lezione = new Lezione();
+				lezione.setData(result.getDate("data"));
+				lezione.setOraInizio(result.getInt("ore_inizio"));
+				lezione.setDurata(result.getInt("durata"));
+				lezione.setCorso(result.getLong("corso"));
+				lezione.setAula(result.getString("aula"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return lezione;
 	}
 
 	@Override

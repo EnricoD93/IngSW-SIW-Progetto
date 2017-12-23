@@ -2,9 +2,11 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Aula;
 import model.CorsoDiLaurea;
 import persistence.dao.CorsoDiLaureaDao;
 
@@ -52,8 +54,28 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 
 	@Override
 	public CorsoDiLaurea findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		CorsoDiLaurea corsoDiLaurea = null;
+		try {
+			String query = "select * from corsodilaurea where codice = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				corsoDiLaurea= new CorsoDiLaurea();
+				corsoDiLaurea.setCodice(result.getLong("codice"));
+				corsoDiLaurea.setNome(result.getString("nome"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return corsoDiLaurea;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import model.CalendarioPersonale;
 public interface CalendarioPersonaleDao {
 	public void save(CalendarioPersonale calendarioPersonale); // Create
 
-	public CalendarioPersonale findByPrimaryKey(Long codice); // Retrieve
+	public CalendarioPersonale findByPrimaryKey(String utente); // Retrieve
 
 	public List<CalendarioPersonale> findAll();
 

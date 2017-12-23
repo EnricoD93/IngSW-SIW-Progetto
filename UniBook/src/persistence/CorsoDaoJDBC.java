@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Aula;
 import model.Corso;
 import model.Studente;
 import persistence.dao.CorsoDao;
@@ -36,8 +37,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setString(9, corso.getMateriale());
 			statement.setString(10, corso.getDocente());
 			statement.setLong(11, corso.getCorsoDiLaurea());
-			
-			
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -47,14 +47,43 @@ public class CorsoDaoJDBC implements CorsoDao {
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}		
-		
+		}
+
 	}
 
 	@Override
 	public Corso findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		Corso corso = null;
+		try {
+			String query = "select * from corso where codice = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				corso = new Corso();
+				corso.setCodice(result.getLong("codice"));
+				corso.setNome(result.getString("nome"));
+				corso.setAnno(result.getInt("anno"));
+				corso.setDescrizione(result.getString("descrizione"));
+				corso.setRequisiti(result.getString("requisiti"));
+				corso.setGiorno(result.getString("giorni"));
+				corso.setOreLezione(result.getInt("ore_lezioni"));
+				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				corso.setMateriale(result.getString("materiale"));
+				corso.setDocente(result.getString("docente"));
+				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return corso;
 	}
 
 	@Override
@@ -66,13 +95,13 @@ public class CorsoDaoJDBC implements CorsoDao {
 	@Override
 	public void update(Corso corso) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(Corso corso) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

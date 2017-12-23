@@ -2,6 +2,7 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -52,8 +53,36 @@ public class StudenteDaoJDBC implements StudenteDao {
 
 	@Override
 	public Studente findByPrimaryKey(String matricola) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		Studente studente = null;
+		try {
+			String query = "select * from utente,studente where utente.matricola=studente.matricola and studente.matricola = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				studente = new Studente();
+				studente.setMatricola(result.getString("matricola"));				
+				studente.setNome(result.getString("nome"));
+				studente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				studente.setDataNascita(new java.util.Date(secs));
+				studente.setEmail(result.getString("email"));
+				studente.setPassword(result.getString("password"));
+				studente.setCodicefiscale(result.getString("codice_fiscale"));
+				studente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return studente;
 	}
 
 	@Override

@@ -60,7 +60,7 @@ public class MainJDBC {
 		CalendarioPersonale calendarioPersonale=new CalendarioPersonale(st.getMatricola());
 		CalendarioPersonaleDao calendarioPersonaleDao =factory.getCalendarioPersonaleDAO();
 		calendarioPersonaleDao.save(calendarioPersonale);
-		Corso corso=new Corso(new Long(111),"Fondamenti",2017,"Corso Base di Informatica","Nessun requisito","Lunedi e Venerdi",48,48,"link al materiale",doc.getMatricola(),corso1.getCodice());
+		Corso corso=new Corso(new Long(211),"Fondamenti",2017,"Corso Base di Informatica","Nessun requisito","Lunedi e Venerdi",48,48,"link al materiale",doc.getMatricola(),corso1.getCodice());
 		CorsoDao corsoDao =factory.getCorsoDAO();
 		corsoDao.save(corso);
 		Lezione lezione=new Lezione(corso.getCodice(),date,10,2,aula1.getId());
@@ -69,6 +69,16 @@ public class MainJDBC {
 		Messaggio messaggio=new Messaggio(date,st.getMatricola(),doc.getMatricola(),"Salve",5);
 		MessaggioDao messaggioDao =factory.getMessaggioDAO();
 		messaggioDao.save(messaggio);
+	
+		//Functionaaaaa!!
+		
+		System.out.println(studenteDao.findByPrimaryKey("111").getNome());  
+		System.out.println(docenteDao.findByPrimaryKey("555").getNome());  
+		System.out.println(aulaDao.findByPrimaryKey("MT5").getPosti());  
+		System.out.println(calendarioPersonaleDao.findByPrimaryKey("111").getUtente());  
+		System.out.println(corsoDao.findByPrimaryKey(new Long(211)).getNome());  
+		System.out.println(corsoDiLaureaDao.findByPrimaryKey(new Long(773)).getNome());  
+	//	System.out.println(lezioneDao.findByPrimaryKey(new java.sql.Date(100)).getAula());  
 		
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

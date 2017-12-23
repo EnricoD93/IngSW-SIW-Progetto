@@ -7,7 +7,7 @@ import model.CorsoDiLaurea;
 
 public interface AulaDao {
 	public void save(Aula aula);  // Create
-	public Aula findByPrimaryKey(Long codice);     // Retrieve
+	public Aula findByPrimaryKey(String id);     // Retrieve
 	public List<Aula> findAll();       
 	public void update(Aula aula); //Update
 	public void delete(Aula aula); //Delete	
