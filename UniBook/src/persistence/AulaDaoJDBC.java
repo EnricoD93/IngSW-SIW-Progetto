@@ -57,8 +57,21 @@ public class AulaDaoJDBC implements AulaDao {
 
 	@Override
 	public void delete(Aula aula) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM aula WHERE id = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setString(1, aula.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

@@ -71,8 +71,21 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public void delete(Corso corso) {
-		// TODO Auto-generated method stub
-		
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM corso WHERE codice = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, corso.getCodice());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

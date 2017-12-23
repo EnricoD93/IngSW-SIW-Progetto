@@ -63,8 +63,21 @@ public class LezioneDaoJDBC implements LezioneDao {
 
 	@Override
 	public void delete(Lezione lezione) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM lezione WHERE data = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setDate(1,lezione.getData());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }
