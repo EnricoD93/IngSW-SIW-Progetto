@@ -32,7 +32,7 @@ public class DocenteDaoJDBC implements DocenteDao {
 			statement.setLong(8, docente.getCorsoDiLaurea());
 			statement.executeUpdate();
 			
-			//da verificare
+			
 			String insert2="insert into docente(matricola) values (?)";
 			PreparedStatement statement2=connection.prepareStatement(insert2);
 			statement2.setString(1, docente.getMatricola());
