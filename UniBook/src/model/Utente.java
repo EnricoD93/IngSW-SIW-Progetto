@@ -2,9 +2,6 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public abstract class Utente {
 	private String matricola;

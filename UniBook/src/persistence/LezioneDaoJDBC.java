@@ -1,7 +1,7 @@
 package persistence;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,7 +93,8 @@ public class LezioneDaoJDBC implements LezioneDao {
 		try {
 			String delete = "delete FROM lezione WHERE data = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setDate(1,lezione.getData());
+			long secs = lezione.getData().getTime();
+			statement.setDate(1,new java.sql.Date(secs));
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

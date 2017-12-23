@@ -1,11 +1,10 @@
 package persistence;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Locale;
 
 import model.Aula;
@@ -50,7 +49,8 @@ public class MainJDBC {
 		try {	
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 		Date date;
-		date=(Date) format.parse("1999-02-02");
+		
+		date= format.parse("1999-02-02");
 		Studente st = new Studente("111", "Ciccio", "Rossi", date,"RFFDSS43D23J878K","ciccio@libero.it","TTTTTT",corso1.getCodice());
 		StudenteDao studenteDao=DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		studenteDao.save(st);
