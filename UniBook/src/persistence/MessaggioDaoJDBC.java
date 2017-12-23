@@ -1,11 +1,13 @@
 package persistence;
 
 import java.sql.Connection;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Aula;
 import model.CorsoDiLaurea;
 import model.Messaggio;
 import persistence.dao.MessaggioDao;
@@ -29,7 +31,6 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			statement.setString(3, messaggio.getTesto());
 			statement.setString(4, messaggio.getMittente());
 			statement.setString(5, messaggio.getDestinatario());
-			
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -42,13 +43,35 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			}
 		}
 
-
 	}
 
 	@Override
-	public Messaggio findByPrimaryKey(Long codice) {
-		// TODO Auto-generated method stub
-		return null;
+	public Messaggio findByPrimaryKey(Date data) {
+		Connection connection = this.dataSource.getConnection();
+		Messaggio messaggio = null;
+		try {
+			String query = "select * from messaggio where data = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setDate(1, data);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				messaggio = new Messaggio();
+				messaggio.setData(result.getDate("data"));
+				messaggio.setOra(result.getInt("ora"));
+				messaggio.setTesto(result.getString("testo"));
+				messaggio.setMittente(result.getString("matricola_mitt"));
+				messaggio.setDestinatario(result.getString("matricola_dest"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return messaggio;
 	}
 
 	@Override
@@ -70,7 +93,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			String delete = "delete FROM messaggio WHERE data = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			long secs = messaggio.getData().getTime();
-			statement.setDate(1,new java.sql.Date(secs));
+			statement.setDate(1, new java.sql.Date(secs));
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
