@@ -63,12 +63,15 @@ public class MainJDBC {
 		Corso corso=new Corso(new Long(211),"Fondamenti",2017,"Corso Base di Informatica","Nessun requisito","Lunedi e Venerdi",48,48,"link al materiale",doc.getMatricola(),corso1.getCodice());
 		CorsoDao corsoDao =factory.getCorsoDAO();
 		corsoDao.save(corso);
-		Lezione lezione=new Lezione(corso.getCodice(),date,10,2,aula1.getId());
-		LezioneDao lezioneDao =factory.getLezioneDAO();
-		lezioneDao.save(lezione);
-		Messaggio messaggio=new Messaggio(date,st.getMatricola(),doc.getMatricola(),"Salve",5);
-		MessaggioDao messaggioDao =factory.getMessaggioDAO();
-		messaggioDao.save(messaggio);
+	
+		//controlla qua
+		
+		//	Lezione lezione=new Lezione(corso.getCodice(),date,10,2,aula1.getId());
+//		LezioneDao lezioneDao =factory.getLezioneDAO();
+	//	lezioneDao.save(lezione);
+	//	Messaggio messaggio=new Messaggio(date,st.getMatricola(),doc.getMatricola(),"Salve",5);
+	//	MessaggioDao messaggioDao =factory.getMessaggioDAO();
+	//	messaggioDao.save(messaggio);
 	
 		//Functionaaaaa!!
 		

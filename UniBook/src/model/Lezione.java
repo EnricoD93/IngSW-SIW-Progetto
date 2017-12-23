@@ -1,7 +1,6 @@
 package model;
 
-import java.util.Date;
-import java.util.Set;
+import java.sql.Date;
 
 public class Lezione {
 	private Long corso;
@@ -59,7 +58,7 @@ public class Lezione {
 	}
 
 	public void setAula(String aula) {
-		aula = aula;
+		this.aula = aula;
 	}
 	
 }

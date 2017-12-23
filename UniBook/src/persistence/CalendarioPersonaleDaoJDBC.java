@@ -76,8 +76,21 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 
 	@Override
 	public void delete(CalendarioPersonale calendarioPersonale) {
-		// TODO Auto-generated method stub
-		
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM calendariopersonale WHERE matricola = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setString(1, calendarioPersonale.getUtente());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

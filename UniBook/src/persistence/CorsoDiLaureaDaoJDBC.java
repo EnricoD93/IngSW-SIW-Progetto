@@ -92,8 +92,21 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 
 	@Override
 	public void delete(CorsoDiLaurea corsoDiLaurea) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM corsodilaurea WHERE codice = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, corsoDiLaurea.getCodice());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

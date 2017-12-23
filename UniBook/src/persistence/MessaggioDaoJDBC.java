@@ -1,6 +1,7 @@
 package persistence;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -64,8 +65,21 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 
 	@Override
 	public void delete(Messaggio messaggio) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM messaggio WHERE data = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setDate(1,messaggio.getData());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

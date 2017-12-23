@@ -99,8 +99,21 @@ public class StudenteDaoJDBC implements StudenteDao {
 
 	@Override
 	public void delete(Studente studente) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM utente WHERE matricola = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setString(1, studente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override

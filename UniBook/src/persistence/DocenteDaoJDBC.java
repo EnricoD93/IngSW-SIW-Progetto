@@ -93,15 +93,28 @@ public class DocenteDaoJDBC implements DocenteDao {
 	}
 
 	@Override
-	public void update(Docente studente) {
+	public void update(Docente docente) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Docente studente) {
-		// TODO Auto-generated method stub
-
+	public void delete(Docente docente) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM utente WHERE matricola = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setString(1, docente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override
