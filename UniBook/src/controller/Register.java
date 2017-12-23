@@ -118,7 +118,7 @@ public class Register extends HttpServlet {
 		 " </div>\r\n" +
 		 " <div class=\"card\">\r\n" +
 		 " <div class=\"body\">");
-		 out.println("<div align=\"center\" ><b>Registrazione quasicompleta!</b></div> </br> Controlla la tua posta e inserisci il codice di verifica"+"</br>"+"");
+		 out.println("<div align=\"center\" ><b>Registrazione quasi completa!</b></div> </br> Controlla la tua posta e inserisci il codice di verifica"+"</br>"+"");
 		 out.println("<div class=\"input-group\">\r\n" +
 		 " <span class=\"input-group-addon\"> <i class=\"material-icons\">lock</i>\r\n" +
 		 " </span>\r\n" +
