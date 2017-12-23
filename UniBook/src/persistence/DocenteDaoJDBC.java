@@ -31,6 +31,14 @@ public class DocenteDaoJDBC implements DocenteDao {
 			statement.setString(7, docente.getPassword());
 			statement.setLong(8, docente.getCorsoDiLaurea());
 			statement.executeUpdate();
+			
+			//da verificare
+			String insert2="insert into docente(matricola) values (?)";
+			PreparedStatement statement2=connection.prepareStatement(insert2);
+			statement2.setString(1, docente.getMatricola());
+			
+			statement2.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

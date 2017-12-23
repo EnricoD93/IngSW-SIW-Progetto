@@ -32,6 +32,13 @@ public class StudenteDaoJDBC implements StudenteDao {
 		statement.setString(7,studente.getPassword());
 		statement.setLong(8, studente.getCorsoDiLaurea());
 		statement.executeUpdate();
+
+		//da verificare
+		String insert2="insert into studente(matricola) values (?)";
+		PreparedStatement statement2=connection.prepareStatement(insert2);
+		statement2.setString(1, studente.getMatricola());
+		
+		statement2.executeUpdate();
 	}catch(SQLException e) {
 		throw new PersistenceException(e.getMessage());
 	}finally {
