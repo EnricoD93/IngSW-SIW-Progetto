@@ -5,7 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Locale;
 
 import model.Aula;
@@ -30,7 +30,7 @@ public class MainJDBC {
 	public static void main(String[] args) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(1995, Calendar.MARCH, 21); // // 21 marzo 1995
-		Date date1 = cal.getTime();
+		Date date1 = (Date) cal.getTime();
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		UtilDao util = factory.getUtilDAO();
 		util.dropDatabase();		
@@ -50,7 +50,7 @@ public class MainJDBC {
 		try {	
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 		Date date;
-		date=format.parse("1999-02-02");
+		date=(Date) format.parse("1999-02-02");
 		Studente st = new Studente("111", "Ciccio", "Rossi", date,"RFFDSS43D23J878K","ciccio@libero.it","TTTTTT",corso1.getCodice());
 		StudenteDao studenteDao=DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		studenteDao.save(st);
@@ -66,12 +66,12 @@ public class MainJDBC {
 	
 		//controlla qua
 		
-		//	Lezione lezione=new Lezione(corso.getCodice(),date,10,2,aula1.getId());
-//		LezioneDao lezioneDao =factory.getLezioneDAO();
-	//	lezioneDao.save(lezione);
-	//	Messaggio messaggio=new Messaggio(date,st.getMatricola(),doc.getMatricola(),"Salve",5);
-	//	MessaggioDao messaggioDao =factory.getMessaggioDAO();
-	//	messaggioDao.save(messaggio);
+			Lezione lezione=new Lezione(corso.getCodice(),date,10,2,aula1.getId());
+		LezioneDao lezioneDao =factory.getLezioneDAO();
+		lezioneDao.save(lezione);
+		Messaggio messaggio=new Messaggio(date,st.getMatricola(),doc.getMatricola(),"Salve",5);
+		MessaggioDao messaggioDao =factory.getMessaggioDAO();
+		messaggioDao.save(messaggio);
 	
 		//Functionaaaaa!!
 		
