@@ -3,7 +3,6 @@ package persistence.dao;
 import java.sql.Date;
 import java.util.List;
 
-import model.CorsoDiLaurea;
 import model.Messaggio;
 
 public interface MessaggioDao {

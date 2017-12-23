@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.Aula;
 import model.CorsoDiLaurea;
 import persistence.dao.CorsoDiLaureaDao;
 

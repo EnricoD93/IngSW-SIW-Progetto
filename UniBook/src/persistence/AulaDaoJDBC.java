@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Aula;
-import model.Studente;
 import persistence.dao.AulaDao;
 
 public class AulaDaoJDBC implements AulaDao {
