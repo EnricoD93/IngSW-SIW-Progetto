@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 
-import model.CorsoDiLaurea;
 import model.Lezione;
 
 public interface LezioneDao {
