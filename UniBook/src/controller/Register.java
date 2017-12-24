@@ -53,37 +53,9 @@ public class Register extends HttpServlet {
 				StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 				studenteDao.save(stud);
 				break;
+			default:
+				break;
 			}
-			// Docente doc = new Docente(matricola, nome, cognome,
-			// date,codicef,email,password,cdl);
-			//
-			// DocenteDao
-			// docenteDao=DatabaseManager.getInstance().getDaoFactory().getDocenteDAO();
-			// docenteDao.save(doc);
-
-			// studenteDao.setPassword(stud, password);
-
-			// req.setAttribute("studente", stud);
-
-			// RequestDispatcher dispacher =
-			// req.getRequestDispatcher("iscriviStudente.jsp");
-			// dispacher.forward(req, resp);
-
-			// resp.setContentType("text/html");
-
-			// PrintWriter out = resp.getWriter();
-			// out.println("<html>");
-			// out.println("<head><title>Iscrizione studente</title></head>");
-			// out.println("<body>");
-			// out.println("<h1>Abbiamo iscritto il seguente studente:</h1>");
-			// out.println(matricola);
-			// out.println(nome);
-			// out.println(cognome);
-			// out.println(dataNascita);
-			// out.println(password);
-			// out.println(indirizzo);
-			// out.println("</body>");
-			// out.println("</html>");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
