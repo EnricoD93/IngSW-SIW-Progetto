@@ -16,7 +16,7 @@ public class CorsoDiLaurea {
 		int i = cdl.intValue();
 		this.codice = cdl;
 		switch (i) {
-		case 733:
+		case 773:
 			this.nome = "Informatica";
 			break;
 

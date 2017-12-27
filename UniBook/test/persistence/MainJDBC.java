@@ -37,7 +37,7 @@ public class MainJDBC {
 		
 		//ISTANZE FISSE
 		
-		CorsoDiLaurea corso1=new CorsoDiLaurea(new Long(733),"Informatica");
+		CorsoDiLaurea corso1=new CorsoDiLaurea(new Long(773),"Informatica");
 		CorsoDiLaureaDao corsoDiLaureaDao=factory.getCorsoDiLaureaDAO();
 		corsoDiLaureaDao.save(corso1);
 		Aula aula1=new Aula("MT5", 100, corso1.getCodice());
