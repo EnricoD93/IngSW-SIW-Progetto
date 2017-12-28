@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Aula;
@@ -67,8 +68,31 @@ public class AulaDaoJDBC implements AulaDao {
 
 	@Override
 	public List<Aula> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Aula> aule = new ArrayList<>();
+		try {
+			Aula aula;
+			PreparedStatement statement;
+			String query = "select * from aula";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				aula = new Aula();
+				aula.setId(result.getString("id"));				
+				aula.setCorsoDiLaurea(result.getLong("codice"));
+				aula.setPosti(result.getInt("posti"));
+				aule.add(aula);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return aule;
 	}
 
 	@Override
