@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +21,25 @@ public class Login extends HttpServlet {
 		session.setAttribute("matricola", null);
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
+		RequestDispatcher dispacher=req.getRequestDispatcher("home.html");
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
 
-
 		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
-		System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
+		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
 		System.out.println(username);
-		if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
-			System.out.println("esiste");
-		} else
-			System.out.println("non esiste");
+		try {
+			if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
+				System.out.println("esiste");
+				dispacher.forward(req, resp);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			dispacher = req.getRequestDispatcher("index.html");
+			dispacher.forward(req, resp);
+		}
+
 	}
 
 }

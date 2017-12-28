@@ -62,7 +62,7 @@ public class StudenteDaoJDBC implements StudenteDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				studente = new Studente();
-				studente.setMatricola(result.getString("matricola"));				
+				studente.setMatricola(result.getString("matricola"));	
 				studente.setNome(result.getString("nome"));
 				studente.setCognome(result.getString("cognome"));
 				long secs = result.getDate("data_nascita").getTime();
