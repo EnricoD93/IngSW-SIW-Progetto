@@ -16,16 +16,17 @@ import persistence.dao.StudenteDao;
 public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("ciao");
 		HttpSession session = req.getSession();
-		session.setAttribute("matricola", "");
-		String username = req.getParameter("matricola");
+		session.setAttribute("matricola", null);
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
 		System.out.println("username:" + username);
-		//username è nullo, se lo inizializzo funziona
-		//username = "111";
+		System.out.println("password:" + password);
+
 
 		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
+		System.out.println(username);
 		if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
 			System.out.println("esiste");
 		} else
