@@ -24,7 +24,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/index</url-pattern>
+		<url-pattern>/loginform</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
