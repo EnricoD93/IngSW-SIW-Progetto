@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,13 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Studente;
-import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.StudenteDao;
 
 public class Login extends HttpServlet {
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -35,6 +31,7 @@ public class Login extends HttpServlet {
 				System.out.println("esiste");
 				dispacher= req.getRequestDispatcher("home.jsp");
 				dispacher.forward(req, resp);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
