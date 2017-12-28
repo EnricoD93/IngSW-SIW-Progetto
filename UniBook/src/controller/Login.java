@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.StudenteDao;
 
@@ -22,13 +23,15 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispacher;
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
-
+		Utente currentUser;
 		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
 		System.out.println(username);
 		try {
 			if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
 				System.out.println("esiste");
+				currentUser=studenteDao.findByPrimaryKey(username);
+				session.setAttribute("currentUser", currentUser);
 				dispacher= req.getRequestDispatcher("home.jsp");
 				dispacher.forward(req, resp);
 				

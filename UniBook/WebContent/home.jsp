@@ -1,6 +1,7 @@
 <%@page import="persistence.DatabaseManager"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	import="model.Utente"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -260,17 +261,17 @@
 	<section> <!-- Left Sidebar --> <aside id="leftsidebar"
 		class="sidebar"> <!-- User Info -->
 	<div class="user-info">
-		<%String visitor = request.getParameter("username");
+		<%Utente visitor = (Utente) session.getAttribute("currentUser");
 		%>
 		
-			Benvenuto <%=visitor%>!
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
+			Benvenuto <%=visitor.getNome()+" "+visitor.getCognome()%>!
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"><%=visitor%></div>
-			<div class="email"><%=visitor%>@example.com</div>
+				aria-expanded="false">Matr. <%=visitor.getMatricola()%></div>
+			<div class="email"><%=visitor.getEmail()%></div>
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
