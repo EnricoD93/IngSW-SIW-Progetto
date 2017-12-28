@@ -19,11 +19,12 @@ public class Login extends HttpServlet {
 		System.out.println("ciao");
 		HttpSession session = req.getSession();
 		session.setAttribute("matricola", "");
-		String username =  req.getParameter("matricola");
+		String username = req.getParameter("matricola");
 		System.out.println("username:" + username);
+		//username è nullo, se lo inizializzo funziona
+		//username = "111";
 
-		// NON FUNZIONA
-		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();	
+		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
 		if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
 			System.out.println("esiste");
