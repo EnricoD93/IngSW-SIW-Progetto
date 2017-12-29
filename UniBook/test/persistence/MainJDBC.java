@@ -67,6 +67,7 @@ public class MainJDBC {
 					"DDDDDD", corsoDiLaureaMatematica.getCodice(),0);
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
+			studenteDao.save(st2);
 			Date dateRicca = format.parse("1964-05-12");
 			Docente ricca = new Docente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(),1);
