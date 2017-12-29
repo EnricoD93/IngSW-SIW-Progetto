@@ -356,7 +356,7 @@
 						</thead>
 						<tbody>
 							
-							<c:forEach var="corso" items="corsi">
+							<c:forEach var="corso" items="${corsi}">
 							<tr>
 								<th scope="row"> ${corso.codice} </th>
 								<td><a href="index.html"> ${corso.nome} </a></td>
@@ -364,18 +364,7 @@
 								<td>12 CFU</td>
 							</tr>
 							</c:forEach>
-							<tr>
-								<th scope="row"> ${corsi[1].codice} </th>
-								<td><a href="index.html"> ${corsi[1].nome} </a></td>
-								<td> ${corsi[1].docente} </td>
-								<td>6 CFU</td>
-							</tr>
-							<tr>
-								<th scope="row">27000110</th>
-								<td><a href="index.html">Ingegneria del Software</a></td>
-								<td>F. Ricca</td>
-								<td>12 CFU</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>

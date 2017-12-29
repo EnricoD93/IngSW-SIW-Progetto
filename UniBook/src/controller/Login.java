@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Corso;
+import model.Studente;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.StudenteDao;
@@ -25,7 +26,7 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispacher;
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
-		Utente currentUser;
+		Studente currentUser;
 		List<Corso> corsi;
 		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
 		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
