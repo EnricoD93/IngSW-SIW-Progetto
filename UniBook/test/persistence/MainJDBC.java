@@ -135,7 +135,7 @@ public class MainJDBC {
 			}
 			
 			for (Corso cor : studenteDao.getCorsi(st.getMatricola())) {
-				System.out.println("Il corso è quello di " + cor.getNome());
+				System.out.println("Il corso è quello di " + cor.getNome()+" è di "+cor.getCfu());
 			}
 			
 			System.out.println(corsoDao.getDocente("555").getNome()+" "+corsoDao.getDocente("555").getCognome());
