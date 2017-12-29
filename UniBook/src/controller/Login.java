@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		session.setAttribute("matricola", null);
+		session.setAttribute("matricola", null); // ???? serve?
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		RequestDispatcher dispacher;
@@ -31,17 +31,25 @@ public class Login extends HttpServlet {
 		List<Corso> corsi;
 		UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
-		System.out.println(username);
 		try {
 			if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
-				System.out.println("esiste");
-				currentUser=studenteDao.findByPrimaryKey(username);
-				corsi=studenteDao.getCorsi(username);
-				session.setAttribute("currentUser", currentUser);
-				session.setAttribute("corsi", corsi);
-				dispacher= req.getRequestDispatcher("home.jsp");
+				if (password.equals(studenteDao.findByPrimaryKey(username).getPassword())) {
+					currentUser = studenteDao.findByPrimaryKey(username);
+					corsi = studenteDao.getCorsi(username);
+					session.setAttribute("currentUser", currentUser);
+					session.setAttribute("corsi", corsi);
+					dispacher = req.getRequestDispatcher("home.jsp");
+					dispacher.forward(req, resp);
+
+				}else {
+					dispacher = req.getRequestDispatcher("index.html");
+					dispacher.forward(req, resp);
+					//Password errata
+				}
+			} else {
+				//Utente non esiste
+				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

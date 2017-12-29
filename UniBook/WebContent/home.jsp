@@ -264,10 +264,11 @@
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
-		Benvenuto ${currentUser.nome} ${currentUser.cognome}!
+
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">Matr. ${currentUser.matricola}</div>
+				aria-expanded="false">${currentUser.nome}
+				${currentUser.cognome} Matr. (${currentUser.matricola})</div>
 			<div class="email">${currentUser.email}</div>
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown"
@@ -283,8 +284,7 @@
 					<li><a href="javascript:void(0);"><i
 							class="material-icons">favorite</i>Likes</a></li>
 					<li role="seperator" class="divider"></li>
-					<li><a href="index.html"><i class="material-icons">input</i>Sign
-							Out</a></li>
+					<li><a href="index.html"> <i class="material-icons">input</i>Log Out</a></li>
 				</ul>
 			</div>
 		</div>
