@@ -12,7 +12,7 @@ public interface StudenteDao {
 	public List<Studente> findAll();       
 	public void update(Studente studente); //Update
 	public void delete(Studente studente); //Delete	
-	public List<Corso> getCorsi(Studente studente);
+	public List<Corso> getCorsi(String matricola);
 	public void setPassword(Studente studente, String password);
 	//public StudenteCredenziali findByPrimaryKeyCredential(String matricola);     // Retrieve
 }

@@ -125,7 +125,7 @@ public class StudenteDaoJDBC implements StudenteDao {
 
 	}
 @Override
-public List<Corso> getCorsi(Studente studente) {
+public List<Corso> getCorsi(String matricola) {
 	Connection connection = this.dataSource.getConnection();
 	List<Corso> corsi = new ArrayList<>();
 	try {
@@ -136,7 +136,7 @@ public List<Corso> getCorsi(Studente studente) {
 				"AND utente.corsodilaurea=corsodilaurea.codice\r\n"+
 				"AND studente.matricola=?";
 		statement = connection.prepareStatement(query);
-		statement.setString(1, studente.getMatricola());
+		statement.setString(1, matricola);
 		ResultSet result = statement.executeQuery();
 		while (result.next()) {
 			corso = new Corso();

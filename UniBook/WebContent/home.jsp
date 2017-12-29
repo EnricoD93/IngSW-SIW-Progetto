@@ -269,7 +269,6 @@
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Matr. ${currentUser.matricola}</div>
 			<div class="email"> ${currentUser.email}</div>
-	
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -355,16 +354,18 @@
 							</tr>
 						</thead>
 						<tbody>
+							
+							
 							<tr>
-								<th scope="row">27000002</th>
-								<td><a href="index.html">Fondamenti di Informatica</a></td>
-								<td>S. Perri</td>
+								<th scope="row"> ${corsi[0].codice} </th>
+								<td><a href="index.html">${corsi[0].nome}</a></td>
+								<td>${corsi[0].docente}</td>
 								<td>12 CFU</td>
 							</tr>
 							<tr>
-								<th scope="row">27002209</th>
-								<td><a href="index.html">Programmazione ad Oggetti</a></td>
-								<td>S. Perri</td>
+								<th scope="row"> ${corsi[1].codice} </th>
+								<td><a href="index.html"> ${corsi[1].nome} </a></td>
+								<td> ${corsi[1].docente} </td>
 								<td>6 CFU</td>
 							</tr>
 							<tr>
