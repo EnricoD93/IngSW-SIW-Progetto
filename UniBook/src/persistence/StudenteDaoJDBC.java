@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Aula;
+import model.Corso;
 import model.Studente;
 import persistence.dao.StudenteDao;
 
@@ -121,7 +124,46 @@ public class StudenteDaoJDBC implements StudenteDao {
 		// TODO Auto-generated method stub
 
 	}
-
+@Override
+public List<Corso> getCorsi(Studente studente) {
+	Connection connection = this.dataSource.getConnection();
+	List<Corso> corsi = new ArrayList<>();
+	try {
+		Corso corso;
+		PreparedStatement statement;
+		String query = "select * from corso, corsodilaurea,utente,studente where corso.corsodilaurea=corsodilaurea.codice\r\n" + 
+				"AND utente.matricola=studente.matricola\r\n" + 
+				"AND utente.corsodilaurea=corsodilaurea.codice\r\n"+
+				"AND studente.matricola=?";
+		statement = connection.prepareStatement(query);
+		statement.setString(1, studente.getMatricola());
+		ResultSet result = statement.executeQuery();
+		while (result.next()) {
+			corso = new Corso();
+			corso.setCodice(result.getLong("codice"));			
+			corso.setAnno(result.getInt("anno"));		
+			corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+			corso.setDescrizione(result.getString("descrizione"));
+			corso.setDocente(result.getString("docente"));
+			corso.setGiorno(result.getString("giorni"));
+			corso.setMateriale(result.getString("materiale"));
+			corso.setNome(result.getString("nome"));
+			corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+			corso.setOreLezione(result.getInt("ore_lezioni"));
+			corso.setRequisiti(result.getString("requisiti"));
+			corsi.add(corso);
+		}
+	} catch (SQLException e) {
+		throw new PersistenceException(e.getMessage());
+	}	 finally {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}
+	}
+	return corsi;
+}
 	// @Override
 	// public StudenteCredenziali findByPrimaryKeyCredential(String matricola) {
 	// // TODO Auto-generated method stub

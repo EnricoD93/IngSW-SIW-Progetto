@@ -76,7 +76,7 @@
 			<a href="javascript:void(0);" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar-collapse"
 				aria-expanded="false"></a> <a href="javascript:void(0);"
-				class="bars"></a> <a class="navbar-brand" href="home.html"><logoimg>
+				class="bars"></a> <a class="navbar-brand" href="home.jsp"><logoimg>
 				<image src="logo.png"></image></logoimg></a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse">
@@ -296,7 +296,7 @@
 	<div class="menu">
 		<ul class="list">
 			<li class="header">Navigazione principale</li>
-			<li><a href="home.html"> <i class="material-icons">home</i>
+			<li><a href="home.jsp"> <i class="material-icons">home</i>
 					<span>Home</span>
 			</a></li>
 			<li><a href="pages/mycoruses.html"> <i
