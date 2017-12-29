@@ -33,6 +33,7 @@ public class Register extends HttpServlet {
 		String docente = req.getParameter("docente");
 		String studente = req.getParameter("studente");
 		String ruolo = req.getParameter("role");
+		String  ruolo2=req.getParameter("ruolo");
 		Long cdl = Long.parseLong(req.getParameter("cdl"));
 		ServletOutputStream out = resp.getOutputStream();
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
@@ -43,7 +44,7 @@ public class Register extends HttpServlet {
 				date = format.parse(dataNascita);
 
 				Docente doc = new Docente(matricola, nome, cognome, date, codicef, email, password, cdl,
-						Boolean.parseBoolean(docente), Boolean.parseBoolean(studente));
+						Integer.parseInt(ruolo2));
 
 				UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				docenteDao.save(doc);
@@ -53,7 +54,7 @@ public class Register extends HttpServlet {
 				date = format.parse(dataNascita);
 
 				Studente stud = new Studente(matricola, nome, cognome, date, codicef, email, password, cdl,
-						Boolean.parseBoolean(docente), Boolean.parseBoolean(studente));
+						Integer.parseInt(ruolo2));
 
 				UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				studenteDao.save(stud);

@@ -8,8 +8,8 @@ public class Docente extends Utente {
 	}
 
 	public Docente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, Long corsoDiLaurea,boolean docente,boolean studente) {
-		super(matricola, nome, cognome, dataNascita, codicefiscale, email, password, corsoDiLaurea,docente,studente);
+			String password, Long corsoDiLaurea,int ruolo) {
+		super(matricola, nome, cognome, dataNascita, codicefiscale, email, password, corsoDiLaurea,ruolo);
 	}
 
 }

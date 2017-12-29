@@ -12,14 +12,13 @@ public class Utente {
 	private String email;
 	private String password;
 	private Long corsoDiLaurea;
-	private boolean docente;
-	private boolean studente;
+	private int ruolo;
 
 	public Utente() {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, Long corsoDiLaurea,boolean docente,boolean studente) {
+			String password, Long corsoDiLaurea, int ruolo) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -28,8 +27,7 @@ public class Utente {
 		this.email = email;
 		this.password = password;
 		this.corsoDiLaurea = corsoDiLaurea;
-		this.docente=docente;
-		this.studente=studente;
+		this.ruolo = ruolo;
 
 	}
 
@@ -113,19 +111,13 @@ public class Utente {
 		this.corsoDiLaurea = corsoDiLaurea;
 	}
 
-	public boolean isDocente() {
-		return docente;
+	public int getRuolo() {
+		return ruolo;
 	}
 
-	public void setDocente(boolean docente) {
-		this.docente = docente;
+	public void setRuolo(int ruolo) {
+		this.ruolo = ruolo;
 	}
 
-	public boolean isStudente() {
-		return studente;
-	}
 
-	public void setStudente(boolean studente) {
-		this.studente = studente;
-	}
 }
