@@ -1,13 +1,12 @@
 <%@page import="persistence.DatabaseManager"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"
-	import="model.Utente"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="ISO-8859-1" import="model.Utente"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta  charset="UTF-8">
+<meta charset="UTF-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -265,11 +264,11 @@
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
-			Benvenuto ${currentUser.nome} ${currentUser.cognome}!
+		Benvenuto ${currentUser.nome} ${currentUser.cognome}!
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Matr. ${currentUser.matricola}</div>
-			<div class="email"> ${currentUser.email}</div>
+			<div class="email">${currentUser.email}</div>
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -294,8 +293,7 @@
 	<div class="menu">
 		<ul class="list">
 			<li class="header">Navigazione principale</li>
-			<li><a href="home.jsp"> <i class="material-icons">home</i>
-					<span>Home</span>
+			<li><a href="home.jsp"> <i class="material-icons">home</i> <span>Home</span>
 			</a></li>
 			<li><a href="pages/mycoruses.html"> <i
 					class="material-icons">library_books</i> <span>I miei Corsi</span>
@@ -344,30 +342,33 @@
 		<div class="block-header">
 			<h2>
 				<div class="body table-responsive">
-					<div class="corsiTitle">Corsi</div>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th width="30">Cod.</th>
-								<th width="50%">Nome del Corso</th>
-								<th>Docente</th>
-								<th>CFU</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<c:forEach var="corso" items="${corsi}">
-							<tr>
-								<th scope="row"> ${corso.codice} </th>
-								<td><a href="index.html"> ${corso.nome} </a></td>
-								<td>   ${corso.cognomeDocente} ${corso.nomeDocente}   </td>
-								<td>${corso.cfu}</td>
-							</tr>
-							</c:forEach>
-							
-						</tbody>
-					</table>
+					<c:if test="${currentUser.ruolo < 1 }">
+						<div class="corsiTitle">Corsi</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th width="30">Cod.</th>
+									<th width="50%">Nome del Corso</th>
+									<th>Docente</th>
+									<th>CFU</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<c:forEach var="corso" items="${corsi}">
+									<tr>
+										<th scope="row">${corso.codice}</th>
+										<td><a href="index.html"> ${corso.nome} </a></td>
+										<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
+										<td>${corso.cfu}</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
 				</div>
+							</c:if>
 			</h2>
 		</div>
 	</div>
