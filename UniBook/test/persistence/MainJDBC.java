@@ -105,7 +105,7 @@ public class MainJDBC {
 						+ aula.getCorsoDiLaurea() + " ha a disposizione " + aula.getPosti());
 			}
 	
-			for (Corso cor : studenteDao.getCorsi(st)) {
+			for (Corso cor : studenteDao.getCorsi(st.getMatricola())) {
 				System.out.println("Il corso è quello di "+cor.getNome());
 			}
 		
