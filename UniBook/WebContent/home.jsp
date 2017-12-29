@@ -341,7 +341,7 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
-				<c:if test="${currentUser.ruolo < 1 }">
+				<c:if test="${currentUser.ruolo == 0 }">
 					<div class="body table-responsive">
 						<div class="corsiTitle">Corsi</div>
 						<table class="table table-striped">
@@ -369,7 +369,7 @@
 						</table>
 					</div>
 				</c:if>
-				<c:if test="${currentUser.ruolo < 2 }">
+				<c:if test="${currentUser.ruolo == 1 }">
 					<font size="8"> Scegli una modifica!</font>
 				</c:if>
 			</h2>
