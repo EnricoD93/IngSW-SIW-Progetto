@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Corso;
+import model.Docente;
+import model.Utente;
 import persistence.dao.CorsoDao;
 
 public class CorsoDaoJDBC implements CorsoDao {
@@ -104,6 +106,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setLong(1, corso.getCodice());
 			statement.executeUpdate();
+
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -113,6 +116,39 @@ public class CorsoDaoJDBC implements CorsoDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public Utente getDocente(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		Utente d = null;
+		try {
+			String query = "select * from utente,corso where corso.docente=utente.matricola AND utente.matricola=?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				d = new Docente();
+				d.setCodicefiscale(result.getString("codice_fiscale"));
+				d.setNome(result.getString("nome"));
+				d.setMatricola(result.getString("matricola"));
+				d.setCognome(result.getString("cognome"));
+				d.setDataNascita(result.getDate("data_nascita"));
+				d.setEmail(result.getString("email"));
+				d.setPassword(result.getString("password"));
+				d.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return d;
 	}
 
 }

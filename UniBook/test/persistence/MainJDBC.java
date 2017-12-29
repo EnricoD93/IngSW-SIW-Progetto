@@ -133,11 +133,15 @@ public class MainJDBC {
 				System.out.println("L'aula è la " + aula.getId() + " appartiene al corso di laurea "
 						+ aula.getCorsoDiLaurea() + " ha a disposizione " + aula.getPosti());
 			}
-
+			
 			for (Corso cor : studenteDao.getCorsi(st.getMatricola())) {
 				System.out.println("Il corso è quello di " + cor.getNome());
 			}
-
+			
+			System.out.println(corsoDao.getDocente("555").getNome()+" "+corsoDao.getDocente("555").getCognome());
+			
+			
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
