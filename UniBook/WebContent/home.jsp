@@ -356,7 +356,7 @@
 						</thead>
 						<tbody>
 							
-							<c:forEach var="corso" items="currentUser.corsi">
+							<c:forEach var="corso" items="corsi">
 							<tr>
 								<th scope="row"> ${corso.codice} </th>
 								<td><a href="index.html"> ${corso.nome} </a></td>
