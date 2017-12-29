@@ -121,9 +121,9 @@ public class UtenteDaoJDBC implements UtenteDao {
 		try {
 			Corso corso;
 			PreparedStatement statement;
-			String query = "select * from corso, corsodilaurea,utente,studente where corso.corsodilaurea=corsodilaurea.codice\r\n"
-					+ "AND utente.matricola=studente.matricola\r\n"
-					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n" + "AND studente.matricola=?";
+			String query = "select * from corso, corsodilaurea,utente where corso.corsodilaurea=corsodilaurea.codice\r\n"
+					+ "AND utente.matricola=?\r\n"
+					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n" ;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
