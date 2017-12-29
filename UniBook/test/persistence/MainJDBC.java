@@ -92,18 +92,18 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
 			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 2017,
 					"Corso Base di Informatica", "Nessun requisito", "Lunedi e Venerdi", 48, 48, "link al materiale",
-					perri.getMatricola(), corsoDiLaureaInformatica.getCodice());
+					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(),10);
 			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
 					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
-					corsoDiLaureaInformatica.getCodice());
+					corsoDiLaureaInformatica.getCodice(),10);
 			Corso corsoIngegneria = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
-					corsoDiLaureaInformatica.getCodice());
+					corsoDiLaureaInformatica.getCodice(),10);
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice());
+					corsoDiLaureaMatematica.getCodice(),5);
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoFondamenti);
 			corsoDao.save(corsoAnalisi);

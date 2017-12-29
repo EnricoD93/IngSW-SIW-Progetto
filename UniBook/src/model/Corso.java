@@ -13,12 +13,13 @@ public class Corso {
 	private int oreLezione;
 	private int oreEsercitazione;
 	private Long corsoDiLaurea;
+	private int cfu;
 
 	public Corso() {
 	}
 
 	public Corso(Long codice, String nome, int anno, String descrizione, String giorno, String requisiti,
-			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea) {
+			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea,int cfu) {
 		this.codice = codice;
 		this.nome = nome;
 		this.anno = anno;
@@ -30,6 +31,15 @@ public class Corso {
 		this.materiale = materiale;
 		this.docente = docente;
 		this.corsoDiLaurea = corsoDiLaurea;
+		this.cfu=cfu;
+	}
+
+	public int getCfu() {
+		return cfu;
+	}
+
+	public void setCfu(int cfu) {
+		this.cfu = cfu;
 	}
 
 	public int getAnno() {
