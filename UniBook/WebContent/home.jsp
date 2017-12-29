@@ -1,12 +1,13 @@
 <%@page import="persistence.DatabaseManager"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="model.Utente"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta  charset="UTF-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -355,13 +356,14 @@
 						</thead>
 						<tbody>
 							
-							
+							<c:forEach var="corso" items="currentUser.corsi">
 							<tr>
-								<th scope="row"> ${corsi[0].codice} </th>
-								<td><a href="index.html">${corsi[0].nome}</a></td>
-								<td>${corsi[0].docente}</td>
+								<th scope="row"> ${corso.codice} </th>
+								<td><a href="index.html"> ${corso.nome} </a></td>
+								<td>${corso.docente}</td>
 								<td>12 CFU</td>
 							</tr>
+							</c:forEach>
 							<tr>
 								<th scope="row"> ${corsi[1].codice} </th>
 								<td><a href="index.html"> ${corsi[1].nome} </a></td>
