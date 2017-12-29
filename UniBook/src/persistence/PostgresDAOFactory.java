@@ -9,6 +9,7 @@ import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.StudenteDao;
+import persistence.dao.UtenteDao;
 
 public class PostgresDAOFactory extends DAOFactory {
 	
@@ -33,15 +34,15 @@ public class PostgresDAOFactory extends DAOFactory {
 	
 	// --------------------------------------------
 	
-	@Override
-	public StudenteDao getStudenteDAO() {
-		return new StudenteDaoJDBC(dataSource);
-	}
-
-	@Override
-	public DocenteDao getDocenteDAO() {
-		return new DocenteDaoJDBC(dataSource);
-	}
+//	@Override
+//	public UtenteDao getStudenteDAO() {
+//		return new StudenteDaoJDBC(dataSource);
+//	}
+//
+//	@Override
+//	public UtenteDao getDocenteDAO() {
+//		return new DocenteDaoJDBC(dataSource);
+//	}
 
 	@Override
 	public MessaggioDao getMessaggioDAO() {
@@ -81,6 +82,11 @@ public class PostgresDAOFactory extends DAOFactory {
 	@Override
 	public UtilDao getUtilDAO() {
 		return new UtilDao(dataSource);
+	}
+
+	@Override
+	public UtenteDao getUtenteDao() {
+		return new UtenteDaoJDBC(dataSource);
 	}
 
 }

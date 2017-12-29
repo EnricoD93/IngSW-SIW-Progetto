@@ -3,7 +3,7 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Utente {
+public class Utente {
 	private String matricola;
 	private String nome;
 	private String cognome;
@@ -12,12 +12,14 @@ public abstract class Utente {
 	private String email;
 	private String password;
 	private Long corsoDiLaurea;
+	private boolean docente;
+	private boolean studente;
 
 	public Utente() {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, Long corsoDiLaurea) {
+			String password, Long corsoDiLaurea,boolean docente,boolean studente) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -26,6 +28,8 @@ public abstract class Utente {
 		this.email = email;
 		this.password = password;
 		this.corsoDiLaurea = corsoDiLaurea;
+		this.docente=docente;
+		this.studente=studente;
 
 	}
 
@@ -107,5 +111,21 @@ public abstract class Utente {
 
 	public void setCorsoDiLaurea(Long corsoDiLaurea) {
 		this.corsoDiLaurea = corsoDiLaurea;
+	}
+
+	public boolean isDocente() {
+		return docente;
+	}
+
+	public void setDocente(boolean docente) {
+		this.docente = docente;
+	}
+
+	public boolean isStudente() {
+		return studente;
+	}
+
+	public void setStudente(boolean studente) {
+		this.studente = studente;
 	}
 }

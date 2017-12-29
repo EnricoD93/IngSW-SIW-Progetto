@@ -15,6 +15,7 @@ import model.Studente;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.StudenteDao;
+import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
 	@Override
@@ -26,9 +27,9 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispacher;
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
-		Studente currentUser;
+		Utente currentUser;
 		List<Corso> corsi;
-		StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
+		UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
 		System.out.println(username);
 		try {

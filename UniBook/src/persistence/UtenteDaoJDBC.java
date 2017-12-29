@@ -7,43 +7,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Aula;
 import model.Corso;
 import model.Studente;
 import model.Utente;
-import persistence.dao.StudenteDao;
 import persistence.dao.UtenteDao;
 
-public class StudenteDaoJDBC implements UtenteDao {
-
+public class UtenteDaoJDBC implements UtenteDao {
 	private DataSource dataSource;
 
-	public StudenteDaoJDBC(DataSource dataSource) {
+	public UtenteDaoJDBC(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
-	public void save(Utente studente) {
+	public void save(Utente utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, studente.getMatricola());
-			statement.setString(2, studente.getNome());
-			statement.setString(3, studente.getCognome());
-			long secs = studente.getDataNascita().getTime();
+			statement.setString(1, utente.getMatricola());
+			statement.setString(2, utente.getNome());
+			statement.setString(3, utente.getCognome());
+			long secs = utente.getDataNascita().getTime();
 			statement.setDate(4, new java.sql.Date(secs));
-			statement.setString(5, studente.getCodicefiscale());
-			statement.setString(6, studente.getEmail());
-			statement.setString(7, studente.getPassword());
-			statement.setLong(8, studente.getCorsoDiLaurea());
+			statement.setString(5, utente.getCodicefiscale());
+			statement.setString(6, utente.getEmail());
+			statement.setString(7, utente.getPassword());
+			statement.setLong(8, utente.getCorsoDiLaurea());
 			statement.executeUpdate();
-
-			String insert2 = "insert into studente(matricola) values (?)";
-			PreparedStatement statement2 = connection.prepareStatement(insert2);
-			statement2.setString(1, studente.getMatricola());
-
-			statement2.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {
@@ -53,28 +44,31 @@ public class StudenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+
 	}
 
 	@Override
 	public Utente findByPrimaryKey(String matricola) {
 		Connection connection = this.dataSource.getConnection();
-		Studente studente = null;
+		Utente utente = null;
 		try {
-			String query = "select * from utente,studente where utente.matricola=studente.matricola and studente.matricola = ?";
+			String query = "select * from utente where matricola = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				studente = new Studente();
-				studente.setMatricola(result.getString("matricola"));
-				studente.setNome(result.getString("nome"));
-				studente.setCognome(result.getString("cognome"));
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
 				long secs = result.getDate("data_nascita").getTime();
-				studente.setDataNascita(new java.util.Date(secs));
-				studente.setEmail(result.getString("email"));
-				studente.setPassword(result.getString("password"));
-				studente.setCodicefiscale(result.getString("codice_fiscale"));
-				studente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setDocente(result.getBoolean("docente"));
+				utente.setStudente(result.getBoolean("studente"));
 
 			}
 		} catch (SQLException e) {
@@ -86,7 +80,7 @@ public class StudenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return studente;
+		return utente;
 	}
 
 	@Override
@@ -96,18 +90,18 @@ public class StudenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public void update(Utente studente) {
+	public void update(Utente utente) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Utente studente) {
+	public void delete(Utente utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "delete FROM utente WHERE matricola = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setString(1, studente.getMatricola());
+			statement.setString(1, utente.getMatricola());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -118,12 +112,6 @@ public class StudenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-	}
-
-	@Override
-	public void setPassword(Utente studente, String password) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -164,11 +152,12 @@ public class StudenteDaoJDBC implements UtenteDao {
 			}
 		}
 		return corsi;
+		}
+
+	@Override
+	public void setPassword(Utente utente, String password) {
+		// TODO Auto-generated method stub
+
 	}
-	// @Override
-	// public StudenteCredenziali findByPrimaryKeyCredential(String matricola) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
 
 }

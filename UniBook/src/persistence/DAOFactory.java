@@ -9,6 +9,7 @@ import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.StudenteDao;
+import persistence.dao.UtenteDao;
 
 public abstract class DAOFactory {
 	public static final int POSTGRESQL = 1;
@@ -20,9 +21,11 @@ public abstract class DAOFactory {
 			return null;
 	}
 
-	public abstract StudenteDao getStudenteDAO();
-
-	public abstract DocenteDao getDocenteDAO();
+//	public abstract UtenteDao getStudenteDAO();
+//
+//	public abstract UtenteDao getDocenteDAO();
+	
+	public abstract UtenteDao getUtenteDao();
 
 	public abstract MessaggioDao getMessaggioDAO();
 

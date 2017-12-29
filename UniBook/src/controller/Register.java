@@ -18,6 +18,7 @@ import model.Studente;
 import persistence.DatabaseManager;
 import persistence.dao.DocenteDao;
 import persistence.dao.StudenteDao;
+import persistence.dao.UtenteDao;
 
 public class Register extends HttpServlet {
 	@Override
@@ -29,6 +30,8 @@ public class Register extends HttpServlet {
 		String dataNascita = req.getParameter("dataNascita");
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
+		String docente = req.getParameter("docente");
+		String studente = req.getParameter("studente");
 		String ruolo = req.getParameter("role");
 		Long cdl = Long.parseLong(req.getParameter("cdl"));
 		ServletOutputStream out = resp.getOutputStream();
@@ -39,18 +42,20 @@ public class Register extends HttpServlet {
 			case "docente":
 				date = format.parse(dataNascita);
 
-				Docente doc = new Docente(matricola, nome, cognome, date, codicef, email, password, cdl);
+				Docente doc = new Docente(matricola, nome, cognome, date, codicef, email, password, cdl,
+						Boolean.parseBoolean(docente), Boolean.parseBoolean(studente));
 
-				DocenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getDocenteDAO();
+				UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				docenteDao.save(doc);
 				break;
 
 			case "studente":
 				date = format.parse(dataNascita);
 
-				Studente stud = new Studente(matricola, nome, cognome, date, codicef, email, password, cdl);
+				Studente stud = new Studente(matricola, nome, cognome, date, codicef, email, password, cdl,
+						Boolean.parseBoolean(docente), Boolean.parseBoolean(studente));
 
-				StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
+				UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				studenteDao.save(stud);
 				break;
 			default:

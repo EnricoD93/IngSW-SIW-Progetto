@@ -15,6 +15,7 @@ import model.Docente;
 import model.Lezione;
 import model.Messaggio;
 import model.Studente;
+import model.Utente;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
@@ -23,6 +24,7 @@ import persistence.dao.DocenteDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.StudenteDao;
+import persistence.dao.UtenteDao;
 
 public class MainJDBC {
 
@@ -60,19 +62,19 @@ public class MainJDBC {
 
 			date = format.parse("1999-02-02");
 			Studente st = new Studente("111", "Ciccio", "Rossi", date, "RFFDSS43D23J878K", "ciccio@studenti.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice());
-			StudenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getStudenteDAO();
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(),false,true);
+			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			Date dateRicca = format.parse("1964-05-12");
 			Docente ricca = new Docente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice());
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(),true,false);
 			Docente perri = new Docente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice());
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(),true,false);
 			Docente cianciaruso = new Docente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
-					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice());
+					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice(),true,false);
 			Docente marino = new Docente("222", "Giuseppe", "Marino", date, "GPPMNR64Y34G764L", "marino@mat.unical.it",
-					"PPPPPP", corsoDiLaureaMatematica.getCodice());
-			DocenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getDocenteDAO();
+					"PPPPPP", corsoDiLaureaMatematica.getCodice(),true,false);
+			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(ricca);
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);

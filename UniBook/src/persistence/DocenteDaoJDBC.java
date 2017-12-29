@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Corso;
 import model.Docente;
+import model.Utente;
 import persistence.dao.DocenteDao;
+import persistence.dao.UtenteDao;
 
-public class DocenteDaoJDBC implements DocenteDao {
+public class DocenteDaoJDBC implements UtenteDao {
 	private DataSource dataSource;
 
 	public DocenteDaoJDBC(DataSource dataSource) {
@@ -17,7 +20,7 @@ public class DocenteDaoJDBC implements DocenteDao {
 	}
 
 	@Override
-	public void save(Docente docente) {
+	public void save(Utente docente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea) values (?,?,?,?,?,?,?,?)";
@@ -86,19 +89,19 @@ public class DocenteDaoJDBC implements DocenteDao {
 	}
 
 	@Override
-	public List<Docente> findAll() {
+	public List<Utente> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Docente docente) {
+	public void update(Utente docente) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Docente docente) {
+	public void delete(Utente docente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "delete FROM utente WHERE matricola = ? ";
@@ -117,9 +120,15 @@ public class DocenteDaoJDBC implements DocenteDao {
 	}
 
 	@Override
-	public void setPassword(Docente studente, String password) {
+	public void setPassword(Utente docente, String password) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Corso> getCorsi(String matricola) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	// @Override
