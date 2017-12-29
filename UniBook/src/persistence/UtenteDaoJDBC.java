@@ -142,6 +142,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 				corso.setOreLezione(result.getInt("ore_lezioni"));
 				corso.setRequisiti(result.getString("requisiti"));
 				corso.setCfu(result.getInt("cfu"));
+				corso.setCognomeDocente(result.getString("cognomeDocente"));
+				corso.setNomeDocente(result.getString("nomeDocente"));
 				corsi.add(corso);
 			}
 		} catch (SQLException e) {

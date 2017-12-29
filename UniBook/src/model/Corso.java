@@ -1,6 +1,5 @@
 package model;
 
-
 public class Corso {
 	private Long codice;
 	private String nome;
@@ -10,6 +9,8 @@ public class Corso {
 	private String giorno;
 	private String requisiti;
 	private String docente;
+	private String nomeDocente;
+	private String cognomeDocente;
 	private int oreLezione;
 	private int oreEsercitazione;
 	private Long corsoDiLaurea;
@@ -19,7 +20,8 @@ public class Corso {
 	}
 
 	public Corso(Long codice, String nome, int anno, String descrizione, String giorno, String requisiti,
-			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea,int cfu) {
+			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea, int cfu,
+			String cognomeDocente, String nomeDocente) {
 		this.codice = codice;
 		this.nome = nome;
 		this.anno = anno;
@@ -31,7 +33,25 @@ public class Corso {
 		this.materiale = materiale;
 		this.docente = docente;
 		this.corsoDiLaurea = corsoDiLaurea;
-		this.cfu=cfu;
+		this.cfu = cfu;
+		this.cognomeDocente = cognomeDocente;
+		this.nomeDocente = nomeDocente;
+	}
+
+	public String getCognomeDocente() {
+		return cognomeDocente;
+	}
+
+	public void setCognomeDocente(String cognomeDocente) {
+		this.cognomeDocente = cognomeDocente;
+	}
+
+	public String getNomeDocente() {
+		return nomeDocente;
+	}
+
+	public void setNomeDocente(String nomeDocente) {
+		this.nomeDocente = nomeDocente;
 	}
 
 	public int getCfu() {

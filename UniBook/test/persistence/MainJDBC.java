@@ -63,6 +63,8 @@ public class MainJDBC {
 			date = format.parse("1999-02-02");
 			Studente st = new Studente("111", "Ciccio", "Rossi", date, "RFFDSS43D23J878K", "ciccio@studenti.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(),0);
+			Studente st2 = new Studente("100", "Giuseppe", "Verdi", date, "GPPVDR97Y76T518D", "verdi@studenti.unical.it",
+					"DDDDDD", corsoDiLaureaMatematica.getCodice(),0);
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			Date dateRicca = format.parse("1964-05-12");
@@ -92,18 +94,18 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
 			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 2017,
 					"Corso Base di Informatica", "Nessun requisito", "Lunedi e Venerdi", 48, 48, "link al materiale",
-					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(),10);
+					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(),10,perri.getCognome(),perri.getNome());
 			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
 					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(),10);
+					corsoDiLaureaInformatica.getCodice(),10,cianciaruso.getCognome(),cianciaruso.getNome());
 			Corso corsoIngegneria = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(),10);
+					corsoDiLaureaInformatica.getCodice(),10,ricca.getCognome(),ricca.getNome());
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice(),5);
+					corsoDiLaureaMatematica.getCodice(),5,marino.getCognome(),marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoFondamenti);
 			corsoDao.save(corsoAnalisi);

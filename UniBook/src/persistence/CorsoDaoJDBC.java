@@ -23,7 +23,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 	public void save(Corso corso) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into corso(codice,nome,anno,descrizione,requisiti,giorni,ore_lezioni,ore_esercitazioni,materiale,docente,corsodilaurea,cfu) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into corso(codice,nome,anno,descrizione,requisiti,giorni,ore_lezioni,ore_esercitazioni,materiale,docente,corsodilaurea,cfu,cognomeDocente,nomeDocente) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, corso.getCodice());
 			statement.setString(2, corso.getNome());
@@ -37,6 +37,8 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setString(10, corso.getDocente());
 			statement.setLong(11, corso.getCorsoDiLaurea());
 			statement.setInt(12, corso.getCfu());
+			statement.setString(13, corso.getCognomeDocente());
+			statement.setString(14, corso.getNomeDocente());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -74,6 +76,9 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setDocente(result.getString("docente"));
 				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
 				corso.setCfu(result.getInt("cfu"));
+				corso.setCognomeDocente(result.getString("cognomeDocente"));
+				corso.setNomeDocente(result.getString("nomeDocente"));
+				
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
