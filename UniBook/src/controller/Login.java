@@ -27,12 +27,11 @@ public class Login extends HttpServlet {
 		RequestDispatcher dispacher;
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
-		Utente currentUser;
 		List<Corso> corsi;
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		Utente utente = utenteDao.findByPrimaryKey(username);
+		Utente currentUser = utenteDao.findByPrimaryKey(username);
 		try {
-			if (utente != null) {
+			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					currentUser = utenteDao.findByPrimaryKey(username);
 					corsi = utenteDao.getCorsi(username);
