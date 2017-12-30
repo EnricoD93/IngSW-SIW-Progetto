@@ -7,19 +7,12 @@
 <title>Logout</title>
 </head>
 <body>
-<script>
-    history.forward();
-</script>
+
 	<%
-		response.setHeader("Cache-Control", "no-cache");
-		response.setHeader("Cache-Control", "no-store");
-		response.setHeader("Pragma", "no-cache");
-		response.setDateHeader("Expires", 0);
-		session=request.getSession();
-		session.setAttribute("currentUser",null);
-		if (session.getAttribute("currentUser") == null)
+		request.getSession().setAttribute("currentUser", null);
+		if (request.getAttribute("currentUser") == null)
 			response.sendRedirect("index.html");
-		session.invalidate();
+		request.getSession().invalidate();
 	%>
 </body>
 </html>

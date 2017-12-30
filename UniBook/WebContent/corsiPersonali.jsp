@@ -402,6 +402,21 @@
 			</h2>
 		</div>
 	</div>
+	
+		<c:if test="${currentUser==null}">
+					<%
+						response.sendRedirect("index.html");
+					%>
+				</c:if>
+
+				<%
+					response.setHeader("Cache-Control", "no-cache");
+					response.setHeader("Cache-Control", "no-store");
+					response.setHeader("Pragma", "no-cache");
+					response.setDateHeader("Expires", 0);
+				%>
+	
+	
 	</section>
 
 	<!-- Jquery Core Js -->
