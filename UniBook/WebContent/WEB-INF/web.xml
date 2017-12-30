@@ -9,6 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+   <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>controller.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>controller.Register</servlet-class>
@@ -17,6 +27,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>controller.Login</servlet-class>

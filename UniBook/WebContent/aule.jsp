@@ -355,10 +355,10 @@
 								<tr>
 									<th>
 									<td>L'aula <b>${aula.id}</b> appartiene al Corso di Laurea
-									<c:if test="${aula.corsoDiLaurea == 773 }">
+									<c:if test="${aula.corsoDiLaurea == 733 }">
 									di <b>Informatica</b> </c:if>
 								
-									<c:if test="${aula.corsoDiLaurea == 552 }">
+									<c:if test="${aula.corsoDiLaurea == 726 }">
 									di <b>Matematica</b> </c:if>
 								
 									ha una capienza di <b>${aula.posti}</b> posti</td>

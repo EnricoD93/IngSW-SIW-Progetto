@@ -38,7 +38,6 @@
 
 
 </head>
-
 <body class="theme-red">
 	<!-- Page Loader -->
 	<div class="page-loader-wrapper">
@@ -286,7 +285,8 @@
 					<li><a href="javascript:void(0);"><i
 							class="material-icons">favorite</i>Likes</a></li>
 					<li role="seperator" class="divider"></li>
-					<li><a href="index.html"> <i class="material-icons">input</i>Log Out</a></li>
+					<li><a href="logout.jsp"><i class="material-icons">input</i>Log
+							Out </a></li>
 				</ul>
 			</div>
 		</div>
@@ -297,8 +297,8 @@
 			<li class="header">Navigazione principale</li>
 			<li><a href="home.jsp"> <i class="material-icons">home</i> <span>Home</span>
 			</a></li>
-			<li><a href="corsiPersonali.jsp"> <i
-					class="material-icons">library_books</i> <span>I miei Corsi</span>
+			<li><a href="corsiPersonali.jsp"> <i class="material-icons">library_books</i>
+					<span>I miei Corsi</span>
 			</a></li>
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
@@ -365,7 +365,7 @@
 									<tr>
 										<th scope="row">${corso.codice}</th>
 										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cognomeDocente} ${corso.nomeDocente}</td>
+										<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
 										<td>${corso.cfu}</td>
 									</tr>
 								</c:forEach>
@@ -377,18 +377,18 @@
 				<c:if test="${currentUser.ruolo == 1 }">
 					<font size="8"> Scegli una modifica!</font>
 				</c:if>
-				
+
 				<button id="button">Click me</button>
-				
-				
-				
-				
+
+
+
+
 			</h2>
 		</div>
 	</div>
 	</section>
-<script src="plugins/jquery/jquery.js"></script>
-<script src="javascript/prova.js" type="text/javascript"></script>
+	<script src="plugins/jquery/jquery.js"></script>
+	<script src="javascript/prova.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
@@ -411,6 +411,5 @@
 	<!-- Demo Js -->
 	<script src="js/demo.js"></script>
 </body>
-
 
 </html>
