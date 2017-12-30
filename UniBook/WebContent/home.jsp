@@ -301,6 +301,9 @@
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
 			</a></li>
+			<li><a href="aule.jsp"> <i class="material-icons">business</i>
+					<span>Aule</span>
+			</a></li>
 
 
 			<li class="active"></li>

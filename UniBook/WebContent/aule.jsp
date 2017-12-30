@@ -345,60 +345,32 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
-				<c:if test="${currentUser.ruolo == 0 }">
-					<div class="body table-responsive">
-						<div class="corsiTitle">Corsi</div>
-						<table class="table table-striped">
-							<thead>
+				<div class="body table-responsive">
+					<div class="corsiTitle">Aule</div>
+					<img alt="mappa" src="images/image-gallery/aule.gif">
+					<table class="table table-striped">
+						<tbody>
+
+							<c:forEach var="aula" items="${aule}">
 								<tr>
-									<th width="30">Cod.</th>
-									<th width="50%">Nome del Corso</th>
-									<th>Docente</th>
-									<th>CFU</th>
+									<th>
+									<td>L'aula <b>${aula.id}</b> appartiene al Corso di Laurea
+									<c:if test="${aula.corsoDiLaurea == 773 }">
+									di <b>Informatica</b> </c:if>
+								
+									<c:if test="${aula.corsoDiLaurea == 552 }">
+									di <b>Matematica</b> </c:if>
+								
+									ha una capienza di <b>${aula.posti}</b> posti</td>
+									</th>
 								</tr>
+							</c:forEach>
 
-							</thead>
-							<tbody>
-
-								<c:forEach var="corso" items="${corsiIscritto}">
-									<tr>
-										<th scope="row">${corso.codice}</th>
-										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
-										<td>${corso.cfu}</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
-					</div>
-				</c:if>
-				<c:if test="${currentUser.ruolo == 1 }">
-					<div class="body table-responsive">
-						<div class="corsiTitle">Corsi</div>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th width="30">Cod.</th>
-									<th width="50%">Nome del Corso</th>
-									<th>CFU</th>
-								</tr>
-
-							</thead>
-							<tbody>
-
-								<c:forEach var="corso" items="${corsiDocente}">
-									<tr>
-										<th scope="row">${corso.codice}</th>
-										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cfu}</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
-					</div>
-				</c:if>
+						</tbody>
+					</table>
+				</div>
+				<br></br>
+<b>*Tutte le aule sono dotate di accesso alla rete Wi-fi tramite apposite credenziali</b>
 			</h2>
 		</div>
 	</div>

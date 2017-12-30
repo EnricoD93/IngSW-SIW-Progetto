@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Aula;
 import model.Corso;
 import model.Studente;
 import model.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.AulaDao;
 import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
@@ -29,9 +31,12 @@ public class Login extends HttpServlet {
 		List<Corso> corsi;
 		List<Corso> corsiDocente;
 		List<Corso> corsiIscritto;
+		List<Aula> aule;
 		
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		Utente currentUser = utenteDao.findByPrimaryKey(username);
+		AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+		aule=aulaDao.findAll();
 		try {
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
@@ -43,6 +48,7 @@ public class Login extends HttpServlet {
 					session.setAttribute("corsi", corsi);
 					session.setAttribute("corsiDocente", corsiDocente);
 					session.setAttribute("corsiIscritto", corsiIscritto);
+					session.setAttribute("aule", aule);
 					dispacher = req.getRequestDispatcher("home.jsp");
 					dispacher.forward(req, resp);
 
