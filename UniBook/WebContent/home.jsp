@@ -35,6 +35,8 @@
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+
 </head>
 
 <body class="theme-red">
@@ -375,10 +377,18 @@
 				<c:if test="${currentUser.ruolo == 1 }">
 					<font size="8"> Scegli una modifica!</font>
 				</c:if>
+				
+				<button id="button">Click me</button>
+				
+				
+				
+				
 			</h2>
 		</div>
 	</div>
 	</section>
+<script src="plugins/jquery/jquery.js"></script>
+<script src="javascript/prova.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
