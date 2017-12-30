@@ -36,8 +36,8 @@ public class MainJDBC {
 
 		// ISTANZE FISSE
 
-		CorsoDiLaurea corsoDiLaureaInformatica = new CorsoDiLaurea(new Long(773), "Informatica");
-		CorsoDiLaurea corsoDiLaureaMatematica = new CorsoDiLaurea(new Long(552), "Matematica");
+		CorsoDiLaurea corsoDiLaureaInformatica = new CorsoDiLaurea(new Long(733), "Informatica");
+		CorsoDiLaurea corsoDiLaureaMatematica = new CorsoDiLaurea(new Long(726), "Matematica");
 		CorsoDiLaureaDao corsoDiLaureaDao = factory.getCorsoDiLaureaDAO();
 		corsoDiLaureaDao.save(corsoDiLaureaInformatica);
 		corsoDiLaureaDao.save(corsoDiLaureaMatematica);
@@ -135,7 +135,7 @@ public class MainJDBC {
 			System.out.println(aulaDao.findByPrimaryKey("MT5").getPosti());
 			System.out.println(calendarioPersonaleDao.findByPrimaryKey("111").getUtente());
 			System.out.println(corsoDao.findByPrimaryKey(new Long(211)).getNome());
-			System.out.println(corsoDiLaureaDao.findByPrimaryKey(new Long(773)).getNome());
+			System.out.println(corsoDiLaureaDao.findByPrimaryKey(new Long(733)).getNome());
 			// System.out.println(lezioneDao.findByPrimaryKey(new
 			// java.sql.Date(100)).getAula());
 			for (Aula aula : aulaDao.findAll()) {

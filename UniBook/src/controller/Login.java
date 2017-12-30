@@ -26,8 +26,6 @@ public class Login extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		RequestDispatcher dispacher;
-		System.out.println("username:" + username);
-		System.out.println("password:" + password);
 		List<Corso> corsi;
 		List<Corso> corsiDocente;
 		List<Corso> corsiIscritto;

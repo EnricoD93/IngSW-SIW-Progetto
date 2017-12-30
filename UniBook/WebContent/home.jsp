@@ -363,7 +363,7 @@
 									<tr>
 										<th scope="row">${corso.codice}</th>
 										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
+										<td>${corso.cognomeDocente} ${corso.nomeDocente}</td>
 										<td>${corso.cfu}</td>
 									</tr>
 								</c:forEach>

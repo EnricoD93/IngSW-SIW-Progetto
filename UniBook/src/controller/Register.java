@@ -29,28 +29,29 @@ public class Register extends HttpServlet {
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
 		String ruolo = req.getParameter("role");
-		String  ruolo2=req.getParameter("ruolo");
 		Long cdl = Long.parseLong(req.getParameter("cdl"));
 		ServletOutputStream out = resp.getOutputStream();
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 		Date date;
 		try {
 			switch (ruolo) {
-			case "docente":
+			case "1":
+				System.out.println("docente");
 				date = format.parse(dataNascita);
 
 				Docente doc = new Docente(matricola, nome, cognome, date, codicef, email, password, cdl,
-						Integer.parseInt(ruolo2));
+						Integer.parseInt(ruolo));
 
 				UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				docenteDao.save(doc);
 				break;
 
-			case "studente":
+			case "0":
+				System.out.println("studente");
 				date = format.parse(dataNascita);
 
 				Studente stud = new Studente(matricola, nome, cognome, date, codicef, email, password, cdl,
-						Integer.parseInt(ruolo2));
+						Integer.parseInt(ruolo));
 
 				UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				studenteDao.save(stud);
