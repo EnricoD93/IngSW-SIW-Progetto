@@ -13,4 +13,7 @@ public interface UtenteDao {
 	public void delete(Utente utente); //Delete	
 	public List<Corso> getCorsi(String matricola);
 	public void setPassword(Utente utente, String password);
+	public List<Corso> getCorsiIscritto(String matricola);
+	public void iscriviStudente(String matricola, Long codice);
+	public List<Corso> getCorsiDocente(String matricola);
 }

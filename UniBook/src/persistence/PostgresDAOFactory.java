@@ -4,11 +4,9 @@ import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
-import persistence.dao.DocenteDao;
 import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
-import persistence.dao.StudenteDao;
 import persistence.dao.UtenteDao;
 
 public class PostgresDAOFactory extends DAOFactory {

@@ -15,15 +15,12 @@ import model.Docente;
 import model.Lezione;
 import model.Messaggio;
 import model.Studente;
-import model.Utente;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
-import persistence.dao.DocenteDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
-import persistence.dao.StudenteDao;
 import persistence.dao.UtenteDao;
 
 public class MainJDBC {
@@ -68,6 +65,7 @@ public class MainJDBC {
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			studenteDao.save(st2);
+			
 			Date dateRicca = format.parse("1964-05-12");
 			Docente ricca = new Docente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(),1);
@@ -104,6 +102,11 @@ public class MainJDBC {
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
 					corsoDiLaureaInformatica.getCodice(),10,ricca.getCognome(),ricca.getNome());
+			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
+					"Corso Avanzato di Informatica",
+					"Fondamenti di Informatica",
+					"Lunedi e Giovedi", 48, 48, "link al materiale", ricca.getMatricola(),
+					corsoDiLaureaInformatica.getCodice(),10,ricca.getCognome(),ricca.getNome());
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
 					corsoDiLaureaMatematica.getCodice(),5,marino.getCognome(),marino.getNome());
@@ -112,7 +115,10 @@ public class MainJDBC {
 			corsoDao.save(corsoAnalisi);
 			corsoDao.save(corsoGeometria);
 			corsoDao.save(corsoIngegneria);
+			corsoDao.save(corsoProgrammazioneAdOggetti);
 
+			studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
+			
 			// controlla qua
 
 			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId());
@@ -143,8 +149,12 @@ public class MainJDBC {
 			
 			System.out.println(corsoDao.getDocente("555").getNome()+" "+corsoDao.getDocente("555").getCognome());
 			
-			
-			
+			for (Corso cor : studenteDao.getCorsiIscritto(st.getMatricola())) {
+				System.out.println("Il corso a cui " + st.getNome()+" "+ st.getCognome()+" è iscritto è "+cor.getNome());
+			}
+			for (Corso cor : docenteDao.getCorsiDocente(ricca.getMatricola())) {
+				System.out.println("Il corso di cui " + ricca.getNome()+" "+ ricca.getCognome()+" è titolare è "+cor.getNome());
+			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

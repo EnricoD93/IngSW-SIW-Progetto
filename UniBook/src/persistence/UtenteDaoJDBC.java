@@ -164,4 +164,111 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	}
 
+	@Override
+	public List<Corso> getCorsiIscritto(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Corso> corsi = new ArrayList<>();
+		try {
+			Corso corso;
+			PreparedStatement statement;
+			String query = "select * from corso,utente,iscritto where corso.codice=iscritto.codice\r\n"
+					+ "AND utente.matricola=?\r\n"
+					+" AND utente.ruolo=0\r\n"
+					+ "AND utente.matricola=iscritto.matricola\r\n" ;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				corso = new Corso();
+				corso.setCodice(result.getLong("codice"));
+				corso.setAnno(result.getInt("anno"));
+				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setDescrizione(result.getString("descrizione"));
+				corso.setDocente(result.getString("docente"));
+				corso.setGiorno(result.getString("giorni"));
+				corso.setMateriale(result.getString("materiale"));
+				corso.setNome(result.getString("nome"));
+				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				corso.setOreLezione(result.getInt("ore_lezioni"));
+				corso.setRequisiti(result.getString("requisiti"));
+				corso.setCfu(result.getInt("cfu"));
+				corso.setCognomeDocente(result.getString("cognomeDocente"));
+				corso.setNomeDocente(result.getString("nomeDocente"));
+				corsi.add(corso);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return corsi;
+		}
+
+	@Override
+	public void iscriviStudente(String matricola, Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into iscritto(codice,matricola) values (?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, codice);
+			statement.setString(2, matricola);
+		
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+	@Override
+	public List<Corso> getCorsiDocente(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Corso> corsi = new ArrayList<>();
+		try {
+			Corso corso;
+			PreparedStatement statement;
+			String query = "select * from corso,utente where utente.ruolo=1\r\n"
+					+ "AND utente.matricola=?\r\n"
+					+ "AND corso.docente=utente.matricola\r\n" ;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				corso = new Corso();
+				corso.setCodice(result.getLong("codice"));
+				corso.setAnno(result.getInt("anno"));
+				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setDescrizione(result.getString("descrizione"));
+				corso.setDocente(result.getString("docente"));
+				corso.setGiorno(result.getString("giorni"));
+				corso.setMateriale(result.getString("materiale"));
+				corso.setNome(result.getString("nome"));
+				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				corso.setOreLezione(result.getInt("ore_lezioni"));
+				corso.setRequisiti(result.getString("requisiti"));
+				corso.setCfu(result.getInt("cfu"));
+				corso.setCognomeDocente(result.getString("cognomeDocente"));
+				corso.setNomeDocente(result.getString("nomeDocente"));
+				corsi.add(corso);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return corsi;		
+	}
+
 }

@@ -284,7 +284,9 @@
 					<li><a href="javascript:void(0);"><i
 							class="material-icons">favorite</i>Likes</a></li>
 					<li role="seperator" class="divider"></li>
-					<li><a href="index.html"> <i class="material-icons">input</i>Log Out</a></li>
+					<li><a href="index.html"> <i class="material-icons">input</i>Log
+							Out
+					</a></li>
 				</ul>
 			</div>
 		</div>
@@ -356,7 +358,7 @@
 							</thead>
 							<tbody>
 
-								<c:forEach var="corso" items="${corsi}">
+								<c:forEach var="corso" items="${corsiIscritto}">
 									<tr>
 										<th scope="row">${corso.codice}</th>
 										<td><a href="index.html"> ${corso.nome} </a></td>
@@ -370,7 +372,30 @@
 					</div>
 				</c:if>
 				<c:if test="${currentUser.ruolo == 1 }">
-					<font size="8"> Scegli una modifica!</font>
+					<div class="body table-responsive">
+						<div class="corsiTitle">Corsi</div>
+						<table class="table table-striped">
+						<thead>
+								<tr>
+									<th width="30">Cod.</th>
+									<th width="50%">Nome del Corso</th>
+									<th>CFU</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<c:forEach var="corso" items="${corsiDocente}">
+									<tr>
+										<th scope="row">${corso.codice}</th>
+										<td><a href="index.html"> ${corso.nome} </a></td>
+										<td>${corso.cfu}</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
 				</c:if>
 			</h2>
 		</div>

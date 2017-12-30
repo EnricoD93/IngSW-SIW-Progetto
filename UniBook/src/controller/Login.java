@@ -14,7 +14,6 @@ import model.Corso;
 import model.Studente;
 import model.Utente;
 import persistence.DatabaseManager;
-import persistence.dao.StudenteDao;
 import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
@@ -28,6 +27,9 @@ public class Login extends HttpServlet {
 		System.out.println("username:" + username);
 		System.out.println("password:" + password);
 		List<Corso> corsi;
+		List<Corso> corsiDocente;
+		List<Corso> corsiIscritto;
+		
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		Utente currentUser = utenteDao.findByPrimaryKey(username);
 		try {
@@ -35,8 +37,12 @@ public class Login extends HttpServlet {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					currentUser = utenteDao.findByPrimaryKey(username);
 					corsi = utenteDao.getCorsi(username);
+					corsiDocente = utenteDao.getCorsiDocente(username);
+					corsiIscritto = utenteDao.getCorsiIscritto(username);
 					session.setAttribute("currentUser", currentUser);
 					session.setAttribute("corsi", corsi);
+					session.setAttribute("corsiDocente", corsiDocente);
+					session.setAttribute("corsiIscritto", corsiIscritto);
 					dispacher = req.getRequestDispatcher("home.jsp");
 					dispacher.forward(req, resp);
 

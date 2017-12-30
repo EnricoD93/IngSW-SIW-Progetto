@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.Docente;
 import model.Studente;
 import persistence.DatabaseManager;
-import persistence.dao.DocenteDao;
-import persistence.dao.StudenteDao;
 import persistence.dao.UtenteDao;
 
 public class Register extends HttpServlet {
@@ -30,8 +28,6 @@ public class Register extends HttpServlet {
 		String dataNascita = req.getParameter("dataNascita");
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
-		String docente = req.getParameter("docente");
-		String studente = req.getParameter("studente");
 		String ruolo = req.getParameter("role");
 		String  ruolo2=req.getParameter("ruolo");
 		Long cdl = Long.parseLong(req.getParameter("cdl"));
@@ -64,7 +60,6 @@ public class Register extends HttpServlet {
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 		out.println("<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<meta\r\n"
