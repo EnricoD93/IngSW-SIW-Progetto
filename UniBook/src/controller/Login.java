@@ -29,25 +29,25 @@ public class Login extends HttpServlet {
 		System.out.println("password:" + password);
 		Utente currentUser;
 		List<Corso> corsi;
-		UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		// System.out.println(studenteDao.findByPrimaryKey(username).getMatricola());
+		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		Utente utente = utenteDao.findByPrimaryKey(username);
 		try {
-			if (username.equals(studenteDao.findByPrimaryKey(username).getMatricola())) {
-				if (password.equals(studenteDao.findByPrimaryKey(username).getPassword())) {
-					currentUser = studenteDao.findByPrimaryKey(username);
-					corsi = studenteDao.getCorsi(username);
+			if (utente != null) {
+				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
+					currentUser = utenteDao.findByPrimaryKey(username);
+					corsi = utenteDao.getCorsi(username);
 					session.setAttribute("currentUser", currentUser);
 					session.setAttribute("corsi", corsi);
 					dispacher = req.getRequestDispatcher("home.jsp");
 					dispacher.forward(req, resp);
 
-				}else {
+				} else {
 					dispacher = req.getRequestDispatcher("index.html");
 					dispacher.forward(req, resp);
-					//Password errata
+					// Password errata
 				}
 			} else {
-				//Utente non esiste
+				// Utente non esiste
 				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
 			}
