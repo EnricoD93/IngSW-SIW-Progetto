@@ -35,6 +35,16 @@
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="css/themes/all-themes.css" rel="stylesheet" />
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(window).load(function() {
+			setTimeout(function() {
+				$('#preloader').fadeOut('slow', function() {
+				});
+			}, 20000); // set the time here
+		});
+	});
+</script>
 
 
 </head>
@@ -265,11 +275,22 @@
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
+		<div class="preloader">
+			<div class="spinner-layer pl-red">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
 
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">${currentUser.nome}
-				${currentUser.cognome} Matr. ${currentUser.matricola}</div>
+				${currentUser.cognome} &nbsp; - &nbsp; Matr.
+				${currentUser.matricola}</div>
 			<div class="email">${currentUser.email}</div>
 			<div class="btn-group user-helper-dropdown">
 				<i class="material-icons" data-toggle="dropdown"
@@ -365,7 +386,7 @@
 									<tr>
 										<th scope="row">${corso.codice}</th>
 										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
+										<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
 										<td>${corso.cfu}</td>
 									</tr>
 								</c:forEach>
