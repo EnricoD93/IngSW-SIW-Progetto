@@ -26,7 +26,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Windows/git/IngSW-SIW-Progetto/UniBook/WebContent/WEB-INF/lib/mail_1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Windows/git/IngSW-SIW-Progetto/UniBook/WebContent/WEB-INF/lib/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="activation-1.1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
