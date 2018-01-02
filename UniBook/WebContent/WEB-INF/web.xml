@@ -16,7 +16,7 @@
 	</context-param>
 
 	<context-param>
-		<param-name>porta</param-name>
+		<param-name>port</param-name>
 		<param-value>587</param-value>
 	</context-param>
 
@@ -31,14 +31,6 @@
 	</context-param>
   
     
-  <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>controller.Register</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
-  </servlet-mapping>
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
@@ -47,6 +39,15 @@
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/loginform</url-pattern>
+  </servlet-mapping>
+ 
+   <servlet>
+    <servlet-name>EmailSenderServlet</servlet-name>
+    <servlet-class>controller.EmailVerify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmailSenderServlet</servlet-name>
+    <url-pattern>/emailverification</url-pattern>
   </servlet-mapping>
  
 </web-app>
