@@ -5,7 +5,10 @@ $(document).ready(function() {
 			url :  'corsiPersonali.jsp',
 			method : 'GET'
 		}).then(function(data) {
-			$('h2').html(data);
+			$('#corsi').html(data);
+			document.getElementById('#corsi').display="none";
+			
+			console.log(data);
 		});
 	});
 

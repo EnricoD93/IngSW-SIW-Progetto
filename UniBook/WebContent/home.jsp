@@ -275,16 +275,7 @@
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
-		<div class="preloader">
-			<div class="spinner-layer pl-red">
-				<div class="circle-clipper left">
-					<div class="circle"></div>
-				</div>
-				<div class="circle-clipper right">
-					<div class="circle"></div>
-				</div>
-			</div>
-		</div>
+		
 
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
@@ -363,7 +354,7 @@
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
 
-	<section class="content">
+	<section id="corsi" class="content" >
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
@@ -417,7 +408,7 @@
 		</div>
 	</div>
 	</section>
-	<script src="plugins/jquery/jquery.js"></script>
+		<script src="plugins/jquery/jquery.js"></script>
 	<script src="javascript/prova.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
