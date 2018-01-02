@@ -315,7 +315,7 @@
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
 			</a></li>
-			<li><a href="aule.jsp"> <i class="material-icons">business</i>
+			<li><a id="aule"> <i class="material-icons">business</i>
 					<span>Aule</span>
 			</a></li>
 
@@ -354,7 +354,7 @@
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
 
-	<section id="corsi" class="content" >
+	<section id="centralSection" class="content" >
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
@@ -410,6 +410,7 @@
 	</section>
 		<script src="plugins/jquery/jquery.js"></script>
 	<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
+	<script src="javascript/aule.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
