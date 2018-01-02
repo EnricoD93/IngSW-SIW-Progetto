@@ -309,7 +309,7 @@
 			<li class="header">Navigazione principale</li>
 			<li><a href="home.jsp"> <i class="material-icons">home</i> <span>Home</span>
 			</a></li>
-			<li><a href="corsiPersonali.jsp"> <i class="material-icons">library_books</i>
+			<li><a id="button"> <i class="material-icons">library_books</i>
 					<span>I miei Corsi</span>
 			</a></li>
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
@@ -390,7 +390,7 @@
 					<font size="8"> Scegli una modifica!</font>
 				</c:if>
 
-				<button id="button">Click me</button>
+				<!-- <button id="button">Click me</button> -->
 				<c:if test="${currentUser==null}">
 					<%
 						response.sendRedirect("index.html");
