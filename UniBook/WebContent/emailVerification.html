@@ -1,0 +1,61 @@
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no"
+	name="viewport">
+<title>Registrazione</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" type="text/css">
+<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+<link href="plugins/animate-css/animate.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="signup-page">
+	<div class="signup-box">
+		<div class="logo">
+			<a href="index.html"><img src="logo.png"></a> <small>Piattaforma
+				di comunicazione Docente-Studente</small>
+		</div>
+		<div class="card">
+			<div class="body">
+				<div align="center">
+					<b>Registrazione quasi completa!</b>
+				</div>
+				</br> Controlla la tua posta e inserisci il codice di verifica</br>
+				<div class="input-group">
+					<span class="input-group-addon"> <i class="material-icons">lock</i>
+					</span>
+					<div class="form-line">
+						<input type="text" class="form-control" name="verify"
+							minlength="6" placeholder="Codice di verifica" required>
+					</div>
+				</div>
+				<div class="row">
+					<form id="sign_up" method="post" action="register">
+					<button class="btn btn-lg bg-red waves-effect" type="submit">Verifica</button></form>
+
+					<button class="btn btn-lg bg-red waves-effect" type="submit">
+						Invia</button>
+
+					<button class="btn btn-lg bg-red waves-effect" type="submit">
+						Cambia email</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.js"></script>
+	<script src="plugins/node-waves/waves.js"></script>
+	<script src="plugins/jquery-validation/jquery.validate.js"></script>
+	<script src="js/pages/examples/sign-up.js"></script>
+</body>
+</html>

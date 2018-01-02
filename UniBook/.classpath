@@ -27,5 +27,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Documenti/Downloads/apache-tomcat-9.0.2/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
