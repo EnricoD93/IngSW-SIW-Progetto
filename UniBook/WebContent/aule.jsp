@@ -262,7 +262,7 @@
 		class="sidebar"> <!-- User Info -->
 	<div class="user-info">
 		<div class="image">
-			<img src="images/user.png" width="48" height="48" alt="User" />
+			<img  width="48" height="48" alt="User" />
 		</div>
 
 		<div class="info-container">
@@ -297,7 +297,7 @@
 			<li class="header">Navigazione principale</li>
 			<li><a href="home.jsp"> <i class="material-icons">home</i> <span>Home</span>
 			</a></li>
-			<li><a href="corsiPersonali.jsp"> <i class="material-icons">library_books</i>
+			<li><a id="corsiPersonali"> <i class="material-icons">library_books</i>
 					<span>I miei Corsi</span>
 			</a></li>
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
@@ -341,7 +341,7 @@
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
 
-	<section class="content">
+	<section id="corsi" class="content">
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
@@ -388,6 +388,8 @@
 				%>
 	
 	</section>
+	<script src="plugins/jquery/jquery.js"></script>
+	<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
