@@ -41,7 +41,7 @@
 			setTimeout(function() {
 				$('#preloader').fadeOut('slow', function() {
 				});
-			}, 20000); // set the time here
+			}, 50000); // set the time here
 		});
 	});
 </script>
@@ -410,7 +410,6 @@
 	</section>
 		<script src="plugins/jquery/jquery.js"></script>
 	<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
-	<script src="javascript/aule.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>
