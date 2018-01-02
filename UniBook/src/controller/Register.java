@@ -62,7 +62,7 @@ public class Register extends HttpServlet {
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 		}
-
+		//questo lo mettiamo nella servlet email come file 
 		out.println("<head>\r\n" + "<meta charset=\"UTF-8\">\r\n" + "<meta\r\n"
 				+ " content=\"width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no\"\r\n"
 				+ " name=\"viewport\">\r\n" + "<title>Registrazione</title>\r\n" + "<!-- Favicon-->\r\n"
