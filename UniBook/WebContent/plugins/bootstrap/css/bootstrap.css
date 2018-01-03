@@ -3428,9 +3428,7 @@ textarea.input-lg, select[multiple].input-lg {
 	color: #fff;
 	height: 100px;
 	width: 99.15%;
-	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: #000000;
-	
+
 }
 
 .btn {
