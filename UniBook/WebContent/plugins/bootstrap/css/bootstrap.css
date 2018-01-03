@@ -3430,8 +3430,7 @@ textarea.input-lg, select[multiple].input-lg {
 	width: 99.15%;
 	-webkit-text-stroke-width: 1px;
 	-webkit-text-stroke-color: #000000;
-	text-shadow: 1px 1px 0 #460000, -1px -1px 0 #460000, 0.5px -1px 0
-		#460000, -1px 1px 0 #460000, 1px 1px 0 #460000;
+	
 }
 
 .btn {
