@@ -13,12 +13,13 @@ public class Utente {
 	private String password;
 	private Long corsoDiLaurea;
 	private int ruolo;
+	private String verifyCode;
 
 	public Utente() {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, Long corsoDiLaurea, int ruolo) {
+			String password, Long corsoDiLaurea, int ruolo, String verifyCode) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -28,6 +29,7 @@ public class Utente {
 		this.password = password;
 		this.corsoDiLaurea = corsoDiLaurea;
 		this.ruolo = ruolo;
+		this.verifyCode = verifyCode;
 
 	}
 
@@ -91,11 +93,6 @@ public class Utente {
 		return this.matricola.hashCode();
 	}
 
-	public boolean equals(Object object) {
-		Studente studente = (Studente) object;
-		return (this.getMatricola() == studente.getMatricola());
-	}
-
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -119,5 +116,12 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 
 }

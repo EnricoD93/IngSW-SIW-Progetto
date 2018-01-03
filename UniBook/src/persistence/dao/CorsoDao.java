@@ -3,7 +3,6 @@ package persistence.dao;
 import java.util.List;
 
 import model.Corso;
-import model.Docente;
 import model.Utente;
 
 public interface CorsoDao {

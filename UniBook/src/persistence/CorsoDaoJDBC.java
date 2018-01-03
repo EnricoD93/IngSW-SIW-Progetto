@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.Corso;
-import model.Docente;
 import model.Utente;
 import persistence.dao.CorsoDao;
 
@@ -135,7 +134,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				d = new Docente();
+				d = new Utente();
 				d.setCodicefiscale(result.getString("codice_fiscale"));
 				d.setNome(result.getString("nome"));
 				d.setMatricola(result.getString("matricola"));

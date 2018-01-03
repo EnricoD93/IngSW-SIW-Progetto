@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Corso;
-import model.Studente;
 import model.Utente;
 import persistence.dao.UtenteDao;
 
@@ -23,7 +22,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	public void save(Utente utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo,verifycode) values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getMatricola());
 			statement.setString(2, utente.getNome());
@@ -35,6 +34,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setString(7, utente.getPassword());
 			statement.setLong(8, utente.getCorsoDiLaurea());
 			statement.setInt(9, utente.getRuolo());
+			statement.setString(10, utente.getVerifyCode());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -69,6 +69,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setCodicefiscale(result.getString("codice_fiscale"));
 				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
 				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
 
 			}
 		} catch (SQLException e) {

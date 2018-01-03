@@ -11,10 +11,9 @@ import model.Aula;
 import model.CalendarioPersonale;
 import model.Corso;
 import model.CorsoDiLaurea;
-import model.Docente;
 import model.Lezione;
 import model.Messaggio;
-import model.Studente;
+import model.Utente;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
@@ -58,23 +57,23 @@ public class MainJDBC {
 			Date date;
 
 			date = format.parse("1999-02-02");
-			Studente st = new Studente("111", "Ciccio", "Rossi", date, "RFFDSS43D23J878K", "ciccio@studenti.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(),0);
-			Studente st2 = new Studente("100", "Giuseppe", "Verdi", date, "GPPVDR97Y76T518D", "verdi@studenti.unical.it",
-					"DDDDDD", corsoDiLaureaMatematica.getCodice(),0);
+			Utente st = new Utente("111", "Ciccio", "Rossi", date, "RFFDSS43D23J878K", "ciccio@studenti.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111");
+			Utente st2 = new Utente("100", "Giuseppe", "Verdi", date, "GPPVDR97Y76T518D", "verdi@studenti.unical.it",
+					"DDDDDD", corsoDiLaureaMatematica.getCodice(), 0, "111111");
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			studenteDao.save(st2);
-			
+
 			Date dateRicca = format.parse("1964-05-12");
-			Docente ricca = new Docente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(),1);
-			Docente perri = new Docente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(),1);
-			Docente cianciaruso = new Docente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
-					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice(),1);
-			Docente marino = new Docente("222", "Giuseppe", "Marino", date, "GPPMNR64Y34G764L", "marino@mat.unical.it",
-					"PPPPPP", corsoDiLaureaMatematica.getCodice(),1);
+			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente perri = new Utente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente cianciaruso = new Utente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
+					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente marino = new Utente("222", "Giuseppe", "Marino", date, "GPPMNR64Y34G764L", "marino@mat.unical.it",
+					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(ricca);
 			docenteDao.save(perri);
@@ -93,23 +92,23 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
 			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 2017,
 					"Corso Base di Informatica", "Nessun requisito", "Lunedi e Venerdi", 48, 48, "link al materiale",
-					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(),10,perri.getCognome(),perri.getNome());
+					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10, perri.getCognome(),
+					perri.getNome());
 			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
 					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(),10,cianciaruso.getCognome(),cianciaruso.getNome());
+					corsoDiLaureaInformatica.getCodice(), 10, cianciaruso.getCognome(), cianciaruso.getNome());
 			Corso corsoIngegneria = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(),10,ricca.getCognome(),ricca.getNome());
+					corsoDiLaureaInformatica.getCodice(), 10, ricca.getCognome(), ricca.getNome());
 			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
-					"Corso Avanzato di Informatica",
-					"Fondamenti di Informatica",
-					"Lunedi e Giovedi", 48, 48, "link al materiale", ricca.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(),10,ricca.getCognome(),ricca.getNome());
+					"Corso Avanzato di Informatica", "Fondamenti di Informatica", "Lunedi e Giovedi", 48, 48,
+					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
+					ricca.getCognome(), ricca.getNome());
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice(),5,marino.getCognome(),marino.getNome());
+					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoFondamenti);
 			corsoDao.save(corsoAnalisi);
@@ -118,7 +117,7 @@ public class MainJDBC {
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 
 			studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
-			
+
 			// controlla qua
 
 			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId());
@@ -142,18 +141,20 @@ public class MainJDBC {
 				System.out.println("L'aula è la " + aula.getId() + " appartiene al corso di laurea "
 						+ aula.getCorsoDiLaurea() + " ha a disposizione " + aula.getPosti());
 			}
-			
+
 			for (Corso cor : studenteDao.getCorsi(st.getMatricola())) {
-				System.out.println("Il corso è quello di " + cor.getNome()+" è di "+cor.getCfu());
+				System.out.println("Il corso è quello di " + cor.getNome() + " è di " + cor.getCfu());
 			}
-			
-			System.out.println(corsoDao.getDocente("555").getNome()+" "+corsoDao.getDocente("555").getCognome());
-			
+
+			System.out.println(corsoDao.getDocente("555").getNome() + " " + corsoDao.getDocente("555").getCognome());
+
 			for (Corso cor : studenteDao.getCorsiIscritto(st.getMatricola())) {
-				System.out.println("Il corso a cui " + st.getNome()+" "+ st.getCognome()+" è iscritto è "+cor.getNome());
+				System.out.println(
+						"Il corso a cui " + st.getNome() + " " + st.getCognome() + " è iscritto è " + cor.getNome());
 			}
 			for (Corso cor : docenteDao.getCorsiDocente(ricca.getMatricola())) {
-				System.out.println("Il corso di cui " + ricca.getNome()+" "+ ricca.getCognome()+" è titolare è "+cor.getNome());
+				System.out.println("Il corso di cui " + ricca.getNome() + " " + ricca.getCognome() + " è titolare è "
+						+ cor.getNome());
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

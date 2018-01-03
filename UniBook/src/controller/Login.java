@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import model.Aula;
 import model.Corso;
-import model.Studente;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
