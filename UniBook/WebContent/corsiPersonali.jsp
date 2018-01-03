@@ -40,7 +40,7 @@
 				<c:if test="${currentUser.ruolo == 1 }">
 					<div class="body table-responsive">
 					<button type="button" class="btn btn-lg waves-effect btncreacorso">
-						<i class="material-icons">note_add</i> &nbsp; <font size="5px" ><b>Crea Corso</b></font>
+						<i class="material-icons">note_add</i> &nbsp; <font id="creaCorso"size="5px" ><b>Crea Corso</b></font>
 					</button>
 					<br></br>
 					<div class="corsiTitle">Corsi</div>

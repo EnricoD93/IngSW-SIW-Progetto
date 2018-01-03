@@ -27,36 +27,68 @@ audio, canvas, progress, video {
 audio
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 [
 controls
 ]
 
+
+
  
+
+
 
 )
 {
 display
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 none
+
+
+
+
 
 
 ;
 height
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -120,25 +152,49 @@ img {
 svg
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 :root
 
+
+
  
+
+
 
 )
 {
 overflow
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 hidden
+
+
+
+
 
 
 ;
@@ -3372,6 +3428,10 @@ textarea.input-lg, select[multiple].input-lg {
 	color: #fff;
 	height: 100px;
 	width: 99.15%;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #000000;
+	text-shadow: 1px 1px 0 #460000, -1px -1px 0 #460000, 0.5px -1px 0
+		#460000, -1px 1px 0 #460000, 1px 1px 0 #460000;
 }
 
 .btn {
@@ -4042,44 +4102,80 @@ tbody.collapse.in {
 .btn
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 .dropdown-toggle
 
 
+
+
 	
+
+
 
 )
 {
 border-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -4092,44 +4188,84 @@ border-radius
 .btn
 
 
+
+
+
+
 :first-child
+
+
+
+
 
 
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 .dropdown-toggle
 
+
+
  
+
+
 
 )
 {
 border-top-right-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 border-bottom-right-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -4138,17 +4274,33 @@ border-bottom-right-radius
 .btn
 
 
+
+
+
+
 :last-child
+
+
+
+
 
 
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 ),
 .btn-group
@@ -4156,32 +4308,60 @@ border-bottom-right-radius
 .dropdown-toggle
 
 
+
+
+
+
 :not
+
+
 
 
 	
 
+
+
 (
 :first-child
 
+
+
  
+
+
 
 )
 {
 border-top-left-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 border-bottom-left-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -4266,33 +4446,61 @@ border-bottom-left-radius
 .btn
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 )
 {
 border-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -4301,58 +4509,114 @@ border-radius
 .btn
 
 
+
+
+
+
 :first-child
+
+
+
+
 
 
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 )
 {
 border-top-left-radius
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 4
 px
+
+
+
+
 
 
 ;
 border-top-right-radius
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 4
 px
+
+
+
+
 
 
 ;
 border-bottom-right-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 border-bottom-left-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
@@ -4361,57 +4625,113 @@ border-bottom-left-radius
 .btn
 
 
+
+
+
+
 :last-child
+
+
+
+
 
 
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 )
 {
 border-top-left-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 border-top-right-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 border-bottom-right-radius
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 4
 px
+
+
+
+
 
 
 ;
 border-bottom-left-radius
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 4
 px
+
+
+
+
 
 
 ;
@@ -4538,84 +4858,156 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 .input-group-addon
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 ),
 .input-group-btn
 
 
+
+
+
+
 :not
 
+
+
  
+
+
 
 (
 :first-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 ),
 .input-group
 
+
+
  
+
+
 
 .form-control
 
 
+
+
+
+
 :not
+
+
 
 
 	
 
+
+
 (
 :first-child
 
+
+
  
+
+
 
 )
 :not
 
+
+
  
+
+
 
 (
 :last-child
 
+
+
  
+
+
 
 )
 {
 border-radius
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 0;
 }
