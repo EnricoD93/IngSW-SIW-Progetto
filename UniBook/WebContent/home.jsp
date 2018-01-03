@@ -275,7 +275,7 @@
 		<div class="image">
 			<img src="images/user.png" width="48" height="48" alt="User" />
 		</div>
-		
+
 
 		<div class="info-container">
 			<div class="name" data-toggle="dropdown" aria-haspopup="true"
@@ -315,8 +315,7 @@
 			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
 			</a></li>
-			<li><a id="aule"> <i class="material-icons">business</i>
-					<span>Aule</span>
+			<li><a id="aule"> <i class="material-icons">business</i> <span>Aule</span>
 			</a></li>
 
 
@@ -354,7 +353,12 @@
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
 
-	<section id="centralSection" class="content" >
+
+
+
+
+
+	<section id="centralSection" class="content">
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
@@ -387,7 +391,32 @@
 					</div>
 				</c:if>
 				<c:if test="${currentUser.ruolo == 1 }">
-					<font size="8"> Scegli una modifica!</font>
+					<div class="body table-responsive">
+						<div class="corsiTitle">I miei Corsi</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th width="30">Cod.</th>
+									<th width="50%">Nome del Corso</th>
+									<th>Docente</th>
+									<th>CFU</th>
+								</tr>
+
+							</thead>
+							<tbody>
+
+								<c:forEach var="corso" items="${corsi}">
+									<tr>
+										<th scope="row">${corso.codice}</th>
+										<td><a href="index.html"> ${corso.nome} </a></td>
+										<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
+										<td>${corso.cfu}</td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
 				</c:if>
 
 				<!-- <button id="button">Click me</button> -->
@@ -408,7 +437,7 @@
 		</div>
 	</div>
 	</section>
-		<script src="plugins/jquery/jquery.js"></script>
+	<script src="plugins/jquery/jquery.js"></script>
 	<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
 
 	<!-- Jquery Core Js -->

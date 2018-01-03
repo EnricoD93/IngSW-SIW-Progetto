@@ -6,7 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
-	<section >
 	<div class="container-fluid" >
 		<div class="block-header">
 			<h2>
@@ -40,8 +39,12 @@
 				</c:if>
 				<c:if test="${currentUser.ruolo == 1 }">
 					<div class="body table-responsive">
-						<div class="corsiTitle">Corsi</div>
-						<table class="table table-striped">
+					<button type="button" class="btn btn-lg waves-effect btncreacorso">
+						<i class="material-icons">note_add</i> &nbsp; <font size="5px" ><b>Crea Corso</b></font>
+					</button>
+					<br></br>
+					<div class="corsiTitle">Corsi</div>
+					<table class="table table-striped">
 							<thead>
 								<tr>
 									<th width="30">Cod.</th>
@@ -81,8 +84,6 @@
 					response.setDateHeader("Expires", 0);
 				%>
 	
-	
-	</section>
 
 	<!-- Jquery Core Js -->
 	<script src="plugins/jquery/jquery.min.js"></script>

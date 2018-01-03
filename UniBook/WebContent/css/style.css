@@ -46,6 +46,8 @@
 	font-size: 26px;
 }
 
+
+
 logoimg {
 	position: relative;
 	top: -35px;
@@ -3142,110 +3144,238 @@ section.content {
 }
 
 .btn
+
+
+
+
 :not
+
+
  
+
+
 (
 .btn-link
+
+
  
+
+
 )
 :not
+
+
  
+
+
 (
 .btn-circle
+
+
  
+
+
 )
 {
 box-shadow
+
+
+
+
 :
+
+
  
+
+
 0
 2
 px
+
+
  
+
+
 5
 px
+
+
  
+
+
 rgba
+
+
+
+
 (0
 ,
 0,
 0,
 0
 .16
+
+
+
+
 )
 ,
 0
 2
 px
+
+
  
+
+
 10
 px
 
+
+
 		
+
+
 rgba
+
+
+
+
 (0
 ,
 0,
 0,
 0
 .12
+
+
+
+
 );
-
-	
 -webkit-border-radius
+
+
+
+
 :
+
+
  
+
+
 2
 px
-;
 
-	
+
+
+
+;
 -moz-border-radius
+
+
+
+
 :
+
+
  
+
+
 2
 px
-;
 
-	
+
+
+
+;
 -ms-border-radius
+
+
+
+
 :
+
+
  
+
+
 2
 px
-;
 
-	
+
+
+
+;
 border-radius
+
+
+
+
 :
+
+
  
+
+
 2
 px
-;
 
-	
+
+
+
+;
 border
-:
- 
-none
-;
 
-	
-font-size
+
+
+
 :
+
+
  
+
+
+none
+
+
+
+
+;
+font-size
+
+
+
+
+:
+
+
+ 
+
+
 13
 px
-;
 
-	
+
+
+
+;
 outline
+
+
+
+
 :
+
+
  
+
+
 none
+
+
+
+
 ;
-
-
 }
 .btn:not (.btn-link ):not (.btn-circle ):hover {
 	outline: none;
@@ -8838,168 +8968,339 @@ keyframes container-rotate {to { -moz-transform:rotate(360deg);
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (270
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (270
 deg
+
+
+
+
 );
-
- 
-
 }
 37
 .5
+
+
  
+
+
 %
 {
 -webkit-transform
-:
- 
-rotate
-(405deg);
 
-	
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(405
+deg
+
+
+);
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(405deg);
 
 
+
+
+(405
+deg
+
+
+);
 }
 50%
 {
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (540
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (540
 deg
+
+
+
+
 );
-
- 
-
 }
 62
 .5
+
+
  
+
+
 %
 {
 -webkit-transform
-:
- 
-rotate
-(675deg);
 
-	
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(675
+deg
+
+
+);
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(675deg);
 
 
+
+
+(675
+deg
+
+
+);
 }
 75%
 {
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (810
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (810
 deg
+
+
+
+
 );
-
- 
-
 }
 87
 .5
+
+
  
+
+
 %
 {
 -webkit-transform
-:
- 
-rotate
-(945deg);
 
-	
+
+
+
+:
+
+
+ 
+
+
+rotate
+
+
+
+
+(945
+deg
+
+
+);
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(945deg);
 
 
+
+
+(945
+deg
+
+
+);
 }
 to {
 	-webkit-transform: rotate(1080deg);
@@ -9017,96 +9318,189 @@ keyframes fill-unfill-rotate { 12.5% {
 transform
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 rotate
+
+
+
+
 
 
 (270
 deg
+
+
+
+
 );
-
- 
-
 }
 37
 .5
+
+
  
+
+
 %
 {
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(405deg);
 
 
+
+
+(405
+deg
+
+
+);
 }
 50%
 {
 transform
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 rotate
+
+
+
+
 
 
 (540
 deg
+
+
+
+
 );
-
- 
-
 }
 62
 .5
+
+
  
+
+
 %
 {
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(675deg);
 
 
+
+
+(675
+deg
+
+
+);
 }
 75%
 {
 transform
 
 
+
+
+
+
 :
+
+
 
  
 
+
+
 rotate
+
+
+
+
 
 
 (810
 deg
+
+
+
+
 );
-
- 
-
 }
 87
 .5
+
+
  
+
+
 %
 {
 transform
+
+
+
+
 :
+
+
  
+
+
 rotate
-(945deg);
 
 
+
+
+(945
+deg
+
+
+);
 }
 to {
 	transform: rotate(1080deg);
@@ -9126,87 +9520,148 @@ to {
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
- 
-
 }
 to {
 	-webkit-transform: rotate(130deg);
@@ -9230,87 +9685,148 @@ keyframes left-spin {from { -moz-transform:rotate(130deg);
 -moz-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (-5
 deg
+
+
+
+
 );
-
- 
-
 }
 to {
 	-moz-transform: rotate(130deg);
@@ -9334,87 +9850,148 @@ to {
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
- 
-
 }
 to {
 	-webkit-transform: rotate(-130deg);
@@ -9438,87 +10015,148 @@ to {
 -moz-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
- 
-
 }
 to {
 	-moz-transform: rotate(-130deg);
@@ -9542,87 +10180,148 @@ keyframes right-spin {from { -moz-transform:rotate(-130deg);
 -moz-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 -webkit-transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
-
-    
-
 transform
 
 
+
+
+
+
 :
 
+
+
  
+
+
 
 rotate
 
 
+
+
+
+
 (5
 deg
+
+
+
+
 );
-
- 
-
 }
 to {
 	-moz-transform: rotate(-130deg);
@@ -10643,7 +11342,6 @@ input::-webkit-inner-spin-button {
 	border-bottom: 1px solid #e9e9e9;
 	height: 135px;
 	background-color: #C4161C;
-	
 }
 
 .sidebar .user-info .image {
@@ -10824,37 +11522,95 @@ input::-webkit-inner-spin-button {
 }
 
 .sidebar
+
+
  
+
+
 .menu
+
+
  
+
+
 .list
+
+
  
+
+
 .ml-menu
+
+
  
+
+
 li
+
+
+
+
 .active
+
+
  
+
+
 a
+
+
+
+
 .toggled
+
+
+
+
 :not
+
+
  
+
+
 (
 .menu-toggle
+
+
  
+
+
 )
 {
 font-weight
+
+
+
+
 :
+
+
  
+
+
 600;
 margin-left
+
+
+
+
 :
+
+
  
+
+
 5
 px
+
+
+
+
 ;
-
-
 }
 .sidebar .menu .list .ml-menu li.active a.toggled:not (.menu-toggle ):before
 	{
@@ -11377,12 +12133,14 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
 	width: 90%;
 }
-.corsiTitle{
+
+.corsiTitle {
 	font-size: 30px;
 	color: black;
 	padding-bottom: 15px;
 	font-weight: bold;
 }
+
 footer {
 	color: white;
 	align-content: center;

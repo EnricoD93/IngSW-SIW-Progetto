@@ -5,7 +5,7 @@ function getCentralSection(){
 
 		$.ajax({
 			url :  'corsiPersonali.jsp',
-			method : 'GET'
+			method : 'GET',
 		}).then(function(data) {
 			$('#centralSection').html(data);
 			
@@ -15,7 +15,7 @@ function getCentralSection(){
 
 		$.ajax({
 			url :  'aule.jsp',
-			method : 'GET'
+			method : 'GET',
 		}).then(function(data) {
 			$('#centralSection').html(data);
 			
