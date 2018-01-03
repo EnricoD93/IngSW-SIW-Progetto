@@ -273,7 +273,7 @@
 		class="sidebar"> <!-- User Info -->
 	<div class="user-info">
 		<div class="image">
-			<img src="images/user.png" width="48" height="48" alt="User" />
+			<img src="images/profileImages/${currentUser.matricola}.jpg" width="100" height="100" alt="User" />
 		</div>
 
 

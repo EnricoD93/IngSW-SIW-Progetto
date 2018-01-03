@@ -12,10 +12,12 @@
 			<div class="body table-responsive">
 				<div class="corsiTitle">Profilo:</div>
 				<div class="image">
-					<img src="images/user.png" width="96" height="96" alt="User">
-					<a id="uploadImage" class="bg-unibook waves-effect"> <i
-						class="material-icons">file_upload</i>
-					</a>
+					<img src="images/profileImages/${currentUser.matricola}.jpg"
+						width="200" height="200" alt="User">
+					<button id="uploadImage"
+						class="btn btn-lg bg-unibook waves-effect" type="submit">
+						<i class="material-icons">file_upload</i> Carica Immagine
+					</button>
 				</div>
 				</br>
 				<table class="table table-striped">
@@ -66,7 +68,8 @@
 
 <!-- Jquery Core Js -->
 <script src="plugins/jquery/jquery.min.js"></script>
-
+<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
+<script src="javascript/uploadImage.js" type="text/javascript"></script>
 
 </body>
 

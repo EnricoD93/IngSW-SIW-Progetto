@@ -61,9 +61,20 @@ public class MainJDBC {
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111");
 			Utente st2 = new Utente("100", "Giuseppe", "Verdi", date, "GPPVDR97Y76T518D", "verdi@studenti.unical.it",
 					"DDDDDD", corsoDiLaureaMatematica.getCodice(), 0, "111111");
+			date = format.parse("1993-06-19");
+			Utente st3 = new Utente("169983", "Enrico", "De Cicco", date, "DCCNRC93H19Z112B",
+					"enricodecicco93@gmail.com",
+
+					"asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111");
+			date = format.parse("1995-10-23");
+			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111");
+			
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			studenteDao.save(st2);
+			studenteDao.save(st3);
+			studenteDao.save(st4);
 
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",

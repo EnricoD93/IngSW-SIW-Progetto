@@ -2,8 +2,7 @@ $(document).ready(getCentralSection);
 
 function getCentralSection() {
 	$('#uploadImage').click(function() {
-
-		window.alert("Ancora niente");
+			uploadImage();
 	});
 	$('#profilo').click(function() {
 
