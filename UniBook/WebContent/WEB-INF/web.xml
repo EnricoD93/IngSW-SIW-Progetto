@@ -56,14 +56,6 @@
     <servlet-name>EmailSenderServlet</servlet-name>
     <url-pattern>/emailverification</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>CodeVerificationServlet</servlet-name>
-    <servlet-class>controller.CodeVerification</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CodeVerificationServlet</servlet-name>
-    <url-pattern>/codeverification</url-pattern>
-  </servlet-mapping>
+
  
 </web-app>

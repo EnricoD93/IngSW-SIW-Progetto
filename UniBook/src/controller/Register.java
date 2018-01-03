@@ -46,6 +46,7 @@ public class Register extends HttpServlet {
 		String ruolo = req.getParameter("role");
 		code = generateCode();
 		Long cdl = Long.parseLong(req.getParameter("cdl"));
+		System.out.println(cdl);
 
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 		Date date;
@@ -98,6 +99,7 @@ public class Register extends HttpServlet {
 		String resultMessage = "";
 		HttpSession session = req.getSession();
 		session.setAttribute("userMatr", matricola);
+		session.setAttribute("dbcode", code);
 		try {
 			EmailSender.sendEmail(host, port, email, password, dest, subject, text);
 			resultMessage = "The e-mail was sent successfully";
@@ -106,7 +108,7 @@ public class Register extends HttpServlet {
 			resultMessage = "There were an error: " + ex.getMessage();
 		} finally {
 			req.setAttribute("Message", resultMessage);
-			req.getRequestDispatcher("emailVerification.html").forward(req, resp);
+			req.getRequestDispatcher("emailVerify.jsp").forward(req, resp);
 		}
 		System.out.println(resultMessage);
 	}
