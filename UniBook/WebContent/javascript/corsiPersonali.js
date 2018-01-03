@@ -1,6 +1,16 @@
 $(document).ready(getCentralSection);
 
 function getCentralSection(){
+	$('#profilo').click(function() {
+
+		$.ajax({
+			url :  'profilo.jsp',
+			method : 'GET',
+		}).then(function(data) {
+			$('#centralSection').html(data);
+			
+		});
+	});
 	$('#corsiPersonali').click(function() {
 
 		$.ajax({
