@@ -13,6 +13,9 @@
 				<div class="corsiTitle">Profilo:</div>
 				<div class="image">
 					<img src="images/user.png" width="96" height="96" alt="User">
+					<a id="uploadImage" class="bg-unibook waves-effect"> <i
+						class="material-icons">file_upload</i>
+					</a>
 				</div>
 				</br>
 				<table class="table table-striped">
