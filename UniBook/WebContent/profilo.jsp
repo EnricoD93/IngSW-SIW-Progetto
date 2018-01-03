@@ -11,6 +11,10 @@
 		<h2>
 			<div class="body table-responsive">
 				<div class="corsiTitle">Profilo:</div>
+				<div class="image">
+					<img src="images/user.png" width="96" height="96" alt="User">
+				</div>
+				</br>
 				<table class="table table-striped">
 					<tbody>
 
@@ -24,11 +28,9 @@
 						<tr>
 							<th><c:if test="${currentUser.ruolo == 0 }">
 							Ruolo: Studente
-							</c:if>
-							<c:if test="${currentUser.ruolo == 1 }">
+							</c:if> <c:if test="${currentUser.ruolo == 1 }">
 							Ruolo: Docente
-							</c:if>
-							</th>
+							</c:if></th>
 						</tr>
 						<tr>
 							<th>Email: ${currentUser.email}</th>
