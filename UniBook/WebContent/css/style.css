@@ -139,6 +139,34 @@ logoimg {
 	margin-top: -40px !important;
 }
 
+.profile-pic {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.profile-pic:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.profile-pic span {
+    display: inline-block;
+    padding-top: 5.5em;
+    padding-bottom: 5.5em;
+}
+
 .label-count {
 	position: absolute;
 	top: 2px;
@@ -4392,6 +4420,7 @@ none
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 30px;
+	border-radius: 4px;
 }
 
 .info-box-4 .icon {
@@ -4402,7 +4431,7 @@ none
 }
 
 .info-box-4 .icon i {
-	color: rgba(0, 0, 0, 0.15);
+	color: #ffffffb3;
 	font-size: 60px;
 }
 
@@ -4439,12 +4468,14 @@ none
 
 .info-box-4 .content {
 	display: inline-block;
-	padding: 7px 16px;
+	padding: 13px 18px;
 }
 
 .info-box-4 .content .text {
-	font-size: 13px;
-	margin-top: 11px;
+	font-family:inherit;
+	font-size: 20px;
+	margin-top: 16px;
+	padding-right:600px;
 	color: #555;
 }
 

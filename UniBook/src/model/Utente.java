@@ -17,7 +17,7 @@ public class Utente {
 	private int ruolo;
 	private String verifyCode;
 	private String profileImagePath;
-	
+
 	public Utente() {
 	}
 
@@ -33,7 +33,7 @@ public class Utente {
 		this.corsoDiLaurea = corsoDiLaurea;
 		this.ruolo = ruolo;
 		this.verifyCode = verifyCode;
-		profileImagePath="images/profileImages/default.png";
+		profileImagePath = "images/profileImages/default.png";
 	}
 
 	public String getMatricola() {
@@ -65,24 +65,23 @@ public class Utente {
 	}
 
 	public String getDataNascitaString() {
-		Calendar c=new GregorianCalendar();
+		Calendar c = new GregorianCalendar();
 		c.setTimeInMillis(dataNascita.getTime());
-		String giorno,mese;
-		System.out.println("questo è il giorno"+new Integer(c.get(Calendar.DAY_OF_MONTH)).toString());
-		Integer meseInt=new Integer(c.get(Calendar.MONTH)+1);
-		System.out.println("questo è il MESE"+meseInt.toString());
-		if(c.get(Calendar.DAY_OF_MONTH)<10)
-			giorno="0"+c.get(Calendar.DAY_OF_MONTH);
+		String giorno, mese;
+		Integer meseInt = new Integer(c.get(Calendar.MONTH) + 1);
+		if (c.get(Calendar.DAY_OF_MONTH) < 10)
+			giorno = "0" + c.get(Calendar.DAY_OF_MONTH);
 		else
-			giorno=""+c.get(Calendar.DAY_OF_MONTH);
-		if(c.get(Calendar.MONTH)<9)
-			mese="0"+meseInt;
+			giorno = "" + c.get(Calendar.DAY_OF_MONTH);
+		if (c.get(Calendar.MONTH) < 9)
+			mese = "0" + meseInt;
 		else
-			mese=""+meseInt;
-		
-		return ""+giorno+"/"+mese+"/"+c.get(Calendar.YEAR);
-//		return dataNascita.toString();
+			mese = "" + meseInt;
+
+		return "" + giorno + "/" + mese + "/" + c.get(Calendar.YEAR);
+		// return dataNascita.toString();
 	}
+
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}

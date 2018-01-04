@@ -38,8 +38,9 @@
 					<span class="input-group-addon"> <i class="material-icons">lock</i>
 					</span>
 					<div class="form-line">
-						<input id="verify" type="text" class="form-control" name="verifyCode"
-							minlength="6" placeholder="Codice di verifica" required>
+						<input id="verify" type="text" class="form-control"
+							name="verifyCode" minlength="6" placeholder="Codice di verifica"
+							required>
 					</div>
 
 				</div>
@@ -84,7 +85,8 @@
 		<div class="sa-button-container">
 			<button class="cancel" tabindex="2" style="display: none;">Cancel</button>
 			<div class="sa-confirm-button-container">
-				<button id="confirmButtonOk" class="confirm btn btn-lg bg-red waves-effect" tabindex="1"
+				<button id="confirmButtonOk"
+					class="confirm btn btn-lg bg-red waves-effect" tabindex="1"
 					style="display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">OK</button>
 				<div class="la-ball-fall">
 					<div></div>
@@ -95,7 +97,7 @@
 		</div>
 	</div>
 	<script src="plugins/jquery/jquery.min.js"></script>
-	<script src="javascript/confermaRegistrazione.js"></script>
+	<script src="javascript/confirmRegistration.js"></script>
 	<script src="plugins/sweetalert/sweetalert.min.js"></script>
 	<script src="js/pages/ui/dialogs.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.js"></script>

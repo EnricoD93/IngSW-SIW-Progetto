@@ -4,6 +4,7 @@ function getCentralSection() {
 	$('#uploadImage').click(function() {
 			uploadImage();
 	});
+	
 	$('#profilo').click(function() {
 
 		$.ajax({
@@ -14,6 +15,18 @@ function getCentralSection() {
 
 		});
 	});
+	
+	$('#createCourse').click(function() {
+
+		$.ajax({
+			url : 'createCourse.jsp',
+			method : 'GET',
+		}).then(function(data) {
+			$('#centralSection').html(data);
+
+		});
+	});
+	
 	$('#corsiPersonali').click(function() {
 
 		$.ajax({

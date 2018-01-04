@@ -11,21 +11,29 @@
 		<h2>
 			<div class="body table-responsive">
 				<div align="center" class="corsiTitle">Profilo:</div>
-				<div align="center" class="image">
-					<img src="${currentUser.profileImagePath}"
-						width="200" height="200" alt="User">
+				<div align="center">
+					<div align="center" class="profile-pic"
+						style="background-image: url('${currentUser.profileImagePath}')">
+						<a href="javascript:uploadImage()" class="profile-pic"> <span
+							class="glyphicon glyphicon-camera"></span> <span>Cambia
+								Immagine</span>
+						</a>
+					</div>
 				</div>
+
+
 				<div align="right">
 					<div class="bg-unibook info-box-3 hover-zoom-effect">
-                        <div class="icon">
-                            <i class="material-icons">mode_edit</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">Modifica Profilo</div>
-                        </div>
-                    </div>
+						<a href="javascript:changeProfile();">
+							<div class="icon">
+								<i class="material-icons">mode_edit</i>
+							</div>
+							<div class="content">
+								<div class="text">Modifica Profilo</div>
+							</div>
+						</a>
 					</div>
-				</br>
+				</div>
 				<table class="table table-striped">
 					<tbody>
 
@@ -39,7 +47,7 @@
 						<tr>
 							<th>Codice Fiscale: ${currentUser.codicefiscale}</th>
 						</tr>
-						
+
 						<tr>
 							<th><c:if test="${currentUser.ruolo == 0 }">
 							Ruolo: Studente
@@ -57,7 +65,32 @@
 					</tbody>
 				</table>
 			</div>
-
+			<div class="container">
+				<form class="well form-horizontal" onsubmit="return updateImage();" enctype="multipart/form-data">
+					<fieldset>
+						<legend> Modifica Immagine Profilo! </legend>
+						<div class="form-group">
+							<label class="col-md-4 control-label"> Immagine </label>
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"> <i class="fa fa-picture-o"></i></span><input type="file" class="form-control" name="image" id="image"
+										accept=".png, .jpeg, .jpg" required>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label"> </label>
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+									<button type="submit" class="btn btn-success">
+										<i class="fa fa-cloud-upload"></i>&nbsp;&nbsp; Aggiorna Immagine
+									</button>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 		</h2>
 	</div>
 </div>
@@ -68,21 +101,5 @@
 	%>
 </c:if>
 
-<%
-	response.setHeader("Cache-Control", "no-cache");
-	response.setHeader("Cache-Control", "no-store");
-	response.setHeader("Pragma", "no-cache");
-	response.setDateHeader("Expires", 0);
-%>
 
-
-<!-- Jquery Core Js -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="javascript/corsiPersonali.js" type="text/javascript"></script>
-<script src="javascript/uploadImage.js" type="text/javascript"></script>
-
-</body>
-
-
-</html>
 </html>
