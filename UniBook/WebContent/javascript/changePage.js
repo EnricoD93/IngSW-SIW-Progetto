@@ -2,9 +2,9 @@ $(document).ready(getCentralSection);
 
 function getCentralSection() {
 	$('#uploadImage').click(function() {
-			uploadImage();
+		alert("ok");
 	});
-	
+
 	$('#profilo').click(function() {
 
 		$.ajax({
@@ -15,7 +15,7 @@ function getCentralSection() {
 
 		});
 	});
-	
+
 	$('#createCourse').click(function() {
 
 		$.ajax({
@@ -26,7 +26,7 @@ function getCentralSection() {
 
 		});
 	});
-	
+
 	$('#corsiPersonali').click(function() {
 
 		$.ajax({
