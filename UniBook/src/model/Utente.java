@@ -62,6 +62,19 @@ public class Utente {
 		return dataNascita;
 	}
 
+	public String getDataNascitaString() {
+		String giorno,mese;
+		if(dataNascita.getDay()<10)
+			giorno="0"+dataNascita.getDay();
+		else
+			giorno=String.valueOf(dataNascita.getDay());
+		if(dataNascita.getMonth()<10)
+			mese="0"+dataNascita.getMonth();
+		else
+			mese=String.valueOf(dataNascita.getMonth());
+		
+		return ""+giorno+"/"+mese+"/"+dataNascita.getYear();
+	}
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}

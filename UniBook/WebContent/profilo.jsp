@@ -41,7 +41,7 @@
 							<th>Email: ${currentUser.email}</th>
 						</tr>
 						<tr>
-							<th>Data di Nascita: ${currentUser.dataNascita}</th>
+							<th>Data di Nascita: ${currentUser.getDataNascitaString()}</th>
 						</tr>
 
 					</tbody>
