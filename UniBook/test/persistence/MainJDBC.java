@@ -53,7 +53,7 @@ public class MainJDBC {
 		// ISTANZE DI PROVA POSTGRESS
 
 		try {
-			DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ITALIAN);
 			Date date;
 
 			date = format.parse("1999-02-02");

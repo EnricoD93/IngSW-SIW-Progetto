@@ -1,7 +1,9 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Utente {
 	private String matricola;
@@ -63,17 +65,23 @@ public class Utente {
 	}
 
 	public String getDataNascitaString() {
+		Calendar c=new GregorianCalendar();
+		c.setTimeInMillis(dataNascita.getTime());
 		String giorno,mese;
-		if(dataNascita.getDay()<10)
-			giorno="0"+dataNascita.getDay();
+		System.out.println("questo è il giorno"+new Integer(c.get(Calendar.DAY_OF_MONTH)).toString());
+		Integer meseInt=new Integer(c.get(Calendar.MONTH)+1);
+		System.out.println("questo è il MESE"+meseInt.toString());
+		if(c.get(Calendar.DAY_OF_MONTH)<10)
+			giorno="0"+c.get(Calendar.DAY_OF_MONTH);
 		else
-			giorno=String.valueOf(dataNascita.getDay());
-		if(dataNascita.getMonth()<10)
-			mese="0"+dataNascita.getMonth();
+			giorno=""+c.get(Calendar.DAY_OF_MONTH);
+		if(c.get(Calendar.MONTH)<9)
+			mese="0"+meseInt;
 		else
-			mese=String.valueOf(dataNascita.getMonth());
+			mese=""+meseInt;
 		
-		return ""+giorno+"/"+mese+"/"+dataNascita.getYear();
+		return ""+giorno+"/"+mese+"/"+c.get(Calendar.YEAR);
+//		return dataNascita.toString();
 	}
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
