@@ -2409,7 +2409,7 @@ logoimg {
 }
 
 .bg-teal {
-	background-color: #009688 !important;
+	background-color: #C4161C !important;
 	color: #fff;
 }
 
@@ -2558,7 +2558,7 @@ logoimg {
 }
 
 .col-teal {
-	color: #009688 !important;
+	color: #C4161C !important;
 }
 
 .col-green {
@@ -2931,7 +2931,7 @@ to {
 }
 
 .demo-choose-skin .teal {
-	background-color: #009688;
+	background-color: #C4161C;
 }
 
 .demo-choose-skin .green {
@@ -4652,8 +4652,8 @@ none
 }
 
 [type="checkbox"]:checked.chk-col-teal+label:before {
-	border-right: 2px solid #009688;
-	border-bottom: 2px solid #009688;
+	border-right: 2px solid #C4161C;
+	border-bottom: 2px solid #C4161C;
 }
 
 [type="checkbox"]:checked.chk-col-green+label:before {
@@ -4771,8 +4771,8 @@ none
 }
 
 [type="checkbox"].filled-in:checked.chk-col-teal+label:after {
-	border: 2px solid #009688;
-	background-color: #009688;
+	border: 2px solid #C4161C;
+	background-color: #C4161C;
 }
 
 [type="checkbox"].filled-in:checked.chk-col-green+label:after {
@@ -4892,8 +4892,8 @@ none
 }
 
 [type="radio"].radio-col-teal:checked+label:after {
-	background-color: #009688;
-	border-color: #009688;
+	background-color: #C4161C;
+	border-color: #C4161C;
 }
 
 [type="radio"].radio-col-green:checked+label:after {
@@ -5029,12 +5029,12 @@ none
 }
 
 [type="radio"].with-gap.radio-col-teal:checked+label:before {
-	border: 2px solid #009688;
+	border: 2px solid #C4161C;
 }
 
 [type="radio"].with-gap.radio-col-teal:checked+label:after {
-	background-color: #009688;
-	border: 2px solid #009688;
+	background-color: #C4161C;
+	border: 2px solid #C4161C;
 }
 
 [type="radio"].with-gap.radio-col-green:checked+label:before {
@@ -5288,7 +5288,7 @@ none
 
 .switch label input[type=checkbox]:checked+.lever.switch-col-teal:after
 	{
-	background-color: #009688;
+	background-color: #C4161C;
 }
 
 .switch label input[type=checkbox]:checked:not (:disabled ) ~ .lever.switch-col-green:active:after
@@ -5479,7 +5479,7 @@ none
 }
 
 .dtp>.dtp-content>.dtp-date-view>header.dtp-header {
-	background: #009688;
+	background: #C4161C;
 }
 
 .dtp .dtp-buttons .dtp-btn-ok {
@@ -5719,7 +5719,7 @@ none
 }
 
 .nav-tabs.tab-col-teal>li>a:before {
-	border-bottom: 2px solid #009688;
+	border-bottom: 2px solid #C4161C;
 }
 
 .nav-tabs.tab-col-green>li>a:before {
@@ -5989,7 +5989,7 @@ none
 }
 
 .modal-col-teal {
-	background-color: #009688;
+	background-color: #C4161C;
 }
 
 .modal-col-teal .modal-body, .modal-col-teal .modal-title {
@@ -6459,11 +6459,11 @@ none
 }
 
 .panel-group .panel-col-teal {
-	border: 1px solid #009688;
+	border: 1px solid #C4161C;
 }
 
 .panel-group .panel-col-teal .panel-title {
-	background-color: #009688 !important;
+	background-color: #C4161C !important;
 	color: #fff;
 }
 
@@ -6747,7 +6747,7 @@ none
 
 .full-body .panel-col-teal .panel-body {
 	border-top-color: #fff !important;
-	background-color: #009688;
+	background-color: #C4161C;
 	color: #fff;
 }
 
@@ -7399,12 +7399,12 @@ none
 }
 
 .breadcrumb-col-teal li a {
-	color: #009688 !important;
+	color: #C4161C !important;
 	font-weight: bold;
 }
 
 .breadcrumb-bg-teal {
-	background-color: #009688 !important;
+	background-color: #C4161C !important;
 }
 
 .breadcrumb-bg-teal li {
@@ -7984,18 +7984,18 @@ none
 }
 
 .list-group .pl-teal {
-	stroke: #009688;
+	stroke: #C4161C;
 }
 
 .list-group .list-group-bg-teal {
-	background-color: #009688;
+	background-color: #C4161C;
 	border: none;
 	color: #fff;
 }
 
 .list-group .list-group-bg-teal:hover, .list-group .list-group-bg-teal:focus
 	{
-	background-color: #009688;
+	background-color: #C4161C;
 	color: #fff;
 	opacity: 0.8;
 }
@@ -8470,7 +8470,7 @@ none
 }
 
 .wizard>.actions a {
-	background: #009688;
+	background: #C4161C;
 	color: #fff;
 	display: block;
 	padding: 0.5em 1em;
@@ -8482,7 +8482,7 @@ none
 }
 
 .wizard>.actions a:hover, .wizard>.actions a:active {
-	background: #009688;
+	background: #C4161C;
 	color: #fff;
 	display: block;
 	padding: 0.5em 1em;
@@ -8632,12 +8632,12 @@ none
 }
 
 .wizard .steps .current a {
-	background-color: #009688;
+	background-color: #C4161C;
 }
 
 .wizard .steps .current a:active, .wizard .steps .current a:focus,
 	.wizard .steps .current a:hover {
-	background-color: #009688;
+	background-color: #C4161C;
 }
 
 /* Waves ======================================= */
@@ -8786,7 +8786,7 @@ none
 }
 
 .md-preloader .pl-teal {
-	stroke: #009688;
+	stroke: #C4161C;
 }
 
 .md-preloader .pl-green {
@@ -8923,7 +8923,7 @@ none
 }
 
 .spinner-layer.pl-teal {
-	border-color: #009688;
+	border-color: #C4161C;
 }
 
 .spinner-layer.pl-green {

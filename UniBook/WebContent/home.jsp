@@ -273,7 +273,8 @@
 		class="sidebar"> <!-- User Info -->
 	<div class="user-info">
 		<div class="image">
-			<img src="${currentUser.profileImagePath}" width="100" height="100" alt="User" />
+			<img src="${currentUser.profileImagePath}" width="100" height="100"
+				alt="User" />
 		</div>
 
 
@@ -455,10 +456,13 @@
 
 	<!-- Waves Effect Plugin Js -->
 	<script src="plugins/node-waves/waves.js"></script>
-
 	<!-- Custom Js -->
 	<script src="js/admin.js"></script>
-
+	<!--  
+	<script src="plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="js/pages/forms/form-wizard.js"></script>
+	<script src="plugins/jquery-steps/jquery.steps.js"></script>
+	<script src="plugins/jquery-validation/jquery.validate.js"></script> -->
 	<!-- Demo Js -->
 	<script src="js/demo.js"></script>
 </body>
