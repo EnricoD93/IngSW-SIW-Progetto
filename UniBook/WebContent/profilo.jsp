@@ -10,15 +10,21 @@
 	<div class="block-header">
 		<h2>
 			<div class="body table-responsive">
-				<div class="corsiTitle">Profilo:</div>
-				<div class="image">
+				<div align="center" class="corsiTitle">Profilo:</div>
+				<div align="center" class="image">
 					<img src="${currentUser.profileImagePath}"
 						width="200" height="200" alt="User">
-					<button id="uploadImage"
-						class="btn btn-lg bg-unibook waves-effect" type="submit">
-						<i class="material-icons">file_upload</i> Carica Immagine
-					</button>
 				</div>
+				<div align="right">
+					<div class="bg-unibook info-box-3 hover-zoom-effect">
+                        <div class="icon">
+                            <i class="material-icons">mode_edit</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Modifica Profilo</div>
+                        </div>
+                    </div>
+					</div>
 				</br>
 				<table class="table table-striped">
 					<tbody>
@@ -30,6 +36,10 @@
 						<tr>
 							<th>Matricola: ${currentUser.matricola}</th>
 						</tr>
+						<tr>
+							<th>Codice Fiscale: ${currentUser.codicefiscale}</th>
+						</tr>
+						
 						<tr>
 							<th><c:if test="${currentUser.ruolo == 0 }">
 							Ruolo: Studente
