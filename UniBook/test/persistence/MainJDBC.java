@@ -64,12 +64,12 @@ public class MainJDBC {
 			date = format.parse("1993-06-19");
 			Utente st3 = new Utente("169983", "Enrico", "De Cicco", date, "DCCNRC93H19Z112B",
 					"enricodecicco93@gmail.com",
-
 					"asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111");
+			st3.setProfileImagePath("images/profileImages/169983.jpg");
 			date = format.parse("1995-10-23");
 			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111");
-			
+			st4.setProfileImagePath("images/profileImages/169991.jpg");
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(st);
 			studenteDao.save(st2);

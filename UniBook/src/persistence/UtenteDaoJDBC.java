@@ -22,7 +22,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	public void save(Utente utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo,verifycode) values (?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo,verifycode,imagepath) values (?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getMatricola());
 			statement.setString(2, utente.getNome());
@@ -35,6 +35,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setLong(8, utente.getCorsoDiLaurea());
 			statement.setInt(9, utente.getRuolo());
 			statement.setString(10, utente.getVerifyCode());
+			statement.setString(11, utente.getProfileImagePath());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -70,6 +71,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
 
 			}
 		} catch (SQLException e) {
@@ -123,9 +125,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso, corsodilaurea,utente where corso.corsodilaurea=corsodilaurea.codice\r\n"
-					+ "AND utente.matricola=?\r\n"
-					+" AND utente.ruolo=0\r\n"
-					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n" ;
+					+ "AND utente.matricola=?\r\n" + " AND utente.ruolo=0\r\n"
+					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -157,7 +158,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 		return corsi;
-		}
+	}
 
 	@Override
 	public void setPassword(Utente utente, String password) {
@@ -173,9 +174,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso,utente,iscritto where corso.codice=iscritto.codice\r\n"
-					+ "AND utente.matricola=?\r\n"
-					+" AND utente.ruolo=0\r\n"
-					+ "AND utente.matricola=iscritto.matricola\r\n" ;
+					+ "AND utente.matricola=?\r\n" + " AND utente.ruolo=0\r\n"
+					+ "AND utente.matricola=iscritto.matricola\r\n";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -207,7 +207,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 		return corsi;
-		}
+	}
 
 	@Override
 	public void iscriviStudente(String matricola, Long codice) {
@@ -217,7 +217,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, codice);
 			statement.setString(2, matricola);
-		
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -229,6 +229,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 	}
+
 	@Override
 	public List<Corso> getCorsiDocente(String matricola) {
 		Connection connection = this.dataSource.getConnection();
@@ -236,9 +237,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 		try {
 			Corso corso;
 			PreparedStatement statement;
-			String query = "select * from corso,utente where utente.ruolo=1\r\n"
-					+ "AND utente.matricola=?\r\n"
-					+ "AND corso.docente=utente.matricola\r\n" ;
+			String query = "select * from corso,utente where utente.ruolo=1\r\n" + "AND utente.matricola=?\r\n"
+					+ "AND corso.docente=utente.matricola\r\n";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -269,7 +269,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return corsi;		
+		return corsi;
 	}
 
 }

@@ -12,7 +12,7 @@
 			<div class="body table-responsive">
 				<div class="corsiTitle">Profilo:</div>
 				<div class="image">
-					<img src="images/profileImages/${currentUser.matricola}.jpg"
+					<img src="${currentUser.profileImagePath}"
 						width="200" height="200" alt="User">
 					<button id="uploadImage"
 						class="btn btn-lg bg-unibook waves-effect" type="submit">

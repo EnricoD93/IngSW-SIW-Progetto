@@ -14,7 +14,8 @@ public class Utente {
 	private Long corsoDiLaurea;
 	private int ruolo;
 	private String verifyCode;
-
+	private String profileImagePath;
+	
 	public Utente() {
 	}
 
@@ -30,7 +31,7 @@ public class Utente {
 		this.corsoDiLaurea = corsoDiLaurea;
 		this.ruolo = ruolo;
 		this.verifyCode = verifyCode;
-
+		profileImagePath="images/profileImages/default.png";
 	}
 
 	public String getMatricola() {
@@ -122,6 +123,14 @@ public class Utente {
 
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
+	}
+
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
 	}
 
 }
