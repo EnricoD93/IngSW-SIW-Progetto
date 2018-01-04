@@ -437,7 +437,7 @@
 	</div>
 	</section>
 	<script src="plugins/jquery/jquery.js"></script>
-	<script src="javascript/changePage.js" type="text/javascript"></script>
+	<script src="javascript/changePage.js"></script>
 	<script src="javascript/changeProfile.js" type="text/javascript"></script>
 	<script src="javascript/uploadImage.js" type="text/javascript"></script>
 

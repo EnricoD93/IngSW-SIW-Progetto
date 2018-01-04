@@ -17,7 +17,7 @@ function getCentralSection() {
 	});
 
 	$('#createCourse').click(function() {
-
+alert("okokko");
 		$.ajax({
 			url : 'createCourse.jsp',
 			method : 'GET',
