@@ -87,13 +87,13 @@ public class Register extends HttpServlet {
 		final String subject = "Codice di verifica";
 		final String text = "<html>\r\n" + "<head>\r\n" + "UniBook\r\n" + "</head>\r\n" + "<body>\r\n"
 				+ "<td bgcolor=\"#C4161C\">" + "<img src=\"cid:image\">\r\n"
-				+ "<p> <font size =\"5px\" color=\"white\" face=\"Robot,Arial,Tahoma,sans-serif\"> Ciao, <b>" + nome
+				+ "<p> <font size =\"5px\" color=\"black\" face=\"Robot,Arial,Tahoma,sans-serif\"> Ciao, <b>" + nome
 				+ "</b>" + "</font></p>\r\n"
-				+ "<p> <font size =\"4px\" color=\"white\" face=\"Robot,Arial,Tahoma,sans-serif\"> La tua registrazione è quasi completata. </p>\r\n"
-				+ "<p> <font size =\"4px\" color=\"white\" face=\"Robot,Arial,Tahoma,sans-serif\"> Per verificare la tua email inserisci il codice sottostante.</p>\r\n"
-				+ "<p> <font size =\"4px\" color=\"white\" face=\"Robot,Arial,Tahoma,sans-serif\"> Il tuo codice di verifica è <b>"
+				+ "<p> <font size =\"4px\" color=\"black\" face=\"Robot,Arial,Tahoma,sans-serif\"> La tua registrazione è quasi completata. </p>\r\n"
+				+ "<p> <font size =\"4px\" color=\"black\" face=\"Robot,Arial,Tahoma,sans-serif\"> Per verificare la tua email inserisci il codice sottostante.</p>\r\n"
+				+ "<p> <font size =\"4px\" color=\"black\" face=\"Robot,Arial,Tahoma,sans-serif\"> Il tuo codice di verifica è <b>"
 				+ code + "</b>" + " </font></p>\r\n"
-				+ "<p> <font size =\"4px\" color=\"white\" face=\"Robot,Arial,Tahoma,sans-serif\"> Cordiali saluti <b> UniBook</b></font>\r\n"
+				+ "<p> <font size =\"4px\" color=\"black\" face=\"Robot,Arial,Tahoma,sans-serif\"> Cordiali saluti <b> UniBook</b></font>\r\n"
 				+ "</div></body>\r\n" + "</html>";
 
 		String resultMessage = "";
