@@ -15,6 +15,16 @@ function getCentralSection() {
 
 		});
 	});
+	$('#calendario').click(function() {
+
+		$.ajax({
+			url : 'calendarioPersonale.jsp',
+			method : 'GET',
+		}).then(function(data) {
+			$('#centralSection').html(data);
+
+		});
+	});
 
 	$('#createCourse').click(function() {
 		$.ajax({

@@ -312,7 +312,7 @@
 			<li><a id="corsiPersonali"> <i class="material-icons">library_books</i>
 					<span>I miei Corsi</span>
 			</a></li>
-			<li><a href="pages/calendar.html"> <i class="material-icons">date_range</i>
+			<li><a id="calendario"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
 			</a></li>
 			<li><a id="aule"> <i class="material-icons">business</i> <span>Aule</span>
@@ -352,7 +352,6 @@
 		</div>
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
-
 
 
 

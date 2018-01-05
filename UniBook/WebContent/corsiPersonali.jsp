@@ -10,8 +10,8 @@
 	<div class="block-header">
 		<h2>
 			<c:if test="${currentUser.ruolo == 0 }">
-				<div class="body table-responsive">
-					<div class="corsiTitle">Corsi</div>
+				<div class="body">
+					<div class="corsiTitle" align="center">Corsi</div>
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -38,25 +38,14 @@
 				</div>
 			</c:if>
 			<c:if test="${currentUser.ruolo == 1 }">
-				<div class="body table-responsive">
-					<div class="bg-unibook info-box-4 hover-zoom-effect">
-						<a id="createCourse" class="waves-block waves-effect">
-							<div class="icon">
-								<i class="material-icons">library_add</i>
-							</div>
-							<div class="content">
-								<div class="text">Crea un nuovo Corso</div>
-							</div>
-						</a>
-					</div>
-
+				<div class="body">
+					<div class="corsiTitle" align="center">Corsi</div>
 					<br></br>
-					<div class="corsiTitle">Corsi</div>
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="30">Cod.</th>
-								<th width="50%">Nome del Corso</th>
+								<th width="100%">Nome del Corso</th>
 								<th>CFU</th>
 							</tr>
 
@@ -73,6 +62,16 @@
 
 						</tbody>
 					</table>
+				</div>
+				<div class="bg-unibook info-box-4 hover-zoom-effect">
+					<a id="createCourse" class="waves-block waves-effect">
+						<div class="icon">
+							<i class="material-icons">library_add</i>
+						</div>
+						<div class="content">
+							<div class="text">Crea un nuovo Corso</div>
+						</div>
+					</a>
 				</div>
 			</c:if>
 		</h2>
@@ -91,7 +90,7 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
 %>
-	<script src="javascript/changePage.js"></script>
+<script src="javascript/changePage.js"></script>
 
 
 </html>

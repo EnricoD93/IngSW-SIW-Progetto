@@ -29,25 +29,31 @@
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="css/themes/all-themes.css" rel="stylesheet" />
 <body class="theme-red">
-	<section id="centralSection">
 	<div class="container-fluid">
 		<div class="block-header">
-			<div class="body table-responsive">
-				<div class="corsiTitle">Aule</div>
-				<div id="map">
+			<div class="body">
+				<div class="corsiTitle" align="center">Aule</div>
+				<div id="map" align="center">
 					<img alt="mappa" src="images/aule.gif">
 				</div>
 				<div id="aule">
-					<c:forEach var="aula" items="${aule}">
-						<h2 id="${aula.id}">
-							<b>${aula.id}</b>
-						</h2>
-						<span>Ubicazione: ${aula.ubicazione}</span>
-						</br>
-						<span>Capienza: ${aula.posti}</span>
-						</br>
+					<div class="row clearfix">
+						<c:forEach var="aula" items="${aule}">
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+								<div class="card">
+									<div class="header bg-unibook">
+										<h2 class="col-white">${aula.id}</h2>
 
-					</c:forEach>
+									</div>
+									<div class="body">
+										Ubicazione : ${aula.ubicazione}</br> Capienza: ${aula.posti} posti.
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+
+					</div>
+
 				</div>
 			</div>
 			<br></br> <b>*Tutte le aule sono dotate di accesso alla rete
@@ -58,13 +64,13 @@
 		<%
 			response.sendRedirect("index.html");
 		%>
-	</c:if> <%
- 	response.setHeader("Cache-Control", "no-cache");
- 	response.setHeader("Cache-Control", "no-store");
- 	response.setHeader("Pragma", "no-cache");
- 	response.setDateHeader("Expires", 0);
- %> </section>
-
+	</c:if>
+	<%
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Cache-Control", "no-store");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
+	%>
 </body>
 
 </html>
