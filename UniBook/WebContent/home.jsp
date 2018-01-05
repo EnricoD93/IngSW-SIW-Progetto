@@ -20,10 +20,12 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
-
+<link href="plugins/bootstrap-select/css/bootstrap-select.css"
+	rel="stylesheet">
 <!-- Bootstrap Core Css -->
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
+<!-- Multiselect Core Css -->
 <!-- Waves Effect Css -->
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 

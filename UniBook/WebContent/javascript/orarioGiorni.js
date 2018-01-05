@@ -2,7 +2,7 @@
 function getOrarioLunedì() {
 	var checkbox1 = document.getElementById('md_checkbox_1');
 	if (checkbox1.checked == 1) {
-		document.getElementById('orarioGiorniLunedì').innerHTML = "<div id=\"orarioGiorni\"> <div class=\"input-group\"><span class=\"input-group-addon\"> Lunedì dalle </span> "
+		document.getElementById('orarioGiorniLunedì').innerHTML = "<div class=\"input-group\"><span class=\"input-group-addon\"> Lunedì dalle </span> "
 				+ "<div class=\"btn-group bootstrap-select show-tick\"> <select class=\"form-control show-tick\" tabindex=\"-98\" name=\"role\">"
 				+ "<option value=\"08\">08:30</option> <option value=\"08\">09:30</option>	<option value=\"08\">10:30</option>	"
 				+ "<option value=\"08\">11:30</option> <option value=\"08\">12:30</option>	<option value=\"08\">14:00</option>	"
@@ -14,7 +14,7 @@ function getOrarioLunedì() {
 				+ " <option value=\"08\">16:00</option> <option value=\"08\">17:00</option> <option value=\"08\">18:00</option> <option value=\"08\">19:00</option></select> </div>"
 				+ "	<span> <b> &nbsp; Tipo lezione: &nbsp;</b> </span> <div class=\"btn-group bootstrap-select\"> <input type=\"radio\" name=\"tipolezione_1\" id=\"lezione_1\""
 				+ "	class=\"radio-col-unibook\"> <label for=\"lezione_1\">Lezione</label> <input type=\"radio\" name=\"tipolezione_1\" id=\"esercitazione_1\" class=\"radio-col-unibook\">"
-				+ " <label for=\"esercitazione_1\" class=\"m-l-20\">Esercitazione</label>	</div> </div></div>";
+				+ " <label for=\"esercitazione_1\" class=\"m-l-20\">Esercitazione</label>	</div> </div>";
 
 	} else if (checkbox1.checked == 0) {
 		document.getElementById('orarioGiorniLunedì').innerHTML = "";

@@ -4,23 +4,52 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<link href="plugins/bootstrap-select/css/bootstrap-select.css"
+	rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
-						<div class="header"style="background-color:#C4161C;">
-							<h2 style="color:white;">Crea un Corso</h2>
+						<div class="header" style="background-color: #C4161C;">
+							<h2 style="color: white;">Crea un Corso</h2>
 						</div>
 						<div class="body">
 							<form id="form_validation" method="POST" novalidate="novalidate">
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare il Corso da
 										creare </span>
-									<div class="btn-group bootstrap-select show-tick">
-
+									<div class="btn-group bootstrap-select">
+										<div class="dropdown-menu open" role="combobox"
+											style="max-height: 432.6px; overflow: hidden; min-height: 42px;">
+											<div class="bs-searchbox">
+												<input type="text" class="form-control" autocomplete="off"
+													role="textbox" aria-label="Search">
+											</div>
+											<ul class="dropdown-menu inner" role="listbox"
+												aria-expanded="false"
+												style="max-height: 378.6px; overflow-y: auto; min-height: 0px;">
+												<c:forEach var="corso" items="${listaCorsi}">
+													<li data-original-index="0" class="selected active"><a
+														tabindex="0" class="" data-tokens="null" role="option"
+														aria-disabled="false" aria-selected="true"><span
+															class="text">${corso.codice} Cod. ${corso.codice}
+																&nbsp; - &nbsp; ${corso.nome}</span><span
+															class="glyphicon glyphicon-ok check-mark"></span></a></li>
+												</c:forEach>
+											</ul>
+										</div>
+										<select class="selectpicker" data-live-search="true"
+											tabindex="-98">
+											<c:forEach var="corso" items="${listaCorsi}">
+												<option value="${corso.codice}">Cod.
+													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
+											</c:forEach>
+										</select>
+									</div>
+									<!--  
+									<div class="btn-group show-tick">
 										<select class="form-control show-tick" tabindex="-98"
 											name="role">
 											<c:forEach var="corso" items="${listaCorsi}">
@@ -28,7 +57,8 @@
 													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
 											</c:forEach>
 										</select>
-									</div>
+									</div>-->
+
 								</div>
 
 								<div class="input-group">
@@ -56,7 +86,7 @@
 								<div id="orarioGiorniVenerdì"></div>
 
 
-<!-- 
+
 								<div id="orarioGiorni">
 									<div class="input-group">
 										<span class="input-group-addon"> Lunedì dalle </span>
@@ -88,12 +118,13 @@
 											<input type="radio" name="tipolezione" id="lezione_1"
 												class="radio-col-unibook"> <label for="lezione_1">Lezione</label>
 											<input type="radio" name="tipolezione" id="esercitazione"
-												class="radio-col-unibook"> <label for="esercitazione"
-												class="m-l-20">Esercitazione</label>
+												class="radio-col-unibook"> <label
+												for="esercitazione" class="m-l-20">Esercitazione</label>
 										</div>
 
- -->
 
+									</div>
+								</div>
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
 										cui si desidera fare lezione </span>
@@ -106,20 +137,15 @@
 											</c:forEach>
 										</select>
 									</div>
-									
+
 								</div>
-									<div class="form-group form-float">
+								<div class="form-group form-float">
 									<div class="form-line">
 										<textarea name="description" cols="30" rows="5"
 											class="form-control no-resize" required=""
 											aria-required="true"></textarea>
 										<label class="form-label">Descrizione</label>
 									</div>
-								</div>
-								
-									</div>
-									
-									
 								</div>
 
 
@@ -143,7 +169,7 @@
 										name="gender" id="female" class="with-gap"> <label
 										for="female" class="m-l-20">Female</label>
 								</div>
-							
+
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="password" class="form-control" name="password"
@@ -155,18 +181,47 @@
 									<input type="checkbox" id="checkbox" name="checkbox"> <label
 										for="checkbox">I have read and accept the terms</label>
 								</div>
+								<div class="btn-group bootstrap-select show-tick">
+									<button type="button" class="btn dropdown-toggle btn-default"
+										data-toggle="dropdown" title="Nothing selected"
+										aria-expanded="false">
+										<span class="filter-option pull-left">Nothing selected</span>&nbsp;<span
+											class="bs-caret"><span class="caret"></span></span>
+									</button>
+									<div class="dropdown-menu open"
+										style="max-height: 722px; overflow: hidden; min-height: 0px;">
+										<ul class="dropdown-menu inner" role="menu"
+											style="max-height: 712px; overflow-y: auto; min-height: 0px;">
+											<li data-original-index="0" class=""><a tabindex="0"
+												class="" style="" data-tokens="null"><span class="text">Mustard</span><span
+													class="glyphicon glyphicon-ok check-mark"></span></a></li>
+											<li data-original-index="1" class=""><a tabindex="0"
+												class="" style="" data-tokens="null"><span class="text">Ketchup</span><span
+													class="glyphicon glyphicon-ok check-mark"></span></a></li>
+											<li data-original-index="2" class=""><a tabindex="0"
+												class="" style="" data-tokens="null"><span class="text">Relish</span><span
+													class="glyphicon glyphicon-ok check-mark"></span></a></li>
+										</ul>
+									</div>
+									<select class="selectpicker" multiple="" tabindex="-98">
+										<option>Mustard</option>
+										<option>Ketchup</option>
+										<option>Relish</option>
+									</select>
+								</div>
 								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							</form>
 						</div>
+
 					</div>
 				</div>
 			</div>
-
 		</h2>
 	</div>
 </div>
 <script src="javascript/orarioGiorni.js"></script>
 <script src="plugins/jquery/jquery.js"></script>
+<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
 <!-- da non cancellare per la form -->
 <script src="js/admin.js"></script>
 </html>
