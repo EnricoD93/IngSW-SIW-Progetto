@@ -20,26 +20,6 @@
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare il Corso da
 										creare </span>
-									<div class="btn-group bootstrap-select">
-										<div class="dropdown-menu open" role="combobox"
-											style="max-height: 432.6px; overflow: hidden; min-height: 42px;">
-											<div class="bs-searchbox">
-												<input type="text" class="form-control" autocomplete="off"
-													role="textbox" aria-label="Search">
-											</div>
-											<ul class="dropdown-menu inner" role="listbox"
-												aria-expanded="false"
-												style="max-height: 378.6px; overflow-y: auto; min-height: 0px;">
-												<c:forEach var="corso" items="${listaCorsi}">
-													<li data-original-index="0" class="selected active"><a
-														tabindex="0" class="" data-tokens="null" role="option"
-														aria-disabled="false" aria-selected="true"><span
-															class="text">${corso.codice} Cod. ${corso.codice}
-																&nbsp; - &nbsp; ${corso.nome}</span><span
-															class="glyphicon glyphicon-ok check-mark"></span></a></li>
-												</c:forEach>
-											</ul>
-										</div>
 										<select class="selectpicker" data-live-search="true"
 											tabindex="-98">
 											<c:forEach var="corso" items="${listaCorsi}">
@@ -47,17 +27,9 @@
 													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
 											</c:forEach>
 										</select>
-									</div>
-									<!--  
-									<div class="btn-group show-tick">
-										<select class="form-control show-tick" tabindex="-98"
-											name="role">
-											<c:forEach var="corso" items="${listaCorsi}">
-												<option value="${corso.codice}">Cod.
-													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
-											</c:forEach>
-										</select>
-									</div>-->
+								&nbsp;
+
+
 
 								</div>
 
