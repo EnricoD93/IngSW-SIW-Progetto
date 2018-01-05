@@ -63,8 +63,7 @@ public class MainJDBC {
 					"DDDDDD", corsoDiLaureaMatematica.getCodice(), 0, "111111");
 			date = format.parse("1993-06-19");
 			Utente st3 = new Utente("169983", "Enrico", "De Cicco", date, "DCCNRC93H19Z112B",
-					"enricodecicco93@gmail.com",
-					"asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111");
+					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111");
 			st3.setProfileImagePath("images/profileImages/169983.jpg");
 			date = format.parse("1995-10-23");
 			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
@@ -101,10 +100,7 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonalePerri);
 			calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
-			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 2017,
-					"Corso Base di Informatica", "Nessun requisito", "Lunedi e Venerdi", 48, 48, "link al materiale",
-					perri.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10, perri.getCognome(),
-					perri.getNome());
+			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 10);
 			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
 					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
 					corsoDiLaureaInformatica.getCodice(), 10, cianciaruso.getCognome(), cianciaruso.getNome());

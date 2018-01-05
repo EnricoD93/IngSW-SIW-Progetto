@@ -19,6 +19,23 @@ public class Corso {
 	public Corso() {
 	}
 
+	public Corso(Long codice, String nome, int anno, Long corsoDiLaurea, int cfu) {
+		this.codice = codice;
+		this.nome = nome;
+		this.anno = anno;
+		this.corsoDiLaurea = corsoDiLaurea;
+		this.cfu = cfu;
+		this.giorno = "";
+		this.descrizione = "";
+		this.materiale = "";
+		this.requisiti = "";
+		this.oreLezione = 0;
+		this.oreEsercitazione = 0;
+		this.docente = "";
+		this.cognomeDocente = "";
+		this.nomeDocente = "";
+	}
+
 	public Corso(Long codice, String nome, int anno, String descrizione, String giorno, String requisiti,
 			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea, int cfu,
 			String cognomeDocente, String nomeDocente) {
