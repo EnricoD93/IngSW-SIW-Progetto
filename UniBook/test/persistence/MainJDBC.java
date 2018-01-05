@@ -42,17 +42,17 @@ public class MainJDBC {
 		CorsoDiLaureaDao corsoDiLaureaDao = factory.getCorsoDiLaureaDAO();
 		corsoDiLaureaDao.save(corsoDiLaureaInformatica);
 		corsoDiLaureaDao.save(corsoDiLaureaMatematica);
-		Aula aulaMT5 = new Aula("MT5", 160 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A – Piano terra");
-		Aula aulaMT5Bis = new Aula("MT5Bis", 90 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A – Piano terra");
-		Aula aulaMT1 = new Aula("MT1", 110, corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
-		Aula aulaMT2 = new Aula("MT2", 48, corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
-		Aula aulaMT3 = new Aula("MT3", 48 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
-		Aula aulaMT4 = new Aula("MT4", 56 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
-		Aula aulaMT6 = new Aula("MT6", 72 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
-		Aula aulaMT8 = new Aula("MT8", 28 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
-		Aula aulaMT13 = new Aula("MT13", 32 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Secondo piano");
-		Aula aulaMT14 = new Aula("MT14", 24 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Secondo piano");
-		Aula aulaMT15 = new Aula("MT15", 45 , corsoDiLaureaMatematica.getCodice(),"Cubo 31A – Primo piano");
+		Aula aulaMT5 = new Aula("MT5", 160 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A - Piano terra");
+		Aula aulaMT5Bis = new Aula("MT5Bis", 90 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A - Piano terra");
+		Aula aulaMT1 = new Aula("MT1", 110, corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Piano terra");
+		Aula aulaMT2 = new Aula("MT2", 48, corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Piano terra");
+		Aula aulaMT3 = new Aula("MT3", 48 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Piano terra");
+		Aula aulaMT4 = new Aula("MT4", 56 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B - Piano terra");
+		Aula aulaMT6 = new Aula("MT6", 72 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B - Piano terra");
+		Aula aulaMT8 = new Aula("MT8", 28 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B - Piano terra");
+		Aula aulaMT13 = new Aula("MT13", 32 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Secondo piano");
+		Aula aulaMT14 = new Aula("MT14", 24 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Secondo piano");
+		Aula aulaMT15 = new Aula("MT15", 45 , corsoDiLaureaMatematica.getCodice(),"Cubo 31A - Primo piano");
 		
 		
 		

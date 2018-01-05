@@ -28,49 +28,43 @@
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="css/themes/all-themes.css" rel="stylesheet" />
-<body  class="theme-red">
-<section id="centralSection">
-<div class="container-fluid">
-	<div class="block-header">
-		<h2>
+<body class="theme-red">
+	<section id="centralSection">
+	<div class="container-fluid">
+		<div class="block-header">
 			<div class="body table-responsive">
 				<div class="corsiTitle">Aule</div>
-				<img alt="mappa" src="images/aule.gif">
-				<table class="table table-striped">
-					<tbody>
+				<div id="map">
+					<img alt="mappa" src="images/aule.gif">
+				</div>
+				<div id="aule">
+					<c:forEach var="aula" items="${aule}">
+						<h2 id="${aula.id}">
+							<b>${aula.id}</b>
+						</h2>
+						<span>Ubicazione: ${aula.ubicazione}</span>
+						</br>
+						<span>Capienza: ${aula.posti}</span>
+						</br>
 
-						<c:forEach var="aula" items="${aule}">
-							<tr>
-								<th>
-								<td>L'aula <b>${aula.id}</b> appartiene al Corso di Laurea
-									<c:if test="${aula.corsoDiLaurea == 733 }">
-									di <b>Informatica</b>
-									</c:if> <c:if test="${aula.corsoDiLaurea == 726 }">
-									di <b>Matematica</b>
-									</c:if> ha una capienza di <b>${aula.posti}</b> posti
-								</td>
-							</tr>
-						</c:forEach>
-
-					</tbody>
-				</table>
+					</c:forEach>
+				</div>
 			</div>
 			<br></br> <b>*Tutte le aule sono dotate di accesso alla rete
 				Wi-fi tramite apposite credenziali</b>
-		</h2>
+		</div>
 	</div>
-</div>
-<c:if test="${currentUser==null}">
-	<%
-		response.sendRedirect("index.html");
-	%>
-</c:if> <%
+	<c:if test="${currentUser==null}">
+		<%
+			response.sendRedirect("index.html");
+		%>
+	</c:if> <%
  	response.setHeader("Cache-Control", "no-cache");
  	response.setHeader("Cache-Control", "no-store");
  	response.setHeader("Pragma", "no-cache");
  	response.setDateHeader("Expires", 0);
  %> </section>
 
-
+</body>
 
 </html>
