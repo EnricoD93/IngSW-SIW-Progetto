@@ -97,6 +97,8 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				descrizioneCorso.setCfu(result.getInt("cfu"));
 				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
 				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				System.out.println("C'è la descrizione del corso di "+ descrizioneCorso.getNome());
+				listaCorsi.add(descrizioneCorso);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

@@ -103,12 +103,12 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(211), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 10,48,48);
+			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(212), "Analisi Matematica", 1, corsoDiLaureaInformatica.getCodice(),10, 24, 72 );
 			DescrizioneCorsoDao descCorso= factory.getDescrizioneCorsoDao();
 			descCorso.save(corsoFondamenti);
+			descCorso.save(corsoAnalisi);
 			System.out.println("la descrizione: "+ descCorso.findByPrimaryKey(new Long(211)).getNome());
-			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
-					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
-					corsoDiLaureaInformatica.getCodice(), 10, cianciaruso.getCognome(), cianciaruso.getNome());
+			
 			Corso corsoIngegneria = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
@@ -122,7 +122,6 @@ public class MainJDBC {
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
 					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
-			corsoDao.save(corsoAnalisi);
 			corsoDao.save(corsoGeometria);
 			corsoDao.save(corsoIngegneria);
 			corsoDao.save(corsoProgrammazioneAdOggetti);

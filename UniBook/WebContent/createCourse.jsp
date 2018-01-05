@@ -17,42 +17,51 @@
 						<div class="body">
 							<form id="form_validation" method="POST" novalidate="novalidate">
 								<div class="input-group">
-									<span class="input-group-addon"> Seleziona il Corso da
+									<span class="input-group-addon"> Selezionare il Corso da
 										creare </span>
 									<div class="btn-group bootstrap-select show-tick">
-										<div class="dropdown-menu open"
-											style="max-height: 410px; overflow: hidden; min-height: 92px;">
-											<ul class="dropdown-menu inner" role="menu"
-												style="max-height: 400px; overflow-y: auto; min-height: 82px;">
-												<c:forEach var="corso" items="${listaCorsi}">
-													<li data-original-index="1"><a tabindex="0" class=""
-														style="" data-tokens="null"><span class="text">${corso.codice}
-																&nbsp; - &nbsp; ${corso.nome}</span> <span
-															class="glyphicon glyphicon-ok check-mark"></span></a></li>
-												</c:forEach>
 
-											</ul>
-										</div>
 										<select class="form-control show-tick" tabindex="-98"
 											name="role">
 											<c:forEach var="corso" items="${listaCorsi}">
-												<option value="${corso.codice}">${corso.codice}
-													&nbsp; - &nbsp; ${corso.nome}</option>
+												<option value="${corso.codice}">Cod.
+													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
 											</c:forEach>
 										</select>
 									</div>
 								</div>
-								<c:forEach var="corso" items="${listaCorsi}">
-												${corso.codice}
-													&nbsp; - &nbsp; ${corso.nome}
+
+								<div class="input-group">
+									<span class="input-group-addon">Selezionare i giorni in cui si desidera fare
+										lezione </span> <input type="checkbox" id="md_checkbox_1"
+										name="checkbox"> <label for="md_checkbox_1">Lunedì</label>
+									&nbsp; <input type="checkbox" id="md_checkbox_2"
+										name="checkbox"> <label for="md_checkbox_2">
+										Martedì</label> &nbsp; <input type="checkbox" id="md_checkbox_3"
+										name="checkbox"> <label for="md_checkbox_3">
+										Mercoledì</label> &nbsp; <input type="checkbox" id="md_checkbox_4"
+										name="checkbox"> <label for="md_checkbox_4">
+										Giovedì</label> &nbsp; <input type="checkbox" id="md_checkbox_5"
+										name="checkbox"> <label for="md_checkbox_5">
+										Venerdì</label>
+								</div>
+
+
+								<div class="input-group">
+									<span class="input-group-addon"> Selezionare l'aula in
+										cui si desidera fare lezione </span>
+									<div class="btn-group bootstrap-select show-tick">
+
+										<select class="form-control show-tick" tabindex="-98"
+											name="role">
+											<c:forEach var="aula" items="${aule}">
+												<option value="${aula.id}">Aula ${aula.id}</option>
 											</c:forEach>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="text" class="form-control" name="name"
-											required="" aria-required="true"> <label
-											class="form-label">Name</label>
+										</select>
 									</div>
 								</div>
+
+
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="text" class="form-control" name="surname"
