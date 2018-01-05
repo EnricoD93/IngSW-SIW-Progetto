@@ -4,16 +4,17 @@ public class Aula {
 	private String id;
 	private int posti;
 	private Long corsoDiLaurea;
+	private String ubicazione;
 
 	public Aula() {
 	}
 
-	public Aula(String id, int posti,Long corsoDiLaurea) {
+	public Aula(String id, int posti, Long corsoDiLaurea, String ubicazione) {
 		this.id = id;
 		this.posti = posti;
-		this.corsoDiLaurea=corsoDiLaurea;
+		this.corsoDiLaurea = corsoDiLaurea;
+		this.setUbicazione(ubicazione);
 	}
-
 
 	public Long getCorsoDiLaurea() {
 		return corsoDiLaurea;
@@ -38,5 +39,13 @@ public class Aula {
 	public void setPosti(int posti) {
 		this.posti = posti;
 	}
-	
+
+	public String getUbicazione() {
+		return ubicazione;
+	}
+
+	public void setUbicazione(String ubicazione) {
+		this.ubicazione = ubicazione;
+	}
+
 }

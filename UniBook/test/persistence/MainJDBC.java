@@ -42,15 +42,34 @@ public class MainJDBC {
 		CorsoDiLaureaDao corsoDiLaureaDao = factory.getCorsoDiLaureaDAO();
 		corsoDiLaureaDao.save(corsoDiLaureaInformatica);
 		corsoDiLaureaDao.save(corsoDiLaureaMatematica);
-		Aula aulaMT5 = new Aula("MT5", 100, corsoDiLaureaInformatica.getCodice());
-		Aula aulaMT5Bis = new Aula("MT5Bis", 80, corsoDiLaureaInformatica.getCodice());
-		Aula aulaMT1 = new Aula("MT1", 200, corsoDiLaureaMatematica.getCodice());
-		Aula aulaMT2 = new Aula("MT2", 60, corsoDiLaureaMatematica.getCodice());
+		Aula aulaMT5 = new Aula("MT5", 160 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A – Piano terra");
+		Aula aulaMT5Bis = new Aula("MT5Bis", 90 , corsoDiLaureaInformatica.getCodice(),"Cubo 31A – Piano terra");
+		Aula aulaMT1 = new Aula("MT1", 110, corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
+		Aula aulaMT2 = new Aula("MT2", 48, corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
+		Aula aulaMT3 = new Aula("MT3", 48 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Piano terra");
+		Aula aulaMT4 = new Aula("MT4", 56 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
+		Aula aulaMT6 = new Aula("MT6", 72 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
+		Aula aulaMT8 = new Aula("MT8", 28 , corsoDiLaureaMatematica.getCodice(),"Cubo 30B – Piano terra");
+		Aula aulaMT13 = new Aula("MT13", 32 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Secondo piano");
+		Aula aulaMT14 = new Aula("MT14", 24 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B – Secondo piano");
+		Aula aulaMT15 = new Aula("MT15", 45 , corsoDiLaureaMatematica.getCodice(),"Cubo 31A – Primo piano");
+		
+		
+		
+		
+		
 		AulaDao aulaDao = factory.getAulaDAO();
-		aulaDao.save(aulaMT5);
-		aulaDao.save(aulaMT5Bis);
 		aulaDao.save(aulaMT1);
 		aulaDao.save(aulaMT2);
+		aulaDao.save(aulaMT3);
+		aulaDao.save(aulaMT4);
+		aulaDao.save(aulaMT5);
+		aulaDao.save(aulaMT5Bis);
+		aulaDao.save(aulaMT6);
+		aulaDao.save(aulaMT8);
+		aulaDao.save(aulaMT13);
+		aulaDao.save(aulaMT14);
+		aulaDao.save(aulaMT15);
 
 		// ISTANZE DI PROVA POSTGRESS
 
@@ -117,10 +136,10 @@ public class MainJDBC {
 			DescrizioneCorso corsoIntelligenza = new DescrizioneCorso(new Long(27002216), "Intelligenza Artificiale", 3, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
 			DescrizioneCorso corsoRicerca = new DescrizioneCorso(new Long(27000023), "Ricerca Operativa", 2, corsoDiLaureaMatematica.getCodice(),12, 24, 72 );
 			DescrizioneCorso corsoParalleli = new DescrizioneCorso(new Long(27002222), "Algoritmi Paralleli e Sistemi Distribuiti", 2, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
-			DescrizioneCorso corsoLinguaggi = new DescrizioneCorso(new Long(27002222), "Linguaggi e logiche per l'informatica", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
-			DescrizioneCorso corsoFisica = new DescrizioneCorso(new Long(27002222), "Fisica", 1, corsoDiLaureaMatematica.getCodice(),6, 24, 72 );
-			DescrizioneCorso corsoInglese = new DescrizioneCorso(new Long(27002222), "Inglese", 1, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
-			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27002222), "Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoLinguaggi = new DescrizioneCorso(new Long(27002213), "Linguaggi e logiche per l'informatica", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoFisica = new DescrizioneCorso(new Long(27000005), "Fisica", 1, corsoDiLaureaMatematica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoInglese = new DescrizioneCorso(new Long(27002277), "Inglese", 1, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27000035), "Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
 			
 			
 			DescrizioneCorsoDao descCorso= factory.getDescrizioneCorsoDao();
@@ -146,7 +165,6 @@ public class MainJDBC {
 			
 			
 			
-			System.out.println("la descrizione: "+ descCorso.findByPrimaryKey(new Long(211)).getNome());
 			
 			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",

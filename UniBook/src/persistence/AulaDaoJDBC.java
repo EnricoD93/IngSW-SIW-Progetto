@@ -21,12 +21,12 @@ public class AulaDaoJDBC implements AulaDao {
 	public void save(Aula aula) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into aula(id,posti,codice) values (?,?,?)";
+			String insert = "insert into aula(id,posti,codice,ubicazione) values (?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, aula.getId());
 			statement.setInt(2, aula.getPosti());
 			statement.setLong(3, aula.getCorsoDiLaurea());
-
+			statement.setString(4, aula.getUbicazione());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -53,6 +53,7 @@ public class AulaDaoJDBC implements AulaDao {
 				aula.setId(result.getString("id"));
 				aula.setPosti(result.getInt("posti"));
 				aula.setCorsoDiLaurea(result.getLong("codice"));
+				aula.setUbicazione(result.getString("ubicazione"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -81,6 +82,7 @@ public class AulaDaoJDBC implements AulaDao {
 				aula.setId(result.getString("id"));				
 				aula.setCorsoDiLaurea(result.getLong("codice"));
 				aula.setPosti(result.getInt("posti"));
+				aula.setUbicazione(result.getString("ubicazione"));
 				aule.add(aula);
 			}
 		} catch (SQLException e) {
