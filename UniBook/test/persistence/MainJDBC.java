@@ -102,14 +102,53 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonalePerri);
 			calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
-			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(211), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 10,48,48);
-			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(212), "Analisi Matematica", 1, corsoDiLaureaInformatica.getCodice(),10, 24, 72 );
+			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 12,48,48);
+			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(27005730), "Analisi Matematica", 1, corsoDiLaureaMatematica.getCodice(),12, 24, 72 );
+			DescrizioneCorso corsoOggetti = new DescrizioneCorso(new Long(27002209), "Programmazione ad Oggetti", 2, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoAlgoritmi = new DescrizioneCorso(new Long(27002211), "Algoritmi e Strutture Dati", 2, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoArchitettura = new DescrizioneCorso(new Long(27002212), "Architettura degli Elaboratori", 2, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoBasi = new DescrizioneCorso(new Long(27000109), "Basi di Dati", 2, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoIngegneria = new DescrizioneCorso(new Long(27000110), "Ingegneria del Software", 3, corsoDiLaureaInformatica.getCodice(),12, 24, 72 );
+			DescrizioneCorso corsoSIW = new DescrizioneCorso(new Long(27002217), "Web Computing", 3, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoIGPE = new DescrizioneCorso(new Long(27002214), "Interfacce Grafiche e Programmazione ad Eventi", 2, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoDiscreta = new DescrizioneCorso(new Long(27000107), "Matematica Discreta", 1, corsoDiLaureaMatematica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoMAD = new DescrizioneCorso(new Long(27002041), "Matematica per l'Analisi dei Dati", 2, corsoDiLaureaMatematica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoSistemi = new DescrizioneCorso(new Long(27002215), "Sistemi Operativi e Reti", 3, corsoDiLaureaInformatica.getCodice(),12, 24, 72 );
+			DescrizioneCorso corsoIntelligenza = new DescrizioneCorso(new Long(27002216), "Intelligenza Artificiale", 3, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoRicerca = new DescrizioneCorso(new Long(27000023), "Ricerca Operativa", 2, corsoDiLaureaMatematica.getCodice(),12, 24, 72 );
+			DescrizioneCorso corsoParalleli = new DescrizioneCorso(new Long(27002222), "Algoritmi Paralleli e Sistemi Distribuiti", 2, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoLinguaggi = new DescrizioneCorso(new Long(27002222), "Linguaggi e logiche per l'informatica", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoFisica = new DescrizioneCorso(new Long(27002222), "Fisica", 1, corsoDiLaureaMatematica.getCodice(),6, 24, 72 );
+			DescrizioneCorso corsoInglese = new DescrizioneCorso(new Long(27002222), "Inglese", 1, corsoDiLaureaInformatica.getCodice(),9, 24, 72 );
+			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27002222), "Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(),6, 24, 72 );
+			
+			
 			DescrizioneCorsoDao descCorso= factory.getDescrizioneCorsoDao();
 			descCorso.save(corsoFondamenti);
 			descCorso.save(corsoAnalisi);
+			descCorso.save(corsoOggetti);
+			descCorso.save(corsoAlgoritmi);
+			descCorso.save(corsoArchitettura);
+			descCorso.save(corsoBasi);
+			descCorso.save(corsoIngegneria);
+			descCorso.save(corsoSIW);
+			descCorso.save(corsoIGPE);
+			descCorso.save(corsoDiscreta);
+			descCorso.save(corsoMAD);
+			descCorso.save(corsoSistemi);
+			descCorso.save(corsoIntelligenza);
+			descCorso.save(corsoRicerca);
+			descCorso.save(corsoParalleli);
+			descCorso.save(corsoLinguaggi);
+			descCorso.save(corsoFisica);
+			descCorso.save(corsoInglese);
+			descCorso.save(corsoEconomia);
+			
+			
+			
 			System.out.println("la descrizione: "+ descCorso.findByPrimaryKey(new Long(211)).getNome());
 			
-			Corso corsoIngegneria = new Corso(new Long(213), "Ingegneria del Software", 2017,
+			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
@@ -123,7 +162,7 @@ public class MainJDBC {
 					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoGeometria);
-			corsoDao.save(corsoIngegneria);
+			corsoDao.save(corsoIngegneriaSW);
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 
 		//	studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
