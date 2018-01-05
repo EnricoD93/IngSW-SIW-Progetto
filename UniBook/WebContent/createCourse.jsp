@@ -11,8 +11,8 @@
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
-						<div class="header">
-							<h2>Crea un Corso</h2>
+						<div class="header"style="background-color:#C4161C;">
+							<h2 style="color:white;">Crea un Corso</h2>
 						</div>
 						<div class="body">
 							<form id="form_validation" method="POST" novalidate="novalidate">
@@ -34,19 +34,19 @@
 								<div class="input-group">
 									<span class="input-group-addon">Selezionare i giorni in
 										cui si desidera fare lezione </span> <input type="checkbox"
-										id="md_checkbox_1" name="checkbox" onclick="getOrarioGiorni()">
+										id="md_checkbox_1" name="checkbox" onclick="getOrarioLunedì()">
 									<label for="md_checkbox_1">Lunedì</label> &nbsp; <input
 										type="checkbox" id="md_checkbox_2" name="checkbox"
-										onclick="getOrarioGiorni()"> <label
+										onclick="getOrarioMartedì()"> <label
 										for="md_checkbox_2"> Martedì</label> &nbsp; <input
 										type="checkbox" id="md_checkbox_3" name="checkbox"
-										onclick="getOrarioGiorni()"> <label
+										onclick="getOrarioMercoledì()"> <label
 										for="md_checkbox_3"> Mercoledì</label> &nbsp; <input
 										type="checkbox" id="md_checkbox_4" name="checkbox"
-										onclick="getOrarioGiorni()"> <label
+										onclick="getOrarioGiovedì()"> <label
 										for="md_checkbox_4"> Giovedì</label> &nbsp; <input
 										type="checkbox" id="md_checkbox_5" name="checkbox"
-										onclick="getOrarioGiorni()"> <label
+										onclick="getOrarioVenerdì()"> <label
 										for="md_checkbox_5"> Venerdì</label>
 								</div>
 								<div id="orarioGiorniLunedì"></div>
@@ -55,6 +55,8 @@
 								<div id="orarioGiorniGiovedì"></div>
 								<div id="orarioGiorniVenerdì"></div>
 
+
+<!-- 
 								<div id="orarioGiorni">
 									<div class="input-group">
 										<span class="input-group-addon"> Lunedì dalle </span>
@@ -83,17 +85,14 @@
 										<span> <b> &nbsp; Tipo lezione: &nbsp;</b>
 										</span>
 										<div class="btn-group bootstrap-select">
-											<input type="radio" name="tipolezione" id="lezione"
-												class="radio-col-unibook"> <label for="lezione">Lezione</label>
+											<input type="radio" name="tipolezione" id="lezione_1"
+												class="radio-col-unibook"> <label for="lezione_1">Lezione</label>
 											<input type="radio" name="tipolezione" id="esercitazione"
 												class="radio-col-unibook"> <label for="esercitazione"
 												class="m-l-20">Esercitazione</label>
 										</div>
 
-
-
-									</div>
-								</div>
+ -->
 
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
@@ -107,6 +106,20 @@
 											</c:forEach>
 										</select>
 									</div>
+									
+								</div>
+									<div class="form-group form-float">
+									<div class="form-line">
+										<textarea name="description" cols="30" rows="5"
+											class="form-control no-resize" required=""
+											aria-required="true"></textarea>
+										<label class="form-label">Descrizione</label>
+									</div>
+								</div>
+								
+									</div>
+									
+									
 								</div>
 
 
@@ -130,14 +143,7 @@
 										name="gender" id="female" class="with-gap"> <label
 										for="female" class="m-l-20">Female</label>
 								</div>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<textarea name="description" cols="30" rows="5"
-											class="form-control no-resize" required=""
-											aria-required="true"></textarea>
-										<label class="form-label">Description</label>
-									</div>
-								</div>
+							
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="password" class="form-control" name="password"
@@ -160,5 +166,7 @@
 	</div>
 </div>
 <script src="javascript/orarioGiorni.js"></script>
-
+<script src="plugins/jquery/jquery.js"></script>
+<!-- da non cancellare per la form -->
+<script src="js/admin.js"></script>
 </html>
