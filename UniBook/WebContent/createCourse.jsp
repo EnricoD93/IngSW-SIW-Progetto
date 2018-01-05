@@ -19,15 +19,13 @@
 							<form id="form_validation" method="POST" novalidate="novalidate">
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare il Corso da
-										creare </span>
-										<select class="selectpicker" data-live-search="true"
-											tabindex="-98">
-											<c:forEach var="corso" items="${listaCorsi}">
-												<option value="${corso.codice}">Cod.
-													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
-											</c:forEach>
-										</select>
-								&nbsp;
+										creare </span> <select class="selectpicker" data-live-search="true"
+										tabindex="-98">
+										<c:forEach var="corso" items="${listaCorsi}">
+											<option value="${corso.codice}">Cod. ${corso.codice}
+												&nbsp; - &nbsp; ${corso.nome}</option>
+										</c:forEach>
+									</select> &nbsp;
 
 
 
@@ -58,44 +56,33 @@
 								<div id="orarioGiorniVenerdì"></div>
 
 
-
 								<div id="orarioGiorni">
 									<div class="input-group">
-										<span class="input-group-addon"> Lunedì dalle </span>
-										<div class="btn-group bootstrap-select show-tick">
+										<span class="input-group-addon"> Lunedì dalle </span> <select
+											class="selectpicker" tabindex="-98" name="time">
 
-											<select class="form-control show-tick" tabindex="-98"
-												name="role">
+											<option value="08">08:00</option>
+											<option value="08">09:00</option>
+											<option value="08">10:00</option>
 
-												<option value="08">08:00</option>
-												<option value="08">09:00</option>
-												<option value="08">10:00</option>
+										</select> <span class="input-group-addon"><b> &nbsp; alle </b> </span>
+										<select class="selectpicker" tabindex="-98" name="time">
 
-											</select>
-										</div>
-										<span> <b> &nbsp; alle &nbsp;</b>
-										</span>
-										<div class="btn-group bootstrap-select show-tick">
+											<option value="08">08:00</option>
+											<option value="08">09:00</option>
+											<option value="08">10:00</option>
 
-											<select class="form-control show-tick" tabindex="-98"
-												name="role">
-
-												<option value="08">08:30</option>
-
-											</select>
-										</div>
-										<span> <b> &nbsp; Tipo lezione: &nbsp;</b>
-										</span>
-										<div class="btn-group bootstrap-select">
-											<input type="radio" name="tipolezione" id="lezione_1"
-												class="radio-col-unibook"> <label for="lezione_1">Lezione</label>
-											<input type="radio" name="tipolezione" id="esercitazione"
-												class="radio-col-unibook"> <label
-												for="esercitazione" class="m-l-20">Esercitazione</label>
-										</div>
-
-
+										</select> <span class="input-group-addon"> <b> &nbsp; Tipo
+												lezione: &nbsp;</b>
+										</span> <span class="input-group-addon"><input type="radio"
+											name="tipolezione" id="lezione_1" class="radio-col-unibook">
+											<label for="lezione_1">Lezione</label> <input type="radio"
+											name="tipolezione" id="esercitazione"
+											class="radio-col-unibook"> <label for="esercitazione"
+											class="m-l-20">Esercitazione</label></span>&nbsp;
 									</div>
+
+
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
@@ -119,68 +106,24 @@
 										<label class="form-label">Descrizione</label>
 									</div>
 								</div>
-
-
 								<div class="form-group form-float">
 									<div class="form-line">
-										<input type="text" class="form-control" name="surname"
-											required="" aria-required="true"> <label
-											class="form-label">Surname</label>
+										<textarea name="description" cols="30" rows="5"
+											class="form-control no-resize" required=""
+											aria-required="true"></textarea>
+										<label class="form-label">Requisiti</label>
 									</div>
-								</div>
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="email" class="form-control" name="email"
-											required="" aria-required="true"> <label
-											class="form-label">Email</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<input type="radio" name="gender" id="male" class="with-gap">
-									<label for="male">Male</label> <input type="radio"
-										name="gender" id="female" class="with-gap"> <label
-										for="female" class="m-l-20">Female</label>
 								</div>
 
-								<div class="form-group form-float">
-									<div class="form-line">
-										<input type="password" class="form-control" name="password"
-											required="" aria-required="true"> <label
-											class="form-label">Password</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<input type="checkbox" id="checkbox" name="checkbox"> <label
-										for="checkbox">I have read and accept the terms</label>
-								</div>
-								<div class="btn-group bootstrap-select show-tick">
-									<button type="button" class="btn dropdown-toggle btn-default"
-										data-toggle="dropdown" title="Nothing selected"
-										aria-expanded="false">
-										<span class="filter-option pull-left">Nothing selected</span>&nbsp;<span
-											class="bs-caret"><span class="caret"></span></span>
-									</button>
-									<div class="dropdown-menu open"
-										style="max-height: 722px; overflow: hidden; min-height: 0px;">
-										<ul class="dropdown-menu inner" role="menu"
-											style="max-height: 712px; overflow-y: auto; min-height: 0px;">
-											<li data-original-index="0" class=""><a tabindex="0"
-												class="" style="" data-tokens="null"><span class="text">Mustard</span><span
-													class="glyphicon glyphicon-ok check-mark"></span></a></li>
-											<li data-original-index="1" class=""><a tabindex="0"
-												class="" style="" data-tokens="null"><span class="text">Ketchup</span><span
-													class="glyphicon glyphicon-ok check-mark"></span></a></li>
-											<li data-original-index="2" class=""><a tabindex="0"
-												class="" style="" data-tokens="null"><span class="text">Relish</span><span
-													class="glyphicon glyphicon-ok check-mark"></span></a></li>
-										</ul>
-									</div>
-									<select class="selectpicker" multiple="" tabindex="-98">
+								<div class="input-group">
+									<span class="input-group-addon">Propedeuticità</span> <select
+										class="selectpicker" multiple="" tabindex="-98">
 										<option>Mustard</option>
 										<option>Ketchup</option>
 										<option>Relish</option>
-									</select>
+									</select>&nbsp;
 								</div>
+
 								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
 							</form>
 						</div>
