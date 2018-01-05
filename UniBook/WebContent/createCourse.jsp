@@ -27,11 +27,10 @@
 												<c:forEach var="corso" items="${listaCorsi}">
 													<li data-original-index="1"><a tabindex="0" class=""
 														style="" data-tokens="null"><span class="text">${corso.codice}
-													&nbsp; - &nbsp; ${corso.nome}</span>
-													<span
+																&nbsp; - &nbsp; ${corso.nome}</span> <span
 															class="glyphicon glyphicon-ok check-mark"></span></a></li>
 												</c:forEach>
-												
+
 											</ul>
 										</div>
 										<select class="form-control show-tick" tabindex="-98"
@@ -39,10 +38,14 @@
 											<c:forEach var="corso" items="${listaCorsi}">
 												<option value="${corso.codice}">${corso.codice}
 													&nbsp; - &nbsp; ${corso.nome}</option>
-								</c:forEach>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
+								<c:forEach var="corso" items="${listaCorsi}">
+												${corso.codice}
+													&nbsp; - &nbsp; ${corso.nome}
+											</c:forEach>
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="text" class="form-control" name="name"

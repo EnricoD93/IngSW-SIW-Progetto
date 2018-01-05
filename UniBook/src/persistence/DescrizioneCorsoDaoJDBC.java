@@ -23,7 +23,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 	public void save(DescrizioneCorso descrizioneCorso) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into descrizioneCorso(codice,nome,anno,corsodilaurea,ore_lezioni,ore_esercitazioni,cfu) values (?,?,?,?,?,?,?)";
+			String insert = "insert into descrizionecorso(codice,nome,anno,corsodilaurea,ore_lezioni,ore_esercitazioni,cfu) values (?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, descrizioneCorso.getCodice());
 			statement.setString(2, descrizioneCorso.getNome());
@@ -51,7 +51,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 		Connection connection = this.dataSource.getConnection();
 		DescrizioneCorso descrizioneCorso = null;
 		try {
-			String query = "select * from descrizioneCorso where codice = ?";
+			String query = "select * from descrizionecorso where codice = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setLong(1, codice);
 			ResultSet result = statement.executeQuery();
@@ -85,7 +85,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 		try {
 			DescrizioneCorso descrizioneCorso;
 			PreparedStatement statement;
-			String query = "select * from descrizioneCorso";
+			String query = "select * from descrizionecorso";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {

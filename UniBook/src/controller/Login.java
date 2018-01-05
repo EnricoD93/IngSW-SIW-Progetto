@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
 		AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 		DescrizioneCorsoDao descrizioneCorsoDao= DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 		listaCorsi=descrizioneCorsoDao.findAll();
+		System.out.println(listaCorsi.size());
 		aule=aulaDao.findAll();
 		try {
 			if (currentUser != null) {
