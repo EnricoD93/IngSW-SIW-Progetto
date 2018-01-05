@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -14,28 +16,33 @@
 						</div>
 						<div class="body">
 							<form id="form_validation" method="POST" novalidate="novalidate">
-					<div class="input-group">
-						<span class="input-group-addon"> Seleziona il Corso da creare
-						</span>
-						<div class="btn-group bootstrap-select show-tick">
-							<div class="dropdown-menu open"
-								style="max-height: 410px; overflow: hidden; min-height: 92px;">
-								<ul class="dropdown-menu inner" role="menu"
-									style="max-height: 400px; overflow-y: auto; min-height: 82px;">
-									<li data-original-index="1"><a tabindex="0" class=""
-										style="" data-tokens="null"><span class="text">Analisi Matematica 1</span><span
-											class="glyphicon glyphicon-ok check-mark"></span></a></li>
-									<li data-original-index="2"><a tabindex="0" class=""
-										style="" data-tokens="null"><span class="text">Fondamenti di Informatica</span><span
-											class="glyphicon glyphicon-ok check-mark"></span></a></li>
-								</ul>
-							</div>
-							<select class="form-control show-tick" tabindex="-98" name="role">
-								<option value="0">Analisi Matematica 1</option>
-								<option value="1">Fondamenti di Informatica</option>
-							</select>
-						</div>
-					</div>
+								<div class="input-group">
+									<span class="input-group-addon"> Seleziona il Corso da
+										creare </span>
+									<div class="btn-group bootstrap-select show-tick">
+										<div class="dropdown-menu open"
+											style="max-height: 410px; overflow: hidden; min-height: 92px;">
+											<ul class="dropdown-menu inner" role="menu"
+												style="max-height: 400px; overflow-y: auto; min-height: 82px;">
+												<c:forEach var="corso" items="${listaCorsi}">
+													<li data-original-index="1"><a tabindex="0" class=""
+														style="" data-tokens="null"><span class="text">${corso.codice}
+													&nbsp; - &nbsp; ${corso.nome}</span>
+													<span
+															class="glyphicon glyphicon-ok check-mark"></span></a></li>
+												</c:forEach>
+												
+											</ul>
+										</div>
+										<select class="form-control show-tick" tabindex="-98"
+											name="role">
+											<c:forEach var="corso" items="${listaCorsi}">
+												<option value="${corso.codice}">${corso.codice}
+													&nbsp; - &nbsp; ${corso.nome}</option>
+								</c:forEach>
+										</select>
+									</div>
+								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
 										<input type="text" class="form-control" name="name"

@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Aula;
 import model.Corso;
 import model.DescrizioneCorso;
 import persistence.dao.DescrizioneCorsoDao;
@@ -78,8 +80,34 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 
 	@Override
 	public List<DescrizioneCorso> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<DescrizioneCorso> listaCorsi = new ArrayList<>();
+		try {
+			DescrizioneCorso descrizioneCorso;
+			PreparedStatement statement;
+			String query = "select * from descrizioneCorso";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				descrizioneCorso = new DescrizioneCorso();
+				descrizioneCorso.setCodice(result.getLong("codice"));
+				descrizioneCorso.setNome(result.getString("nome"));
+				descrizioneCorso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				descrizioneCorso.setAnno(result.getInt("anno"));
+				descrizioneCorso.setCfu(result.getInt("cfu"));
+				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
+				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return listaCorsi;
 	}
 
 	@Override
