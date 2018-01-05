@@ -32,21 +32,25 @@
 								</div>
 
 								<div class="input-group">
-									<span class="input-group-addon">Selezionare i giorni in cui si desidera fare
-										lezione </span> <input type="checkbox" id="md_checkbox_1"
-										name="checkbox"> <label for="md_checkbox_1">Lunedì</label>
-									&nbsp; <input type="checkbox" id="md_checkbox_2"
-										name="checkbox"> <label for="md_checkbox_2">
-										Martedì</label> &nbsp; <input type="checkbox" id="md_checkbox_3"
-										name="checkbox"> <label for="md_checkbox_3">
-										Mercoledì</label> &nbsp; <input type="checkbox" id="md_checkbox_4"
-										name="checkbox"> <label for="md_checkbox_4">
-										Giovedì</label> &nbsp; <input type="checkbox" id="md_checkbox_5"
-										name="checkbox"> <label for="md_checkbox_5">
-										Venerdì</label>
+									<span class="input-group-addon">Selezionare i giorni in
+										cui si desidera fare lezione </span> <input type="checkbox"
+										id="md_checkbox_1" name="checkbox" onclick="getOrarioGiorni()">
+									<label for="md_checkbox_1">Lunedì</label> &nbsp; <input
+										type="checkbox" id="md_checkbox_2" name="checkbox" onclick="getOrarioGiorni()"> <label
+										for="md_checkbox_2"> Martedì</label> &nbsp; <input
+										type="checkbox" id="md_checkbox_3" name="checkbox" onclick="getOrarioGiorni()"> <label
+										for="md_checkbox_3"> Mercoledì</label> &nbsp; <input
+										type="checkbox" id="md_checkbox_4" name="checkbox"  onclick="getOrarioGiorni()"> <label
+										for="md_checkbox_4"> Giovedì</label> &nbsp; <input
+										type="checkbox" id="md_checkbox_5" name="checkbox" onclick="getOrarioGiorni()"> <label
+										for="md_checkbox_5"> Venerdì</label>
 								</div>
-
-
+								<div id="orarioGiorniLunedì"></div>
+								<div id="orarioGiorniMartedì"></div>
+								<div id="orarioGiorniMercoledì"></div>
+								<div id="orarioGiorniGiovedì"></div>
+								<div id="orarioGiorniVenerdì"></div>
+								
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
 										cui si desidera fare lezione </span>
@@ -60,7 +64,7 @@
 										</select>
 									</div>
 								</div>
-
+ 
 
 								<div class="form-group form-float">
 									<div class="form-line">
@@ -111,5 +115,6 @@
 		</h2>
 	</div>
 </div>
+<script src="javascript/orarioGiorni.js"></script>
 
 </html>
