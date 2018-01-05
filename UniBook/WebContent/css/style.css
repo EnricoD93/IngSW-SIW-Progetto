@@ -4856,6 +4856,11 @@ none
 	border-color: #F44336;
 }
 
+[type="radio"].radio-col-unibook:checked+label:after {
+	background-color: #C4161C;
+	border-color: #C4161C;
+}
+
 [type="radio"].radio-col-pink:checked+label:after {
 	background-color: #E91E63;
 	border-color: #E91E63;

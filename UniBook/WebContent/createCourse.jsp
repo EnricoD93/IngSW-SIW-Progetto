@@ -36,13 +36,17 @@
 										cui si desidera fare lezione </span> <input type="checkbox"
 										id="md_checkbox_1" name="checkbox" onclick="getOrarioGiorni()">
 									<label for="md_checkbox_1">Lunedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_2" name="checkbox" onclick="getOrarioGiorni()"> <label
+										type="checkbox" id="md_checkbox_2" name="checkbox"
+										onclick="getOrarioGiorni()"> <label
 										for="md_checkbox_2"> Martedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_3" name="checkbox" onclick="getOrarioGiorni()"> <label
+										type="checkbox" id="md_checkbox_3" name="checkbox"
+										onclick="getOrarioGiorni()"> <label
 										for="md_checkbox_3"> Mercoledì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_4" name="checkbox"  onclick="getOrarioGiorni()"> <label
+										type="checkbox" id="md_checkbox_4" name="checkbox"
+										onclick="getOrarioGiorni()"> <label
 										for="md_checkbox_4"> Giovedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_5" name="checkbox" onclick="getOrarioGiorni()"> <label
+										type="checkbox" id="md_checkbox_5" name="checkbox"
+										onclick="getOrarioGiorni()"> <label
 										for="md_checkbox_5"> Venerdì</label>
 								</div>
 								<div id="orarioGiorniLunedì"></div>
@@ -50,7 +54,47 @@
 								<div id="orarioGiorniMercoledì"></div>
 								<div id="orarioGiorniGiovedì"></div>
 								<div id="orarioGiorniVenerdì"></div>
-								
+
+								<div id="orarioGiorni">
+									<div class="input-group">
+										<span class="input-group-addon"> Lunedì dalle </span>
+										<div class="btn-group bootstrap-select show-tick">
+
+											<select class="form-control show-tick" tabindex="-98"
+												name="role">
+
+												<option value="08">08:00</option>
+												<option value="08">09:00</option>
+												<option value="08">10:00</option>
+
+											</select>
+										</div>
+										<span> <b> &nbsp; alle &nbsp;</b>
+										</span>
+										<div class="btn-group bootstrap-select show-tick">
+
+											<select class="form-control show-tick" tabindex="-98"
+												name="role">
+
+												<option value="08">08:30</option>
+
+											</select>
+										</div>
+										<span> <b> &nbsp; Tipo lezione: &nbsp;</b>
+										</span>
+										<div class="btn-group bootstrap-select">
+											<input type="radio" name="tipolezione" id="lezione"
+												class="radio-col-unibook"> <label for="lezione">Lezione</label>
+											<input type="radio" name="tipolezione" id="esercitazione"
+												class="radio-col-unibook"> <label for="esercitazione"
+												class="m-l-20">Esercitazione</label>
+										</div>
+
+
+
+									</div>
+								</div>
+
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
 										cui si desidera fare lezione </span>
@@ -64,7 +108,7 @@
 										</select>
 									</div>
 								</div>
- 
+
 
 								<div class="form-group form-float">
 									<div class="form-line">
