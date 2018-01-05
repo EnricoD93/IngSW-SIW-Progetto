@@ -16,7 +16,7 @@ public class UtilDao {
 
 		Connection connection = dataSource.getConnection();
 		try {
-			String delete = "drop table if exists esame;" + "drop table if exists messaggio;"
+			String delete ="drop table if exists descrizioneCorso;"+ "drop table if exists esame;" + "drop table if exists messaggio;"
 					+ "drop table if exists calendariopersonale;" + "drop table if exists lezione;"
 					+ "drop table if exists aula;" + "drop table if exists iscritto;" + "drop table if exists corso;"
 					+ "drop table if exists studente;" + "drop table if exists docente;"
@@ -54,6 +54,7 @@ public class UtilDao {
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
 					+ "create table iscritto(\"codice\" bigint primary key REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
+					+ "create table descrizioneCorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea bigint REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
 
 			;
 

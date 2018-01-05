@@ -32,6 +32,12 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 			// connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 			statement.executeUpdate();
 
+			
+			insert= "insert into descrizioneCorso(codice, nome,anno,corsodilaurea, cfu,ore_lezioni, ore_esercitazioni) values (?,?,?,?,?,?,?)";
+			statement = connection.prepareStatement(insert);
+			statement.setLong(1,new Long(211));
+			statement.setString(2, corsoDiLaurea.getNome());
+			
 			// this.updateCorsi(corsoDiLaurea, connection);
 			// connection.commit();
 		} catch (SQLException e) {

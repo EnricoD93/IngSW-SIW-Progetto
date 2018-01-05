@@ -4,6 +4,7 @@ import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
@@ -19,9 +20,7 @@ public abstract class DAOFactory {
 			return null;
 	}
 
-//	public abstract UtenteDao getStudenteDAO();
-//
-//	public abstract UtenteDao getDocenteDAO();
+	public abstract DescrizioneCorsoDao getDescrizioneCorsoDao();
 	
 	public abstract UtenteDao getUtenteDao();
 

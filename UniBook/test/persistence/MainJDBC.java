@@ -11,6 +11,7 @@ import model.Aula;
 import model.CalendarioPersonale;
 import model.Corso;
 import model.CorsoDiLaurea;
+import model.DescrizioneCorso;
 import model.Lezione;
 import model.Messaggio;
 import model.Utente;
@@ -18,6 +19,7 @@ import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
@@ -100,7 +102,10 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonalePerri);
 			calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
 			calendarioPersonaleDao.save(calendarioPersonaleMarino);
-			Corso corsoFondamenti = new Corso(new Long(211), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 10);
+			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(211), "Fondamenti di Informatica", 1, corsoDiLaureaInformatica.getCodice(), 10,48,48);
+			DescrizioneCorsoDao descCorso= factory.getDescrizioneCorsoDao();
+			descCorso.save(corsoFondamenti);
+			System.out.println("la descrizione: "+ descCorso.findByPrimaryKey(new Long(211)).getNome());
 			Corso corsoAnalisi = new Corso(new Long(212), "Analisi Matematica", 2017, "Corso Base di Analisi",
 					"Nessun requisito", "Martedi e Giovedi", 24, 72, "link al materiale", cianciaruso.getMatricola(),
 					corsoDiLaureaInformatica.getCodice(), 10, cianciaruso.getCognome(), cianciaruso.getNome());
@@ -117,19 +122,18 @@ public class MainJDBC {
 					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
 					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
-			corsoDao.save(corsoFondamenti);
 			corsoDao.save(corsoAnalisi);
 			corsoDao.save(corsoGeometria);
 			corsoDao.save(corsoIngegneria);
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 
-			studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
+		//	studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
 
 			// controlla qua
 
-			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId());
-			LezioneDao lezioneDao = factory.getLezioneDAO();
-			lezioneDao.save(lezione);
+//			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId());
+//			LezioneDao lezioneDao = factory.getLezioneDAO();
+//			lezioneDao.save(lezione);
 			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			messaggioDao.save(messaggio);
@@ -140,7 +144,7 @@ public class MainJDBC {
 			System.out.println(docenteDao.findByPrimaryKey("555").getNome());
 			System.out.println(aulaDao.findByPrimaryKey("MT5").getPosti());
 			System.out.println(calendarioPersonaleDao.findByPrimaryKey("111").getUtente());
-			System.out.println(corsoDao.findByPrimaryKey(new Long(211)).getNome());
+	//		System.out.println(corsoDao.findByPrimaryKey(new Long(211)).getNome());
 			System.out.println(corsoDiLaureaDao.findByPrimaryKey(new Long(733)).getNome());
 			// System.out.println(lezioneDao.findByPrimaryKey(new
 			// java.sql.Date(100)).getAula());

@@ -4,6 +4,7 @@ import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
+import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
@@ -85,6 +86,10 @@ public class PostgresDAOFactory extends DAOFactory {
 	@Override
 	public UtenteDao getUtenteDao() {
 		return new UtenteDaoJDBC(dataSource);
+	}
+	@Override
+	public DescrizioneCorsoDao getDescrizioneCorsoDao() {
+		return new DescrizioneCorsoDaoJDBC(dataSource);
 	}
 
 }
