@@ -55,9 +55,9 @@
 								<div id="orarioGiorniGiovedì"></div>
 								<div id="orarioGiorniVenerdì"></div>
 
-
+<!-- 
 								<div id="orarioGiorni">
-						<!-- Da qua -->
+						
 									<div class="input-group">
 										<span class="input-group-addon"> Lunedì dalle </span> <select
 											class="selectpicker" tabindex="-98" name="time">
@@ -82,8 +82,8 @@
 											class="radio-col-unibook"> <label for="esercitazione"
 											class="m-l-20">Esercitazione</label></span>&nbsp;
 									</div>
-						<!-- a qua -->
-
+					
+-->
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
