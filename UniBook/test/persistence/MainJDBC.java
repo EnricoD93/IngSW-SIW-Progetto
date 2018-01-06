@@ -183,7 +183,7 @@ public class MainJDBC {
 			corsoDao.save(corsoIngegneriaSW);
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 
-		//	studenteDao.iscriviStudente(st.getMatricola(), corsoFondamenti.getCodice());
+			studenteDao.iscriviStudente(st.getMatricola(), (long) 213);
 
 			// controlla qua
 

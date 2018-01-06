@@ -293,13 +293,13 @@
 					<li><a id="profilo"><i class="material-icons">person</i>Profilo</a></li>
 					<li role="seperator" class="divider"></li>
 					<li><a href="javascript:void(0);"><i
-							class="material-icons">group</i>Followers</a></li>
+							class="material-icons">group</i>Colleghi</a></li>
 					<li><a href="javascript:void(0);"><i
-							class="material-icons">shopping_cart</i>Sales</a></li>
+							class="material-icons">school</i>Docenti</a></li>
 					<li><a href="javascript:void(0);"><i
-							class="material-icons">favorite</i>Likes</a></li>
+							class="material-icons">collections_bookmark</i>Esami</a></li>
 					<li role="seperator" class="divider"></li>
-					<li><a href="logout.jsp"><i class="material-icons">input</i>Log
+					<li><a href="logout.jsp"><i class="material-icons">exit_to_app</i>Log
 							Out </a></li>
 				</ul>
 			</div>
