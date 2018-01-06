@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Corso;
 import model.DescrizioneCorso;
+import model.Utente;
 import persistence.DatabaseManager;
 import persistence.UtilDao;
 import persistence.dao.CorsoDao;
@@ -22,6 +23,7 @@ public class CreateCourse extends HttpServlet {
 		String requisiti = req.getParameter("requisiti");
 		String materiale = req.getParameter("materiale");
 		String aula=req.getParameter("idAula");
+		Utente user = (Utente) req.getSession().getAttribute("currentUser");
 		String giorniLezione = "";
 		if (req.getParameter("lunedì") != null) {
 			giorniLezione += "lunedì ";
@@ -55,14 +57,10 @@ public class CreateCourse extends HttpServlet {
 		c.setRequisiti(requisiti);
 		c.setGiorno(giorniLezione);
 		c.setMateriale(materiale);
+		c.setDocente(user.getMatricola());
+		c.setNomeDocente(user.getNome());
+		c.setCognomeDocente(user.getCognome());
 		corsoDao.save(c);
-		String matricola = req.getParameter("usermatr");
-		String cognome = req.getParameter("userlastname");
-		String mailto = req.getParameter("email");
-		String dataNascita = req.getParameter("dataNascita");
-		String codicef = req.getParameter("codf");
-		String password = req.getParameter("password");
-		String ruolo = req.getParameter("role");
 		req.getRequestDispatcher("home.jsp").forward(req, resp);
 	}
 }

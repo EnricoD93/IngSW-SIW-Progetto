@@ -27,7 +27,7 @@
 							<c:forEach var="corso" items="${corsiIscritto}">
 								<tr>
 									<th scope="row">${corso.codice}</th>
-									<td><a href="index.html"> ${corso.nome} </a></td>
+									<td><a id="course"> ${corso.nome} </a></td>
 									<td>${corso.cognomeDocente}${corso.nomeDocente}</td>
 									<td>${corso.cfu}</td>
 								</tr>
@@ -53,9 +53,9 @@
 						<tbody>
 
 							<c:forEach var="corso" items="${corsiDocente}">
-								<tr>
+								<tr id="course" style="cursor: pointer;">
 									<th scope="row">${corso.codice}</th>
-									<td><a href="index.html"> ${corso.nome} </a></td>
+									<td><a> ${corso.nome} </a></td>
 									<td>${corso.cfu}</td>
 								</tr>
 							</c:forEach>

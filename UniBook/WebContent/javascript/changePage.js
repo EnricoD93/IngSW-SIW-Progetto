@@ -15,6 +15,16 @@ function getCentralSection() {
 
 		});
 	});
+	$('#course').click(function() {
+
+		$.ajax({
+			url : 'course.jsp',
+			method : 'GET',
+		}).then(function(data) {
+			$('#centralSection').html(data);
+
+		});
+	});
 	$('#calendario').click(function() {
 
 		$.ajax({
