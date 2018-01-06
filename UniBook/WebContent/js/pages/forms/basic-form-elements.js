@@ -1,6 +1,6 @@
 $(function () {
     //Textare auto growth
-    autosize($('textarea.auto-growth'));
+   // autosize($('textarea.auto-growth'));
 
     //Datetimepicker plugin
     $('.datetimepicker').bootstrapMaterialDatePicker({
