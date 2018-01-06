@@ -65,7 +65,7 @@
 											<option value="08">09:00</option>
 											<option value="08">10:00</option>
 
-										</select> <span class="input-group-addon" style="display: inline-table"><b> &nbsp; alle </b> </span>
+										</select> <span class="input-group-addon"><b> &nbsp; alle </b> </span>
 										<select class="selectpicker" tabindex="-98" name="time">
 
 											<option value="08">08:00</option>
