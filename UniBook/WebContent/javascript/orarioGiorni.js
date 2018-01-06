@@ -104,7 +104,7 @@ function getOrarioMercoledì() {
 				+ " <option value=\"08\">16:00</option> <option value=\"08\">17:00</option> <option value=\"08\">18:00</option> <option value=\"08\">19:00</option>	</select></div>	"
 				+ "	<span> <b> &nbsp; Tipo lezione: &nbsp;</b> </span> <div class=\"btn-group bootstrap-select\"> <input type=\"radio\" name=\"tipolezione_3\" id=\"lezione_3\""
 				+ "	class=\"radio-col-unibook\"> <label for=\"lezione_3\">Lezione</label> <input type=\"radio\" name=\"tipolezione_3\" id=\"esercitazione_3\" class=\"radio-col-unibook\">"
-				+ " <label for=\"esercitazione_3\" class=\"m-l-20\">Esercitazione</label> </div></div>" +
+				+ " <label for=\"esercitazione_3\" class=\"m-l-20\">Esercitazione</label> </div></div><script src=\"plugins/jquery/jquery.js\"></script>" +
 				"<script src=\"plugins/bootstrap-select/js/bootstrap-select.js\"></script><script src=\"js/admin.js\"></script>");
 
 	} else if (checkbox3.checked == 0) {
@@ -128,7 +128,7 @@ function getOrarioGiovedì() {
 				+ " <option value=\"08\">16:00</option> <option value=\"08\">17:00</option> <option value=\"08\">18:00</option> <option value=\"08\">19:00</option>	</select></div>	"
 				+ "	<span> <b> &nbsp; Tipo lezione: &nbsp;</b> </span> <div class=\"btn-group bootstrap-select\"> <input type=\"radio\" name=\"tipolezione_4\" id=\"lezione_4\""
 				+ "	class=\"radio-col-unibook\"> <label for=\"lezione_4\">Lezione</label> <input type=\"radio\" name=\"tipolezione_4\" id=\"esercitazione_4\" class=\"radio-col-unibook\">"
-				+ " <label for=\"esercitazione_4\" class=\"m-l-20\">Esercitazione</label> </div></div>" +
+				+ " <label for=\"esercitazione_4\" class=\"m-l-20\">Esercitazione</label> </div></div><script src=\"plugins/jquery/jquery.js\"></script>" +
 				"<script src=\"plugins/bootstrap-select/js/bootstrap-select.js\"></script><script src=\"js/admin.js\"></script>");
 			
 
@@ -152,7 +152,7 @@ function getOrarioVenerdì() {
 				+ " <option value=\"08\">16:00</option> <option value=\"08\">17:00</option> <option value=\"08\">18:00</option> <option value=\"08\">19:00</option>	</select></div>	"
 				+ "	<span> <b> &nbsp; Tipo lezione: &nbsp;</b> </span> <div class=\"btn-group bootstrap-select\"> <input type=\"radio\" name=\"tipolezione_5\" id=\"lezione_5\""
 				+ "	class=\"radio-col-unibook\"> <label for=\"lezione_5\">Lezione</label> <input type=\"radio\" name=\"tipolezione_5\" id=\"esercitazione_5\" class=\"radio-col-unibook\">"
-				+ " <label for=\"esercitazione_5\" class=\"m-l-20\">Esercitazione</label> </div></div>" +
+				+ " <label for=\"esercitazione_5\" class=\"m-l-20\">Esercitazione</label> </div></div><script src=\"plugins/jquery/jquery.js\"></script>" +
 				"<script src=\"plugins/bootstrap-select/js/bootstrap-select.js\"></script><script src=\"js/admin.js\"></script>");
 			
 
