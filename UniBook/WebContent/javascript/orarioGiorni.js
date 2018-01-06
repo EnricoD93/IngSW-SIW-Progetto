@@ -75,6 +75,9 @@ function getOrarioMartedì() {
 				+ "	<span> <b> &nbsp; Tipo lezione: &nbsp;</b> </span> <div class=\"btn-group bootstrap-select\"> <input type=\"radio\" name=\"tipolezione_2\" id=\"lezione_2\""
 				+ "	class=\"radio-col-unibook\"> <label for=\"lezione_2\">Lezione</label> <input type=\"radio\" name=\"tipolezione_2\" id=\"esercitazione_2\" class=\"radio-col-unibook\">"
 				+ " <label for=\"esercitazione_2\" class=\"m-l-20\">Esercitazione</label>	</div> </div></div>";
+	
+	
+		
 	} else if (checkbox2.checked == 0) {
 		document.getElementById('orarioGiorniMartedì').innerHTML = "";
 	}
