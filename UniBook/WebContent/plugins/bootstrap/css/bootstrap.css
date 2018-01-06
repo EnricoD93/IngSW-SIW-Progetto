@@ -4951,14 +4951,14 @@ px
 
 .input-group .form-control {
 	position: relative;
-	z-index: 2;
+	z-index: auto;
 	float: left;
 	width: 100%;
 	margin-bottom: 0;
 }
 
 .input-group .form-control:focus {
-	z-index: 3;
+	z-index: auto;
 }
 
 .input-group-lg>.form-control, .input-group-lg>.input-group-addon,
@@ -5005,7 +5005,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	height: auto;
 }
 
-.input-group-addon>.adddd, .input-group>.adddd{
+.input-group-addon>.myinline, .input-group>.myinline{
 	display: table-cell;
 }
 .input-group-addon, .input-group-btn, .input-group .form-control {

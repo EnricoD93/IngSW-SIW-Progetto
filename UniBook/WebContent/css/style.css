@@ -5563,7 +5563,6 @@ none
 
 .bootstrap-select .dropdown-menu li.selected a {
 	background-color: #eee !important;
-	color: #555 !important;
 }
 
 .bootstrap-select .dropdown-menu .active a {
@@ -5580,6 +5579,7 @@ none
 .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark
 	{
 	margin-top: 9px;
+	color: #C4161C;
 }
 
 /* Tooltip & Popovers ========================== */
