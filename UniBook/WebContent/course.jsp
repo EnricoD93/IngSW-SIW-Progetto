@@ -13,15 +13,24 @@
 					<div align="center">
 						<div class="profile-pic"
 							style="background-image: url('${currentUser.profileImagePath}')">
+							<c:if test="${currentUser.ruolo == 1 }">
 							<a href="javascript:uploadImage()" class="profile-pic"> <span
 								class="glyphicon glyphicon-camera"></span> <span>Cambia
 									Immagine</span>
-							</a>
+							</a></c:if>
 						</div>
 						<div align="center" class="corsiTitle">Algoritmi Paralleli e
 							Sistemi Distribuiti</div>
 					</div>
-
+					<div align="right" class="studentilist">
+						<button type="button"
+							class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
+							title="Studenti iscritti" data-toggle="tooltip"
+							data-placement="left" title=""
+							data-original-title="Studenti iscritti">
+							<i class="material-icons">people</i>
+						</button>
+					</div>
 
 
 					<table class="table table-striped">
@@ -108,4 +117,5 @@
 		</div>
 	</div>
 </body>
+<script src="js/pages/ui/tooltips-popovers.js"></script>
 </html>

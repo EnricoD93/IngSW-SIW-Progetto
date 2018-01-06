@@ -1,5 +1,4 @@
-function uploadImage() {
-	var data = new FormData();
-	data.append('request', "profile");
-	data.append('image', $("input[type=file]")[0].files[0]);
+function uploadImage(){
+	console.log("va");
+	$('#imagebtn').click();
 };

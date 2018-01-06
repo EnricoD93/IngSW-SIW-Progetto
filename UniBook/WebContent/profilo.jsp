@@ -14,10 +14,12 @@
 				<div align="center">
 					<div align="center" class="profile-pic"
 						style="background-image: url('${currentUser.profileImagePath}')">
-						<a href="javascript:uploadImage()" class="profile-pic"> <span
+						<a href="javascript:uploadImage()" class="profile-pic"
+							style="cursor: pointer;"> <span
 							class="glyphicon glyphicon-camera"></span> <span>Cambia
 								Immagine</span>
-						</a>
+						</a> <input type="file" class="form-control hidden" name="image"
+							id="imagebtn" accept=".png, .jpeg, .jpg" required="">
 					</div>
 				</div>
 
@@ -38,42 +40,45 @@
 					<tbody>
 
 						<tr>
-							<th scope="row">Nome: ${currentUser.nome}&nbsp;
+							<th scope="row">Nome:&nbsp;&nbsp;${currentUser.nome} 
 								${currentUser.cognome}</th>
 						</tr>
 						<tr>
-							<th>Matricola: ${currentUser.matricola}</th>
+							<th>Matricola:&nbsp;&nbsp;${currentUser.matricola}</th>
 						</tr>
 						<tr>
-							<th>Codice Fiscale: ${currentUser.codicefiscale}</th>
+							<th>Codice Fiscale:&nbsp;&nbsp;${currentUser.codicefiscale}</th>
 						</tr>
 
 						<tr>
 							<th><c:if test="${currentUser.ruolo == 0 }">
-							Ruolo: Studente
+							Ruolo:&nbsp;&nbsp;Studente
 							</c:if> <c:if test="${currentUser.ruolo == 1 }">
-							Ruolo: Docente
+							Ruolo:&nbsp;&nbsp;Docente
 							</c:if></th>
 						</tr>
 						<tr>
-							<th>Email: ${currentUser.email}</th>
+							<th>Email:&nbsp;&nbsp;${currentUser.email}</th>
 						</tr>
 						<tr>
-							<th>Data di Nascita: ${currentUser.getDataNascitaString()}</th>
+							<th>Data di Nascita:&nbsp;&nbsp;${currentUser.getDataNascitaString()}</th>
 						</tr>
 
 					</tbody>
 				</table>
 			</div>
 			<div class="container">
-				<form class="well form-horizontal" onsubmit="return updateImage();" enctype="multipart/form-data">
+				<form class="well form-horizontal" onsubmit="return updateImage();"
+					enctype="multipart/form-data">
 					<fieldset>
 						<legend> Modifica Immagine Profilo! </legend>
 						<div class="form-group">
 							<label class="col-md-4 control-label"> Immagine </label>
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
-									<span class="input-group-addon"> <i class="fa fa-picture-o"></i></span><input type="file" class="form-control" name="image" id="image"
+									<span class="input-group-addon"> <i
+										class="fa fa-picture-o"></i></span><input type="file"
+										class="form-control" name="image" id="image"
 										accept=".png, .jpeg, .jpg" required>
 								</div>
 							</div>
@@ -83,7 +88,8 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 									<button type="submit" class="btn btn-success">
-										<i class="fa fa-cloud-upload"></i>&nbsp;&nbsp; Aggiorna Immagine
+										<i class="fa fa-cloud-upload"></i>&nbsp;&nbsp; Aggiorna
+										Immagine
 									</button>
 								</div>
 							</div>
@@ -100,6 +106,5 @@
 		response.sendRedirect("index.html");
 	%>
 </c:if>
-
-
+<script src="javascript/uploadImage.js" type="text/javascript"></script>
 </html>

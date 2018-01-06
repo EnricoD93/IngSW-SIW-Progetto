@@ -1,10 +1,6 @@
 $(document).ready(getCentralSection);
 
 function getCentralSection() {
-	$('#uploadImage').click(function() {
-		alert("ok");
-	});
-
 	$('#profilo').click(function() {
 
 		$.ajax({

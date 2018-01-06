@@ -18,7 +18,9 @@
 	z-index: 12;
 	width: 100%;
 }
-
+.studentilist{
+	padding-bottom:20px;
+}
 .navbar .navbar-brand {
 	white-space: nowrap;
 	-ms-text-overflow: ellipsis;
@@ -3173,7 +3175,6 @@ section.content {
 
 .btn-circle-lg i {
 	font-size: 26px !important;
-	position: relative !important;
 	left: 0px !important;
 	top: 6px !important;
 }
