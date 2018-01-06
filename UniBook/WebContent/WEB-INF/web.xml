@@ -57,5 +57,14 @@
     <url-pattern>/emailverification</url-pattern>
   </servlet-mapping>
 
- 
+  
+   <servlet>
+    <servlet-name>CreateCourseServlet</servlet-name>
+    <servlet-class>controller.CreateCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateCourseServlet</servlet-name>
+    <url-pattern>/createCourse</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

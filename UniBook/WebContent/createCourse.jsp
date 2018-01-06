@@ -6,6 +6,8 @@
 <html>
 <link href="plugins/bootstrap-select/css/bootstrap-select.css"
 	rel="stylesheet">
+<link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
@@ -16,11 +18,11 @@
 							<h2 style="color: white;">Crea un Corso</h2>
 						</div>
 						<div class="body">
-							<form id="form_validation" method="POST" novalidate="novalidate">
+							<form id="form_validation" method="POST" action="createCourse">
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare il Corso da
-										creare </span> <select class="selectpicker" data-live-search="true"
-										tabindex="-98">
+										creare </span> <select class="selectpicker" name="codice"
+										data-live-search="true" tabindex="-98">
 										<c:forEach var="corso" items="${listaCorsi}">
 											<option value="${corso.codice}">Cod. ${corso.codice}
 												&nbsp; - &nbsp; ${corso.nome}</option>
@@ -31,21 +33,41 @@
 
 								</div>
 
+								<div class="form-group">
+									<div class="form-line">
+										<label for="dataInizio">Selezionare la data di inizio
+											corso</label> &nbsp; <input id="dataInizio" type="text"
+											class="datepicker form-control"
+											placeholder="Please choose a date..." data-dtp="dtp_b4zAz">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="form-line">
+										<label for="dataFine">Selezionare la data di fine
+											corso</label> &nbsp; <input id="dataFine" type="text"
+											class="datepicker form-control"
+											placeholder="Please choose a date..." data-dtp="dtp_b4zAz">
+									</div>
+								</div>
+
+
+
 								<div class="input-group">
 									<span class="input-group-addon">Selezionare i giorni in
 										cui si desidera fare lezione </span> <input type="checkbox"
-										id="md_checkbox_1" name="checkbox" onclick="getOrarioLunedì()">
+										id="md_checkbox_1" name="lunedì" onclick="getOrarioLunedì()">
 									<label for="md_checkbox_1">Lunedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_2" name="checkbox"
+										type="checkbox" id="md_checkbox_2" name="martedì"
 										onclick="getOrarioMartedì()"> <label
 										for="md_checkbox_2"> Martedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_3" name="checkbox"
+										type="checkbox" id="md_checkbox_3" name="mercoledì"
 										onclick="getOrarioMercoledì()"> <label
 										for="md_checkbox_3"> Mercoledì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_4" name="checkbox"
+										type="checkbox" id="md_checkbox_4" name="giovedì"
 										onclick="getOrarioGiovedì()"> <label
 										for="md_checkbox_4"> Giovedì</label> &nbsp; <input
-										type="checkbox" id="md_checkbox_5" name="checkbox"
+										type="checkbox" id="md_checkbox_5" name="venerdì"
 										onclick="getOrarioVenerdì()"> <label
 										for="md_checkbox_5"> Venerdì</label>
 								</div>
@@ -55,7 +77,7 @@
 								<div id="orarioGiorniGiovedì"></div>
 								<div id="orarioGiorniVenerdì"></div>
 
-<!-- 
+								<!-- 
 								<div id="orarioGiorni">
 						
 									<div class="input-group">
@@ -84,14 +106,14 @@
 									</div>
 					
 -->
-								</div>
+
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare l'aula in
 										cui si desidera fare lezione </span>
 									<div class="btn-group bootstrap-select show-tick">
 
 										<select class="form-control show-tick" tabindex="-98"
-											name="role">
+											name="idAula">
 											<c:forEach var="aula" items="${aule}">
 												<option value="${aula.id}">Aula ${aula.id}</option>
 											</c:forEach>
@@ -101,31 +123,37 @@
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
-										<textarea name="description" cols="30" rows="5"
-											class="form-control no-resize" required=""
-											aria-required="true"></textarea>
+										<textarea name="descrizione" cols="30" rows="5"
+											class="form-control no-resize"></textarea>
 										<label class="form-label">Descrizione</label>
 									</div>
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
-										<textarea name="description" cols="30" rows="5"
-											class="form-control no-resize" required=""
-											aria-required="true"></textarea>
+										<textarea name="requisiti" cols="30" rows="5"
+											class="form-control no-resize"></textarea>
 										<label class="form-label">Requisiti</label>
+									</div>
+								</div>
+								<div class="form-group form-float">
+									<div class="form-line">
+										<textarea name="materiale" cols="30" rows="5"
+											class="form-control no-resize"></textarea>
+										<label class="form-label">Materiale</label>
 									</div>
 								</div>
 
 								<div class="input-group">
 									<span class="input-group-addon">Propedeuticità</span> <select
-										class="selectpicker" multiple="" tabindex="-98">
-										<option>Mustard</option>
-										<option>Ketchup</option>
-										<option>Relish</option>
+										class="selectpicker" data-live-search="true" multiple=""
+										tabindex="-98">
+										<c:forEach var="corso" items="${listaCorsi}">
+											<option value="${corso.codice}">${corso.nome}</option>
+										</c:forEach>
 									</select>&nbsp;
 								</div>
 
-								<button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+								<button class="btn btn-primary waves-effect" type="submit">CREA</button>
 							</form>
 						</div>
 
@@ -138,6 +166,15 @@
 <script src="javascript/orarioGiorni.js"></script>
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<script src="plugins/autosize/autosize.js"></script>
+<script src="plugins/momentjs/moment.js"></script>
+<script src="plugins/momentjs/moment.min.js"></script>
+<script src="javascript/data.js"></script>
+<script
+	src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="js/pages/forms/basic-form-elements.js"></script>
+
 <!-- da non cancellare per la form -->
 <script src="js/admin.js"></script>
 </html>

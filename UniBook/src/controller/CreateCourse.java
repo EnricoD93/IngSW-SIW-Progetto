@@ -19,21 +19,24 @@ public class CreateCourse extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String codiceCorso = req.getParameter("codice");
 		String descrizione = req.getParameter("descrizione");
+		String requisiti = req.getParameter("requisiti");
+		String materiale = req.getParameter("materiale");
+		String aula=req.getParameter("idAula");
 		String giorniLezione = "";
 		if (req.getParameter("lunedì") != null) {
-			giorniLezione += req.getParameter("lunedì");
+			giorniLezione += "lunedì ";
 		}
 		if (req.getParameter("martedì") != null) {
-			giorniLezione += req.getParameter("martedì");
+			giorniLezione += "martedì ";
 		}
 		if (req.getParameter("mercoledì") != null) {
-			giorniLezione += req.getParameter("mercoledì");
+			giorniLezione += "mercoledì ";
 		}
 		if (req.getParameter("giovedì") != null) {
-			giorniLezione += req.getParameter("giovedì");
+			giorniLezione += "giovedì ";
 		}
 		if (req.getParameter("venerdì") != null) {
-			giorniLezione += req.getParameter("venerdì");
+			giorniLezione += "venerdì ";
 		}
 		
 		
@@ -49,12 +52,17 @@ public class CreateCourse extends HttpServlet {
 		c.setOreEsercitazione(corso.getOreEsercitazione());
 		c.setOreLezione(corso.getOreLezione());
 		c.setDescrizione(descrizione);
-		String cognome = req.getParameter("userlastname");
+		c.setRequisiti(requisiti);
+		c.setGiorno(giorniLezione);
+		c.setMateriale(materiale);
+		corsoDao.save(c);
 		String matricola = req.getParameter("usermatr");
+		String cognome = req.getParameter("userlastname");
 		String mailto = req.getParameter("email");
 		String dataNascita = req.getParameter("dataNascita");
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
 		String ruolo = req.getParameter("role");
+		req.getRequestDispatcher("home.jsp").forward(req, resp);
 	}
 }

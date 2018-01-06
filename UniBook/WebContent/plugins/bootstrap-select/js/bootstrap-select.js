@@ -291,7 +291,7 @@
 
   // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
   Selectpicker.DEFAULTS = {
-    noneSelectedText: 'Nothing selected',
+    noneSelectedText: 'Seleziona',
     noneResultsText: 'No results matched {0}',
     countSelectedText: function (numSelected, numTotal) {
       return (numSelected == 1) ? "{0} item selected" : "{0} items selected";
@@ -310,7 +310,7 @@
     styleBase: 'btn',
     style: 'btn-default',
     size: 'auto',
-    title: null,
+    title: 'Seleziona',
     selectedTextFormat: 'values',
     width: false,
     container: false,
