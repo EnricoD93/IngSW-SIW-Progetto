@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Aula;
 import model.Corso;
 import model.Utente;
 import persistence.dao.CorsoDao;
@@ -77,7 +79,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
-				
+
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -93,8 +95,42 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public List<Corso> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Corso> corsi = new ArrayList<>();
+		try {
+			Corso corso;
+			PreparedStatement statement;
+			String query = "select * from corso";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				corso = new Corso();
+				corso.setCodice(result.getLong("codice"));
+				corso.setNome(result.getString("nome"));
+				corso.setAnno(result.getInt("anno"));
+				corso.setDescrizione(result.getString("descrizione"));
+				corso.setRequisiti(result.getString("requisiti"));
+				corso.setGiorno(result.getString("giorni"));
+				corso.setOreLezione(result.getInt("ore_lezioni"));
+				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				corso.setMateriale(result.getString("materiale"));
+				corso.setDocente(result.getString("docente"));
+				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCfu(result.getInt("cfu"));
+				corso.setCognomeDocente(result.getString("cognomeDocente"));
+				corso.setNomeDocente(result.getString("nomeDocente"));
+				corsi.add(corso);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return corsi;
 	}
 
 	@Override
@@ -157,4 +193,41 @@ public class CorsoDaoJDBC implements CorsoDao {
 		return d;
 	}
 
+	@Override
+	public List<Utente> getStudentiIscritti(Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		List<Utente> utenti = new ArrayList<>();
+		try {
+			Utente utente;
+			PreparedStatement statement;
+			String query = "select * from iscritto where corso.codice = ?";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				utente = new Utente();
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setNome(result.getString("nome"));
+				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setDataNascita(result.getDate("data_nascita"));
+				utente.setEmail(result.getString("email"));
+				utente.setMatricola(result.getString("matricola"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setPassword(result.getString("password"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+
+				utenti.add(utente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return utenti;
+	}
 }

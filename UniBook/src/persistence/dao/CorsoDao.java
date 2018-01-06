@@ -12,4 +12,5 @@ public interface CorsoDao {
 	public void update(Corso corso); //Update
 	public void delete(Corso corso); //Delete
 	public Utente getDocente(String matricola);
+	public List<Utente> getStudentiIscritti(Long codice);
 }
