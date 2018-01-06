@@ -4202,6 +4202,7 @@ none
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 30px;
+		border-radius: 4px;
 }
 
 .info-box-2 .icon {
