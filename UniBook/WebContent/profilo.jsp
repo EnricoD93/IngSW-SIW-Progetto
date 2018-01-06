@@ -5,7 +5,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
@@ -14,12 +14,17 @@
 				<div align="center">
 					<div align="center" class="profile-pic"
 						style="background-image: url('${currentUser.profileImagePath}')">
-						<a href="javascript:uploadImage()" class="profile-pic"
-							style="cursor: pointer;"> <span
-							class="glyphicon glyphicon-camera"></span> <span>Cambia
-								Immagine</span>
-						</a> <input type="file" class="form-control hidden" name="image"
-							id="imagebtn" accept=".png, .jpeg, .jpg" required="">
+						<form
+							onsubmit="return updateImage();" enctype="multipart/form-data">
+							<a href="javascript:uploadImage()" class="profile-pic"
+								style="cursor: pointer;"> <span
+								class="glyphicon glyphicon-camera"></span> <span>Cambia
+									Immagine</span>
+							</a> <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                                    <i class="material-icons">publish</i>
+                                </button><input type="file" class="form-control hidden" name="image"
+								id="imagebtn" accept=".png, .jpeg, .jpg" required="">
+						</form>
 					</div>
 				</div>
 
@@ -40,7 +45,7 @@
 					<tbody>
 
 						<tr>
-							<th scope="row">Nome:&nbsp;&nbsp;${currentUser.nome} 
+							<th scope="row">Nome:&nbsp;&nbsp;${currentUser.nome}
 								${currentUser.cognome}</th>
 						</tr>
 						<tr>
@@ -61,41 +66,12 @@
 							<th>Email:&nbsp;&nbsp;${currentUser.email}</th>
 						</tr>
 						<tr>
-							<th>Data di Nascita:&nbsp;&nbsp;${currentUser.getDataNascitaString()}</th>
+							<th>Data di
+								Nascita:&nbsp;&nbsp;${currentUser.getDataNascitaString()}</th>
 						</tr>
 
 					</tbody>
 				</table>
-			</div>
-			<div class="container">
-				<form class="well form-horizontal" onsubmit="return updateImage();"
-					enctype="multipart/form-data">
-					<fieldset>
-						<legend> Modifica Immagine Profilo! </legend>
-						<div class="form-group">
-							<label class="col-md-4 control-label"> Immagine </label>
-							<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"> <i
-										class="fa fa-picture-o"></i></span><input type="file"
-										class="form-control" name="image" id="image"
-										accept=".png, .jpeg, .jpg" required>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-4 control-label"> </label>
-							<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<button type="submit" class="btn btn-success">
-										<i class="fa fa-cloud-upload"></i>&nbsp;&nbsp; Aggiorna
-										Immagine
-									</button>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-				</form>
 			</div>
 		</h2>
 	</div>
@@ -107,4 +83,7 @@
 	%>
 </c:if>
 <script src="javascript/uploadImage.js" type="text/javascript"></script>
+<script src="plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/pages/ui/dialogs.js"></script>
+<script src="plugins/jquery-validation/jquery.validate.js"></script>
 </html>

@@ -272,4 +272,25 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return corsi;
 	}
 
+	@Override
+	public void updateImage(Utente utente, String fileName) {
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE utente " + "SET imagepath = ? " + "WHERE matricola = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, fileName);
+			statement.setString(2, utente.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

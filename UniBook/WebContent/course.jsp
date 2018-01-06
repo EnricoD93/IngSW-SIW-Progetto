@@ -9,15 +9,17 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
-				<div class="body table-responsive">
+				<di
+				v class="body table-responsive">
 					<div align="center">
 						<div class="profile-pic"
 							style="background-image: url('${currentUser.profileImagePath}')">
 							<c:if test="${currentUser.ruolo == 1 }">
-							<a href="javascript:uploadImage()" class="profile-pic"> <span
-								class="glyphicon glyphicon-camera"></span> <span>Cambia
-									Immagine</span>
-							</a></c:if>
+								<a href="javascript:uploadImage()" class="profile-pic"> <span
+									class="glyphicon glyphicon-camera"></span> <span>Cambia
+										Immagine</span>
+								</a>
+							</c:if>
 						</div>
 						<div align="center" class="corsiTitle">Algoritmi Paralleli e
 							Sistemi Distribuiti</div>
@@ -76,43 +78,6 @@
 						</a>
 					</div>
 				</div>
-				<div class="container">
-					<form class="well form-horizontal" onsubmit="return updateImage();"
-						enctype="multipart/form-data">
-						<fieldset>
-							<legend> Modifica Immagine Profilo! </legend>
-							<div class="form-group">
-								<label class="col-md-4 control-label"> Immagine </label>
-								<div class="col-md-4 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"> <i
-											class="fa fa-picture-o"></i></span><input type="file"
-											class="form-control" name="image" id="image"
-											accept=".png, .jpeg, .jpg" required>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-4 control-label"> </label>
-								<div class="col-md-4 inputGroupContainer">
-									<div class="input-group">
-										<button type="submit" class="btn btn-success">
-											<i class="fa fa-cloud-upload"></i>&nbsp;&nbsp; Aggiorna
-											Immagine
-										</button>
-									</div>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-
-
-
-
-
-
-
 			</h2>
 		</div>
 	</div>

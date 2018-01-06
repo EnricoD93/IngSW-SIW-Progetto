@@ -39,6 +39,16 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+    <servlet-name>UpdateProfileImageServlet</servlet-name>
+    <servlet-class>controller.UpdateProfileImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProfileImageServlet</servlet-name>
+    <url-pattern>/updateimage</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>controller.Login</servlet-class>
