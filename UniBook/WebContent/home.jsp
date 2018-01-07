@@ -275,8 +275,9 @@
 		class="sidebar"> <!-- User Info -->
 	<div class="user-info">
 		<div class="image">
-			<img src="${currentUser.profileImagePath}" width="100" height="100"
-				alt="User" />
+			<div class="profile-pic-s"
+						style="background-image: url('${currentUser.profileImagePath}')">
+					</div>
 		</div>
 
 

@@ -95,7 +95,36 @@ function getCorsoSelezionato(codice) {
 
 	});
 };
-function eliminaIscrizioneStudente(matricolaStudente,codice) {
+
+function confermaEliminaStudente(matricolaStudente, codice) {
+	console.log("sono qui");
+	swal(
+			{
+				title : "Vuoi eliminare l'iscrizione?",
+				text : "Sei sicuro di voler eliminare l'iscrizione dello studente avente matricola: "
+						+ matricolaStudente + "?",
+				type : "warning",
+				showCancelButton : true,
+				confirmButtonColor : "#C4161C",
+				confirmButtonText : "Si, elimina!",
+				cancelButtonText : "Non eliminare",
+				closeOnConfirm : false
+			},
+			function() {
+				console.log("sto eliminando")
+				eliminaIscrizioneStudente(matricolaStudente, codice);
+				console.log("ho eliminato")
+				swal(
+						"Iscrizione eliminata!",
+						"Cancellazione dell'iscrizione è avvenuta con successo.",
+						"success");
+			
+			});
+
+};
+
+function eliminaIscrizioneStudente(matricolaStudente, codice) {
+	console.log("FUNCTIONAAA")
 	$.ajax({
 		type : "GET",
 		url : "showcourse",
@@ -104,17 +133,8 @@ function eliminaIscrizioneStudente(matricolaStudente,codice) {
 			richiesta : "eliminaIscrizioneStudente",
 			matricolaStudente : matricolaStudente,
 			codice : codice
-		},
-		success : function(data) {
-
-			$.ajax({
-				url : 'course.jsp',
-				method : 'GET',
-			}).then(function(data) {
-				$('#centralSection').html(data);
-
-			});
 		}
+	
 
 	});
 };

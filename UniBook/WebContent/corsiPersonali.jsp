@@ -25,7 +25,7 @@
 						<tbody>
 
 							<c:forEach var="corso" items="${corsiIscritto}">
-								<tr>
+									<tr id="course" name="corsoSelezionato" value ="${corso.codice}"style="cursor: pointer;" onclick="javascript:getCorsoSelezionato(${corso.codice});">
 									<th scope="row">${corso.codice}</th>
 									<td><a id="course"> ${corso.nome} </a></td>
 									<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>

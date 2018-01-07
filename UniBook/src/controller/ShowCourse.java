@@ -18,6 +18,7 @@ import persistence.dao.UtenteDao;
 public class ShowCourse extends HttpServlet {
 	Corso currentCourse;
 	Utente currentStudent;
+	Utente courseDocente;
 	List<Utente> studentiIscritti;
 	String richiesta = "vuota";
 
@@ -27,18 +28,18 @@ public class ShowCourse extends HttpServlet {
 		richiesta = req.getParameter("richiesta");
 		Long codice = Long.parseLong(req.getParameter("codice"));
 		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		currentCourse = corsoDao.findByPrimaryKey(codice);
-
+		courseDocente=utenteDao.findByPrimaryKey(currentCourse.getDocente());
 		if (richiesta.equals("mostraCorso")) {
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
-
+			session.setAttribute("courseDocente", courseDocente);
 			session.setAttribute("currentCourse", currentCourse);
 			session.setAttribute("currentStudent", currentStudent);
 			session.setAttribute("studentiIscritti", studentiIscritti);
 		}
 		if (richiesta.equals("eliminaIscrizioneStudente")) {
 			String matricolaStudente = req.getParameter("matricolaStudente");
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			utenteDao.eliminaIscrizioneStudente(matricolaStudente, currentCourse.getCodice());
 		}
 

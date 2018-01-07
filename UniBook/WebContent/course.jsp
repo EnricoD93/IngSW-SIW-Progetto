@@ -11,23 +11,15 @@
 			<h2>
 				<div class="body table-responsive">
 				<div align="center">
-					<div class="profile-pic"
-						style="background-image: url('${imagePathDocente}')">
-						<c:if test="${currentUser.ruolo == 1 }">
-							<a href="javascript:uploadImage()" class="profile-pic"> <span
-								class="glyphicon glyphicon-camera"></span> <span>Cambia
-									Immagine</span>
-							</a>
-						</c:if>
+					<div class="profile-pic-my"
+						style="background-image: url('${courseDocente.profileImagePath}')">
 					</div>
 					<div align="center" class="corsiTitle">${currentCourse.nome}</div>
 				</div>
 				<div align="right" class="listaStudenti">
 					<button type="button" id="listaStudenti"
 						class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
-						title="Studenti iscritti" data-toggle="tooltip"
-						data-placement="left" title=""
-						data-original-title="Studenti iscritti">
+						title="Studenti iscritti">
 						<i class="material-icons">people</i>
 					</button>
 				</div>

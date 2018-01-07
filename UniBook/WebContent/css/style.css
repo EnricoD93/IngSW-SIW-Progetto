@@ -154,6 +154,20 @@ logoimg {
     transition: all .3s ease;
     text-decoration: none;
 }
+
+.profile-pic-my {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
 .profile-pic-xs {
     border-radius: 50%;
     height: 50px;
@@ -167,7 +181,27 @@ logoimg {
     transition: all .3s ease;
     text-decoration: none;
 }
+.profile-pic-s {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
 .profile-pic:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.profile-pic-my:hover {
     background-color: rgba(0,0,0,.5);
     z-index: 10000;
     color: #fff;
@@ -187,7 +221,17 @@ logoimg {
     padding-top: 5.5em;
     padding-bottom: 5.5em;
 }
+.profile-pic-my span {
+    display: inline-block;
+    padding-top: 5.5em;
+    padding-bottom: 5.5em;
+}
 .profile-pic-xs span {
+    display: inline-block;
+    padding-top: 5.5em;
+    padding-bottom: 5.5em;
+}
+.profile-pic-s span {
     display: inline-block;
     padding-top: 5.5em;
     padding-bottom: 5.5em;
