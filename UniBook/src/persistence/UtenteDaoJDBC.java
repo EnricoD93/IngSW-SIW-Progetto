@@ -211,6 +211,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void iscriviStudente(String matricola, Long codice) {
+		System.out.println("iscrivo lo studente "+ matricola +" al corso "+ codice);
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into iscritto(codice,matricola) values (?,?)";
@@ -359,7 +360,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setString(1, matricola);
 			statement.setLong(2, codice);
 			ResultSet result = statement.executeQuery();
-			if (result==null) {
+			System.out.println(result.wasNull());
+			if (!result.next()) {
 			return false;
 
 			}

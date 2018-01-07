@@ -40,7 +40,7 @@
 										<label for="dataInizio">Selezionare la data di inizio
 											corso</label> &nbsp; <input id="dataInizio" type="text"
 											class="datepicker form-control"
-											placeholder="Please choose a date..." data-dtp="dtp_b4zAz"
+											placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 											required>
 									</div>
 								</div>
@@ -50,7 +50,7 @@
 										<label for="dataFine">Selezionare la data di fine
 											corso</label> &nbsp; <input id="dataFine" type="text"
 											class="datepicker form-control"
-											placeholder="Please choose a date..." data-dtp="dtp_b4zAz"
+											placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 											required>
 									</div>
 								</div>
@@ -157,7 +157,7 @@
 									</select>&nbsp;
 								</div>
 
-								<button class="btn btn-primary waves-effect" type="button" onclick="javascript:verificaGiorni();">Crea corso</button>
+								<button class="btn bg-unibook waves-effect" type="button" onclick="javascript:verificaGiorni();">Crea corso</button>
 								<button id="creacorso" class="btn btn-primary waves-effect hidden" type="submit"></button>
 
 							</form>

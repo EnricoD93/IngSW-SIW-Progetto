@@ -190,8 +190,6 @@ public class MainJDBC {
 			studenteDao.iscriviStudente(st2.getMatricola(), (long) 213);
 			studenteDao.iscriviStudente(st3.getMatricola(), (long) 213);
 			studenteDao.iscriviStudente(st4.getMatricola(), (long) 213);
-			studenteDao.iscriviStudente(st3.getMatricola(), (long) 214);
-			studenteDao.iscriviStudente(st4.getMatricola(), (long) 214);
 			studenteDao.iscriviStudente(st3.getMatricola(), (long) 600);
 			studenteDao.iscriviStudente(st4.getMatricola(), (long) 600);
 

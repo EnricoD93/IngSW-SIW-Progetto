@@ -3244,8 +3244,8 @@ section.content {
 	border: none;
 	outline: none !important;
 	overflow: hidden;
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 	-webkit-border-radius: 50% !important;
 	-moz-border-radius: 50% !important;
 	-ms-border-radius: 50% !important;
@@ -3257,7 +3257,7 @@ section.content {
 	top: 6px !important;
 }
 .btn-circle-lg-xs i {
-	font-size: 26px !important;
+	font-size: 13px !important;
 	left: 0px !important;
 	top: 6px !important;
 }

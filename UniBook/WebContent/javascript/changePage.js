@@ -116,7 +116,7 @@ function iscriviStudente(codice,matricola) {
 			console.log("errore")
 			swal(
 					"Iscrizione non effettuata!",
-					"L'utente risulta iscritto al corso.\n","error");
+					"L'utente risulta  già iscritto al corso.\n","error");
 		
 		}
 

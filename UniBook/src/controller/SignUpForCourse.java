@@ -24,6 +24,7 @@ public class SignUpForCourse extends HttpServlet {
 				System.out.println(
 						"l'utente con matricola " + matricola + "è già iscritto al corso con codice " + codice);
 				resp.setStatus(400);
+				return;
 			} else
 				udao.iscriviStudente(matricola, codice);
 		}

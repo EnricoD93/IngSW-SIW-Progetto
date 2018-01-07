@@ -1,6 +1,6 @@
 <%@page import="persistence.DatabaseManager"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="model.Utente"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="model.Utente"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -367,15 +367,16 @@
 			<h2>
 
 				<div class="body table-responsive">
-					<div class="corsiTitle">Corsi</div>
+					<div class="corsiTitle">Corsi disponibili</div>
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th width="30">Cod.</th>
 								<th width="50%">Nome del Corso</th>
 								<th>Docente</th>
+								<th>CorsoDiLaurea</th>
 								<th>CFU</th>
-								<th>Iscriviti</th>
+								<th></th>
 							</tr>
 
 						</thead>
@@ -388,13 +389,15 @@
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a>
 											${corso.nome} </a></td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
+									
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.corsoDiLaurea}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
 									<td><c:if test="${currentUser.ruolo==0 }">
 											<button type="button"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 												style="margin-left: 10px;"
 												onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
-												<i class="material-icons">note_add</i>
+												<i class="material-icons">add</i>
 
 											</button>
 										</c:if></td>
