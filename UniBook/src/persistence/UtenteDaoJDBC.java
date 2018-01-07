@@ -313,4 +313,41 @@ public class UtenteDaoJDBC implements UtenteDao {
 		}
 	}
 
+	@Override
+	public Utente findUtenteByEmail(String email) {
+		Connection connection = this.dataSource.getConnection();
+		Utente utente = null;
+		try {
+			String query = "select * from utente where email = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return utente;		
+	}
+
 }
