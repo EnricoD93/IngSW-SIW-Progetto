@@ -53,7 +53,7 @@ public class UtilDao {
 					+ "create table lezione(data DATE primary key, ora_inizio int, durata int,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
-					+ "create table iscritto(\"codice\" bigint primary key REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
+					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea bigint REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
 
 			;

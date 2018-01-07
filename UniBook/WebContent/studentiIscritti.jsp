@@ -12,15 +12,15 @@
 					<div class="corsiTitle" align="center">${currentCourse.nome }</div>
 					<div class="corsiTitle" align="left">
 						Studenti Iscritti
-						<div align="right">
-							<button type="button" id="aggiungiStudente"
+					
+							<button type="button" id="aggiungiStudente" style="margin-left:700px;"
 								class="bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 								title="AggiungiStudente" data-toggle="tooltip"
 								data-placement="left" title=""
 								data-original-title="Aggiungi Studente">
 								<i class="material-icons">person_add</i>
 							</button>
-						</div>
+					
 					</div>
 					<table class="table table-striped">
 						<thead>
@@ -36,9 +36,9 @@
 						</thead>
 						<tbody>
 
-							<c:forEach var="studente" varStatus="loop"
+							<c:forEach var="studente"  varStatus="loop"
 								items="${studentiIscritti}">
-								<tr style="cursor: pointer;">
+								<tr style="cursor: pointer;" >
 									<td>${loop.index+1}</td>
 									<td>
 										<div class="profile-pic-xs"
@@ -49,7 +49,7 @@
 									<td>${studente.codicefiscale}</td>
 									<td>${studente.email}</td>
 
-									<td><button type="button" id="eliminaStudente"
+									<td><button type="button" id="eliminaStudente" onclick="javascript:eliminaIscrizioneStudente(${studente.matricola},${currentCourse.codice})"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 											title="EliminaStudente" data-toggle="tooltip"
 											data-placement="left" title=""
@@ -67,5 +67,6 @@
 	</div>
 	</div>
 </body>
-<script src="js/pages/ui/tooltips-popovers.js"></script>
+
+
 </html>

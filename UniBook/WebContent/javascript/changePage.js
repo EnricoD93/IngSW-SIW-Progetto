@@ -79,6 +79,30 @@ function getCorsoSelezionato(codice) {
 		url : "showcourse",
 		datatype : 'text',
 		data : {
+			codice : codice,
+			richiesta : "mostraCorso"
+		},
+		success : function(data) {
+
+			$.ajax({
+				url : 'course.jsp',
+				method : 'GET',
+			}).then(function(data) {
+				$('#centralSection').html(data);
+
+			});
+		}
+
+	});
+};
+function eliminaIscrizioneStudente(matricolaStudente,codice) {
+	$.ajax({
+		type : "GET",
+		url : "showcourse",
+		datatype : 'text',
+		data : {
+			richiesta : "eliminaIscrizioneStudente",
+			matricolaStudente : matricolaStudente,
 			codice : codice
 		},
 		success : function(data) {

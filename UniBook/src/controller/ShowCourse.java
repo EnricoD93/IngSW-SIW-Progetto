@@ -16,26 +16,31 @@ import persistence.dao.CorsoDao;
 import persistence.dao.UtenteDao;
 
 public class ShowCourse extends HttpServlet {
+	Corso currentCourse;
+	Utente currentStudent;
+	List<Utente> studentiIscritti;
+	String richiesta = "vuota";
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		richiesta = req.getParameter("richiesta");
 		Long codice = Long.parseLong(req.getParameter("codice"));
-		
-		Corso currentCourse;
-		String imagePathDocente;
-		List<Utente> studentiIscritti;
-		CorsoDao corsoDao= DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-		UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		
-		currentCourse=corsoDao.findByPrimaryKey(codice);
-		imagePathDocente= utenteDao.findByPrimaryKey(currentCourse.getDocente()).getProfileImagePath();
-		studentiIscritti=corsoDao.getStudentiIscritti(codice);
-		
-		session.setAttribute("currentCourse", currentCourse);
-		session.setAttribute("studentiIscritti", studentiIscritti);
-		session.setAttribute("imagePathDocente", imagePathDocente );
-		
-		
-		
+		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+		currentCourse = corsoDao.findByPrimaryKey(codice);
+
+		if (richiesta.equals("mostraCorso")) {
+			studentiIscritti = corsoDao.getStudentiIscritti(codice);
+
+			session.setAttribute("currentCourse", currentCourse);
+			session.setAttribute("currentStudent", currentStudent);
+			session.setAttribute("studentiIscritti", studentiIscritti);
+		}
+		if (richiesta.equals("eliminaIscrizioneStudente")) {
+			String matricolaStudente = req.getParameter("matricolaStudente");
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			utenteDao.eliminaIscrizioneStudente(matricolaStudente, currentCourse.getCodice());
+		}
+
 	}
 }

@@ -17,4 +17,5 @@ public interface UtenteDao {
 	public void iscriviStudente(String matricola, Long codice);
 	public List<Corso> getCorsiDocente(String matricola);
 	public void updateImage(Utente utente, String fileName);
+	public void eliminaIscrizioneStudente(String matricola, Long codice);
 }
