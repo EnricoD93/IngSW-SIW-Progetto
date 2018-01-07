@@ -16,6 +16,7 @@ import model.DescrizioneCorso;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
+import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.UtenteDao;
 
@@ -39,6 +40,7 @@ public class Login extends HttpServlet {
 		List<DescrizioneCorso> listaCorsi;
 		
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		CorsoDao corsoDao= DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		Utente currentUser = utenteDao.findByPrimaryKey(username);
 		AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 		DescrizioneCorsoDao descrizioneCorsoDao= DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
@@ -49,7 +51,7 @@ public class Login extends HttpServlet {
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					currentUser = utenteDao.findByPrimaryKey(username);
-					corsi = utenteDao.getCorsi(username);
+					corsi = corsoDao.findAll();
 					corsiDocente = utenteDao.getCorsiDocente(username);
 					corsiIscritto = utenteDao.getCorsiIscritto(username);
 					session.setAttribute("currentUser", currentUser);

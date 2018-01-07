@@ -12,7 +12,7 @@
 					<div class="corsiTitle" align="center">${currentCourse.nome }</div>
 					<div class="corsiTitle" align="left">
 						Studenti Iscritti
-						<c:if test="${currentUser.ruolo == 1 }">
+						<c:if test="${currentUser.matricola==currentCourse.docente}">
 							<button type="button" id="aggiungiStudente"
 								style="margin-left: 700px;"
 								class="bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
@@ -29,7 +29,9 @@
 								<th></th>
 								<th>Nome</th>
 								<th>Matricola</th>
-								<th>Codice Fiscale</th>
+								<c:if test="${currentUser.matricola==currentCourse.docente}">
+									<th>Codice Fiscale</th>
+								</c:if>
 								<th>Email</th>
 							</tr>
 
@@ -46,10 +48,13 @@
 									</td>
 									<td scope="row">${studente.cognome}&nbsp;${studente.nome}</td>
 									<td>${studente.matricola}</td>
-									<td>${studente.codicefiscale}</td>
+									<c:if test="${currentUser.matricola==currentCourse.docente}">
+										<td>${studente.codicefiscale}</td>
+									</c:if>
 									<td>${studente.email}</td>
 
-									<td><c:if test="${currentUser.ruolo == 1 }">
+									<td><c:if
+											test="${currentUser.matricola==currentCourse.docente}">
 											<button type="button" id="eliminaStudente"
 												onclick="javascript:confermaEliminaStudente(${studente.matricola},${currentCourse.codice})"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"

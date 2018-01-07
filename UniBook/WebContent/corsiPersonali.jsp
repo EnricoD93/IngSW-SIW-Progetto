@@ -30,10 +30,7 @@
 									<td><a id="course"> ${corso.nome} </a></td>
 									<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
 									<td>${corso.cfu}</td>
-									<td><button type="button" class="btn bg-unibook waves-effect">
-                                    <i class="material-icons">note_add</i>
-                                    <span>Iscrivi</span>
-                                </button></td>
+									
 								</tr>
 							</c:forEach>
 

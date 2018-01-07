@@ -276,8 +276,8 @@
 	<div class="user-info">
 		<div class="image">
 			<div class="profile-pic-s"
-						style="background-image: url('${currentUser.profileImagePath}')">
-					</div>
+				style="background-image: url('${currentUser.profileImagePath}')">
+			</div>
 		</div>
 
 
@@ -364,61 +364,42 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
-				<c:if test="${currentUser.ruolo == 0 }">
-					<div class="body table-responsive">
-						<div class="corsiTitle">Corsi</div>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th width="30">Cod.</th>
-									<th width="50%">Nome del Corso</th>
-									<th>Docente</th>
-									<th>CFU</th>
+
+				<div class="body table-responsive">
+					<div class="corsiTitle">Corsi</div>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th width="30">Cod.</th>
+								<th width="50%">Nome del Corso</th>
+								<th>Docente</th>
+								<th>CFU</th>
+							</tr>
+
+						</thead>
+						<tbody>
+
+							<c:forEach var="corso" items="${corsi}">
+								<tr id="course" name="corsoSelezionato" value="${corso.codice}"
+									style="cursor: pointer;"
+									onclick="javascript:getCorsoSelezionato(${corso.codice});">
+									<th scope="row">${corso.codice}</th>
+									<td><a> ${corso.nome} </a></td>
+									<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
+									<td>${corso.cfu}</td>
+									<td><c:if test="">
+											<button type="button" class="btn bg-unibook waves-effect">
+												<i class="material-icons">note_add</i> <span>Iscrivi</span>
+
+											</button>
+										</c:if></td>
 								</tr>
+							</c:forEach>
 
-							</thead>
-							<tbody>
+						</tbody>
+					</table>
+				</div>
 
-								<c:forEach var="corso" items="${corsi}">
-									<tr id="course" style="cursor: pointer;">
-										<th scope="row">${corso.codice}</th>
-										<td><a> ${corso.nome} </a></td>
-										<td>${corso.cfu}</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
-					</div>
-				</c:if>
-				<c:if test="${currentUser.ruolo == 1 }">
-					<div class="body table-responsive">
-						<div class="corsiTitle">I miei Corsi</div>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th width="30">Cod.</th>
-									<th width="50%">Nome del Corso</th>
-									<th>Docente</th>
-									<th>CFU</th>
-								</tr>
-
-							</thead>
-							<tbody>
-
-								<c:forEach var="corso" items="${corsi}">
-									<tr>
-										<th scope="row">${corso.codice}</th>
-										<td><a href="index.html"> ${corso.nome} </a></td>
-										<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
-										<td>${corso.cfu}</td>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
-					</div>
-				</c:if>
 
 				<!-- <button id="button">Click me</button> -->
 				<c:if test="${currentUser==null}">

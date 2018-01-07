@@ -190,10 +190,14 @@ public class MainJDBC {
 			studenteDao.iscriviStudente(st2.getMatricola(), (long) 213);
 			studenteDao.iscriviStudente(st3.getMatricola(), (long) 213);
 			studenteDao.iscriviStudente(st4.getMatricola(), (long) 213);
+			studenteDao.iscriviStudente(st3.getMatricola(), (long) 214);
+			studenteDao.iscriviStudente(st4.getMatricola(), (long) 214);
+			studenteDao.iscriviStudente(st3.getMatricola(), (long) 600);
+			studenteDao.iscriviStudente(st4.getMatricola(), (long) 600);
 
 			// controlla qua
 
-//			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId());
+//			Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2, aulaMT5.getId(),"lezione");
 //			LezioneDao lezioneDao = factory.getLezioneDAO();
 //			lezioneDao.save(lezione);
 			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);

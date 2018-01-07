@@ -6,16 +6,26 @@ public class Lezione {
 	private Long corso;
 	private Date data;
 	private int oraInizio;
-	private int durata;
+	private int oraFine;
 	private String aula;
+	private String tipo;
 
-	public Lezione(Long corso, Date data,int oraInizio, int durata, String aula) {
+	public Lezione(Long corso, Date data,int oraInizio, int oraFine, String aula, String tipo) {
 		
 		this.corso=corso;
 		this.data = data;
 		this.oraInizio=oraInizio;
-		this.durata=durata;
+		this.oraFine=oraFine;
 		this.aula=aula;
+		this.tipo=tipo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public Lezione() {
@@ -45,12 +55,12 @@ public class Lezione {
 		this.oraInizio = oraInizio;
 	}
 
-	public int getDurata() {
-		return durata;
+	public int getOraFine() {
+		return oraFine;
 	}
 
-	public void setDurata(int durata) {
-		this.durata = durata;
+	public void setOraFine(int oraFine) {
+		this.oraFine = oraFine;
 	}
 
 	public String getAula() {

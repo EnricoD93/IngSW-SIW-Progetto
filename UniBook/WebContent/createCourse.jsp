@@ -6,8 +6,10 @@
 <html>
 <link href="plugins/bootstrap-select/css/bootstrap-select.css"
 	rel="stylesheet">
-<link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
-rel="stylesheet">
+<link
+	href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+	rel="stylesheet">
+	<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
@@ -22,7 +24,7 @@ rel="stylesheet">
 								<div class="input-group">
 									<span class="input-group-addon"> Selezionare il Corso da
 										creare </span> <select class="selectpicker" name="codice"
-										data-live-search="true" tabindex="-98">
+										data-live-search="true" tabindex="-98" required>
 										<c:forEach var="corso" items="${listaCorsi}">
 											<option value="${corso.codice}">Cod. ${corso.codice}
 												&nbsp; - &nbsp; ${corso.nome}</option>
@@ -38,7 +40,8 @@ rel="stylesheet">
 										<label for="dataInizio">Selezionare la data di inizio
 											corso</label> &nbsp; <input id="dataInizio" type="text"
 											class="datepicker form-control"
-											placeholder="Please choose a date..." data-dtp="dtp_b4zAz">
+											placeholder="Please choose a date..." data-dtp="dtp_b4zAz"
+											required>
 									</div>
 								</div>
 
@@ -47,15 +50,16 @@ rel="stylesheet">
 										<label for="dataFine">Selezionare la data di fine
 											corso</label> &nbsp; <input id="dataFine" type="text"
 											class="datepicker form-control"
-											placeholder="Please choose a date..." data-dtp="dtp_b4zAz">
+											placeholder="Please choose a date..." data-dtp="dtp_b4zAz"
+											required>
 									</div>
 								</div>
 
 
 
 								<div class="input-group">
-									<span class="input-group-addon">Selezionare i giorni in
-										cui si desidera fare lezione </span> <input type="checkbox"
+									<span class="input-group-addon" required>Selezionare i
+										giorni in cui si desidera fare lezione </span> <input type="checkbox"
 										id="md_checkbox_1" name="lunedì" onclick="getOrarioLunedì()">
 									<label for="md_checkbox_1">Lunedì</label> &nbsp; <input
 										type="checkbox" id="md_checkbox_2" name="martedì"
@@ -113,7 +117,7 @@ rel="stylesheet">
 									<div class="btn-group bootstrap-select show-tick">
 
 										<select class="form-control show-tick" tabindex="-98"
-											name="idAula">
+											name="idAula" required>
 											<c:forEach var="aula" items="${aule}">
 												<option value="${aula.id}">Aula ${aula.id}</option>
 											</c:forEach>
@@ -124,14 +128,14 @@ rel="stylesheet">
 								<div class="form-group form-float">
 									<div class="form-line">
 										<textarea name="descrizione" cols="30" rows="5"
-											class="form-control no-resize"></textarea>
+											class="form-control no-resize" required></textarea>
 										<label class="form-label">Descrizione</label>
 									</div>
 								</div>
 								<div class="form-group form-float">
 									<div class="form-line">
 										<textarea name="requisiti" cols="30" rows="5"
-											class="form-control no-resize"></textarea>
+											class="form-control no-resize" ></textarea>
 										<label class="form-label">Requisiti</label>
 									</div>
 								</div>
@@ -153,7 +157,9 @@ rel="stylesheet">
 									</select>&nbsp;
 								</div>
 
-								<button class="btn btn-primary waves-effect" type="submit">CREA</button>
+								<button class="btn btn-primary waves-effect" type="button" onclick="javascript:verificaGiorni();">Crea corso</button>
+								<button id="creacorso" class="btn btn-primary waves-effect hidden" type="submit"></button>
+
 							</form>
 						</div>
 
@@ -174,6 +180,8 @@ rel="stylesheet">
 <script
 	src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script src="js/pages/forms/basic-form-elements.js"></script>
+<script src="plugins/jquery-validation/jquery.validate.js"></script>
+<script src="plugins/sweetalert/sweetalert.min.js"></script>
 
 <!-- da non cancellare per la form -->
 <script src="js/admin.js"></script>

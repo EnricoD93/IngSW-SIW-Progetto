@@ -21,14 +21,15 @@ public class LezioneDaoJDBC implements LezioneDao {
 	public void save(Lezione lezione) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into lezione(data,ora_inizio,durata,corso,aula) values (?,?,?,?,?)";
+			String insert = "insert into lezione(data,ora_inizio,durata,corso,aula,tipo) values (?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			long secs = lezione.getData().getTime();
 			statement.setDate(1, new java.sql.Date(secs));
 			statement.setInt(2, lezione.getOraInizio());
-			statement.setInt(3, lezione.getDurata());
+			statement.setInt(3, lezione.getOraFine());
 			statement.setLong(4, lezione.getCorso());
 			statement.setString(5, lezione.getAula());
+			statement.setString(6, lezione.getTipo());
 			
 
 			statement.executeUpdate();
@@ -57,9 +58,10 @@ public class LezioneDaoJDBC implements LezioneDao {
 				lezione = new Lezione();
 				lezione.setData(result.getDate("data"));
 				lezione.setOraInizio(result.getInt("ore_inizio"));
-				lezione.setDurata(result.getInt("durata"));
+				lezione.setOraFine(result.getInt("durata"));
 				lezione.setCorso(result.getLong("corso"));
 				lezione.setAula(result.getString("aula"));
+				lezione.setTipo(result.getString("tipo"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
