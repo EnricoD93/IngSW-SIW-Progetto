@@ -42,43 +42,43 @@
 								${currentCourse.nomeDocente}</th>
 						</tr>
 						<tr>
-							<th>Codice del Corso: ${currentCourse.codice}</th>
+							<th scope="row">Codice del Corso: ${currentCourse.codice}</th>
 						</tr>
 						<tr>
 						<c:if test="${currentCourse.corsoDiLaurea==733}">
 							<th>Codice del Corso: ${currentCourse.corsoDiLaurea} Corso di Laurea Informatica</th>
 						</c:if>
 						<c:if test="${currentCourse.corsoDiLaurea==726}">
-							<th>Codice del Corso: ${currentCourse.corsoDiLaurea} - Corso di Laurea Matematica</th>
+							<th scope="row">Codice del Corso: ${currentCourse.corsoDiLaurea} - Corso di Laurea Matematica</th>
 						</c:if>
 						</tr>
 						<tr>
-							<th>Anno del corso: ${currentCourse.anno}</th>
+							<th scope="row">Anno del corso: ${currentCourse.anno}</th>
 						</tr>
 						<tr>
-							<th>Cfu: ${currentCourse.cfu}</th>
+							<th scope="row">Cfu: ${currentCourse.cfu}</th>
 						</tr>
 					
 						<tr>
-							<th>Giorni di Lezione: ${currentCourse.giorno}</th>
+							<th scope="row">Giorni di Lezione: ${currentCourse.giorno}</th>
 						</tr>
 						<tr>
-							<th>Ore di Lezione: ${currentCourse.oreLezione}</th>
+							<th scope="row">Ore di Lezione: ${currentCourse.oreLezione}</th>
 						</tr>
 						<tr>
-							<th>Ore di Esercitazione: ${currentCourse.oreEsercitazione}</th>
+							<th scope="row">Ore di Esercitazione: ${currentCourse.oreEsercitazione}</th>
 						</tr>
 						<tr>
-							<th>Email: ${currentUser.email}</th>
+							<th scope="row">Email: ${currentUser.email}</th>
 						</tr>
 							<tr>
-							<th>Descrizione: ${currentCourse.descrizione}</th>
+							<th scope="row">Descrizione: ${currentCourse.descrizione}</th>
 						</tr>
 						<tr>
-							<th>Requisiti: ${currentCourse.requisiti}</th>
+							<th scope="row">Requisiti: ${currentCourse.requisiti}</th>
 						</tr>
 						<tr>
-							<th>Materiale: ${currentCourse.materiale}</th>
+							<th scope="row">Materiale: ${currentCourse.materiale}</th>
 						</tr>
 						
 
