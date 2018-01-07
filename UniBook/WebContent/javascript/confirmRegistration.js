@@ -26,3 +26,27 @@ function confirmButtonOk() {
 			window.location.replace("index.html");
 	});
 }
+
+function sendForgotPassword(){
+	$.ajax({
+		type : "POST",
+		url : "sendEmail",
+		datatype : 'text',
+		data : {
+			codice : codice,
+			richiesta : "mostraCorso"
+		},
+		success : function(data) {
+
+			$.ajax({
+				url : 'course.jsp',
+				method : 'GET',
+			}).then(function(data) {
+				$('#centralSection').html(data);
+
+			});
+		}
+
+	});
+	
+}

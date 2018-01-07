@@ -381,14 +381,13 @@
 
 							<c:forEach var="corso" items="${corsi}">
 								<tr id="course" name="corsoSelezionato" value="${corso.codice}"
-									style="cursor: pointer;"
-									onclick="javascript:getCorsoSelezionato(${corso.codice});">
-									<th scope="row">${corso.codice}</th>
-									<td><a> ${corso.nome} </a></td>
-									<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
-									<td>${corso.cfu}</td>
-									<td><c:if test="">
-											<button type="button" class="btn bg-unibook waves-effect">
+									style="cursor: pointer;">
+									<td scope="row">${corso.codice}</td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a> ${corso.nome} </a></td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
+									<td><c:if test="${currentUser.ruolo==0 }">
+											<button type="button" class="btn bg-unibook waves-effect" onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
 												<i class="material-icons">note_add</i> <span>Iscrivi</span>
 
 											</button>

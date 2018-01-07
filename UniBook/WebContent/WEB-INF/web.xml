@@ -66,6 +66,14 @@
     <servlet-name>EmailSenderServlet</servlet-name>
     <url-pattern>/emailverification</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <servlet-class>controller.ForgotPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPasswordServlet</servlet-name>
+    <url-pattern>/forgotpassword</url-pattern>
+  </servlet-mapping>
 
   
    <servlet>
@@ -84,5 +92,14 @@
   <servlet-mapping>
     <servlet-name>ShowCourseServlet</servlet-name>
     <url-pattern>/showcourse</url-pattern>
+  </servlet-mapping> 
+  
+   <servlet>
+    <servlet-name>SignUpCourseServlet</servlet-name>
+    <servlet-class>controller.SignUpForCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignUpCourseServlet</servlet-name>
+    <url-pattern>/iscrivistudente</url-pattern>
   </servlet-mapping> 
 </web-app>

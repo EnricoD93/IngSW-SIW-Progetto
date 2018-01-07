@@ -96,6 +96,26 @@ function getCorsoSelezionato(codice) {
 	});
 };
 
+function iscriviStudente(codice,matricola) {
+	$.ajax({
+		type : "GET",
+		url : "iscrivistudente",
+		datatype : 'text',
+		data : {
+			codice : codice,
+			matricola: matricola,
+			richiesta: "iscrizione"
+		},
+		success : function(data) {
+			swal(
+					"Iscrizione avvenuta",
+					"L'iscrizione al corso è avvenuta con successo.",
+					"success");
+		}
+
+	});
+};
+
 function confermaEliminaStudente(matricolaStudente, codice) {
 	console.log("sono qui");
 	swal(
