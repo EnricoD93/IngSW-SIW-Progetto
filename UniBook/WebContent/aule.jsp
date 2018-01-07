@@ -46,7 +46,8 @@
 
 									</div>
 									<div class="body">
-										Ubicazione : ${aula.ubicazione}</br> Capienza: ${aula.posti} posti.
+										<b>Ubicazione :</b> ${aula.ubicazione}</br>
+										<b> Capienza:</b> ${aula.posti} posti.
 									</div>
 								</div>
 							</div>

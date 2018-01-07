@@ -1,6 +1,12 @@
 package model;
 
-public class Aula {
+import java.io.Serializable;
+
+public class Aula implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7635935810389625364L;
 	private String id;
 	private int posti;
 	private Long corsoDiLaurea;

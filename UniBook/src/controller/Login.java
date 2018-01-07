@@ -20,6 +20,11 @@ import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9139149609635447743L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
