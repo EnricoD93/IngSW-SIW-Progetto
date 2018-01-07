@@ -53,6 +53,7 @@ public class MainJDBC {
 		Aula aulaMT13 = new Aula("MT13", 32 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Secondo piano");
 		Aula aulaMT14 = new Aula("MT14", 24 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Secondo piano");
 		Aula aulaMT15 = new Aula("MT15", 45 , corsoDiLaureaMatematica.getCodice(),"Cubo 31A - Primo piano");
+		Aula lab31B = new Aula("Laboratorio 31 B", 45 , corsoDiLaureaMatematica.getCodice(),"Cubo 31B - Secondo piano");
 		
 		
 		
@@ -70,6 +71,7 @@ public class MainJDBC {
 		aulaDao.save(aulaMT13);
 		aulaDao.save(aulaMT14);
 		aulaDao.save(aulaMT15);
+		aulaDao.save(lab31B);
 
 		// ISTANZE DI PROVA POSTGRESS
 
