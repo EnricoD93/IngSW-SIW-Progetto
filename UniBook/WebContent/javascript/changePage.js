@@ -111,6 +111,13 @@ function iscriviStudente(codice,matricola) {
 					"Iscrizione avvenuta",
 					"L'iscrizione al corso è avvenuta con successo.",
 					"success");
+		},
+		error : function(data){
+			console.log("errore")
+			swal(
+					"Iscrizione non effettuata!",
+					"L'utente risulta iscritto al corso.\n","error");
+		
 		}
 
 	});
@@ -121,8 +128,7 @@ function confermaEliminaStudente(matricolaStudente, codice) {
 	swal(
 			{
 				title : "Vuoi eliminare l'iscrizione?",
-				text : "Sei sicuro di voler eliminare l'iscrizione dello studente avente matricola: "
-						+ matricolaStudente + "?",
+				text : "Sei sicuro di voler eliminare l'iscrizione ?",
 				type : "warning",
 				showCancelButton : true,
 				confirmButtonColor : "#C4161C",

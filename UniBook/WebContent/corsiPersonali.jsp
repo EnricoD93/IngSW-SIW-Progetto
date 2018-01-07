@@ -5,7 +5,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+	<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
@@ -19,18 +19,29 @@
 								<th width="50%">Nome del Corso</th>
 								<th>Docente</th>
 								<th>CFU</th>
+								<th>Elimina Iscrizione</th>
 							</tr>
 
 						</thead>
 						<tbody>
 
 							<c:forEach var="corso" items="${corsiIscritto}">
-									<tr id="course" name="corsoSelezionato" value ="${corso.codice}"style="cursor: pointer;" onclick="javascript:getCorsoSelezionato(${corso.codice});">
+								<tr  name="corsoSelezionato" value="${corso.codice}"
+									style="cursor: pointer;"
+									>
 									<th scope="row">${corso.codice}</th>
-									<td><a id="course"> ${corso.nome} </a></td>
-									<td>${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
-									<td>${corso.cfu}</td>
-									
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a id="course"> ${corso.nome} </a></td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
+									<td><c:if test="${currentUser.ruolo==0 }">
+											<button type="button"
+												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+												style="margin-left: 39px;"
+												onclick="javascript:confermaEliminaStudente(${currentUser.matricola},${corso.codice});">
+												<i class="material-icons">remove_circle</i>
+
+											</button>
+										</c:if></td>
 								</tr>
 							</c:forEach>
 
@@ -54,7 +65,9 @@
 						<tbody>
 
 							<c:forEach var="corso" items="${corsiDocente}">
-								<tr id="course" name="corsoSelezionato" value ="${corso.codice}"style="cursor: pointer;" onclick="javascript:getCorsoSelezionato(${corso.codice});">
+								<tr id="course" name="corsoSelezionato" value="${corso.codice}"
+									style="cursor: pointer;"
+									onclick="javascript:getCorsoSelezionato(${corso.codice});">
 									<th scope="row">${corso.codice}</th>
 									<td><a> ${corso.nome} </a></td>
 									<td>${corso.cfu}</td>
@@ -92,7 +105,7 @@
 	response.setDateHeader("Expires", 0);
 %>
 <script src="javascript/changePage.js"></script>
-
+<script src="plugins/sweetalert/sweetalert.min.js"></script>
 
 
 </html>

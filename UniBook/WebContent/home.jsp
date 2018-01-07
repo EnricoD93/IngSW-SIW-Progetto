@@ -28,6 +28,7 @@
 <!-- Multiselect Core Css -->
 <!-- Waves Effect Css -->
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
 <!-- Animation Css -->
 <link href="plugins/animate-css/animate.css" rel="stylesheet" />
@@ -374,21 +375,26 @@
 								<th width="50%">Nome del Corso</th>
 								<th>Docente</th>
 								<th>CFU</th>
+								<th>Iscriviti</th>
 							</tr>
 
 						</thead>
 						<tbody>
 
 							<c:forEach var="corso" items="${corsi}">
-								<tr id="course" name="corsoSelezionato" value="${corso.codice}"
+								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
-									<td scope="row">${corso.codice}</td>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a> ${corso.nome} </a></td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});" scope="row">${corso.codice}</td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a>
+											${corso.nome} </a></td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
 									<td><c:if test="${currentUser.ruolo==0 }">
-											<button type="button" class="btn bg-unibook waves-effect" onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
-												<i class="material-icons">note_add</i> <span>Iscrivi</span>
+											<button type="button"
+												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+												style="margin-left: 10px;"
+												onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
+												<i class="material-icons">note_add</i>
 
 											</button>
 										</c:if></td>
@@ -434,6 +440,7 @@
 
 	<!-- Slimscroll Plugin Js -->
 	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="plugins/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Waves Effect Plugin Js -->
 	<script src="plugins/node-waves/waves.js"></script>

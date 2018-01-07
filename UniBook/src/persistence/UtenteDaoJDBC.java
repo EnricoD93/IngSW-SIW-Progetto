@@ -350,4 +350,30 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return utente;		
 	}
 
+	@Override
+	public boolean iscritto(String matricola, Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String query = "select * from iscritto where matricola = ? AND codice = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			statement.setLong(2, codice);
+			ResultSet result = statement.executeQuery();
+			if (result==null) {
+			return false;
+
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return true;
+	}
+
+
 }

@@ -20,7 +20,12 @@ public class SignUpForCourse extends HttpServlet {
 		Long codice = Long.parseLong(req.getParameter("codice"));
 		String matricola = req.getParameter("matricola");
 		if (richiesta.equals("iscrizione")) {
-			udao.iscriviStudente(matricola, codice);
+			if (udao.iscritto(matricola, codice)) {
+				System.out.println(
+						"l'utente con matricola " + matricola + "è già iscritto al corso con codice " + codice);
+				resp.setStatus(400);
+			} else
+				udao.iscriviStudente(matricola, codice);
 		}
 		if (richiesta.equals("cancellazione")) {
 			udao.eliminaIscrizioneStudente(matricola, codice);

@@ -19,4 +19,5 @@ public interface UtenteDao {
 	public void updateImage(Utente utente, String fileName);
 	public void eliminaIscrizioneStudente(String matricola, Long codice);
 	public Utente findUtenteByEmail(String email);
+	public boolean iscritto(String matricola,Long codice);
 }
