@@ -63,3 +63,24 @@ function getCentralSection() {
 		});
 	});
 };
+function getCorsoSelezionato(codice) {
+	$.ajax({
+		type : "GET",
+		url : "showcourse",
+		datatype : 'text',
+		data : {
+			codice : codice
+		},
+		success : function(data) {
+
+			$.ajax({
+				url : 'course.jsp',
+				method : 'GET',
+			}).then(function(data) {
+				$('#centralSection').html(data);
+
+			});
+		}
+
+	});
+};

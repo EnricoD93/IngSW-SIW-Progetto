@@ -76,5 +76,13 @@
     <servlet-name>CreateCourseServlet</servlet-name>
     <url-pattern>/createCourse</url-pattern>
   </servlet-mapping>
-  
+ 
+   <servlet>
+    <servlet-name>ShowCourseServlet</servlet-name>
+    <servlet-class>controller.ShowCourse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowCourseServlet</servlet-name>
+    <url-pattern>/showcourse</url-pattern>
+  </servlet-mapping> 
 </web-app>

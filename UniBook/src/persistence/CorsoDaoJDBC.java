@@ -200,8 +200,9 @@ public class CorsoDaoJDBC implements CorsoDao {
 		try {
 			Utente utente;
 			PreparedStatement statement;
-			String query = "select * from iscritto where corso.codice = ?";
+			String query = "select * from utente,iscritto where iscritto.codice = ? AND iscritto.matricola=utente.matricola";
 			statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				utente = new Utente();

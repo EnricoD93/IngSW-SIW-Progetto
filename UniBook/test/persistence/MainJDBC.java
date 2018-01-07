@@ -99,6 +99,7 @@ public class MainJDBC {
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			ricca.setProfileImagePath("images/profileImages/ricca.png");
 			Utente perri = new Utente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			Utente cianciaruso = new Utente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
@@ -167,16 +168,16 @@ public class MainJDBC {
 			
 			
 			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
-					"Corso Base di Ingegneria del Software",
+					"Corso Base di Ingegneria del Software","Lunedi e Mercoledi",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
-					"Lunedi e Mercoledi", 48, 48, "link al materiale", ricca.getMatricola(),
+					 48, 48, "link al materiale", ricca.getMatricola(),
 					corsoDiLaureaInformatica.getCodice(), 10, ricca.getCognome(), ricca.getNome());
-			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
-					"Corso Avanzato di Informatica", "Fondamenti di Informatica", "Lunedi e Giovedi", 48, 48,
+			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,"Lunedi e Giovedi",
+					"Corso Avanzato di Informatica", "Fondamenti di Informatica",  48, 48,
 					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
 					ricca.getCognome(), ricca.getNome());
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
-					"Nessun requisito", "Martedi e Mercoledi", 24, 72, "link al materiale", marino.getMatricola(),
+					 "Martedi e Mercoledi", "Nessun requisito",24, 72, "link al materiale", marino.getMatricola(),
 					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoGeometria);
