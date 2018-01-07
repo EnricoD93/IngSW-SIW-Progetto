@@ -14,8 +14,8 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th >Cod.</th>
-							<th >Nome del Corso</th>
+							<th>Cod.</th>
+							<th>Nome del Corso</th>
 							<c:if test="${currentUser.ruolo == 0 }">
 								<th>Docente</th>
 							</c:if>
@@ -26,7 +26,7 @@
 							<c:if test="${currentUser.ruolo == 0 }">
 								<th></th>
 							</c:if>
-							
+
 						</tr>
 
 					</thead>
@@ -35,9 +35,10 @@
 							<c:forEach var="corso" items="${corsiIscritto}">
 								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
+							
 									<th scope="row">${corso.codice}</th>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">
-										id="course"> ${corso.nome} </td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"
+										id="course">${corso.nome}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
 									<td><c:if test="${currentUser.ruolo==0 }">
@@ -49,6 +50,7 @@
 
 											</button>
 										</c:if></td>
+									
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -58,12 +60,14 @@
 
 							<c:forEach var="corso" items="${corsiDocente}">
 								<tr id="course" name="corsoSelezionato" value="${corso.codice}"
-									style="cursor: pointer;"
+									style="cursor: pointer; background-blend-mode: multiply"
 									onclick="javascript:getCorsoSelezionato(${corso.codice});">
+								
 									<th scope="row">${corso.codice}</th>
-									<td> ${corso.nome} </td>
-									<td >${corso.corsoDiLaurea}</td>
+									<td>${corso.nome}</td>
+									<td>${corso.corsoDiLaurea}</td>
 									<td>${corso.cfu}</td>
+								
 								</tr>
 							</c:forEach>
 						</c:if>
