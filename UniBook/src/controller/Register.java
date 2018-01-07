@@ -45,7 +45,7 @@ public class Register extends HttpServlet {
 		String password = req.getParameter("password");
 		String ruolo = req.getParameter("role");
 		code = generateCode();
-		Long cdl = Long.parseLong(req.getParameter("cdl"));
+		String cdl = req.getParameter("cdl");
 		System.out.println(cdl);
 
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);

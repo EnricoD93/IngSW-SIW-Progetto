@@ -13,7 +13,7 @@ public class Utente {
 	private String codicefiscale;
 	private String email;
 	private String password;
-	private Long corsoDiLaurea;
+	private String corsoDiLaurea;
 	private int ruolo;
 	private String verifyCode;
 	private String profileImagePath;
@@ -22,7 +22,7 @@ public class Utente {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, Long corsoDiLaurea, int ruolo, String verifyCode) {
+			String password, String corsoDiLaurea, int ruolo, String verifyCode) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -121,11 +121,11 @@ public class Utente {
 				+ sdf.format(this.getDataNascita()) + "]";
 	}
 
-	public Long getCorsoDiLaurea() {
+	public String getCorsoDiLaurea() {
 		return corsoDiLaurea;
 	}
 
-	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+	public void setCorsoDiLaurea(String corsoDiLaurea) {
 		this.corsoDiLaurea = corsoDiLaurea;
 	}
 

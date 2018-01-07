@@ -25,7 +25,7 @@ public class AulaDaoJDBC implements AulaDao {
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, aula.getId());
 			statement.setInt(2, aula.getPosti());
-			statement.setLong(3, aula.getCorsoDiLaurea());
+			statement.setString(3, aula.getCorsoDiLaurea());
 			statement.setString(4, aula.getUbicazione());
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class AulaDaoJDBC implements AulaDao {
 				aula = new Aula();
 				aula.setId(result.getString("id"));
 				aula.setPosti(result.getInt("posti"));
-				aula.setCorsoDiLaurea(result.getLong("codice"));
+				aula.setCorsoDiLaurea(result.getString("codice"));
 				aula.setUbicazione(result.getString("ubicazione"));
 			}
 		} catch (SQLException e) {
@@ -80,7 +80,7 @@ public class AulaDaoJDBC implements AulaDao {
 			while (result.next()) {
 				aula = new Aula();
 				aula.setId(result.getString("id"));				
-				aula.setCorsoDiLaurea(result.getLong("codice"));
+				aula.setCorsoDiLaurea(result.getString("codice"));
 				aula.setPosti(result.getInt("posti"));
 				aula.setUbicazione(result.getString("ubicazione"));
 				aule.add(aula);

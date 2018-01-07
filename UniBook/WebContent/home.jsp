@@ -374,7 +374,7 @@
 								<th width="30">Cod.</th>
 								<th width="50%">Nome del Corso</th>
 								<th>Docente</th>
-								<th>CorsoDiLaurea</th>
+								<th>Corso Di Laurea</th>
 								<th>CFU</th>
 								<th></th>
 							</tr>
@@ -385,11 +385,12 @@
 							<c:forEach var="corso" items="${corsi}">
 								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});" scope="row">${corso.codice}</td>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a>
-											${corso.nome} </a></td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"
+										scope="row">${corso.codice}</td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">
+											${corso.nome} </td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
-									
+
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.corsoDiLaurea}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
 									<td><c:if test="${currentUser.ruolo==0 }">
@@ -443,7 +444,7 @@
 
 	<!-- Slimscroll Plugin Js -->
 	<script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="plugins/sweetalert/sweetalert.min.js"></script>
 
 	<!-- Waves Effect Plugin Js -->
 	<script src="plugins/node-waves/waves.js"></script>

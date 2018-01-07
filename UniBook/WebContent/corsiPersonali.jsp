@@ -36,8 +36,8 @@
 								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
 									<th scope="row">${corso.codice}</th>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"><a
-										id="course"> ${corso.nome} </a></td>
+									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">
+										id="course"> ${corso.nome} </td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
 									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
 									<td><c:if test="${currentUser.ruolo==0 }">
@@ -61,8 +61,8 @@
 									style="cursor: pointer;"
 									onclick="javascript:getCorsoSelezionato(${corso.codice});">
 									<th scope="row">${corso.codice}</th>
-									<td><a> ${corso.nome} </a></td>
-									<td align="center">${corso.corsoDiLaurea}</td>
+									<td> ${corso.nome} </td>
+									<td >${corso.corsoDiLaurea}</td>
 									<td>${corso.cfu}</td>
 								</tr>
 							</c:forEach>

@@ -28,7 +28,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 			statement.setLong(1, descrizioneCorso.getCodice());
 			statement.setString(2, descrizioneCorso.getNome());
 			statement.setInt(3, descrizioneCorso.getAnno());
-			statement.setLong(4, descrizioneCorso.getCorsoDiLaurea());
+			statement.setString(4, descrizioneCorso.getCorsoDiLaurea());
 			statement.setInt(5, descrizioneCorso.getOreLezione());
 			statement.setInt(6, descrizioneCorso.getOreEsercitazione());
 			statement.setInt(7, descrizioneCorso.getCfu());
@@ -62,7 +62,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				descrizioneCorso.setAnno(result.getInt("anno"));
 				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
 				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
-				descrizioneCorso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				descrizioneCorso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				descrizioneCorso.setCfu(result.getInt("cfu"));
 				
 			}
@@ -92,7 +92,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				descrizioneCorso = new DescrizioneCorso();
 				descrizioneCorso.setCodice(result.getLong("codice"));
 				descrizioneCorso.setNome(result.getString("nome"));
-				descrizioneCorso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				descrizioneCorso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				descrizioneCorso.setAnno(result.getInt("anno"));
 				descrizioneCorso.setCfu(result.getInt("cfu"));
 				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));

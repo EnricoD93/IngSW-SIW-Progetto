@@ -36,7 +36,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setInt(8, corso.getOreEsercitazione());
 			statement.setString(9, corso.getMateriale());
 			statement.setString(10, corso.getDocente());
-			statement.setLong(11, corso.getCorsoDiLaurea());
+			statement.setString(11, corso.getCorsoDiLaurea());
 			statement.setInt(12, corso.getCfu());
 			statement.setString(13, corso.getCognomeDocente());
 			statement.setString(14, corso.getNomeDocente());
@@ -75,7 +75,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
 				corso.setMateriale(result.getString("materiale"));
 				corso.setDocente(result.getString("docente"));
-				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
@@ -115,7 +115,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
 				corso.setMateriale(result.getString("materiale"));
 				corso.setDocente(result.getString("docente"));
-				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
@@ -178,7 +178,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				d.setDataNascita(result.getDate("data_nascita"));
 				d.setEmail(result.getString("email"));
 				d.setPassword(result.getString("password"));
-				d.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				d.setCorsoDiLaurea(result.getString("corsodilaurea"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -209,7 +209,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				utente.setCodicefiscale(result.getString("codice_fiscale"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setNome(result.getString("nome"));
-				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				utente.setDataNascita(result.getDate("data_nascita"));
 				utente.setEmail(result.getString("email"));
 				utente.setMatricola(result.getString("matricola"));

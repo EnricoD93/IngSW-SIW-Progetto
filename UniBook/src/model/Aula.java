@@ -9,24 +9,24 @@ public class Aula implements Serializable {
 	private static final long serialVersionUID = -7635935810389625364L;
 	private String id;
 	private int posti;
-	private Long corsoDiLaurea;
+	private String corsoDiLaurea;
 	private String ubicazione;
 
 	public Aula() {
 	}
 
-	public Aula(String id, int posti, Long corsoDiLaurea, String ubicazione) {
+	public Aula(String id, int posti, String corsoDiLaurea, String ubicazione) {
 		this.id = id;
 		this.posti = posti;
 		this.corsoDiLaurea = corsoDiLaurea;
 		this.setUbicazione(ubicazione);
 	}
 
-	public Long getCorsoDiLaurea() {
+	public String getCorsoDiLaurea() {
 		return corsoDiLaurea;
 	}
 
-	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+	public void setCorsoDiLaurea(String corsoDiLaurea) {
 		this.corsoDiLaurea = corsoDiLaurea;
 	}
 

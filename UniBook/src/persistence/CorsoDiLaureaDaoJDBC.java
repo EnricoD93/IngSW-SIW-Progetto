@@ -23,7 +23,7 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 		try {
 			String insert = "insert into corsodilaurea(codice, nome) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setLong(1, corsoDiLaurea.getCodice());
+			statement.setString(1, corsoDiLaurea.getCodice());
 			statement.setString(2, corsoDiLaurea.getNome());
 
 			// connection.setAutoCommit(false);
@@ -32,12 +32,6 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 			// connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 			statement.executeUpdate();
 
-			
-			insert= "insert into descrizioneCorso(codice, nome,anno,corsodilaurea, cfu,ore_lezioni, ore_esercitazioni) values (?,?,?,?,?,?,?)";
-			statement = connection.prepareStatement(insert);
-			statement.setLong(1,new Long(211));
-			statement.setString(2, corsoDiLaurea.getNome());
-			
 			// this.updateCorsi(corsoDiLaurea, connection);
 			// connection.commit();
 		} catch (SQLException e) {
@@ -68,7 +62,7 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				corsoDiLaurea= new CorsoDiLaurea();
-				corsoDiLaurea.setCodice(result.getLong("codice"));
+				corsoDiLaurea.setCodice(result.getString("codice"));
 				corsoDiLaurea.setNome(result.getString("nome"));
 			}
 		} catch (SQLException e) {
@@ -101,7 +95,7 @@ public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {
 		try {
 			String delete = "delete FROM corsodilaurea WHERE codice = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setLong(1, corsoDiLaurea.getCodice());
+			statement.setString(1, corsoDiLaurea.getCodice());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

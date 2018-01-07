@@ -1,35 +1,22 @@
 package model;
 
 public class CorsoDiLaurea {
-	private Long codice;
+	private String codice;
 	private String nome;
 
 	public CorsoDiLaurea() {
 	}
 
-	public CorsoDiLaurea(Long codice, String nome) {
+	public CorsoDiLaurea(String codice, String nome) {
 		this.codice = codice;
 		this.nome = nome;
 	}
 
-	public CorsoDiLaurea(Long cdl) {
-		int i = cdl.intValue();
-		this.codice = cdl;
-		switch (i) {
-		case 773:
-			this.nome = "Informatica";
-			break;
-
-		default:
-			break;
-		}
-	}
-
-	public Long getCodice() {
+	public String getCodice() {
 		return codice;
 	}
 
-	public void setCodice(Long codice) {
+	public void setCodice(String codice) {
 		this.codice = codice;
 	}
 

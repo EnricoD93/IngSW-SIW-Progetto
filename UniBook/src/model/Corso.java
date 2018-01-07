@@ -19,13 +19,13 @@ public class Corso implements Serializable{
 	private String cognomeDocente;
 	private int oreLezione;
 	private int oreEsercitazione;
-	private Long corsoDiLaurea;
+	private String corsoDiLaurea;
 	private int cfu;
 
 	public Corso() {
 	}
 
-	public Corso(Long codice, String nome, int anno, Long corsoDiLaurea, int cfu) {
+	public Corso(Long codice, String nome, int anno, String corsoDiLaurea, int cfu) {
 		this.codice = codice;
 		this.nome = nome;
 		this.anno = anno;
@@ -43,7 +43,7 @@ public class Corso implements Serializable{
 	}
 
 	public Corso(Long codice, String nome, int anno, String descrizione, String giorno, String requisiti,
-			int oreLezione, int oreEsercitazione, String materiale, String docente, Long corsoDiLaurea, int cfu,
+			int oreLezione, int oreEsercitazione, String materiale, String docente, String corsoDiLaurea, int cfu,
 			String cognomeDocente, String nomeDocente) {
 		this.codice = codice;
 		this.nome = nome;
@@ -141,11 +141,11 @@ public class Corso implements Serializable{
 		this.oreEsercitazione = oreEsercitazione;
 	}
 
-	public Long getCorsoDiLaurea() {
+	public String getCorsoDiLaurea() {
 		return corsoDiLaurea;
 	}
 
-	public void setCorsoDiLaurea(Long corsoDiLaurea) {
+	public void setCorsoDiLaurea(String corsoDiLaurea) {
 		this.corsoDiLaurea = corsoDiLaurea;
 	}
 

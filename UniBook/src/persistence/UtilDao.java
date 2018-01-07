@@ -45,16 +45,16 @@ public class UtilDao {
 		Connection connection = dataSource.getConnection();
 		try {
 
-			String create = "create table corsodilaurea(\"codice\" int primary key,nome VARCHAR(255));"
-					+ "create table utente(matricola VARCHAR(255) primary key,nome VARCHAR(255),cognome varchar(255),email VARCHAR(255),password VARCHAR(255),data_nascita DATE,codice_fiscale VARCHAR(16),corsodilaurea int REFERENCES corsodilaurea(\"codice\"),ruolo int,verifycode VARCHAR(255),imagepath VARCHAR(255));"
-					+ "create table corso (\"codice\" bigint primary key, nome VARCHAR(255),anno int,descrizione VARCHAR(255),requisiti VARCHAR(255),giorni VARCHAR(255),ore_lezioni int,ore_esercitazioni int,materiale VARCHAR(255),\"docente\" VARCHAR(255) REFERENCES utente(\"matricola\"),corsodilaurea bigint REFERENCES corsodilaurea(\"codice\"),cfu int,cognomeDocente VARCHAR(255), nomeDocente VARCHAR(255));"
-					+ "create table aula(\"id\" VARCHAR(255) primary key,posti int,\"codice\" bigint REFERENCES corsodilaurea(\"codice\"),ubicazione VARCHAR(255));"
+			String create = "create table corsodilaurea(\"codice\" VARCHAR(255) primary key,nome VARCHAR(255));"
+					+ "create table utente(matricola VARCHAR(255) primary key,nome VARCHAR(255),cognome varchar(255),email VARCHAR(255),password VARCHAR(255),data_nascita DATE,codice_fiscale VARCHAR(16),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ruolo int,verifycode VARCHAR(255),imagepath VARCHAR(255));"
+					+ "create table corso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,descrizione VARCHAR(255),requisiti VARCHAR(255),giorni VARCHAR(255),ore_lezioni int,ore_esercitazioni int,materiale VARCHAR(255),\"docente\" VARCHAR(255) REFERENCES utente(\"matricola\"),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),cfu int,cognomeDocente VARCHAR(255), nomeDocente VARCHAR(255));"
+					+ "create table aula(\"id\" VARCHAR(255) primary key,posti int,\"codice\" VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ubicazione VARCHAR(255));"
 					+ "create table messaggio(data DATE primary key,ora int,testo VARCHAR(255),matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table lezione(data DATE primary key, ora_inizio int, ora_fine int,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
 					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
-					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea bigint REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
+					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
 
 			;
 

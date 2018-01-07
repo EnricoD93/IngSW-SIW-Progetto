@@ -32,7 +32,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setString(5, utente.getCodicefiscale());
 			statement.setString(6, utente.getEmail());
 			statement.setString(7, utente.getPassword());
-			statement.setLong(8, utente.getCorsoDiLaurea());
+			statement.setString(8, utente.getCorsoDiLaurea());
 			statement.setInt(9, utente.getRuolo());
 			statement.setString(10, utente.getVerifyCode());
 			statement.setString(11, utente.getProfileImagePath());
@@ -68,7 +68,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setEmail(result.getString("email"));
 				utente.setPassword(result.getString("password"));
 				utente.setCodicefiscale(result.getString("codice_fiscale"));
-				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
@@ -134,7 +134,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				corso = new Corso();
 				corso.setCodice(result.getLong("codice"));
 				corso.setAnno(result.getInt("anno"));
-				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				corso.setDescrizione(result.getString("descrizione"));
 				corso.setDocente(result.getString("docente"));
 				corso.setGiorno(result.getString("giorni"));
@@ -183,7 +183,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				corso = new Corso();
 				corso.setCodice(result.getLong("codice"));
 				corso.setAnno(result.getInt("anno"));
-				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				corso.setDescrizione(result.getString("descrizione"));
 				corso.setDocente(result.getString("docente"));
 				corso.setGiorno(result.getString("giorni"));
@@ -247,7 +247,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				corso = new Corso();
 				corso.setCodice(result.getLong("codice"));
 				corso.setAnno(result.getInt("anno"));
-				corso.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				corso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				corso.setDescrizione(result.getString("descrizione"));
 				corso.setDocente(result.getString("docente"));
 				corso.setGiorno(result.getString("giorni"));
@@ -333,7 +333,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setEmail(result.getString("email"));
 				utente.setPassword(result.getString("password"));
 				utente.setCodicefiscale(result.getString("codice_fiscale"));
-				utente.setCorsoDiLaurea(result.getLong("corsodilaurea"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
