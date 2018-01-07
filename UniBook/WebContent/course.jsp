@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
-				<di v class="body table-responsive">
+				<div class="body table-responsive">
 				<div align="center">
 					<div class="profile-pic"
 						style="background-image: url('${imagePathDocente}')">
@@ -22,8 +22,8 @@
 					</div>
 					<div align="center" class="corsiTitle">${currentCourse.nome}</div>
 				</div>
-				<div align="right" class="studentilist">
-					<button type="button"
+				<div align="right" class="listaStudenti">
+					<button type="button" id="listaStudenti"
 						class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 						title="Studenti iscritti" data-toggle="tooltip"
 						data-placement="left" title=""
@@ -102,4 +102,5 @@
 	</div>
 </body>
 <script src="js/pages/ui/tooltips-popovers.js"></script>
+<script src="javascript/changePage.js"></script>
 </html>

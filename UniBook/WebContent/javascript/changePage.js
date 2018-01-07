@@ -62,6 +62,16 @@ function getCentralSection() {
 
 		});
 	});
+	$('#listaStudenti').click(function() {
+
+		$.ajax({
+			url : 'studentiIscritti.jsp',
+			method : 'GET',
+		}).then(function(data) {
+			$('#centralSection').html(data);
+
+		});
+	});
 };
 function getCorsoSelezionato(codice) {
 	$.ajax({

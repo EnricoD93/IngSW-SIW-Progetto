@@ -154,8 +154,27 @@ logoimg {
     transition: all .3s ease;
     text-decoration: none;
 }
-
+.profile-pic-xs {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    vertical-align: middle;
+    text-align: center;
+    color: transparent;
+    transition: all .3s ease;
+    text-decoration: none;
+}
 .profile-pic:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+.profile-pic-xs:hover {
     background-color: rgba(0,0,0,.5);
     z-index: 10000;
     color: #fff;
@@ -164,6 +183,11 @@ logoimg {
 }
 
 .profile-pic span {
+    display: inline-block;
+    padding-top: 5.5em;
+    padding-bottom: 5.5em;
+}
+.profile-pic-xs span {
     display: inline-block;
     padding-top: 5.5em;
     padding-bottom: 5.5em;
@@ -3172,8 +3196,23 @@ section.content {
 	-ms-border-radius: 50% !important;
 	border-radius: 50% !important;
 }
-
+.btn-circle-lg-xs {
+	border: none;
+	outline: none !important;
+	overflow: hidden;
+	width: 40px;
+	height: 40px;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+	-ms-border-radius: 50% !important;
+	border-radius: 50% !important;
+}
 .btn-circle-lg i {
+	font-size: 26px !important;
+	left: 0px !important;
+	top: 6px !important;
+}
+.btn-circle-lg-xs i {
 	font-size: 26px !important;
 	left: 0px !important;
 	top: 6px !important;

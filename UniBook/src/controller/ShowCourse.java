@@ -24,7 +24,6 @@ public class ShowCourse extends HttpServlet {
 		Corso currentCourse;
 		String imagePathDocente;
 		List<Utente> studentiIscritti;
-		
 		CorsoDao corsoDao= DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		
