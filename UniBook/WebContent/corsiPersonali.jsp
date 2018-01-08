@@ -5,6 +5,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script src="javascript/nuovo.js"></script>
 <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
@@ -45,7 +46,7 @@
 											<button type="button"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 												style="margin-left: 39px;"
-												onclick="javascript:confermaEliminaStudente(${currentUser.matricola},${currentUser.codicefiscale},${corso.codice});">
+												onclick="javascript:conferma(${currentUser.nome});">
 												<i class="material-icons">clear</i>
 
 											</button>
@@ -100,6 +101,7 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
 %>
+
 <script src="javascript/changePage.js"></script>
 <script src="plugins/sweetalert/sweetalert.min.js"></script>
 
