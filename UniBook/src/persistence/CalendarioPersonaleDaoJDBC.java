@@ -22,7 +22,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 		try {
 			String insert = "insert into calendariopersonale(matricola) values (?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, calendarioPersonale.getUtente());
+//			statement.setString(1, calendarioPersonale.getUtente());
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -47,7 +47,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				calendarioPersonale = new CalendarioPersonale();
-				calendarioPersonale.setUtente(result.getString("matricola"));
+//				calendarioPersonale.setUtente(result.getString("matricola"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -79,7 +79,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 		try {
 			String delete = "delete FROM calendariopersonale WHERE matricola = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setString(1, calendarioPersonale.getUtente());
+//			statement.setString(1, calendarioPersonale.getUtente());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
