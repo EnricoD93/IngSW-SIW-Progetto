@@ -96,60 +96,82 @@ function getCorsoSelezionato(codice) {
 	});
 };
 
-function iscriviStudente(codice,matricola) {
-	$.ajax({
-		type : "GET",
-		url : "iscrivistudente",
-		datatype : 'text',
-		data : {
-			codice : codice,
-			matricola: matricola,
-			richiesta: "iscrizione"
-		},
-		success : function(data) {
-			swal(
-					"Iscrizione avvenuta",
-					"L'iscrizione al corso è avvenuta con successo.",
-					"success");
-		},
-		error : function(data){
-			console.log("errore")
-			swal(
-					"Iscrizione non effettuata!",
-					"L'utente risulta  già iscritto al corso.\n","error");
-		
-		}
+function iscriviStudente(codice, matricola) {
+	swal({
+		title : "Inserisci la tua password per iscriverti:",
+		type : "input",
+		inputType : "password",
+		showCancelButton : true,
+		closeOnConfirm : false
+	}, function(typedPassword) {
+		// verificare password se è giusta
+		console.log(typedPassword);
 
+		$.ajax({
+			type : "GET",
+			url : "iscrivistudente",
+			datatype : 'text',
+			data : {
+				codice : codice,
+				matricola : matricola,
+				richiesta : "iscrizione"
+			},
+			success : function(data) {
+				swal("Iscrizione avvenuta",
+						"L'iscrizione al corso è avvenuta con successo.",
+						"success");
+			},
+			error : function(data) {
+				swal("Iscrizione non effettuata!",
+						"Risulti già iscritto al corso.\n", "error");
+
+			}
+
+		});
 	});
 };
 
-function confermaEliminaStudente(matricolaStudente, codice) {
+function confermaEliminaStudente(matricolaStudente,pass,codice) {
 	console.log("sono qui");
 	swal(
 			{
-				title : "Vuoi eliminare l'iscrizione?",
-				text : "Sei sicuro di voler eliminare l'iscrizione ?",
-				type : "warning",
+				title : "Inserisci la tua password per cancellare l'iscrizione:",
+				type : "input",
+				inputType : "password",
 				showCancelButton : true,
-				confirmButtonColor : "#C4161C",
-				confirmButtonText : "Si, elimina!",
-				cancelButtonText : "Non eliminare",
 				closeOnConfirm : false
 			},
-			function() {
-				console.log("sto eliminando")
-				eliminaIscrizioneStudente(matricolaStudente, codice);
-				console.log("ho eliminato")
-				swal(
-						"Iscrizione eliminata!",
-						"Cancellazione dell'iscrizione è avvenuta con successo.",
-						"success");
-			
-			});
+			function(typedPassword) {
+				if (pass == typedPassword) {
+					swal(
+							{
+								title : "Vuoi eliminare l'iscrizione?",
+								text : "Sei sicuro di voler eliminare l'iscrizione ?",
+								type : "warning",
+								showCancelButton : true,
+								confirmButtonColor : "#C4161C",
+								confirmButtonText : "Si, elimina!",
+								cancelButtonText : "Non eliminare",
+								closeOnConfirm : false
+							},
+							function() {
+								console.log("sto eliminando")
+								eliminaIscrizioneStudente(matricolaStudente,pass,codice);
+								console.log("ho eliminato")
+								swal(
+										"Iscrizione eliminata!",
+										"Cancellazione dell'iscrizione è avvenuta con successo.",
+										"success");
 
+							});
+				}else{
+					swal("Pasword errata!",
+							"Riprova.\n", "error");
+				}
+			});
 };
 
-function eliminaIscrizioneStudente(matricolaStudente, codice) {
+function eliminaIscrizioneStudente(matricolaStudente,pass,codice) {
 	console.log("FUNCTIONAAA")
 	$.ajax({
 		type : "GET",
@@ -158,9 +180,9 @@ function eliminaIscrizioneStudente(matricolaStudente, codice) {
 		data : {
 			richiesta : "eliminaIscrizioneStudente",
 			matricolaStudente : matricolaStudente,
-			codice : codice
+			codice : codice,
+			pass : pass
 		}
-	
 
 	});
 };
