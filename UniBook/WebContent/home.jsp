@@ -37,14 +37,13 @@
 							<c:forEach var="corso" items="${corsi}">
 								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});"
-										scope="row">${corso.codice}</td>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">
-										${corso.nome}</td>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</td>
-
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.corsoDiLaurea}</td>
-									<td onclick="javascript:getCorsoSelezionato(${corso.codice});">${corso.cfu}</td>
+									<th scope="row"><a
+										href="page?request=corso&id=${corso.codice}">${corso.codice}</a></th>
+									<td><a href="page?request=corso&id=${corso.codice}">${corso.nome}
+									</a></td>
+									<td><a href="page?request=corso&id=${corso.codice}">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</a></td>
+									<td><a href="page?request=corso&id=${corso.codice}">${corso.corsoDiLaurea}</a></td>
+									<td><a href="page?request=corso&id=${corso.codice}">${corso.cfu}</a></td>
 									<td><c:if test="${currentUser.ruolo==0 }">
 											<button type="button"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"

@@ -53,28 +53,31 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("aule", aule);
 			req.getRequestDispatcher("aule.jsp").forward(req, resp);
 		}
-		if(request.equals("profilo")) {
-			String profileId=req.getParameter("id");
+		if (request.equals("profilo")) {
+			String profileId = req.getParameter("id");
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			Utente utente=utenteDao.findByPrimaryKey(profileId);
+			Utente utente = utenteDao.findByPrimaryKey(profileId);
 			req.setAttribute("profilo", utente);
 			req.getRequestDispatcher("profilo.jsp").forward(req, resp);
 		}
-		if(request.equals("corso")) {
+		if (request.equals("corso")) {
 			Long codice = Long.parseLong(req.getParameter("id"));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Corso currentCourse = corsoDao.findByPrimaryKey(codice);
-			Utente courseDocente=utenteDao.findByPrimaryKey(currentCourse.getDocente());
+			Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 			req.setAttribute("courseDocente", courseDocente);
 			req.setAttribute("currentCourse", currentCourse);
 			req.getRequestDispatcher("course.jsp").forward(req, resp);
 		}
+		if (request.equals("listaStudenti")) {
+			Long codice = Long.parseLong(req.getParameter("id"));
+			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+			List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codice);
+			req.setAttribute("studentiIscritti", studentiIscritti);
+			req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
+		}
 
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("home.jsp").forward(req, resp);
-	}
 }

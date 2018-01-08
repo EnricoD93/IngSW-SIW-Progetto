@@ -19,11 +19,15 @@
 							<div align="center" class="corsiTitle">${currentCourse.nome}</div>
 						</div>
 						<div align="right" class="listaStudenti">
-							<button type="button" id="listaStudenti"
-								class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
-								title="Studenti iscritti">
-								<i class="material-icons">people</i>
-							</button>
+							<form action="page" method="GET">
+								<input type="hidden" name="request" value=listaStudenti>
+								<input type="hidden" name="id" value="${currentCourse.codice}">
+								<button type="submit"
+									class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
+									title="Studenti iscritti">
+									<i class="material-icons">people</i>
+								</button>
+							</form>
 						</div>
 
 
