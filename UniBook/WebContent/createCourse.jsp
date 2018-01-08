@@ -9,7 +9,7 @@
 <link
 	href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
 	rel="stylesheet">
-	<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <div class="container-fluid">
 	<div class="block-header">
 		<h2>
@@ -135,7 +135,7 @@
 								<div class="form-group form-float">
 									<div class="form-line">
 										<textarea name="requisiti" cols="30" rows="5"
-											class="form-control no-resize" ></textarea>
+											class="form-control no-resize"></textarea>
 										<label class="form-label">Requisiti</label>
 									</div>
 								</div>
@@ -156,9 +156,17 @@
 										</c:forEach>
 									</select>&nbsp;
 								</div>
-
-								<button class="btn bg-unibook waves-effect" type="button" onclick="javascript:verificaGiorni();">Crea corso</button>
-								<button id="creacorso" class="btn btn-primary waves-effect hidden" type="submit"></button>
+								<div class="input-group col-sm-3">
+									<div class="switch">
+									<span class="input-group-addon">Abilita iscrizioni </span> 
+										<label><input class="switch" type="checkbox" checked=""><span
+											class="lever bg-unibook-switch"></span></label>
+									</div>
+								</div>
+								<button class="btn bg-unibook waves-effect" type="button"
+									onclick="javascript:verificaGiorni();">Crea corso</button>
+								<button id="creacorso"
+									class="btn btn-primary waves-effect hidden" type="submit"></button>
 
 							</form>
 						</div>

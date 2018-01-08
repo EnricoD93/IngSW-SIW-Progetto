@@ -5254,11 +5254,16 @@ none
 .switch label input[type=checkbox]:checked+.lever.switch-col-red {
 	background-color: rgba(244, 67, 54, 0.5);
 }
+.switch label input[type=checkbox]:checked+.lever.bg-unibook-switch {
+	background-color: #c82e34
+}
 
 .switch label input[type=checkbox]:checked+.lever.switch-col-red:after {
 	background-color: #F44336;
 }
-
+.switch label input[type=checkbox]:checked+.lever.bg-unibook-switch:after {
+	background-color: #C4161C;
+}
 .switch label input[type=checkbox]:checked:not (:disabled ) ~ .lever.switch-col-pink:active:after
 	{
 	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px
