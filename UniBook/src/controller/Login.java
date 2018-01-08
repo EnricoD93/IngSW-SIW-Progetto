@@ -10,14 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Aula;
 import model.Corso;
-import model.DescrizioneCorso;
 import model.Utente;
 import persistence.DatabaseManager;
-import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;
-import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
@@ -29,37 +25,21 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		session.setAttribute("matricola", null); // ???? serve?
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		RequestDispatcher dispacher;
 		List<Corso> corsi;
-		List<Corso> corsiDocente;
-		List<Corso> corsiIscritto;
-		List<Aula> aule;
-		List<DescrizioneCorso> listaCorsi;
-		
+
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		CorsoDao corsoDao= DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		Utente currentUser = utenteDao.findByPrimaryKey(username);
-		AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-		DescrizioneCorsoDao descrizioneCorsoDao= DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
-		listaCorsi=descrizioneCorsoDao.findAll();
-		System.out.println(listaCorsi.size());
-		aule=aulaDao.findAll();
 		try {
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					currentUser = utenteDao.findByPrimaryKey(username);
-					corsi = corsoDao.findAll();
-					corsiDocente = utenteDao.getCorsiDocente(username);
-					corsiIscritto = utenteDao.getCorsiIscritto(username);
+					corsi = utenteDao.getCorsi(currentUser.getMatricola());
 					session.setAttribute("currentUser", currentUser);
 					session.setAttribute("corsi", corsi);
-					session.setAttribute("corsiDocente", corsiDocente);
-					session.setAttribute("corsiIscritto", corsiIscritto);
-					session.setAttribute("aule", aule);
-					session.setAttribute("listaCorsi", listaCorsi);
 					dispacher = req.getRequestDispatcher("home.jsp");
 					dispacher.forward(req, resp);
 

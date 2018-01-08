@@ -102,4 +102,12 @@
     <servlet-name>SignUpCourseServlet</servlet-name>
     <url-pattern>/iscrivistudente</url-pattern>
   </servlet-mapping> 
+   <servlet>
+    <servlet-name>ChangePageServlet</servlet-name>
+    <servlet-class>controller.ChangePage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangePageServlet</servlet-name>
+    <url-pattern>/page</url-pattern>
+  </servlet-mapping> 
 </web-app>

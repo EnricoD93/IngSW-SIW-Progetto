@@ -1,9 +1,8 @@
-<%@page import="persistence.DatabaseManager"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="model.Utente"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -40,7 +39,6 @@
 <link href="css/themes/all-themes.css" rel="stylesheet" />
 
 <script src="plugins/jquery/jquery.js"></script>
-<script src="javascript/changePage.js"></script>
 <script src="javascript/changeProfile.js" type="text/javascript"></script>
 <script src="javascript/uploadImage.js" type="text/javascript"></script>
 
@@ -61,7 +59,6 @@
 <script src="plugins/node-waves/waves.js"></script>
 <!-- Custom Js -->
 <script src="js/admin.js"></script>
-<!-- <script src="plugins/jquery-validation/jquery.validate.js"></script>	 -->
 <script src="js/demo.js"></script>
 
 
@@ -307,7 +304,7 @@
 				<i class="material-icons" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 				<ul class="dropdown-menu pull-right">
-					<li><a id="profilo"><i class="material-icons">person</i>Profilo</a></li>
+					<li><a href="page?request=profilo&id=${currentUser.matricola}"><i class="material-icons">person</i>Profilo</a></li>
 					<li role="seperator" class="divider"></li>
 					<li><a href="javascript:void(0);"><i
 							class="material-icons">group</i>Colleghi</a></li>
@@ -328,13 +325,14 @@
 			<li class="header">Navigazione principale</li>
 			<li><a href="home.jsp"> <i class="material-icons">home</i> <span>Home</span>
 			</a></li>
-			<li><a id="corsiPersonali"> <i class="material-icons">library_books</i>
+			<li><a href="page?request=corsi"> <i class="material-icons">library_books</i>
 					<span>I miei Corsi</span>
 			</a></li>
-			<li><a id="calendario"> <i class="material-icons">date_range</i>
+			<li><a href="page?request=calendario"> <i class="material-icons">date_range</i>
 					<span>Calendario personale</span>
 			</a></li>
-			<li><a id="aule"> <i class="material-icons">business</i> <span>Aule</span>
+			<li><a href="page?request=aule"> <i class="material-icons">business</i>
+					<span>Aule</span>
 			</a></li>
 
 
@@ -372,5 +370,16 @@
 	</div>
 	</aside> <!-- #END# Right Sidebar --> </section>
 </body>
+<c:if test="${currentUser==null}">
+	<%
+		response.sendRedirect("index.html");
+	%>
+</c:if>
+<%
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
+%>
 
 </html>
