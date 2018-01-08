@@ -8,7 +8,7 @@ public class CalendarioPersonale {
 	public CalendarioPersonale() {
 		java.util.GregorianCalendar gc = new java.util.GregorianCalendar(java.util.Locale.ITALY);
 		int maxGiorni = 0;
-		String[] giorniIt = { "DOMENICA", "LUNEDI", "MARTEDI", "MERCOLEDI", "GIOVEDI", "VENERDI", "SABATO" };
+		
 		for (int k = 2018; k < 2021; k++)
 			for (int j = 0; j < 12; j++) {
 				if (j == 3 || j == 5 || j == 8 || j == 10)
@@ -21,9 +21,8 @@ public class CalendarioPersonale {
 					maxGiorni = 28;
 
 				for (int i = 1; i <= maxGiorni; i++) {
-					java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(k, j, i);
-					calendarioPersonale.add(new GiornoCalendario(i, j + 1, k,
-							giorniIt[(gc3.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)]));
+					calendarioPersonale.add(new GiornoCalendario(i, j + 1, k));
+							
 				}
 			}
 	}

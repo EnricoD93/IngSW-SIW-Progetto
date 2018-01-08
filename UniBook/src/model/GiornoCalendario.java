@@ -5,6 +5,7 @@ public class GiornoCalendario {
 	int mese;
 	int anno;
 	String giornoDellaSettimana;
+	String[] giorniIt = { "DOMENICA", "LUNEDI", "MARTEDI", "MERCOLEDI", "GIOVEDI", "VENERDI", "SABATO" };
 
 	public int getGiorno() {
 		return giorno;
@@ -34,12 +35,12 @@ public class GiornoCalendario {
 		return giornoDellaSettimana;
 	}
 
-	public GiornoCalendario(int g, int m, int a, String giornoDellaSettimana) {
+	public GiornoCalendario(int g, int m, int a) {
 		this.giorno = g;
 		this.mese = m;
 		this.anno = a;
-		this.giornoDellaSettimana=giornoDellaSettimana;
-	}
+		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(g, m, a);
+		giornoDellaSettimana=giorniIt[(gc3.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];	}
 
 	public void Stampa(GiornoCalendario g) {
 		System.out.println(g.giorno + "/" + g.mese + "/ " + g.anno + " è " + g.giornoDellaSettimana);
