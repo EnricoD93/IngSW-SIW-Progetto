@@ -55,7 +55,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/loginform</url-pattern>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
  
    <servlet>
