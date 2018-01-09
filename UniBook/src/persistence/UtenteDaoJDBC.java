@@ -360,7 +360,6 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setString(1, matricola);
 			statement.setLong(2, codice);
 			ResultSet result = statement.executeQuery();
-			System.out.println(result.wasNull());
 			if (!result.next()) {
 			return false;
 

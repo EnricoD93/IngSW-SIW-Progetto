@@ -63,6 +63,7 @@ public class ChangePage extends HttpServlet {
 			req.getRequestDispatcher("profilo.jsp").forward(req, resp);
 		}
 		if (request.equals("corso")) {
+			System.out.println(req.getParameter("id"));
 			Long codice = Long.parseLong(req.getParameter("id"));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
@@ -70,6 +71,7 @@ public class ChangePage extends HttpServlet {
 			Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 			req.setAttribute("courseDocente", courseDocente);
 			req.setAttribute("currentCourse", currentCourse);
+			System.out.println("cambio pagina");
 			req.getRequestDispatcher("course.jsp").forward(req, resp);
 		}
 		if (request.equals("listaStudenti")) {

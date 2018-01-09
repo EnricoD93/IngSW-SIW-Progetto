@@ -3258,8 +3258,9 @@ section.content {
 }
 .btn-circle-lg-xs i {
 	font-size: 13px !important;
-	left: 0px !important;
-	top: 6px !important;
+    right: 6px;
+    top: 6.5px;
+    position: absolute;
 }
 
 .btn

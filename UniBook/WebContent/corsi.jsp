@@ -51,7 +51,7 @@
 											<button type="button"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 												style="margin-left: 39px;"
-												onclick="javascript:confermaEliminaStudente(${currentUser.matricola},${currentUser.codicefiscale},${corso.codice});">
+												onclick="javascript:confermaEliminaStudente(${currentUser.matricola},${corso.codice});">
 												<i class="material-icons">clear</i>
 
 											</button>

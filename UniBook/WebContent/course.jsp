@@ -104,6 +104,4 @@
 		</div>
 	</section>
 </body>
-<script src="js/pages/ui/tooltips-popovers.js"></script>
-<script src="javascript/changePage.js"></script>
 </html>
