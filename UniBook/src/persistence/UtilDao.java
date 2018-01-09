@@ -50,7 +50,7 @@ public class UtilDao {
 					+ "create table corso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,descrizione VARCHAR(255),requisiti VARCHAR(255),giorni VARCHAR(255),ore_lezioni int,ore_esercitazioni int,materiale VARCHAR(255),\"docente\" VARCHAR(255) REFERENCES utente(\"matricola\"),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),cfu int,cognomeDocente VARCHAR(255), nomeDocente VARCHAR(255));"
 					+ "create table aula(\"id\" VARCHAR(255) primary key,posti int,\"codice\" VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ubicazione VARCHAR(255));"
 					+ "create table messaggio(data DATE primary key,ora int,testo VARCHAR(255),matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
-					+ "create table lezione(data DATE primary key, ora_inizio int, ora_fine int,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
+					+ "create table lezione(data DATE primary key, ora_inizio real, ora_fine real,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
 					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"

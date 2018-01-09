@@ -213,10 +213,9 @@ public class MainJDBC {
 
 			// controlla qua
 
-			// Lezione lezione = new Lezione(corsoFondamenti.getCodice(), date, 10, 2,
-			// aulaMT5.getId(),"lezione");
-			// LezioneDao lezioneDao = factory.getLezioneDAO();
-			// lezioneDao.save(lezione);
+			 Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), date, 8.30  , 10.30, aulaMT5.getId(),"lezione");
+			 LezioneDao lezioneDao = factory.getLezioneDAO();
+			 lezioneDao.save(lezione);
 			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			messaggioDao.save(messaggio);

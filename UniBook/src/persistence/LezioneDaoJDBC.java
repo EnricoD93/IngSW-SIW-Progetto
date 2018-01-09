@@ -21,12 +21,12 @@ public class LezioneDaoJDBC implements LezioneDao {
 	public void save(Lezione lezione) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into lezione(data,ora_inizio,durata,corso,aula,tipo) values (?,?,?,?,?,?)";
+			String insert = "insert into lezione(data,ora_inizio,ora_fine,corso,aula,tipo) values (?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			long secs = lezione.getData().getTime();
 			statement.setDate(1, new java.sql.Date(secs));
-			statement.setInt(2, lezione.getOraInizio());
-			statement.setInt(3, lezione.getOraFine());
+			statement.setDouble(2, lezione.getOraInizio());
+			statement.setDouble(3, lezione.getOraFine());
 			statement.setLong(4, lezione.getCorso());
 			statement.setString(5, lezione.getAula());
 			statement.setString(6, lezione.getTipo());
@@ -57,8 +57,8 @@ public class LezioneDaoJDBC implements LezioneDao {
 			if (result.next()) {
 				lezione = new Lezione();
 				lezione.setData(result.getDate("data"));
-				lezione.setOraInizio(result.getInt("ore_inizio"));
-				lezione.setOraFine(result.getInt("durata"));
+				lezione.setOraInizio(result.getDouble("ore_inizio"));
+				lezione.setOraFine(result.getDouble("durata"));
 				lezione.setCorso(result.getLong("corso"));
 				lezione.setAula(result.getString("aula"));
 				lezione.setTipo(result.getString("tipo"));

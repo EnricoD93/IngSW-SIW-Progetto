@@ -5,12 +5,12 @@ import java.util.Date;
 public class Lezione {
 	private Long corso;
 	private Date data;
-	private int oraInizio;
-	private int oraFine;
+	private double oraInizio;
+	private double oraFine;
 	private String aula;
 	private String tipo;
 
-	public Lezione(Long corso, Date data,int oraInizio, int oraFine, String aula, String tipo) {
+	public Lezione(Long corso, Date data,double oraInizio, double oraFine, String aula, String tipo) {
 		
 		this.corso=corso;
 		this.data = data;
@@ -47,19 +47,19 @@ public class Lezione {
 		this.data = data;
 	}
 
-	public int getOraInizio() {
+	public double getOraInizio() {
 		return oraInizio;
 	}
 
-	public void setOraInizio(int oraInizio) {
+	public void setOraInizio(double oraInizio) {
 		this.oraInizio = oraInizio;
 	}
 
-	public int getOraFine() {
+	public double getOraFine() {
 		return oraFine;
 	}
 
-	public void setOraFine(int oraFine) {
+	public void setOraFine(double oraFine) {
 		this.oraFine = oraFine;
 	}
 
