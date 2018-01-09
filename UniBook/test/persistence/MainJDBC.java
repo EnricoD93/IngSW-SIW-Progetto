@@ -12,6 +12,7 @@ import model.CalendarioPersonale;
 import model.Corso;
 import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
+import model.GiornoCalendario;
 import model.Lezione;
 import model.Messaggio;
 import model.Utente;
@@ -187,18 +188,20 @@ public class MainJDBC {
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
 
+			GiornoCalendario dataI=new GiornoCalendario(2,10,2017);
+			GiornoCalendario dataF=new GiornoCalendario(10,1,2018);
 			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software", "Lunedi e Mercoledi",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					48, 48, "link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
-					ricca.getCognome(), ricca.getNome());
+					ricca.getCognome(), ricca.getNome(),dataI,dataF);
 			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
 					"Lunedi e Giovedi", "Corso Avanzato di Informatica", "Fondamenti di Informatica", 48, 48,
 					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
-					ricca.getCognome(), ricca.getNome());
+					ricca.getCognome(), ricca.getNome(),dataI,dataF);
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome());
+					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome(),dataI,dataF);
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoGeometria);
 			corsoDao.save(corsoIngegneriaSW);

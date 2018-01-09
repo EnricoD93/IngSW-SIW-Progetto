@@ -20,6 +20,8 @@ public class Corso implements Serializable{
 	private int oreLezione;
 	private int oreEsercitazione;
 	private String corsoDiLaurea;
+	private GiornoCalendario dataInizio;
+	private GiornoCalendario dataFine;	
 	private int cfu;
 
 	public Corso() {
@@ -44,7 +46,7 @@ public class Corso implements Serializable{
 
 	public Corso(Long codice, String nome, int anno, String descrizione, String giorno, String requisiti,
 			int oreLezione, int oreEsercitazione, String materiale, String docente, String corsoDiLaurea, int cfu,
-			String cognomeDocente, String nomeDocente) {
+			String cognomeDocente, String nomeDocente,GiornoCalendario dataInizio, GiornoCalendario dataFine) {
 		this.codice = codice;
 		this.nome = nome;
 		this.anno = anno;
@@ -59,6 +61,16 @@ public class Corso implements Serializable{
 		this.cfu = cfu;
 		this.cognomeDocente = cognomeDocente;
 		this.nomeDocente = nomeDocente;
+		this.dataInizio=dataInizio;
+		this.dataFine=dataFine;
+	}
+
+	public void setDataInizio(GiornoCalendario dataInizio) {
+		this.dataInizio = dataInizio;
+	}
+
+	public void setDataFine(GiornoCalendario dataFine) {
+		this.dataFine = dataFine;
 	}
 
 	public String getCognomeDocente() {
@@ -67,6 +79,14 @@ public class Corso implements Serializable{
 
 	public void setCognomeDocente(String cognomeDocente) {
 		this.cognomeDocente = cognomeDocente;
+	}
+
+	public GiornoCalendario getDataInizio() {
+		return dataInizio;
+	}
+
+	public GiornoCalendario getDataFine() {
+		return dataFine;
 	}
 
 	public String getNomeDocente() {

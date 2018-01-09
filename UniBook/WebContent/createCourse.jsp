@@ -32,7 +32,7 @@
 								<form id="form_validation" method="POST" action="createCourse">
 									<div class="input-group">
 										<span class="input-group-addon"> Selezionare il Corso
-											da creare </span> <select class="selectpicker" name="codice"
+											da creare </span> <select class="selectpicker show-tick" name="codice"
 											data-live-search="true" tabindex="-98" required>
 											<c:forEach var="corso" items="${listaCorsi}">
 												<option value="${corso.codice}">Cod.
@@ -47,7 +47,7 @@
 									<div class="form-group">
 										<div class="form-line">
 											<label for="dataInizio">Selezionare la data di inizio
-												corso</label> &nbsp; <input id="dataInizio" type="text"
+												corso</label> &nbsp; <input id="dataInizio" name="dataInizio" type="text"
 												class="datepicker form-control"
 												placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 												required>
@@ -57,7 +57,7 @@
 									<div class="form-group">
 										<div class="form-line">
 											<label for="dataFine">Selezionare la data di fine
-												corso</label> &nbsp; <input id="dataFine" type="text"
+												corso</label> &nbsp; <input id="dataFine" name="dataFine" type="text"
 												class="datepicker form-control"
 												placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 												required>
@@ -301,15 +301,15 @@
 									<div class="input-group">
 										<span class="input-group-addon"> Selezionare l'aula in
 											cui si desidera fare lezione </span>
-										<div class="btn-group bootstrap-select show-tick">
+										
 
-											<select class="form-control show-tick" tabindex="-98"
+											<select class="show-tick selectpicker" tabindex="-98"
 												name="idAula" required>
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>
 											</select>
-										</div>
+										
 
 									</div>
 									<div class="form-group form-float">

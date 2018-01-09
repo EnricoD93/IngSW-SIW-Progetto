@@ -95,6 +95,7 @@ public class GiornoCalendario {
 		default:
 			break;
 		}
+		
 		Calendar g = new java.util.GregorianCalendar(Integer.parseInt(info[3]), Integer.parseInt(info[2]),
 				Integer.parseInt(info[1]));
 		return new Date(g.getTime().getTime());
@@ -108,7 +109,10 @@ public class GiornoCalendario {
 		anno=g.get(Calendar.YEAR);
 		giornoDellaSettimana = giorniIt[(g.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
 	}
-
+public Date GiornoCalendarioToDate() {
+	Calendar g = new java.util.GregorianCalendar(getAnno(), getMese(),getGiorno());
+	return new Date(g.getTime().getTime());
+}
 	public void stampa() {
 		System.out.println(giorno + "/" + mese + "/" + anno + " è " +giornoDellaSettimana);
 	}

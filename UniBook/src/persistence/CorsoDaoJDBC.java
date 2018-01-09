@@ -9,6 +9,7 @@ import java.util.List;
 
 import model.Aula;
 import model.Corso;
+import model.GiornoCalendario;
 import model.Utente;
 import persistence.dao.CorsoDao;
 
@@ -24,7 +25,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 	public void save(Corso corso) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into corso(codice,nome,anno,descrizione,requisiti,giorni,ore_lezioni,ore_esercitazioni,materiale,docente,corsodilaurea,cfu,cognomeDocente,nomeDocente) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into corso(codice,nome,anno,descrizione,requisiti,giorni,ore_lezioni,ore_esercitazioni,materiale,docente,corsodilaurea,cfu,cognomeDocente,nomeDocente,data_inizio,data_fine) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, corso.getCodice());
 			statement.setString(2, corso.getNome());
@@ -40,6 +41,9 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setInt(12, corso.getCfu());
 			statement.setString(13, corso.getCognomeDocente());
 			statement.setString(14, corso.getNomeDocente());
+			statement.setDate(15, corso.getDataInizio().GiornoCalendarioToDate());
+			statement.setDate(16, corso.getDataFine().GiornoCalendarioToDate());
+			
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -79,7 +83,12 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
-
+				GiornoCalendario g=new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data_inizio"));
+				corso.setDataInizio(g);
+				g=new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data_fine"));
+				corso.setDataFine(g);
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -119,6 +128,12 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
+				GiornoCalendario g=new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data_inizio"));
+				corso.setDataInizio(g);
+				g=new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data_fine"));
+				corso.setDataFine(g);
 				corsi.add(corso);
 			}
 		} catch (SQLException e) {
