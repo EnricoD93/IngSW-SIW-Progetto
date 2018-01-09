@@ -40,10 +40,10 @@ public class CreateCourse extends HttpServlet {
 		if (req.getParameter("giovedì") != null) {
 			giorniLezione += "giovedì ";
 		}
-		if (req.getParameter("venerdì") != null) {
+		if (req.getParameterValues("venerdì") != null) {
 			giorniLezione += "venerdì ";
 		}
-		
+		System.out.println("i giorni di lezione sono "+ giorniLezione);
 		
 		DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 		DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));

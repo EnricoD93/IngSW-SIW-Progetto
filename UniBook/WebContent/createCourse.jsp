@@ -69,19 +69,19 @@
 									<div class="input-group">
 										<span class="input-group-addon" required>Selezionare i
 											giorni in cui si desidera fare lezione </span> <input
-											type="checkbox" id="md_checkbox_1" name="lunedì"
+											type="checkbox" id="md_checkbox_1" name="lunedì" value="1"
 											onclick="getOrarioLunedì()"> <label
 											for="md_checkbox_1">Lunedì</label> &nbsp; <input
-											type="checkbox" id="md_checkbox_2" name="martedì"
+											type="checkbox" id="md_checkbox_2" name="martedì" value="2"
 											onclick="getOrarioMartedì()"> <label
 											for="md_checkbox_2"> Martedì</label> &nbsp; <input
-											type="checkbox" id="md_checkbox_3" name="mercoledì"
+											type="checkbox" id="md_checkbox_3" name="mercoledì" value="3"
 											onclick="getOrarioMercoledì()"> <label
 											for="md_checkbox_3"> Mercoledì</label> &nbsp; <input
-											type="checkbox" id="md_checkbox_4" name="giovedì"
+											type="checkbox" id="md_checkbox_4" name="giovedì" value="4"
 											onclick="getOrarioGiovedì()"> <label
 											for="md_checkbox_4"> Giovedì</label> &nbsp; <input
-											type="checkbox" id="md_checkbox_5" name="venerdì"
+											type="checkbox" id="md_checkbox_5" name="venerdì" value="5"
 											onclick="getOrarioVenerdì()"> <label
 											for="md_checkbox_5"> Venerdì</label>
 									</div>
