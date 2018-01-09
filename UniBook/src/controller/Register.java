@@ -1,11 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.sql.Date;
 import java.util.Random;
 
 import javax.servlet.ServletContext;
@@ -15,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.GiornoCalendario;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.UtenteDao;
@@ -41,6 +38,7 @@ public class Register extends HttpServlet {
 		String matricola = req.getParameter("usermatr");
 		String mailto = req.getParameter("email");
 		String dataNascita = req.getParameter("dataNascita");
+		System.out.println(dataNascita);
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
 		String ruolo = req.getParameter("role");
@@ -48,42 +46,44 @@ public class Register extends HttpServlet {
 		String cdl = req.getParameter("cdl");
 		System.out.println(cdl);
 
-		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
-		Date date;
-		try {
-			switch (ruolo) {
-			case "1":
-				System.out.println("docente");
-				date = format.parse(dataNascita);
+		GiornoCalendario giornoCalendario = new GiornoCalendario();
 
-				Utente doc = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-						Integer.parseInt(ruolo), code);
+		// Date date = new Date(giornoCalendario.parse(dataNascita));
+		System.out.println("la data del dataPicker è " + dataNascita);
+		Date date = giornoCalendario.parseToDate(dataNascita);
+		System.out.println("la data nel database è " + date.toString());
+		giornoCalendario.parseToGiornoCalendario(date);
+		System.out.println("la mia data personale presa dal database è ");
+		giornoCalendario.stampa();
 
-				UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-				docenteDao.save(doc);
-				break;
-			case "0":
-				System.out.println("studente");
-				date = format.parse(dataNascita);
+		switch (ruolo) {
+		case "1":
+			System.out.println("docente");
 
-				Utente stud = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-						Integer.parseInt(ruolo), code);
+			Utente doc = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
+					Integer.parseInt(ruolo), code);
 
-				UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-				studenteDao.save(stud);
-				break;
-			default:
-				break;
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
+			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			docenteDao.save(doc);
+			break;
+		case "0":
+			System.out.println("studente");
+
+			Utente stud = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
+					Integer.parseInt(ruolo), code);
+
+			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			studenteDao.save(stud);
+			break;
+		default:
+			break;
 		}
-		sendVerificationCode(req, resp,mailto,nome,matricola);
+		sendVerificationCode(req, resp, mailto, nome, matricola);
 
 	}
 
-	private void sendVerificationCode(HttpServletRequest req, HttpServletResponse resp,String dest,String nome,String matricola)
-			throws ServletException, IOException {
+	private void sendVerificationCode(HttpServletRequest req, HttpServletResponse resp, String dest, String nome,
+			String matricola) throws ServletException, IOException {
 		final String subject = "Codice di verifica";
 		final String text = "<html>\r\n" + "<head>\r\n" + "UniBook\r\n" + "</head>\r\n" + "<body>\r\n"
 				+ "<td bgcolor=\"#C4161C\">" + "<img src=\"cid:image\">\r\n"
