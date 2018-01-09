@@ -1,13 +1,4 @@
-function iscriviStudente(codice, password, matricola) {
-	swal({
-		title : "Inserisci la tua password per iscriverti:",
-		type : "input",
-		inputType : "password",
-		showCancelButton : true,
-		closeOnConfirm : false
-	}, function(typedPassword) {
-		// verificare password se è giusta
-		if (typedPasswor == password) {
+function iscriviStudente(password, matricola) {
 			$.ajax({
 				type : "GET",
 				url : "iscrivistudente",
@@ -29,9 +20,7 @@ function iscriviStudente(codice, password, matricola) {
 				}
 
 			});
-		}swal("Password errata!",
-				"Riprova.\n", "error");
-	});
+	
 };
 
 function confermaEliminaStudente(matricolaStudente, password, codice) {
