@@ -67,7 +67,7 @@
 				</div>
 				<c:if test="${currentUser.ruolo == 1 }">
 					<div class="bg-unibook info-box-4 hover-zoom-effect">
-						<a id="createCourse" class="waves-block waves-effect">
+						<a href="page?request=creaCorso" class="waves-block waves-effect">
 							<div class="icon">
 								<i class="material-icons">library_add</i>
 							</div>

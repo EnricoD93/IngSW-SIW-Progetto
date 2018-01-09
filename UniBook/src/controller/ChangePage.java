@@ -12,10 +12,12 @@ import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import model.Aula;
 import model.Corso;
+import model.DescrizioneCorso;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;
+import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.UtenteDao;
 
 public class ChangePage extends HttpServlet {
@@ -77,7 +79,17 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("studentiIscritti", studentiIscritti);
 			req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
 		}
-
+		if (request.equals("creaCorso")) {
+			List<DescrizioneCorso> listaCorsi;
+			List<Aula> listaAule;
+			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+			DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
+			listaAule = aulaDao.findAll();
+			listaCorsi = descrizioneDao.findAll();
+			req.setAttribute("listaCorsi", listaCorsi);
+			req.setAttribute("listaAule", listaAule);
+			req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
+		}
 	}
 
 }
