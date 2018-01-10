@@ -10,24 +10,71 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
+	<link href="plugins/animate-css/animate.css" rel="stylesheet" />
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="plugins/bootstrap-select/css/bootstrap-select.css"
 	rel="stylesheet">
+	<link href="plugins/node-waves/waves.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<select class="selectpicker" multiple>
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish</option>
-</select>
 
+		<div class="demo-preloader">
+                                <div class="preloader pl-size-xl">
+                                    <div class="spinner-layer">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
 
-<select class="selectpicker" data-live-search="true">
-  <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-  <option data-tokens="mustard">Burger, Shake and a Smile</option>
-  <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-</select>
+                                <div class="preloader pl-size-l">
+                                    <div class="spinner-layer pl-orange">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="preloader">
+                                    <div class="spinner-layer pl-teal">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="preloader pl-size-sm">
+                                    <div class="spinner-layer pl-purple">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="preloader pl-size-xs">
+                                    <div class="spinner-layer pl-red-grey">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 </body>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.js"></script>

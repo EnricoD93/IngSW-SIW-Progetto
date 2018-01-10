@@ -48,7 +48,6 @@
 <script src="javascript/changeProfile.js" type="text/javascript"></script>
 <script src="javascript/courseManager.js" type="text/javascript"></script>
 <script src="javascript/uploadImage.js" type="text/javascript"></script>
-
 <!-- Jquery Core Js -->
 <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -75,7 +74,7 @@
 	<div class="page-loader-wrapper">
 		<div class="loader">
 			<div class="preloader">
-				<div class="spinner-layer pl-red">
+				<div class="spinner-layer pl-unibook">
 					<div class="circle-clipper left">
 						<div class="circle"></div>
 					</div>

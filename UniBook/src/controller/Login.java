@@ -25,37 +25,45 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
 		RequestDispatcher dispacher;
 		List<Corso> corsi;
-
+		
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-		Utente currentUser = utenteDao.findByPrimaryKey(username);
-		try {
-			if (currentUser != null) {
-				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
-					currentUser = utenteDao.findByPrimaryKey(username);
-					corsi = utenteDao.getCorsi(currentUser.getMatricola());
-					session.setAttribute("currentUser", currentUser);
-					session.setAttribute("corsi", corsi);
-					dispacher = req.getRequestDispatcher("home.jsp");
-					dispacher.forward(req, resp);
+		if (session.getAttribute("currentUser") == null) {
+			String username = req.getParameter("username");
+			String password = req.getParameter("password");
+			Utente currentUser = utenteDao.findByPrimaryKey(username);
+			try {
+				if (currentUser != null) {
+					if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
+						currentUser = utenteDao.findByPrimaryKey(username);
+						corsi = utenteDao.getCorsi(currentUser.getMatricola());
+						session.setAttribute("currentUser", currentUser);
+						session.setAttribute("corsi", corsi);
+						dispacher = req.getRequestDispatcher("home.jsp");
+						dispacher.forward(req, resp);
 
+					} else {
+						dispacher = req.getRequestDispatcher("index.html");
+						dispacher.forward(req, resp);
+						// Password errata
+					}
 				} else {
+					// Utente non esiste
 					dispacher = req.getRequestDispatcher("index.html");
 					dispacher.forward(req, resp);
-					// Password errata
 				}
-			} else {
-				// Utente non esiste
+			} catch (Exception e) {
+				e.printStackTrace();
 				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			dispacher = req.getRequestDispatcher("index.html");
+		}else {
+			Utente currentUser = (Utente) session.getAttribute("currentUser");
+			corsi = utenteDao.getCorsi(currentUser.getMatricola());
+			session.setAttribute("corsi", corsi);
+			dispacher = req.getRequestDispatcher("home.jsp");
 			dispacher.forward(req, resp);
 		}
 
