@@ -94,19 +94,53 @@ public class MainJDBC {
 			studenteDao.save(st2);
 			studenteDao.save(st3);
 			studenteDao.save(st4);
-
+			
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			ricca.setProfileImagePath("images/profileImages/ricca.png");
+			Utente spataro = new Utente("12547", "William", "Spataro", dateRicca, "SPTWLM43D23J878K", "spataro@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			spataro.setProfileImagePath("images/profileImages/spataro.JPG");
+			Utente cali = new Utente("12437", "Francesco", "Calimeri", dateRicca, "CLMFRC43D23J878K", "calimeri@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			cali.setProfileImagePath("images/profileImages/cali.jpg");
+			Utente grasso = new Utente("124547", "Giovanni", "Grasso", dateRicca, "GRSGVN43D23J878K", "grasso@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			grasso.setProfileImagePath("images/profileImages/grasso.jpg");
+			Utente leone = new Utente("12467", "Nicola", "Leone", dateRicca, "LNENCL43D23J878K", "leone@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			leone.setProfileImagePath("images/profileImages/leone.jpg");
+			Utente reale = new Utente("12448", "Kristian", "Reale", dateRicca, "RLEKRS43D23J878K", "reale@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			reale.setProfileImagePath("images/profileImages/reale.jpg");
+			Utente rullo = new Utente("12442", "Pasquale", "Rullo", dateRicca, "RLLPSQ43D23J878K", "rullo@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			rullo.setProfileImagePath("images/profileImages/rullo.jpg");
+			Utente terra = new Utente("126547", "Giorgio", "Terracina", dateRicca, "TRCGRG43D23J878K", "terracina@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			terra.setProfileImagePath("images/profileImages/terracina.jpg");
+			Utente vanbon = new Utente("124677", "John", "Van Bon", dateRicca, "VNBJHN43D23J878K", "vanbon@mat.unical.it",
+					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			vanbon.setProfileImagePath("images/profileImages/vanbon.jpg");
 			Utente perri = new Utente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			perri.setProfileImagePath("images/profileImages/simona.jpg");
 			Utente cianciaruso = new Utente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
 					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			cianciaruso.setProfileImagePath("images/profileImages/cianci.jpg");
 			Utente marino = new Utente("222", "Giuseppe", "Marino", date, "GPPMNR64Y34G764L", "marino@mat.unical.it",
 					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(ricca);
+			docenteDao.save(grasso);
+			docenteDao.save(vanbon);
+			docenteDao.save(terra);
+			docenteDao.save(spataro);
+			docenteDao.save(cali);
+			docenteDao.save(rullo);
+			docenteDao.save(leone);
+			docenteDao.save(reale);
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);
 			docenteDao.save(marino);

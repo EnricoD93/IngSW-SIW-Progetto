@@ -35,4 +35,6 @@ public interface UtenteDao {
 	public boolean iscritto(String matricola, Long codice);
 
 	public List<Utente> findColleaguesByCorsoDiLaurea(Utente utente);
+
+	public List<Utente> findAllProfessor();
 }
