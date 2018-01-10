@@ -26,7 +26,7 @@
 	rel="stylesheet">
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-	
+
 <!-- Waves Effect Css -->
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
@@ -322,8 +322,6 @@
 									class="material-icons">group</i>Colleghi</a></li>
 							<li><a href="page?request=docenti"><i
 									class="material-icons">school</i>Docenti</a></li>
-							<li><a href="javascript:void(0);"><i
-									class="material-icons">collections_bookmark</i>Esami</a></li>
 							<li role="seperator" class="divider"></li>
 							<li><a href="logout.jsp"><i class="material-icons">exit_to_app</i>Log
 									Out </a></li>
@@ -349,6 +347,15 @@
 					</a></li>
 					<li><a href="page?request=aule"> <i class="material-icons">business</i>
 							<span>Aule</span>
+					</a></li>
+					<li><a href="javascript:void(0)"> <i
+							class="material-icons">collections_bookmark</i> <span>Esami</span>
+					</a></li>
+					<li><a href="javascript:void(0)"> <i
+							class="material-icons">my_location</i> <span>Dove siamo</span>
+					</a></li>
+					<li><a href="javascript:void(0)"> <i
+							class="material-icons">info</i> <span>Chi siamo</span>
 					</a></li>
 
 
