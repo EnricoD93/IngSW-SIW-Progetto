@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Corso;
 import model.DescrizioneCorso;
@@ -19,58 +20,86 @@ import persistence.dao.DescrizioneCorsoDao;
 public class CreateCourse extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String request = req.getParameter("request");
 		String codiceCorso = req.getParameter("codice");
 		String descrizione = req.getParameter("descrizione");
 		String requisiti = req.getParameter("requisiti");
 		String materiale = req.getParameter("materiale");
-		String dataInizio=req.getParameter("dataInizio");
-		String dataFine=req.getParameter("dataFine");
-		String aula=req.getParameter("idAula");
+		String dataInizio = req.getParameter("dataInizio");
+		String dataFine = req.getParameter("dataFine");
+		String aula = req.getParameter("idAula");
 		Utente user = (Utente) req.getSession().getAttribute("currentUser");
-		String giorniLezione = "";
-		if (req.getParameter("lunedi") != null) {
-			giorniLezione += "lunedi ";
+
+		if (request.equals("create")) {
+			String giorniLezione = "";
+			if (req.getParameter("lunedi") != null) {
+				giorniLezione += "lunedi ";
+			}
+			if (req.getParameter("martedi") != null) {
+				giorniLezione += "martedi ";
+			}
+			if (req.getParameter("mercoledi") != null) {
+				giorniLezione += "mercoledi ";
+			}
+			if (req.getParameter("giovedi") != null) {
+				giorniLezione += "giovedi ";
+			}
+			if (req.getParameterValues("venerdi") != null) {
+				giorniLezione += "venerdi";
+			}
+			System.out.println("i giorni di lezione sono " + giorniLezione);
+
+			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
+			DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
+			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+			Corso c = new Corso();
+			c.setCodice(corso.getCodice());
+			c.setAnno(corso.getAnno());
+			c.setCfu(corso.getCfu());
+			c.setCorsoDiLaurea(corso.getCorsoDiLaurea());
+			c.setNome(corso.getNome());
+			c.setOreEsercitazione(corso.getOreEsercitazione());
+			c.setOreLezione(corso.getOreLezione());
+			c.setDescrizione(descrizione);
+			c.setRequisiti(requisiti);
+			c.setGiorno(giorniLezione);
+			c.setMateriale(materiale);
+			c.setDocente(user.getMatricola());
+			c.setNomeDocente(user.getNome());
+			c.setCognomeDocente(user.getCognome());
+			GiornoCalendario g = new GiornoCalendario();
+			g.parseToGiornoCalendario(g.parseToDate(dataInizio));
+			c.setDataInizio(g);
+			g = new GiornoCalendario();
+			g.parseToGiornoCalendario(g.parseToDate(dataFine));
+			c.setDataFine(g);
+
+			corsoDao.save(c);
 		}
-		if (req.getParameter("martedi") != null) {
-			giorniLezione += "martedi ";
+		System.out.println("request");
+		if (request.equals("cancel")) {
+			Utente u = (Utente) session.getAttribute("currentUser");
+			String typedPassword = req.getParameter("typedPassword");
+			String matricola = req.getParameter("matricola");
+			Long codice = Long.parseLong(req.getParameter("codice"));
+			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+			Corso c = corsoDao.findByPrimaryKey(codice);
+			if (u.getPassword().equals(typedPassword)) {
+				if (request.equals("iscrizione")) {
+					System.out.println(u.getMatricola()+" "+c.getDocente());
+					if (!u.getMatricola().equals(c.getDocente())) {
+						System.out.println("Ok");
+						resp.setStatus(405);
+						return;
+					} else {
+						corsoDao.delete(c);
+					}
+				}
+			} else {
+				resp.setStatus(401);
+			}
 		}
-		if (req.getParameter("mercoledi") != null) {
-			giorniLezione += "mercoledi ";
-		}
-		if (req.getParameter("giovedi") != null) {
-			giorniLezione += "giovedi ";
-		}
-		if (req.getParameterValues("venerdi") != null) {
-			giorniLezione += "venerdi";
-		}
-		System.out.println("i giorni di lezione sono "+ giorniLezione);
-		
-		DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
-		DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
-		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-		Corso c = new Corso();
-		c.setCodice(corso.getCodice());
-		c.setAnno(corso.getAnno());
-		c.setCfu(corso.getCfu());
-		c.setCorsoDiLaurea(corso.getCorsoDiLaurea());
-		c.setNome(corso.getNome());
-		c.setOreEsercitazione(corso.getOreEsercitazione());
-		c.setOreLezione(corso.getOreLezione());
-		c.setDescrizione(descrizione);
-		c.setRequisiti(requisiti);
-		c.setGiorno(giorniLezione);
-		c.setMateriale(materiale);
-		c.setDocente(user.getMatricola());
-		c.setNomeDocente(user.getNome());
-		c.setCognomeDocente(user.getCognome());
-		GiornoCalendario g= new GiornoCalendario();
-		g.parseToGiornoCalendario(g.parseToDate(dataInizio));
-		c.setDataInizio(g);
-		g= new GiornoCalendario();
-		g.parseToGiornoCalendario(g.parseToDate(dataFine));
-		c.setDataFine(g);
-		
-		corsoDao.save(c);
 		req.getRequestDispatcher("home.jsp").forward(req, resp);
 	}
 }

@@ -29,7 +29,7 @@
 								<h2 style="color: white;">Crea un Corso</h2>
 							</div>
 							<div class="body">
-								<form id="form_validation" method="POST" action="createCourse">
+								<form id="form_validation" method="POST" action="createCourse?request=create">
 									<div class="input-group">
 										<span class="input-group-addon"> Selezionare il Corso
 											da creare </span> <select class="selectpicker show-tick" name="codice"

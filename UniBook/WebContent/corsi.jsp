@@ -51,7 +51,15 @@
 											<button type="button"
 												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 												style="margin-left: 39px;"
-												onclick="javascript:confermaEliminaStudente(${currentUser.matricola},${corso.codice});">
+												onclick="javascript:confermaElimina(${currentUser.matricola},${corso.codice});">
+												<i class="material-icons">clear</i>
+
+											</button>
+										</c:if> <c:if test="${currentUser.ruolo==1 }">
+											<button type="button"
+												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+												style="margin-left: 39px;"
+												onclick="javascript:confermaEliminaCorso(${currentUser.matricola},${corso.codice});">
 												<i class="material-icons">clear</i>
 
 											</button>

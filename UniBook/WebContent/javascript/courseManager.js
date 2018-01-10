@@ -23,7 +23,6 @@ function iscriviStudente(codice, matricola) {
 				window.location.href="page?request=corso&id="+codice;
 			},
 			error : function(data) {
-				alert(data.status);
 				if (data.status === 405) {
 					swal("Risulti già iscritto a questo corso", "", "error");
 				}
@@ -36,7 +35,7 @@ function iscriviStudente(codice, matricola) {
 	});
 };
 
-function confermaEliminaStudente(matricola, codice) {
+function confermaElimina(matricola, codice) {
 	swal(
 			{
 				title : "Inserisci la tua password per confermare la cancellazione:",
@@ -68,6 +67,47 @@ function confermaEliminaStudente(matricola, codice) {
 										"Non risulti iscritto a questo corso",
 										"Non puoi cancellarti da un corso al quale non sei iscritto",
 										"error");
+							}
+
+						});
+			});
+
+};
+
+function confermaEliminaCorso(matricola, codice) {
+	swal(
+			{
+				title : "Inserisci la tua password per confermare la cancellazione:",
+				type : "input",
+				inputType : "password",
+				showCancelButton : true,
+				closeOnConfirm : false
+			},
+			function(typedPassword) {
+				$
+						.ajax({
+							type : "POST",
+							url : "createCourse",
+							datatype : 'text',
+							data : {
+								codice : codice,
+								matricola : matricola,
+								typedPassword : typedPassword,
+								request : "cancel"
+							},
+							success : function(data) {
+								swal(
+										"Eliminazione avvenuta",
+										"Il corso è stato cancellata con successo.",
+										"success");
+							},
+							error : function(data) {
+								if (data.status === 405) {
+									swal("Non sei il titolare di questo corso", "Non puoi cancellare un corso del quale non sei titolare", "error");
+								}
+								if (data.status === 401) {
+									swal("Password errata!", "Riprova.\n", "error");
+								}
 							}
 
 						});
