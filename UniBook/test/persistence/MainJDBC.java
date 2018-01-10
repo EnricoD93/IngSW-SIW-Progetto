@@ -110,8 +110,7 @@ public class MainJDBC {
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);
 			docenteDao.save(marino);
-			// CalendarioPersonale calendarioPersonaleSt = new
-			// CalendarioPersonale(st.getMatricola());
+			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(st.getMatricola());
 			// CalendarioPersonale calendarioPersonaleRicca = new
 			// CalendarioPersonale(ricca.getMatricola());
 			// CalendarioPersonale calendarioPersonalePerri = new
@@ -120,9 +119,8 @@ public class MainJDBC {
 			// CalendarioPersonale(cianciaruso.getMatricola());
 			// CalendarioPersonale calendarioPersonaleMarino = new
 			// CalendarioPersonale(marino.getMatricola());
-			// CalendarioPersonaleDao calendarioPersonaleDao =
-			// factory.getCalendarioPersonaleDAO();
-			// calendarioPersonaleDao.save(calendarioPersonaleSt);
+			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
+			calendarioPersonaleDao.save(calendarioPersonaleSt);
 			// calendarioPersonaleDao.save(calendarioPersonaleRicca);
 			// calendarioPersonaleDao.save(calendarioPersonalePerri);
 			// calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
@@ -188,20 +186,20 @@ public class MainJDBC {
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
 
-			GiornoCalendario dataI=new GiornoCalendario(2,10,2017);
-			GiornoCalendario dataF=new GiornoCalendario(10,1,2018);
+			GiornoCalendario dataI = new GiornoCalendario(2, 10, 2017);
+			GiornoCalendario dataF = new GiornoCalendario(10, 1, 2018);
 			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software", "Lunedi e Mercoledi",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					48, 48, "link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
-					ricca.getCognome(), ricca.getNome(),dataI,dataF);
+					ricca.getCognome(), ricca.getNome(), dataI, dataF);
 			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
 					"Lunedi e Giovedi", "Corso Avanzato di Informatica", "Fondamenti di Informatica", 48, 48,
 					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
-					ricca.getCognome(), ricca.getNome(),dataI,dataF);
+					ricca.getCognome(), ricca.getNome(), dataI, dataF);
 			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
 					"Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome(),dataI,dataF);
+					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome(), dataI, dataF);
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoGeometria);
 			corsoDao.save(corsoIngegneriaSW);
@@ -216,9 +214,9 @@ public class MainJDBC {
 
 			// controlla qua
 
-			 Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), date, 8.30  , 10.30, aulaMT5.getId(),"lezione");
-			 LezioneDao lezioneDao = factory.getLezioneDAO();
-			 lezioneDao.save(lezione);
+			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), date, 8.30, 10.30, aulaMT5.getId(), "lezione");
+			LezioneDao lezioneDao = factory.getLezioneDAO();
+			lezioneDao.save(lezione);
 			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			messaggioDao.save(messaggio);
@@ -256,7 +254,7 @@ public class MainJDBC {
 			e.printStackTrace();
 		}
 
-		// FUNCTIONAAAAAA!
+// FUNCTIONAAAAAA!
 		// Da register.java non lo so provare :)
 	}
 

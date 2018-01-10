@@ -95,7 +95,7 @@ public class GiornoCalendario {
 		default:
 			break;
 		}
-		
+
 		Calendar g = new java.util.GregorianCalendar(Integer.parseInt(info[3]), Integer.parseInt(info[2]),
 				Integer.parseInt(info[1]));
 		return new Date(g.getTime().getTime());
@@ -104,20 +104,52 @@ public class GiornoCalendario {
 	public void parseToGiornoCalendario(Date d) {
 		Calendar g = new GregorianCalendar();
 		g.setTime(d);
-		giorno=g.get(Calendar.DAY_OF_MONTH);
-		mese=g.get(Calendar.MONTH) + 1;
-		anno=g.get(Calendar.YEAR);
+		giorno = g.get(Calendar.DAY_OF_MONTH);
+		mese = g.get(Calendar.MONTH) + 1;
+		anno = g.get(Calendar.YEAR);
 		giornoDellaSettimana = giorniIt[(g.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
 	}
-public Date GiornoCalendarioToDate() {
-	Calendar g = new java.util.GregorianCalendar(getAnno(), getMese(),getGiorno());
-	return new Date(g.getTime().getTime());
-}
+
+	public Date GiornoCalendarioToDate() {
+		Calendar g = new java.util.GregorianCalendar(getAnno(), getMese(), getGiorno());
+		return new Date(g.getTime().getTime());
+	}
+
 	public void stampa() {
-		System.out.println(giorno + "/" + mese + "/" + anno + " è " +giornoDellaSettimana);
+		System.out.println(giorno + "/" + mese + "/" + anno + " è " + giornoDellaSettimana);
 	}
 
 	public void setGiornoDellaSettimana(String giornoDellaSettimana) {
 		this.giornoDellaSettimana = giornoDellaSettimana;
+	}
+
+	public GiornoCalendario next() {
+		CalendarioPersonale c = new CalendarioPersonale();
+		int maxGiorni = 0;
+		int var = 0;
+			if (mese == 4 || mese == 6 || mese == 9 || mese == 11) 
+				maxGiorni = 30;
+			 else if (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese== 8 || mese == 10 || mese == 12) 
+				maxGiorni = 31;
+			 else if (c.bisestile(anno)) 
+				maxGiorni = 29;
+			 else 
+				maxGiorni = 28;
+			
+		System.out.println(maxGiorni);
+		if (mese == 12 && giorno == maxGiorni) {
+			anno++;
+			giorno = 1;
+			mese = 1;
+		}
+
+		else if (giorno < maxGiorni) {
+			giorno++;
+		} else {
+			mese++;
+			giorno = 1;
+		}
+		System.out.println("il giorno successivo è " + giorno + "/" + mese + "/" + anno);
+		return this;
 	}
 }

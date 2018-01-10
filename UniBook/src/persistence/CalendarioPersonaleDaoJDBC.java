@@ -22,7 +22,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 		try {
 			String insert = "insert into calendariopersonale(matricola) values (?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-//			statement.setString(1, calendarioPersonale.getUtente());
+			statement.setString(1, calendarioPersonale.getMatricola());
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -37,17 +37,17 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 	}
 
 	@Override
-	public CalendarioPersonale findByPrimaryKey(String utente) {
+	public CalendarioPersonale findByPrimaryKey(String matricola) {
 		Connection connection = this.dataSource.getConnection();
 		CalendarioPersonale calendarioPersonale = null;
 		try {
 			String query = "select * from calendariopersonale where matricola = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
+			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				calendarioPersonale = new CalendarioPersonale();
-//				calendarioPersonale.setUtente(result.getString("matricola"));
+				calendarioPersonale= new CalendarioPersonale();
+				calendarioPersonale.setMatricola(result.getString("matricola"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -79,7 +79,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 		try {
 			String delete = "delete FROM calendariopersonale WHERE matricola = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-//			statement.setString(1, calendarioPersonale.getUtente());
+			statement.setString(1, calendarioPersonale.getMatricola());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
