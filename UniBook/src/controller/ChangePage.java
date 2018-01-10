@@ -97,12 +97,15 @@ public class ChangePage extends HttpServlet {
 				UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 				List<Utente> colleghi;
 				colleghi=utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
-				for (Utente utente : colleghi) {
-					System.out.println(utente.getMatricola());
-				}
 				req.setAttribute("colleghi", colleghi);
 				req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
-
+		}
+		if(request.equals("docenti")) {
+			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			List<Utente> docenti;
+			docenti=utenteDao.findAllProfessor();
+			req.setAttribute("docenti", docenti);
+			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
 		}
 	}
 

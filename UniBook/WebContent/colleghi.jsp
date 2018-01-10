@@ -9,32 +9,38 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<div class="body">
-				<div class="corsiTitle" align="center">Colleghi</div>
+				<div class="corsiTitle" align="center">Colleghi</div> <br>
 				<div id="aule">
 					<div class="row clearfix">
 						<c:forEach var="collega" items="${colleghi}">
-							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-								<div class="card">
-									<div class="header bg-unibook">
-										<h2 class="col-white">${collega.matricola}</h2>
-									</div>
-									<div class="body">
-										<a href="page?request=profilo&id=${collega.matricola}">
-											<div class="profile-pic-xs"
-												style="background-image: url('${collega.profileImagePath}')"></div>
-										</a> <b>Nome : </b> ${collega.nome}<br> <b>Cognome : </b>
-										${collega.cognome}
-									</div>
+							<div class="col-xs-2" style="min-width: 170px">
+								<a href="page?request=profilo&id=${collega.matricola}">
+									<div class="card">
+										<div class="header bg-unibook" style="padding: 10px">
+											<h2 align="center" class="col-white">${collega.cognome}&thinsp;${collega.nome}
+											</h2>
+										</div>
+										<div align="center" class="body">
+											<div class="image">
+												<div class="profile-pic-s"
+													style="background-image: url('${collega.profileImagePath}')">
+												</div>
+											</div>
+								<div align="center">
+									<b>Matricola: </b> <br> ${collega.matricola}
 								</div>
 							</div>
-						</c:forEach>
-
 					</div>
-
+					</a>
 				</div>
+				</c:forEach>
+
 			</div>
-			<br>
+
 		</div>
+	</div>
+	<br>
+	</div>
 	</div>
 </section>
 

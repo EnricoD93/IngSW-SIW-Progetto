@@ -320,7 +320,7 @@
 							<li role="seperator" class="divider"></li>
 							<li><a href="page?request=colleghi"><i
 									class="material-icons">group</i>Colleghi</a></li>
-							<li><a href="javascript:void(0);"><i
+							<li><a href="page?request=docenti"><i
 									class="material-icons">school</i>Docenti</a></li>
 							<li><a href="javascript:void(0);"><i
 									class="material-icons">collections_bookmark</i>Esami</a></li>

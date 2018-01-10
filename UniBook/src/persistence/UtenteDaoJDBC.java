@@ -89,8 +89,40 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public List<Utente> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Utente> utenti;
+		try {
+			String query = "select * from utente";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			utenti = new ArrayList<>();
+			Utente utente;
+			while (result.next()) {
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+				utenti.add(utente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return utenti;
 	}
 
 	@Override
@@ -415,6 +447,45 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 		return colleagues;
+	}
+
+	@Override
+	public List<Utente> findAllProfessor() {
+		Connection connection = this.dataSource.getConnection();
+		List<Utente> docenti;
+		try {
+			String query = "select * from utente where ruolo = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, 1);
+			ResultSet result = statement.executeQuery();
+			docenti = new ArrayList<>();
+			Utente utente;
+			while (result.next()) {
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+				docenti.add(utente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return docenti;
 	}
 
 }
