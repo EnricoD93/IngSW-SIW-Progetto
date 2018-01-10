@@ -32,38 +32,96 @@ public class CreateCourse extends HttpServlet {
 		String dataInizio = req.getParameter("dataInizio");
 		String dataFine = req.getParameter("dataFine");
 		Utente user = (Utente) req.getSession().getAttribute("currentUser");
-		String aulaLun = req.getParameter("idAula_1");
-		String aulaMar = req.getParameter("idAula_2");
-		String aulaMer = req.getParameter("idAula_3");
-		String aulaGio = req.getParameter("idAula_4");
-		String aulaVen = req.getParameter("idAula_5");
-double oraInizioLun=Double.parseDouble(req.getParameter("oraInizioLun"));		
-
+		Lezione lunedì = null;
+		Lezione martedì = null;
+		Lezione mercoledì = null;
+		Lezione giovedì = null;
+		Lezione venerdì = null;
+		ArrayList<Lezione> lezioni = new ArrayList<>();
 		if (request.equals("create")) {
 			String giorniLezione = "";
 			if (req.getParameter("lunedi") != null) {
 				giorniLezione += "lunedi ";
+				String aulaLun = req.getParameter("idAula_1");
+				double oraInizioLun = convert(req.getParameter("oraInizioLun"));
+				double oraFineLun = convert(req.getParameter("oraFineLun"));
+				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Lunedì");
+				lunedì = new Lezione(Long.parseLong(codiceCorso), g, oraInizioLun, oraFineLun, aulaLun, 0);
 			}
 			if (req.getParameter("martedi") != null) {
 				giorniLezione += "martedi ";
+				String aulaMar = req.getParameter("idAula_2");
+				double oraInizioMar = convert(req.getParameter("oraInizioMar"));
+				double oraFineMar = convert(req.getParameter("oraFineMar"));
+				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Martedì");
+				martedì = new Lezione(Long.parseLong(codiceCorso), g, oraInizioMar, oraFineMar, aulaMar, 0);
 			}
 			if (req.getParameter("mercoledi") != null) {
+				String aulaMer = req.getParameter("idAula_3");
+				double oraInizioMer = convert(req.getParameter("oraInizioMer"));
+				double oraFineMer = convert(req.getParameter("oraFineMer"));
+				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Mercoledì");
+				mercoledì = new Lezione(Long.parseLong(codiceCorso), g, oraInizioMer, oraFineMer, aulaMer, 0);
 				giorniLezione += "mercoledi ";
 			}
 			if (req.getParameter("giovedi") != null) {
+				System.out.println("giovedì è spuntato");
+				String aulaGio = req.getParameter("idAula_4");
+				double oraInizioGio = convert(req.getParameter("oraInizioGio"));
+				double oraFineGio = convert(req.getParameter("oraFineGio"));
+				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Giovedì");
+				giovedì = new Lezione(Long.parseLong(codiceCorso), g, oraInizioGio, oraFineGio, aulaGio, 0);
 				giorniLezione += "giovedi ";
 			}
 			if (req.getParameterValues("venerdi") != null) {
+				String aulaVen = req.getParameter("idAula_3");
+				double oraInizioVen = convert(req.getParameter("oraInizioVen"));
+				double oraFineVen = convert(req.getParameter("oraFineVen"));
+				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Venerdì");
+				venerdì = new Lezione(Long.parseLong(codiceCorso), g, oraInizioVen, oraFineVen, aulaVen, 0);
 				giorniLezione += "venerdi";
 			}
-			System.out.println("i giorni di lezione sono " + giorniLezione);
-			CalendarioPersonale cal= new CalendarioPersonale();
-			GiornoCalendario g= new GiornoCalendario();
-			GiornoCalendario inizio= new GiornoCalendario();
-			GiornoCalendario fine= new GiornoCalendario();
-		inizio.parseToGiornoCalendario(g.parseToDate(dataInizio));
-		fine.parseToGiornoCalendario(g.parseToDate(dataFine));
-			ArrayList<Lezione> lezioni= cal.getLezioniCorso(Long.parseLong(codiceCorso),inizio,fine,giorniLezione,aulaLun,0,oraInizioLun,oraInizioLun);
+			CalendarioPersonale cal = new CalendarioPersonale();
+			GiornoCalendario g = new GiornoCalendario();
+			GiornoCalendario inizio = new GiornoCalendario();
+			GiornoCalendario fine = new GiornoCalendario();
+			inizio.parseToGiornoCalendario(g.parseToDate(dataInizio));
+			inizio.stampa();
+			fine.parseToGiornoCalendario(g.parseToDate(dataFine));
+			fine.stampa();
+
+			if (lunedì != null) {
+				lezioni.addAll(
+						cal.getLezioniCorso(lunedì.getCorso(), inizio, fine, lunedì.getData().getGiornoDellaSettimana(),
+								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine()));
+			}
+			if (martedì != null) {
+				lezioni.addAll(
+						cal.getLezioniCorso(martedì.getCorso(), inizio, fine, martedì.getData().getGiornoDellaSettimana(),
+								martedì.getAula(), 0, martedì.getOraInizio(), martedì.getOraFine()));
+			}
+			if (mercoledì != null) {
+				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine, mercoledì.getData().getGiornoDellaSettimana(),
+								mercoledì.getAula(), 0, mercoledì.getOraInizio(), mercoledì.getOraFine()));
+			}
+			if (giovedì != null) {
+				lezioni.addAll(
+						cal.getLezioniCorso(giovedì.getCorso(), inizio, fine, giovedì.getData().getGiornoDellaSettimana(),
+								giovedì.getAula(), 0, giovedì.getOraInizio(), giovedì.getOraFine()));
+				System.out.println("la size di lezioni è "+ lezioni.size());
+			}
+			if (venerdì != null) {
+				lezioni.addAll(
+						cal.getLezioniCorso(venerdì.getCorso(), inizio, fine, venerdì.getData().getGiornoDellaSettimana(),
+								venerdì.getAula(), 0, venerdì.getOraInizio(), venerdì.getOraFine()));
+			}
+			for (int i = 0; i < lezioni.size(); i++)
+				lezioni.get(i).getData().stampa();
 			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 			DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
@@ -99,16 +157,26 @@ double oraInizioLun=Double.parseDouble(req.getParameter("oraInizioLun"));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			Corso c = corsoDao.findByPrimaryKey(codice);
 			if (u.getPassword().equals(typedPassword)) {
-					if (!u.getMatricola().equals(c.getDocente())) {
-						resp.setStatus(405);
-						return;
-					} else {
-						corsoDao.delete(c);
-					}
+				if (!u.getMatricola().equals(c.getDocente())) {
+					resp.setStatus(405);
+					return;
+				} else {
+					corsoDao.delete(c);
+				}
 			} else {
 				resp.setStatus(401);
 			}
 		}
 		req.getRequestDispatcher("home.jsp").forward(req, resp);
 	}
+
+	public double convert(String s) {
+		String[] num = s.split(":");
+		double intero = Double.parseDouble(num[0]);
+		double decimale = Double.parseDouble(num[1]);
+		double n = intero + decimale / 100;
+		return n;
+
+	}
+
 }

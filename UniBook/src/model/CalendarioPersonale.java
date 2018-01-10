@@ -33,16 +33,19 @@ public class CalendarioPersonale {
 		this.lezioni = lezioni;
 	}
 
-	public ArrayList<Lezione> getLezioniCorso(Long codice,GiornoCalendario inizio, GiornoCalendario fine, String giorniLezione,String aula, int tipo,double oraInizio,double oraFine) {
+	public ArrayList<Lezione> getLezioniCorso(Long codice, GiornoCalendario inizio, GiornoCalendario fine,
+			String giorniLezione, String aula, int tipo, double oraInizio, double oraFine) {
 		ArrayList<Lezione> lez = new ArrayList<>();
-		String[] giorniLez = getGiorniLezioni(giorniLezione);
-		for (GiornoCalendario i = inizio; i != fine; i.next()) {
-			for (int j = 0; j < giorniLez.length; j++)
-				if (i.getGiornoDellaSettimana() == giorniLez[j]) {
-					lez.add(new Lezione(codice,i,oraInizio,oraFine,aula,tipo));
+		GiornoCalendario i= new GiornoCalendario(inizio.giorno, inizio.mese,inizio.anno);
+		System.out.println("il giorno che gli passo è "+giorniLezione);
+			for ( ; i.diverso(fine); i.next()) {
+					if (i.getGiornoDellaSettimana().equals(giorniLezione)) {
+						System.out.println(i.getGiornoDellaSettimana() + "==" + giorniLezione);
+						lez.add(new Lezione(codice, new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno()),
+								oraInizio, oraFine, aula, tipo));
+					}
 				}
-
-		}
+		
 		return lez;
 	}
 

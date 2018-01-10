@@ -90,7 +90,7 @@
 									<div class="hidden" id="orarioGiorniLunedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Lunedì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="time">
+												class="selectpicker" tabindex="-98" name="oraInizioLun">
 
 												<option value="08:30">08:30</option>
 												<option value="09:30">09:30</option>
@@ -104,7 +104,7 @@
 												<option value="18:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98" name="time">
+											</span> <select class="selectpicker" tabindex="-98" name="oraFineLun">
 
 												<option value="09:30">09:30</option>
 												<option value="10:30">10:30</option>
@@ -128,7 +128,7 @@
 												for="esercitazione_1" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
 												class="show-tick selectpicker" tabindex="-98"
-												name="idAula_1" required>
+												name="idAula_1" >
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>
@@ -141,7 +141,7 @@
 									<div class="hidden" id="orarioGiorniMartedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Martedì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="time">
+												class="selectpicker" tabindex="-98" name="oraInizioMar">
 
 												<option value="08:30">08:30</option>
 												<option value="09:30">09:30</option>
@@ -155,7 +155,7 @@
 												<option value="18:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98" name="time">
+											</span> <select class="selectpicker" tabindex="-98" name="oraFineMar">
 
 												<option value="09:30">09:30</option>
 												<option value="10:30">10:30</option>
@@ -179,7 +179,7 @@
 												for="esercitazione_2" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
 												class="show-tick selectpicker" tabindex="-98"
-												name="idAula_2" required>
+												name="idAula_2" >
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>
@@ -192,7 +192,7 @@
 									<div class="hidden" id="orarioGiorniMercoledì">
 										<div class="input-group">
 											<span class="input-group-addon"> Mercoledì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="time">
+												class="selectpicker" tabindex="-98" name="oraInizioMer">
 
 												<option value="08:30">08:30</option>
 												<option value="09:30">09:30</option>
@@ -206,7 +206,7 @@
 												<option value="18:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98" name="time">
+											</span> <select class="selectpicker" tabindex="-98" name="oraFineMer">
 
 												<option value="09:30">09:30</option>
 												<option value="10:30">10:30</option>
@@ -230,7 +230,7 @@
 												for="esercitazione_3" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
 												class="show-tick selectpicker" tabindex="-98"
-												name="idAula_3" required>
+												name="idAula_3" >
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>
@@ -243,7 +243,7 @@
 									<div class="hidden" id="orarioGiorniGiovedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Giovedì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="time">
+												class="selectpicker" tabindex="-98" name="oraInizioGio">
 
 												<option value="08:30">08:30</option>
 												<option value="09:30">09:30</option>
@@ -257,7 +257,7 @@
 												<option value="18:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98" name="time">
+											</span> <select class="selectpicker" tabindex="-98" name="oraFineGio">
 
 												<option value="09:30">09:30</option>
 												<option value="10:30">10:30</option>
@@ -281,7 +281,7 @@
 												for="esercitazione_4" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
 												class="show-tick selectpicker" tabindex="-98"
-												name="idAula_4" required>
+												name="idAula_4" >
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>
@@ -294,7 +294,7 @@
 									<div class="hidden" id="orarioGiorniVenerdì">
 										<div class="input-group">
 											<span class="input-group-addon"> Venerdì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="time">
+												class="selectpicker" tabindex="-98" name="oraInizioVen">
 
 												<option value="08:30">08:30</option>
 												<option value="09:30">09:30</option>
@@ -308,7 +308,7 @@
 												<option value="18:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98" name="time">
+											</span> <select class="selectpicker" tabindex="-98" name="oraFineVen">
 
 												<option value="09:30">09:30</option>
 												<option value="10:30">10:30</option>
@@ -332,7 +332,7 @@
 												for="esercitazione_5" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
 												class="show-tick selectpicker" tabindex="-98"
-												name="idAula_5" required>
+												name="idAula_5" >
 												<c:forEach var="aula" items="${listaAule}">
 													<option value="${aula.id}">Aula ${aula.id}</option>
 												</c:forEach>

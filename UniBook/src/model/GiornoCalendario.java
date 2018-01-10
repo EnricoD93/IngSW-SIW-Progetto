@@ -10,7 +10,7 @@ public class GiornoCalendario {
 	int mese;
 	int anno;
 	String giornoDellaSettimana;
-	String[] giorniIt = { "DOMENICA", "LUNEDI", "MARTEDI", "MERCOLEDI", "GIOVEDI", "VENERDI", "SABATO" };
+	String[] giorniIt = { "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato" };
 
 	public int getGiorno() {
 		return giorno;
@@ -44,8 +44,9 @@ public class GiornoCalendario {
 		this.giorno = g;
 		this.mese = m;
 		this.anno = a;
-		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(g, m, a);
+		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(a, m-1, g);
 		giornoDellaSettimana = giorniIt[(gc3.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
+		System.out.println("sto creando il giorno con giorno della settimana "+ giornoDellaSettimana);
 	}
 
 	public GiornoCalendario() {
@@ -127,16 +128,15 @@ public class GiornoCalendario {
 		CalendarioPersonale c = new CalendarioPersonale();
 		int maxGiorni = 0;
 		int var = 0;
-			if (mese == 4 || mese == 6 || mese == 9 || mese == 11) 
-				maxGiorni = 30;
-			 else if (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese== 8 || mese == 10 || mese == 12) 
-				maxGiorni = 31;
-			 else if (c.bisestile(anno)) 
-				maxGiorni = 29;
-			 else 
-				maxGiorni = 28;
-			
-		System.out.println(maxGiorni);
+		if (mese == 4 || mese == 6 || mese == 9 || mese == 11)
+			maxGiorni = 30;
+		else if (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10 || mese == 12)
+			maxGiorni = 31;
+		else if (c.bisestile(anno))
+			maxGiorni = 29;
+		else
+			maxGiorni = 28;
+
 		if (mese == 12 && giorno == maxGiorni) {
 			anno++;
 			giorno = 1;
@@ -149,7 +149,34 @@ public class GiornoCalendario {
 			mese++;
 			giorno = 1;
 		}
-		System.out.println("il giorno successivo è " + giorno + "/" + mese + "/" + anno);
+		switch (giornoDellaSettimana) {
+		case "Lunedì":
+			giornoDellaSettimana = "Martedì";
+			break;
+		case "Martedì":
+			giornoDellaSettimana = "Mercoledì";
+			break;
+		case "Mercoledì":
+			giornoDellaSettimana = "Giovedì";
+			break;
+		case "Giovedì":
+			giornoDellaSettimana = "Venerdì";
+			break;
+		case "Venerdì":
+			giornoDellaSettimana = "Sabato";
+			break;
+		case "Sabato":
+			giornoDellaSettimana = "Domenica";
+			break;
+		case "Domenica":
+			giornoDellaSettimana = "Lunedì";
+		}
 		return this;
+	}
+
+	public boolean diverso(GiornoCalendario fine) {
+		if (giorno == fine.giorno && mese == fine.mese && anno == fine.anno)
+			return false;
+		return true;
 	}
 }
