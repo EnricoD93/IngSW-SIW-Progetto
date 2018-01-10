@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Corso;
+import model.CorsoDiLaurea;
 import model.Utente;
 import persistence.dao.UtenteDao;
 
@@ -125,8 +126,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso, corsodilaurea,utente where corso.corsodilaurea=corsodilaurea.codice\r\n"
-					+ "AND utente.matricola=?\r\n" 
-					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n";
+					+ "AND utente.matricola=?\r\n" + "AND utente.corsodilaurea=corsodilaurea.codice\r\n";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -211,7 +211,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void iscriviStudente(String matricola, Long codice) {
-		System.out.println("iscrivo lo studente "+ matricola +" al corso "+ codice);
+		System.out.println("iscrivo lo studente " + matricola + " al corso " + codice);
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into iscritto(codice,matricola) values (?,?)";
@@ -348,7 +348,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return utente;		
+		return utente;
 	}
 
 	@Override
@@ -361,7 +361,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setLong(2, codice);
 			ResultSet result = statement.executeQuery();
 			if (!result.next()) {
-			return false;
+				return false;
 
 			}
 		} catch (SQLException e) {
@@ -376,5 +376,45 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return true;
 	}
 
+	@Override
+	public List<Utente> findColleaguesByCorsoDiLaurea(Utente u) {
+		Connection connection = this.dataSource.getConnection();
+		List<Utente> colleagues;
+		try {
+			String query = "select * from utente where corsodilaurea = ? AND ruolo = ? AND matricola != ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, u.getCorsoDiLaurea());
+			statement.setInt(2, u.getRuolo());
+			statement.setString(3,u.getMatricola());
+			ResultSet result = statement.executeQuery();
+			colleagues = new ArrayList<>();
+			Utente utente;
+			while (result.next()) {
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+				colleagues.add(utente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return colleagues;
+	}
 
 }

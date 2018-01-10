@@ -8,15 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import model.Aula;
 import model.Corso;
+import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;
+import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.UtenteDao;
 
@@ -91,6 +92,17 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("listaCorsi", listaCorsi);
 			req.setAttribute("listaAule", listaAule);
 			req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
+		}
+		if(request.equals("colleghi")) {
+				UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+				List<Utente> colleghi;
+				colleghi=utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
+				for (Utente utente : colleghi) {
+					System.out.println(utente.getMatricola());
+				}
+				req.setAttribute("colleghi", colleghi);
+				req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
+
 		}
 	}
 

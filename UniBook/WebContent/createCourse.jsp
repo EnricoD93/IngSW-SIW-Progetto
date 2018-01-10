@@ -29,11 +29,12 @@
 								<h2 style="color: white;">Crea un Corso</h2>
 							</div>
 							<div class="body">
-								<form id="form_validation" method="POST" action="createCourse?request=create">
+								<form id="form_validation" method="POST"
+									action="createCourse?request=create">
 									<div class="input-group">
 										<span class="input-group-addon"> Selezionare il Corso
-											da creare </span> <select class="selectpicker show-tick" name="codice"
-											data-live-search="true" tabindex="-98" required>
+											da creare </span> <select class="selectpicker show-tick"
+											name="codice" data-live-search="true" tabindex="-98" required>
 											<c:forEach var="corso" items="${listaCorsi}">
 												<option value="${corso.codice}">Cod.
 													${corso.codice} &nbsp; - &nbsp; ${corso.nome}</option>
@@ -47,8 +48,8 @@
 									<div class="form-group">
 										<div class="form-line">
 											<label for="dataInizio">Selezionare la data di inizio
-												corso</label> &nbsp; <input id="dataInizio" name="dataInizio" type="text"
-												class="datepicker form-control"
+												corso</label> &nbsp; <input id="dataInizio" name="dataInizio"
+												type="text" class="datepicker form-control"
 												placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 												required>
 										</div>
@@ -57,8 +58,8 @@
 									<div class="form-group">
 										<div class="form-line">
 											<label for="dataFine">Selezionare la data di fine
-												corso</label> &nbsp; <input id="dataFine" name="dataFine" type="text"
-												class="datepicker form-control"
+												corso</label> &nbsp; <input id="dataFine" name="dataFine"
+												type="text" class="datepicker form-control"
 												placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 												required>
 										</div>
@@ -81,7 +82,7 @@
 											type="checkbox" id="md_checkbox_4" name="giovedi"
 											onclick="getOrarioGiovedì()"> <label
 											for="md_checkbox_4"> Giovedì</label> &nbsp; <input
-											type="checkbox" id="md_checkbox_5" name="venerdi" 
+											type="checkbox" id="md_checkbox_5" name="venerdi"
 											onclick="getOrarioVenerdì()"> <label
 											for="md_checkbox_5"> Venerdì</label>
 									</div>
@@ -125,6 +126,15 @@
 												name="tipolezione_1" id="esercitazione_1"
 												class="radio-col-unibook"> <label
 												for="esercitazione_1" class="m-l-20">Esercitazione</label></span>&nbsp;
+											<span class="input-group-addon"> Aula: </span> <select
+												class="show-tick selectpicker" tabindex="-98"
+												name="idAula_1" required>
+												<c:forEach var="aula" items="${listaAule}">
+													<option value="${aula.id}">Aula ${aula.id}</option>
+												</c:forEach>
+											</select>
+
+
 										</div>
 									</div>
 									<!-- Orario Martedì -->
@@ -167,6 +177,15 @@
 												name="tipolezione_2" id="esercitazione_2"
 												class="radio-col-unibook"> <label
 												for="esercitazione_2" class="m-l-20">Esercitazione</label></span>&nbsp;
+											<span class="input-group-addon"> Aula: </span> <select
+												class="show-tick selectpicker" tabindex="-98"
+												name="idAula_2" required>
+												<c:forEach var="aula" items="${listaAule}">
+													<option value="${aula.id}">Aula ${aula.id}</option>
+												</c:forEach>
+											</select>
+
+
 										</div>
 									</div>
 									<!-- Orario Mercoledì -->
@@ -209,6 +228,15 @@
 												name="tipolezione_3" id="esercitazione_3"
 												class="radio-col-unibook"> <label
 												for="esercitazione_3" class="m-l-20">Esercitazione</label></span>&nbsp;
+											<span class="input-group-addon"> Aula: </span> <select
+												class="show-tick selectpicker" tabindex="-98"
+												name="idAula_3" required>
+												<c:forEach var="aula" items="${listaAule}">
+													<option value="${aula.id}">Aula ${aula.id}</option>
+												</c:forEach>
+											</select>
+
+
 										</div>
 									</div>
 									<!-- Orario Giovedì -->
@@ -251,6 +279,15 @@
 												name="tipolezione_4" id="esercitazione_4"
 												class="radio-col-unibook"> <label
 												for="esercitazione_4" class="m-l-20">Esercitazione</label></span>&nbsp;
+											<span class="input-group-addon"> Aula: </span> <select
+												class="show-tick selectpicker" tabindex="-98"
+												name="idAula_4" required>
+												<c:forEach var="aula" items="${listaAule}">
+													<option value="${aula.id}">Aula ${aula.id}</option>
+												</c:forEach>
+											</select>
+
+
 										</div>
 									</div>
 									<!-- Orario Venerdì -->
@@ -293,25 +330,21 @@
 												name="tipolezione_5" id="esercitazione_5"
 												class="radio-col-unibook"> <label
 												for="esercitazione_5" class="m-l-20">Esercitazione</label></span>&nbsp;
+											<span class="input-group-addon"> Aula: </span> <select
+												class="show-tick selectpicker" tabindex="-98"
+												name="idAula_5" required>
+												<c:forEach var="aula" items="${listaAule}">
+													<option value="${aula.id}">Aula ${aula.id}</option>
+												</c:forEach>
+											</select>
+
+
 										</div>
 									</div>
 
 
 
-									<div class="input-group">
-										<span class="input-group-addon"> Selezionare l'aula in
-											cui si desidera fare lezione </span>
-										
 
-											<select class="show-tick selectpicker" tabindex="-98"
-												name="idAula" required>
-												<c:forEach var="aula" items="${listaAule}">
-													<option value="${aula.id}">Aula ${aula.id}</option>
-												</c:forEach>
-											</select>
-										
-
-									</div>
 									<div class="form-group form-float">
 										<div class="form-line">
 											<textarea name="descrizione" cols="30" rows="5"
