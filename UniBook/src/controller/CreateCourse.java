@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.CalendarioPersonale;
 import model.Corso;
 import model.DescrizioneCorso;
 import model.GiornoCalendario;
+import model.Lezione;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.UtilDao;
@@ -28,8 +31,13 @@ public class CreateCourse extends HttpServlet {
 		String materiale = req.getParameter("materiale");
 		String dataInizio = req.getParameter("dataInizio");
 		String dataFine = req.getParameter("dataFine");
-		String aula = req.getParameter("idAula");
 		Utente user = (Utente) req.getSession().getAttribute("currentUser");
+		String aulaLun = req.getParameter("idAula_1");
+		String aulaMar = req.getParameter("idAula_2");
+		String aulaMer = req.getParameter("idAula_3");
+		String aulaGio = req.getParameter("idAula_4");
+		String aulaVen = req.getParameter("idAula_5");
+double oraInizioLun=Double.parseDouble(req.getParameter("oraInizioLun"));		
 
 		if (request.equals("create")) {
 			String giorniLezione = "";
@@ -49,7 +57,13 @@ public class CreateCourse extends HttpServlet {
 				giorniLezione += "venerdi";
 			}
 			System.out.println("i giorni di lezione sono " + giorniLezione);
-
+			CalendarioPersonale cal= new CalendarioPersonale();
+			GiornoCalendario g= new GiornoCalendario();
+			GiornoCalendario inizio= new GiornoCalendario();
+			GiornoCalendario fine= new GiornoCalendario();
+		inizio.parseToGiornoCalendario(g.parseToDate(dataInizio));
+		fine.parseToGiornoCalendario(g.parseToDate(dataFine));
+			ArrayList<Lezione> lezioni= cal.getLezioniCorso(Long.parseLong(codiceCorso),inizio,fine,giorniLezione,aulaLun,0,oraInizioLun,oraInizioLun);
 			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 			DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
@@ -68,7 +82,7 @@ public class CreateCourse extends HttpServlet {
 			c.setDocente(user.getMatricola());
 			c.setNomeDocente(user.getNome());
 			c.setCognomeDocente(user.getCognome());
-			GiornoCalendario g = new GiornoCalendario();
+			g = new GiornoCalendario();
 			g.parseToGiornoCalendario(g.parseToDate(dataInizio));
 			c.setDataInizio(g);
 			g = new GiornoCalendario();

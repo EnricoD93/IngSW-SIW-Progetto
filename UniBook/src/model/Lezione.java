@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Lezione {
 	private Long corso;
-	private Date data;
+	private GiornoCalendario data;
 	private double oraInizio;
 	private double oraFine;
 	private String aula;
-	private String tipo;
+	private int tipo;
 
-	public Lezione(Long corso, Date data,double oraInizio, double oraFine, String aula, String tipo) {
+	public Lezione(Long corso, GiornoCalendario data,double oraInizio, double oraFine, String aula, int tipo) {
 		
 		this.corso=corso;
 		this.data = data;
@@ -20,11 +20,11 @@ public class Lezione {
 		this.tipo=tipo;
 	}
 
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 
@@ -39,11 +39,11 @@ public class Lezione {
 		this.corso = corso;
 	}
 
-	public Date getData() {
+	public GiornoCalendario getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(GiornoCalendario data) {
 		this.data = data;
 	}
 

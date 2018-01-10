@@ -33,6 +33,19 @@ public class CalendarioPersonale {
 		this.lezioni = lezioni;
 	}
 
+	public ArrayList<Lezione> getLezioniCorso(Long codice,GiornoCalendario inizio, GiornoCalendario fine, String giorniLezione,String aula, int tipo,double oraInizio,double oraFine) {
+		ArrayList<Lezione> lez = new ArrayList<>();
+		String[] giorniLez = getGiorniLezioni(giorniLezione);
+		for (GiornoCalendario i = inizio; i != fine; i.next()) {
+			for (int j = 0; j < giorniLez.length; j++)
+				if (i.getGiornoDellaSettimana() == giorniLez[j]) {
+					lez.add(new Lezione(codice,i,oraInizio,oraFine,aula,tipo));
+				}
+
+		}
+		return lez;
+	}
+
 	// java.util.GregorianCalendar gc = new
 	// java.util.GregorianCalendar(java.util.Locale.ITALY);
 	// int maxGiorni = 0;
@@ -53,4 +66,7 @@ public class CalendarioPersonale {
 	//
 	// }
 	// }
+	public String[] getGiorniLezioni(String s) {
+		return s.split("\\s");
+	}
 }
