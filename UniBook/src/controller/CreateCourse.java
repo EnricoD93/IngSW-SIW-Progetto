@@ -28,20 +28,20 @@ public class CreateCourse extends HttpServlet {
 		String aula=req.getParameter("idAula");
 		Utente user = (Utente) req.getSession().getAttribute("currentUser");
 		String giorniLezione = "";
-		if (req.getParameter("lunedì") != null) {
-			giorniLezione += "lunedì ";
+		if (req.getParameter("lunedi") != null) {
+			giorniLezione += "lunedi ";
 		}
-		if (req.getParameter("martedì") != null) {
-			giorniLezione += "martedì ";
+		if (req.getParameter("martedi") != null) {
+			giorniLezione += "martedi ";
 		}
-		if (req.getParameter("mercoledì") != null) {
-			giorniLezione += "mercoledì ";
+		if (req.getParameter("mercoledi") != null) {
+			giorniLezione += "mercoledi ";
 		}
-		if (req.getParameter("giovedì") != null) {
-			giorniLezione += "giovedì ";
+		if (req.getParameter("giovedi") != null) {
+			giorniLezione += "giovedi ";
 		}
-		if (req.getParameterValues("venerdì") != null) {
-			giorniLezione += "venerdì ";
+		if (req.getParameterValues("venerdi") != null) {
+			giorniLezione += "venerdi";
 		}
 		System.out.println("i giorni di lezione sono "+ giorniLezione);
 		
