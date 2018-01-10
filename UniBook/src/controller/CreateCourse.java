@@ -77,7 +77,6 @@ public class CreateCourse extends HttpServlet {
 
 			corsoDao.save(c);
 		}
-		System.out.println("request");
 		if (request.equals("cancel")) {
 			Utente u = (Utente) session.getAttribute("currentUser");
 			String typedPassword = req.getParameter("typedPassword");
@@ -86,16 +85,12 @@ public class CreateCourse extends HttpServlet {
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			Corso c = corsoDao.findByPrimaryKey(codice);
 			if (u.getPassword().equals(typedPassword)) {
-				if (request.equals("iscrizione")) {
-					System.out.println(u.getMatricola()+" "+c.getDocente());
 					if (!u.getMatricola().equals(c.getDocente())) {
-						System.out.println("Ok");
 						resp.setStatus(405);
 						return;
 					} else {
 						corsoDao.delete(c);
 					}
-				}
 			} else {
 				resp.setStatus(401);
 			}

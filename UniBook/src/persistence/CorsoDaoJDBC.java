@@ -156,7 +156,6 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public void delete(Corso corso) {
-
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "delete FROM corso WHERE codice = ? ";
