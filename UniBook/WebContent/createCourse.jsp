@@ -25,6 +25,7 @@
 				<div class="row clearfix">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="card">
+						
 							<div class="header" style="background-color: #C4161C;">
 								<h2 style="color: white;">Crea un Corso</h2>
 							</div>

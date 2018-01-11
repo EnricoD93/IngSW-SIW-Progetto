@@ -5,80 +5,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.container {
-	border: 2px solid #dedede;
-	background-color: #f1f1f1;
-	border-radius: 5px;
-	padding: 10px;
-	margin: 10px 0;
-}
-
-.darker {
-	border-color: #ccc;
-	background-color: #ddd;
-}
-
-.container::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
-.container img {
-	float: left;
-	max-width: 60px;
-	width: 100%;
-	margin-right: 20px;
-	border-radius: 50%;
-}
-
-.container img.right {
-	float: right;
-	margin-left: 20px;
-	margin-right: 0;
-}
-
-.time-right {
-	float: right;
-	color: #aaa;
-}
-
-.time-left {
-	float: left;
-	color: #999;
-}
-</style>
 <script src="plugins/autosize/autosize.js"></script>
 </head>
 <section id="centralSection" class="content">
+	<div class="content" style="background-color: #C4161C;">
+		<div class="image">
+			<div class="profile-pic-xs"
+				style="background-image: url('${utenteConversazione.profileImagePath}')">
+			</div>
+		</div>
+		<c:if test="${currentUser.ruolo==0}">
+			<div align="center" style="color: white; font-size: 30px; ">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
+		</c:if>
+		<c:if test="${currentUser.ruolo==1}">
+			<div style="color: white;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
+				${utenteConversazione.matricola}</div>
+		</c:if>
+	</div>
 	<div class="container-fluid">
 		<div class="block-header">
-			<div class="corsiTitle" align="center">Messaggi</div>
 			<br>
-			<div class="body">
+			<div class="row clearfix">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 				<c:forEach var="messaggio" varStatus="loop" items="${messaggi}">
 					<c:if test="${messaggio.mittente!=currentUser.matricola }">
-						<div class="container">
-							<img src="${utenteConversazione.profileImagePath}" alt="Avatar"
-								style="width: 100%;">
-							<p>${messaggio.testo}</p>
-							<span class="time-right">${messaggio.data}&thinsp;${messaggio.ora}</span>
+						<div class="card" style="border-radius: 5px; margin-right: 10%">
+							<div class="mycontainer">
+								<p style="font-size: 16px;">${messaggio.testo}</p>
+								<span class="time-left">${messaggio.data}&thinsp;${messaggio.ora}</span>
+							</div>
 						</div>
 					</c:if>
 					<c:if test="${messaggio.mittente==currentUser.matricola}">
-						<div class="container darker">
-							<img src="${currentUser.profileImagePath}" alt="Avatar"
-								class="right" style="width: 100%;">
-							<p>${messaggio.testo}</p>
-							<span class="time-left">${messaggio.data}&thinsp;${messaggio.ora}</span>
+						<div class="card" style="border-radius: 5px; margin-left: 10%">
+							<div class="mycontainer darker">
+								<p style="font-size: 16px;">${messaggio.testo}</p>
+								<span class="time-right">${messaggio.data}&thinsp;${messaggio.ora}</span>
+							</div>
 						</div>
 					</c:if>
 				</c:forEach>
-				<textarea name="descrizione" cols="30" rows="5"
-												class="form-control no-resize" required></textarea><button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float">
-                                    <i class="material-icons">print</i>
-                                </button>
+				<br>
+				<div class="form-group form-float">
+					<div class="form-line">
+						<textarea name="messaggio" cols="30" rows="5"
+							class="form-control no-resize" required></textarea>
+						<label class="form-label">Messaggio</label>
+					</div>
+					<br>
+					<div align="right">
+						<button type="button"
+							class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
+							<i class="material-icons" style="line-height: inherit;">send</i>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

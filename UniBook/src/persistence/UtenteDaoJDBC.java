@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
-
+				System.out.println(utente.getProfileImagePath());
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -417,7 +419,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, u.getCorsoDiLaurea());
 			statement.setInt(2, u.getRuolo());
-			statement.setString(3,u.getMatricola());
+			statement.setString(3, u.getMatricola());
 			ResultSet result = statement.executeQuery();
 			colleagues = new ArrayList<>();
 			Utente utente;

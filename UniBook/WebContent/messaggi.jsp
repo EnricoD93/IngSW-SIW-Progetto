@@ -13,12 +13,12 @@
 			<div class="body">
 				<ul class="list-group">
 					<c:forEach var="utente" varStatus="loop" items="${conversazioni}">
-						<li class="list-group-item header"><a
+						<li class="list-group-item"><a
 							href="page?request=conversazione&id=${utente.matricola}">
 								<div class="profile-pic-xs"
-									style="background-image: url('${utente.profileImagePath}')">
-								</div> <span>${utente.nome}&thinsp;${utente.cognome}</span>
-						</a></li>
+									style="background-image: url('${utente.profileImagePath}')"></div>
+						</a> <span>${utente.nome}&thinsp;${utente.cognome}</span><span
+							class="badge bg-unibook">1 nuovo messaggio</span></li>
 					</c:forEach>
 				</ul>
 			</div>
