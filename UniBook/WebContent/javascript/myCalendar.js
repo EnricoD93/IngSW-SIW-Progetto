@@ -40,7 +40,7 @@ function init() {
 									$(this).draggable({
 										zIndex : 999,
 										revert : true, // will cause the event
-														// to go back to its
+										// to go back to its
 										revertDuration : 0
 									// original position after the drag
 									});
@@ -62,9 +62,9 @@ function init() {
 											},
 											editable : true,
 											firstDay : 1, // 1(Monday) this
-															// can be changed to
-															// 0(Sunday) for the
-															// USA system
+											// can be changed to
+											// 0(Sunday) for the
+											// USA system
 											selectable : true,
 											defaultView : 'month',
 
@@ -73,17 +73,17 @@ function init() {
 												month : 'ddd', // Mon
 												week : 'ddd d', // Mon 7
 												day : 'dddd M/d', // Monday
-																	// 9/7
+												// 9/7
 												agendaDay : 'dddd d'
 											},
 											titleFormat : {
 												month : 'MMMM yyyy', // September
-																		// 2009
+												// 2009
 												week : "MMMM yyyy", // September
-																	// 2009
+												// 2009
 												day : 'MMMM yyyy' // Tuesday,
-																	// Sep 8,
-																	// 2009
+											// Sep 8,
+											// 2009
 											},
 											allDaySlot : false,
 											selectHelper : true,
@@ -111,8 +111,7 @@ function init() {
 																		"Ben Fatto!",
 																		"Evento creato con successo!",
 																		"success");
-																
-																
+
 																calendar
 																		.fullCalendar(
 																				'renderEvent',
@@ -123,9 +122,9 @@ function init() {
 																					allDay : allDay
 																				},
 																				true // make
-																						// the
-																						// event
-																						// "stick"
+																		// the
+																		// event
+																		// "stick"
 																		);
 															}
 															calendar
@@ -133,18 +132,18 @@ function init() {
 														});
 											},
 											droppable : true, // this allows
-																// things to be
-																// dropped onto
-																// the calendar
-																// !!!
+											// things to be
+											// dropped onto
+											// the calendar
+											// !!!
 											drop : function(date, allDay) { // this
-																			// function
-																			// is
-																			// called
-																			// when
-																			// something
-																			// is
-																			// dropped
+												// function
+												// is
+												// called
+												// when
+												// something
+												// is
+												// dropped
 
 												// retrieve the dropped
 												// element's stored Event Object
@@ -187,15 +186,77 @@ function init() {
 												}
 
 											},
-											events : [ {
-
-												title : 'Click for Google',
-												start : new Date(y, m, 28),
-												end : new Date(y, m, 29),
-												url : 'http://google.com/',
-												className : 'success'
-											} ],
+											events : getEvent()
+//												function(data) {
+//												$.ajax({
+//													type : "POST",
+//													url : "calendarManager",
+//													datatype : 'text',
+//													data : {
+//														matricola : "555",
+//														request : "Eventi"
+//													},
+//													success : function(data) {
+//														for (var i = 0; i < data.result.length; i++) 
+//															[{
+//																title:'Lezione',
+//																start: new Date(result[i].anno,result[i].mese,result[i].giorno),
+//																end: new Date(result[i].anno,result[i].mese,result[i].giorno),
+//																className:'success'
+//															}],
+//													}
+//												});
+//
+//											};
+										
+										// [ {
+										// title : 'Click for Google',
+										// start : new Date(y, m, 28),
+										// end : new Date(y, m, 29),
+										// url : 'http://google.com/',
+										// className : 'success'
+										// } ]
+										// ,
 										});
 
 					});
 };
+
+
+function getEvent(){
+	var events=[];
+	
+	$.ajax({
+		type : "POST",
+		url : "calendarManager",
+		async: false,
+		datatype : 'text',
+		data : {
+			matricola : "555",
+			request : "Eventi"
+		},
+		success : function(data) {
+			for (var i = 0; i < data.result.length; i++){
+				var event={
+					title: data.result[i].title,
+					start: new Date(data.result[i].anno,data.result[i].mese-1 , data.result[i].giorno),
+					end: new Date(data.result[i].anno,data.result[i].mese-1 , data.result[i].giorno),
+					className: 'success'
+			};
+				events.push(event);
+				console.log(events.length)
+				
+			}
+			
+		}
+	});
+	
+	
+return events;	
+}
+
+
+
+
+
+
