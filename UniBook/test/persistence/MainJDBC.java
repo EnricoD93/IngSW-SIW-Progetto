@@ -94,34 +94,34 @@ public class MainJDBC {
 			studenteDao.save(st2);
 			studenteDao.save(st3);
 			studenteDao.save(st4);
-			
+
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			ricca.setProfileImagePath("images/profileImages/ricca.png");
-			Utente spataro = new Utente("12547", "William", "Spataro", dateRicca, "SPTWLM43D23J878K", "spataro@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente spataro = new Utente("12547", "William", "Spataro", dateRicca, "SPTWLM43D23J878K",
+					"spataro@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			spataro.setProfileImagePath("images/profileImages/spataro.JPG");
-			Utente cali = new Utente("12437", "Francesco", "Calimeri", dateRicca, "CLMFRC43D23J878K", "calimeri@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente cali = new Utente("12437", "Francesco", "Calimeri", dateRicca, "CLMFRC43D23J878K",
+					"calimeri@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			cali.setProfileImagePath("images/profileImages/cali.jpg");
-			Utente grasso = new Utente("124547", "Giovanni", "Grasso", dateRicca, "GRSGVN43D23J878K", "grasso@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente grasso = new Utente("124547", "Giovanni", "Grasso", dateRicca, "GRSGVN43D23J878K",
+					"grasso@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			grasso.setProfileImagePath("images/profileImages/grasso.jpg");
 			Utente leone = new Utente("12467", "Nicola", "Leone", dateRicca, "LNENCL43D23J878K", "leone@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			leone.setProfileImagePath("images/profileImages/leone.jpg");
-			Utente reale = new Utente("12448", "Kristian", "Reale", dateRicca, "RLEKRS43D23J878K", "reale@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente reale = new Utente("12448", "Kristian", "Reale", dateRicca, "RLEKRS43D23J878K",
+					"reale@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			reale.setProfileImagePath("images/profileImages/reale.jpg");
-			Utente rullo = new Utente("12442", "Pasquale", "Rullo", dateRicca, "RLLPSQ43D23J878K", "rullo@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente rullo = new Utente("12442", "Pasquale", "Rullo", dateRicca, "RLLPSQ43D23J878K",
+					"rullo@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			rullo.setProfileImagePath("images/profileImages/rullo.jpg");
-			Utente terra = new Utente("126547", "Giorgio", "Terracina", dateRicca, "TRCGRG43D23J878K", "terracina@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente terra = new Utente("126547", "Giorgio", "Terracina", dateRicca, "TRCGRG43D23J878K",
+					"terracina@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			terra.setProfileImagePath("images/profileImages/terracina.jpg");
-			Utente vanbon = new Utente("124677", "John", "Van Bon", dateRicca, "VNBJHN43D23J878K", "vanbon@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
+			Utente vanbon = new Utente("124677", "John", "Van Bon", dateRicca, "VNBJHN43D23J878K",
+					"vanbon@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			vanbon.setProfileImagePath("images/profileImages/vanbon.jpg");
 			Utente perri = new Utente("444", "Simona", "Perri", date, "PRRSNM75F67T981V", "perri@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111");
@@ -144,7 +144,7 @@ public class MainJDBC {
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);
 			docenteDao.save(marino);
-			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(st.getMatricola());
+
 			// CalendarioPersonale calendarioPersonaleRicca = new
 			// CalendarioPersonale(ricca.getMatricola());
 			// CalendarioPersonale calendarioPersonalePerri = new
@@ -153,8 +153,7 @@ public class MainJDBC {
 			// CalendarioPersonale(cianciaruso.getMatricola());
 			// CalendarioPersonale calendarioPersonaleMarino = new
 			// CalendarioPersonale(marino.getMatricola());
-			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
-			calendarioPersonaleDao.save(calendarioPersonaleSt);
+
 			// calendarioPersonaleDao.save(calendarioPersonaleRicca);
 			// calendarioPersonaleDao.save(calendarioPersonalePerri);
 			// calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
@@ -247,10 +246,15 @@ public class MainJDBC {
 			studenteDao.iscriviStudente(st4.getMatricola(), (long) 600);
 
 			// controlla qua
-
+			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
+			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
 			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), dataI, 8.30, 10.30, aulaMT5.getId(), 0);
 			LezioneDao lezioneDao = factory.getLezioneDAO();
 			lezioneDao.save(lezione);
+			calendarioPersonaleSt.aggiungiLezione(lezione);
+			calendarioPersonaleDao.save(calendarioPersonaleSt);
+
+
 			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			messaggioDao.save(messaggio);
@@ -288,7 +292,7 @@ public class MainJDBC {
 			e.printStackTrace();
 		}
 
-// FUNCTIONAAAAAA!
+		// FUNCTIONAAAAAA!
 		// Da register.java non lo so provare :)
 	}
 

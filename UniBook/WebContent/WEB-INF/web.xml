@@ -110,4 +110,12 @@
     <servlet-name>ChangePageServlet</servlet-name>
     <url-pattern>/page</url-pattern>
   </servlet-mapping> 
+     <servlet>
+    <servlet-name>CalendarManagerServlet</servlet-name>
+    <servlet-class>controller.CalendarManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalendarManagerServlet</servlet-name>
+    <url-pattern>/calendarManager</url-pattern>
+  </servlet-mapping> 
 </web-app>
