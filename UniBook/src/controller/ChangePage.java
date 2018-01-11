@@ -11,14 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import model.Aula;
 import model.Corso;
-import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
+import model.Messaggio;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;
-import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
+import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
 
 public class ChangePage extends HttpServlet {
@@ -64,7 +64,6 @@ public class ChangePage extends HttpServlet {
 			req.getRequestDispatcher("profilo.jsp").forward(req, resp);
 		}
 		if (request.equals("corso")) {
-			System.out.println(req.getParameter("id"));
 			Long codice = Long.parseLong(req.getParameter("id"));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
@@ -106,6 +105,25 @@ public class ChangePage extends HttpServlet {
 			docenti=utenteDao.findAllProfessor();
 			req.setAttribute("docenti", docenti);
 			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
+		}
+		if(request.equals("messaggi")) {
+			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			List<Utente> conversazioni;
+			conversazioni=utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
+			req.setAttribute("conversazioni", conversazioni);
+			req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
+			
+		}
+		if(request.equals("conversazione")) {
+			String id = req.getParameter("id");
+			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			Utente u=utenteDao.findByPrimaryKey(id);
+			MessaggioDao messDao=DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+			List<Messaggio> messaggi;
+			messaggi=messDao.findMessagesByUtenti(currentUser.getMatricola(),id);
+			req.setAttribute("messaggi", messaggi);
+			req.setAttribute("utenteConversazione", u);
+			req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
 		}
 	}
 
