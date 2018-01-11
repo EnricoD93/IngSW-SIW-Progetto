@@ -1,82 +1,240 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="WebPattern.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Prova</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet" type="text/css">
+
+
+
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin,cyrillic-ext"
-	rel="stylesheet" type="text/css">
-	<link href="plugins/animate-css/animate.css" rel="stylesheet" />
-<link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="plugins/bootstrap-select/css/bootstrap-select.css"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
 	rel="stylesheet">
-	<link href="plugins/node-waves/waves.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+<link href="css/calendar.css" rel="stylesheet">
+<script src="javascript/calendar.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				var date = new Date();
+				var d = date.getDate();
+				var m = date.getMonth();
+				var y = date.getFullYear();
+
+				/*  className colors
+				
+				className: default(transparent), important(red), chill(pink), success(green), info(blue)
+				
+				 */
+
+				/* initialize the external events
+				-----------------------------------------------------------------*/
+
+				$('#external-events div.external-event').each(function() {
+
+					// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+					// it doesn't need to have a start or end
+					var eventObject = {
+						title : $.trim($(this).text())
+					// use the element's text as the event title
+					};
+
+					// store the Event Object in the DOM element so we can get to it later
+					$(this).data('eventObject', eventObject);
+
+					// make the event draggable using jQuery UI
+					$(this).draggable({
+						zIndex : 999,
+						revert : true, // will cause the event to go back to its
+						revertDuration : 0
+					//  original position after the drag
+					});
+
+				});
+
+				/* initialize the calendar
+				-----------------------------------------------------------------*/
+
+				var calendar = $('#calendar').fullCalendar(
+						{
+							header : {
+								left : 'title',
+								center : 'agendaDay,agendaWeek,month',
+								right : 'prev,next today'
+							},
+							editable : true,
+							firstDay : 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+							selectable : true,
+							defaultView : 'month',
+
+							axisFormat : 'h:mm',
+							columnFormat : {
+								month : 'ddd', // Mon
+								week : 'ddd d', // Mon 7
+								day : 'dddd M/d', // Monday 9/7
+								agendaDay : 'dddd d'
+							},
+							titleFormat : {
+								month : 'MMMM yyyy', // September 2009
+								week : "MMMM yyyy", // September 2009
+								day : 'MMMM yyyy' // Tuesday, Sep 8, 2009
+							},
+							allDaySlot : false,
+							selectHelper : true,
+							select : function(start, end, allDay) {
+								var title = prompt('Event Title:');
+								if (title) {
+									calendar.fullCalendar('renderEvent', {
+										title : title,
+										start : start,
+										end : end,
+										allDay : allDay
+									}, true // make the event "stick"
+									);
+								}
+								calendar.fullCalendar('unselect');
+							},
+							droppable : true, // this allows things to be dropped onto the calendar !!!
+							drop : function(date, allDay) { // this function is called when something is dropped
+
+								// retrieve the dropped element's stored Event Object
+								var originalEventObject = $(this).data(
+										'eventObject');
+
+								// we need to copy it, so that multiple events don't have a reference to the same object
+								var copiedEventObject = $.extend({},
+										originalEventObject);
+
+								// assign it the date that was reported
+								copiedEventObject.start = date;
+								copiedEventObject.allDay = allDay;
+
+								// render the event on the calendar
+								// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+								$('#calendar').fullCalendar('renderEvent',
+										copiedEventObject, true);
+
+								// is the "remove after drop" checkbox checked?
+								if ($('#drop-remove').is(':checked')) {
+									// if so, remove the element from the "Draggable Events" list
+									$(this).remove();
+								}
+
+							},
+
+							events : [ {
+								title : 'All Day Event',
+								start : new Date(y, m, 1)
+							}, {
+								id : 999,
+								title : 'Repeating Event',
+								start : new Date(y, m, d - 3, 16, 0),
+								allDay : false,
+								className : 'info'
+							}, {
+								id : 999,
+								title : 'Repeating Event',
+								start : new Date(y, m, d + 4, 16, 0),
+								allDay : false,
+								className : 'info'
+							}, {
+								title : 'Meeting',
+								start : new Date(y, m, d, 10, 30),
+								allDay : false,
+								className : 'important'
+							}, {
+								title : 'Lunch',
+								start : new Date(y, m, d, 12, 0),
+								end : new Date(y, m, d, 14, 0),
+								allDay : false,
+								className : 'important'
+							}, {
+								title : 'Birthday Party',
+								start : new Date(y, m, d + 1, 19, 0),
+								end : new Date(y, m, d + 1, 22, 30),
+								allDay : false,
+							}, {
+								title : 'Click for Google',
+								start : new Date(y, m, 28),
+								end : new Date(y, m, 29),
+								url : 'http://google.com/',
+								className : 'success'
+							} ],
+						});
+
+			});
+</script>
+<style>
+body {
+	margin-bottom: 40px;
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+#wrap {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+#external-events {
+	float: left;
+	width: 150px;
+	padding: 0 10px;
+	text-align: left;
+}
+
+#external-events h4 {
+	font-size: 16px;
+	margin-top: 0;
+	padding-top: 1em;
+}
+
+.external-event { /* try to mimick the look of a real event */
+	margin: 10px 0;
+	padding: 2px 4px;
+	background: #3366CC;
+	color: #fff;
+	font-size: .85em;
+	cursor: pointer;
+}
+
+#external-events p {
+	margin: 1.5em 0;
+	font-size: 11px;
+	color: #666;
+}
+
+#external-events p input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+#calendar {
+	/* 		float: right; */
+	margin: 0 auto;
+	width: 900px;
+	background-color: #FFFFFF;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px #C3C3C3;
+	-webkit-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+	-moz-box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+	box-shadow: 0px 0px 21px 2px rgba(0, 0, 0, 0.18);
+}
+</style>
 </head>
 <body>
+	<section id="centralSection" class="content">
+		<div class="container-fluid">
+			<div id='wrap'>
 
-		<div class="demo-preloader">
-                                <div class="preloader pl-size-xl">
-                                    <div class="spinner-layer">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
+				<div id='calendar'></div>
 
-                                <div class="preloader pl-size-l">
-                                    <div class="spinner-layer pl-orange">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="preloader">
-                                    <div class="spinner-layer pl-teal">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="preloader pl-size-sm">
-                                    <div class="spinner-layer pl-purple">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="preloader pl-size-xs">
-                                    <div class="spinner-layer pl-red-grey">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+				<div style='clear: both'></div>
+			</div>
+		</div>
+	</section>
 </body>
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.js"></script>
-<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
 </html>
