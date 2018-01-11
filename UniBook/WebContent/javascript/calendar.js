@@ -61,19 +61,19 @@ var defaults = {
 	// locale
 	isRTL: false,
 	firstDay: 0,
-	monthNames: ['Gennaio','Febbraio','Marzo','Aprile','May','June','July','August','September','October','November','December'],
-	monthNamesShort: ['Gen','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-	dayNames: ['Domenica','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-	dayNamesShort: ['Dom<script src="plugins/node-waves/waves.js"></script>','Mon','Tue','Wed','Thu','Fri','Sat'],
+	monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+	monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'],
+	dayNames: ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],
+	dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
 	buttonText: {
 		prev: "<span class='fc-text-arrow'>‹</span>",
 		next: "<span class='fc-text-arrow'>›</span>",
 		prevYear: "<span class='fc-text-arrow'>«</span>",
 		nextYear: "<span class='fc-text-arrow'>»</span>",
-		today: 'today',
-		month: 'month',
-		week: 'week',
-		day: 'day'
+		today: 'Oggi',
+		month: 'Mese',
+		week: 'Settimana',
+		day: 'Giorno'
 	},
 	
 	// jquery-ui theming
@@ -95,7 +95,7 @@ var defaults = {
 // right-to-left defaults
 var rtlDefaults = {
 	header: {
-		left: 'next,prev today',
+		left: 'Prec,Succ Oggi',
 		center: '',
 		right: 'title'
 	},
@@ -1618,7 +1618,7 @@ var dateFormatters = {
 	ss	: function(d)	{ return zeroPad(d.getSeconds()) },
 	m	: function(d)	{ return d.getMinutes() },
 	mm	: function(d)	{ return zeroPad(d.getMinutes()) },
-	h	: function(d)	{ return d.getHours() % 12 || 12 },
+	h	: function(d)	{ return d.getHours() % 24 || 12 },
 	hh	: function(d)	{ return zeroPad(d.getHours() % 12 || 12) },
 	H	: function(d)	{ return d.getHours() },
 	HH	: function(d)	{ return zeroPad(d.getHours()) },
@@ -2764,8 +2764,8 @@ setDefaults({
 	dragOpacity: {
 		agenda: .5
 	},
-	minTime: 0,
-	maxTime: 24,
+	minTime: 8,
+	maxTime: 19,
 	slotEventOverlap: true
 });
 
@@ -2936,7 +2936,7 @@ function AgendaView(element, calendar, viewName) {
 		var i;
 		var maxd;
 		var minutes;
-		var slotNormal = opt('slotMinutes') % 15 == 0;
+		var slotNormal = opt(30) % 15 == 0;
 		
 		buildDayTable();
 		
@@ -2953,7 +2953,7 @@ function AgendaView(element, calendar, viewName) {
 			s =
 				"<table style='width:100%' class='fc-agenda-allday' cellspacing='0'>" +
 				"<tr>" +
-				"<th class='" + headerClass + " fc-agenda-axis'>" + opt('allDayText') + "</th>" +
+				"<th class='" + headerClass + "fc-agenda-axis'>" + opt('allDayText') + "</th>" +
 				"<td>" +
 				"<div class='fc-day-content'><div style='position:relative'/></div>" +
 				"</td>" +
