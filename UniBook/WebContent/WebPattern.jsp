@@ -219,8 +219,7 @@
 						</ul></li>
 					<!-- #END# Notifications -->
 					<!-- Tasks -->
-					<li class="dropdown"><a href="javascript:void(0);"
-						class="dropdown-toggle" data-toggle="dropdown" role="button">
+					<li class="dropdown"><a href="page?request=messaggi"role="button">
 							<i class="material-icons">message</i> <span class="label-count">9</span>
 					</a>
 						<ul class="dropdown-menu">

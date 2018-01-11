@@ -488,4 +488,45 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return docenti;
 	}
 
+	@Override
+	public List<Utente> findMessageSendersByMatricola(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Utente> utenti;
+		try {
+			String query = "SELECT DISTINCT utente.* FROM utente,messaggio WHERE (messaggio.matricola_mitt=? OR messaggio.matricola_dest=?) AND (messaggio.matricola_mitt=utente.matricola OR messaggio.matricola_dest=utente.matricola) AND (utente.matricola!=?)";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			statement.setString(2, matricola);
+			statement.setString(3, matricola);
+			ResultSet result = statement.executeQuery();
+			utenti = new ArrayList<>();
+			Utente utente;
+			while (result.next()) {
+				utente = new Utente();
+				utente.setMatricola(result.getString("matricola"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				long secs = result.getDate("data_nascita").getTime();
+				utente.setDataNascita(new java.util.Date(secs));
+				utente.setEmail(result.getString("email"));
+				utente.setPassword(result.getString("password"));
+				utente.setCodicefiscale(result.getString("codice_fiscale"));
+				utente.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				utente.setRuolo(result.getInt("ruolo"));
+				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setProfileImagePath(result.getString("imagepath"));
+				utenti.add(utente);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return utenti;
+	}
+
 }

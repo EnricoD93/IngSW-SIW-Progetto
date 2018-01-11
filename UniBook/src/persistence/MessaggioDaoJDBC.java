@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Messaggio;
+import model.Utente;
 import persistence.dao.MessaggioDao;
 
 public class MessaggioDaoJDBC implements MessaggioDao {
@@ -102,6 +104,42 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public List<Messaggio> findMessagesByUtenti(String utente1, String utente2) {
+		Connection connection = this.dataSource.getConnection();
+		List<Messaggio> messaggi;
+		try {
+			String query = "SELECT * FROM messaggio WHERE (messaggio.matricola_mitt=? AND messaggio.matricola_dest=?) OR(messaggio.matricola_mitt=? AND messaggio.matricola_dest=?)";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, utente1);
+			statement.setString(2, utente2);
+			statement.setString(3, utente2);
+			statement.setString(4, utente1);
+			
+			ResultSet result = statement.executeQuery();
+			messaggi = new ArrayList<>();
+			Messaggio messaggio;
+			while (result.next()) {
+				messaggio = new Messaggio();
+				messaggio.setData(result.getDate("data"));
+				messaggio.setDestinatario(result.getString("matricola_mitt"));
+				messaggio.setMittente(result.getString("matricola_dest"));
+				messaggio.setTesto(result.getString("testo"));
+				messaggio.setOra(result.getInt("ora"));
+				messaggi.add(messaggio);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return messaggi;
 	}
 
 }

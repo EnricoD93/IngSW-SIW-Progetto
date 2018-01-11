@@ -218,7 +218,6 @@ public class MainJDBC {
 			descCorso.save(corsoFisica);
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
-
 			GiornoCalendario dataI = new GiornoCalendario(2, 10, 2017);
 			GiornoCalendario dataF = new GiornoCalendario(10, 1, 2018);
 			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
@@ -255,8 +254,25 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calendarioPersonaleSt);
 
 
-			Messaggio messaggio = new Messaggio(date, st.getMatricola(), ricca.getMatricola(), "Salve", 5);
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
+			Messaggio messaggio1 = new Messaggio(date, st3.getMatricola(), ricca.getMatricola(), "Salve", 5);
+			messaggioDao.save(messaggio1);
+			date = format.parse("1993-06-20");
+			Messaggio messaggio2 = new Messaggio(date, ricca.getMatricola(), st3.getMatricola(), "Salve prof,\r\n" + 
+					"Ricordo che sul calendario che mostrate di solito a lezione è fissata una prova per il 21/11 su Git e JUnit.\r\n" + 
+					"Volevo chiedervi se è confermato che ci sarà, visto che in questa settimana non c’è stata alcuna lezione per chiedervelo di persona.\r\n" + 
+					"Grazie in anticipo,\r\n" + 
+					"De Cicco E.\r\n" + 
+					"", 6);
+			messaggioDao.save(messaggio2);
+			date = format.parse("1993-06-21");
+			Messaggio messaggio3 = new Messaggio(date, st3.getMatricola(), ricca.getMatricola(), "Come stai?", 7);
+			messaggioDao.save(messaggio3);
+			date = format.parse("1993-06-22");
+			Messaggio messaggio4 = new Messaggio(date, ricca.getMatricola(), st3.getMatricola(), "Bene", 8);
+			messaggioDao.save(messaggio4);
+			date = format.parse("1993-06-23");
+			Messaggio messaggio = new Messaggio(date, st3.getMatricola(), perri.getMatricola(), "Salve perri", 5);
 			messaggioDao.save(messaggio);
 
 			// Functionaaaaa!!

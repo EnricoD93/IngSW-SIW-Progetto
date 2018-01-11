@@ -37,4 +37,6 @@ public interface UtenteDao {
 	public List<Utente> findColleaguesByCorsoDiLaurea(Utente utente);
 
 	public List<Utente> findAllProfessor();
+	
+	public List<Utente> findMessageSendersByMatricola(String matricola);
 }
