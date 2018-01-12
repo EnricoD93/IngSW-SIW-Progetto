@@ -3,6 +3,7 @@ package persistence.dao;
 import java.util.List;
 
 import model.CalendarioPersonale;
+import model.Evento;
 
 public interface CalendarioPersonaleDao {
 	public void save(CalendarioPersonale calendarioPersonale); // Create
@@ -14,4 +15,8 @@ public interface CalendarioPersonaleDao {
 	public void update(CalendarioPersonale calendarioPersonale); // Update
 
 	public void delete(CalendarioPersonale calendarioPersonale); // Delete
+
+	public List<Evento> findAllEventsUtente(String matricola);
+	public void saveEvent(String matricola,Evento evento);
+
 }

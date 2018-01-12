@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.CalendarioPersonale;
+import model.Evento;
+import model.Utente;
 import persistence.dao.CalendarioPersonaleDao;
 
 public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
@@ -23,7 +26,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			String insert = "insert into calendariopersonale(matricola) values (?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, calendarioPersonale.getMatricola());
-			
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -33,7 +36,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}		
+		}
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				calendarioPersonale= new CalendarioPersonale();
+				calendarioPersonale = new CalendarioPersonale();
 				calendarioPersonale.setMatricola(result.getString("matricola"));
 			}
 		} catch (SQLException e) {
@@ -57,7 +60,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return calendarioPersonale;
 	}
 
@@ -70,7 +73,37 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 	@Override
 	public void update(CalendarioPersonale calendarioPersonale) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public List<Evento> findAllEventsUtente(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Evento> listaEventi = new ArrayList<>();
+		try {
+			PreparedStatement statement;
+			String query = "select * from evento,contiene where contiene.calendariopersonale = ? AND evento.title=contiene.evento";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Evento evento = new Evento();
+				evento.setTitle(result.getString("title"));
+				evento.setInizio(result.getTimestamp("inizio"));
+				evento.setFine(result.getTimestamp("fine"));
+				evento.setNota(result.getString("nota"));
+				listaEventi.add(evento);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return listaEventi;
 	}
 
 	@Override
@@ -80,6 +113,27 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			String delete = "delete FROM calendariopersonale WHERE matricola = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setString(1, calendarioPersonale.getMatricola());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void saveEvent(String matricola, Evento evento) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into contiene(calendariopersonale,evento) values (?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, matricola);
+			statement.setString(2, evento.getTitle());
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

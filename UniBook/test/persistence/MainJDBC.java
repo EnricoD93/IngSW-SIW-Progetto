@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import model.Aula;
@@ -13,6 +14,7 @@ import model.CalendarioPersonale;
 import model.Corso;
 import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
+import model.Evento;
 import model.GiornoCalendario;
 import model.Lezione;
 import model.Messaggio;
@@ -22,6 +24,7 @@ import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
+import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
@@ -277,7 +280,28 @@ public class MainJDBC {
 			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
 			messaggioDao.save(messaggio);
 
-			// Functionaaaaa!!
+			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+			Calendar cal2 = Calendar.getInstance();
+			cal2.set(2018, Calendar.FEBRUARY, 28); // // 21 marzo 1995
+			cal2.set(Calendar.HOUR_OF_DAY, 13);
+			cal2.set(Calendar.MINUTE,30);
+			Date dateEvento = (Date) cal2.getTime();
+			Timestamp inizio = new Timestamp(dateEvento.getTime());
+			Timestamp fine = new Timestamp(dateEvento.getTime());
+
+			Evento evento = new Evento("primoEvento", inizio, fine, "Evento di prova");
+			Evento evento2 = new Evento("secondoEvento", inizio, fine, "Evento di prova");
+			eventoDao.save(evento);
+			eventoDao.save(evento2);
+			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento);
+			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento2);
+		List<Evento> eventiricca=calendarioPersonaleDao.findAllEventsUtente(calendarioPersonaleSt.getMatricola());
+		for(int i=0;i<eventiricca.size();i++) {
+			System.out.println( "evento: "+ eventiricca.get(i).getTitle());
+		}
+		
+		
+		// Functionaaaaa!!
 
 			System.out.println(studenteDao.findByPrimaryKey("111").getNome());
 			System.out.println(docenteDao.findByPrimaryKey("555").getNome());

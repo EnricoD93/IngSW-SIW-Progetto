@@ -9,6 +9,24 @@ public class GiornoCalendario {
 	int giorno;
 	int mese;
 	int anno;
+	int ora;
+	int minuti;
+	public int getOra() {
+		return ora;
+	}
+
+	public void setOra(int ora) {
+		this.ora = ora;
+	}
+
+	public int getMinuti() {
+		return minuti;
+	}
+
+	public void setMinuti(int minuti) {
+		this.minuti = minuti;
+	}
+
 	String giornoDellaSettimana;
 	String[] giorniIt = { "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato" };
 
