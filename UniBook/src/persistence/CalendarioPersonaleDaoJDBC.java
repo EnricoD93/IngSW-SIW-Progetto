@@ -82,7 +82,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 		List<Evento> listaEventi = new ArrayList<>();
 		try {
 			PreparedStatement statement;
-			String query = "select * from evento,contiene where contiene.calendariopersonale = ? AND evento.title=contiene.evento";
+			String query = "select * from evento,contiene where contiene.calendariopersonale = ? AND evento.id=contiene.evento";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -132,7 +132,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			String insert = "insert into contiene(calendariopersonale,evento) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, matricola);
-			statement.setString(2, evento.getTitle());
+			statement.setLong(2, evento.getId());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {

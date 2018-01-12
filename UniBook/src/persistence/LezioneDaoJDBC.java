@@ -28,8 +28,8 @@ public class LezioneDaoJDBC implements LezioneDao {
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, lezione.getId());
 			statement.setDate(2, lezione.getData().GiornoCalendarioToDate());
-			statement.setDouble(3, lezione.getOraInizio());
-			statement.setDouble(4, lezione.getOraFine());
+			statement.setTimestamp(3, lezione.getOraInizio());
+			statement.setTimestamp(4, lezione.getOraFine());
 			statement.setLong(5, lezione.getCorso());
 			statement.setString(6, lezione.getAula());
 			statement.setInt(7, lezione.getTipo());

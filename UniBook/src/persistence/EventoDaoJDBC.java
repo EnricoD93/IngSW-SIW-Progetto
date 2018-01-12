@@ -22,12 +22,15 @@ public class EventoDaoJDBC implements EventoDao{
 	public void save(Evento evento) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into evento(title,inizio,fine,nota) values (?,?,?,?)";
+			long id=IdBroker.getId(connection);
+			evento.setId(id);
+			String insert = "insert into evento(id,title,inizio,fine,nota) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, evento.getTitle());
-			statement.setTimestamp(2, evento.getInizio());
-			statement.setTimestamp(3, evento.getFine());
-			statement.setString(4, evento.getNota());
+			statement.setLong(1, evento.getId());
+			statement.setString(2, evento.getTitle());
+			statement.setTimestamp(3, evento.getInizio());
+			statement.setTimestamp(4, evento.getFine());
+			statement.setString(5, evento.getNota());
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {

@@ -251,7 +251,9 @@ public class MainJDBC {
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
 			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
-			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), dataI, 8.30, 10.30, aulaMT5.getId(), 0);
+			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), dataI,
+					new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()),
+					aulaMT5.getId(), 0);
 			LezioneDao lezioneDao = factory.getLezioneDAO();
 			lezioneDao.save(lezione);
 			calendarioPersonaleSt.aggiungiLezione(lezione);
@@ -274,48 +276,14 @@ public class MainJDBC {
 			messaggioDao.save(messaggio3);
 			t = new Timestamp(System.currentTimeMillis());
 			Messaggio messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
-			
 
 			t = new Timestamp(System.currentTimeMillis());
 			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
 			messaggioDao.save(messaggio);
 
-//			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
-//			Calendar cal2 = Calendar.getInstance();
-//			cal2.set(2018, Calendar.FEBRUARY, 8); // // 21 marzo 1995
-//			cal2.set(Calendar.HOUR_OF_DAY, 13);
-//			cal2.set(Calendar.MINUTE,30);
-//			
-//			Date dateEventoIn = (Date) cal2.getTime();
-//			Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-//			cal2 = Calendar.getInstance();
-//			cal2.set(2018, Calendar.FEBRUARY, 9); // // 21 marzo 1995
-//			cal2.set(Calendar.HOUR_OF_DAY, 13);
-//			cal2.set(Calendar.MINUTE,30);
-//			Date dateEventoFi = (Date) cal2.getTime();
-//			Timestamp ev2 = new Timestamp(dateEventoFi.getTime());
-//
-//			Evento evento = new Evento("primoEvento", ev1, ev1, "Evento di prova");
-//			Evento evento2 = new Evento("secondoEvento", ev2, ev2, "Evento di prova");
-//			eventoDao.save(evento);
-//			eventoDao.save(evento2);
-//			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento);
-//			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento2);
-//		List<Evento> eventiricca=calendarioPersonaleDao.findAllEventsUtente(calendarioPersonaleSt.getMatricola());
-//		for(int i=0;i<eventiricca.size();i++) {
-//			System.out.println( "evento: "+ eventiricca.get(i).getTitle());
-//		}
-		
-		
-		// Functionaaaaa!!
 
-			System.out.println(studenteDao.findByPrimaryKey("111").getNome());
-			System.out.println(docenteDao.findByPrimaryKey("555").getNome());
-			System.out.println(aulaDao.findByPrimaryKey("MT5").getPosti());
-			// System.out.println(calendarioPersonaleDao.findByPrimaryKey("111").getUtente());
-			// System.out.println(corsoDao.findByPrimaryKey(new Long(211)).getNome());
-			// System.out.println(lezioneDao.findByPrimaryKey(new
-			// java.sql.Date(100)).getAula());
+			// Functionaaaaa!!
+
 			for (Aula aula : aulaDao.findAll()) {
 				System.out.println("L'aula è la " + aula.getId() + " appartiene al corso di laurea "
 						+ aula.getCorsoDiLaurea() + " ha a disposizione " + aula.getPosti());

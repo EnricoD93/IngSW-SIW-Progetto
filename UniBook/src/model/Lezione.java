@@ -1,17 +1,17 @@
 package model;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Lezione {
 	private Long corso;
 	private GiornoCalendario data;
-	private double oraInizio;
-	private double oraFine;
+	private Timestamp oraInizio;
+	private Timestamp oraFine;
 	private String aula;
 	private int tipo;
 	private long id;
 
-	public Lezione(Long corso, GiornoCalendario data,double oraInizio, double oraFine, String aula, int tipo) {
+	public Lezione(Long corso, GiornoCalendario data,Timestamp oraInizio, Timestamp oraFine, String aula, int tipo) {
 		
 		this.corso=corso;
 		this.data = data;
@@ -56,19 +56,19 @@ public class Lezione {
 		this.data = data;
 	}
 
-	public double getOraInizio() {
+	public Timestamp getOraInizio() {
 		return oraInizio;
 	}
 
-	public void setOraInizio(double oraInizio) {
+	public void setOraInizio(Timestamp oraInizio) {
 		this.oraInizio = oraInizio;
 	}
 
-	public double getOraFine() {
+	public Timestamp getOraFine() {
 		return oraFine;
 	}
 
-	public void setOraFine(double oraFine) {
+	public void setOraFine(Timestamp oraFine) {
 		this.oraFine = oraFine;
 	}
 

@@ -53,13 +53,13 @@ public class UtilDao {
 					+ "create table corso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,descrizione VARCHAR(255),requisiti VARCHAR(255),giorni VARCHAR(255),ore_lezioni int,ore_esercitazioni int,materiale VARCHAR(255),\"docente\" VARCHAR(255) REFERENCES utente(\"matricola\"),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),cfu int,cognomeDocente VARCHAR(255), nomeDocente VARCHAR(255),data_inizio Date, data_fine Date);"
 					+ "create table aula(\"id\" VARCHAR(255) primary key,posti int,\"codice\" VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ubicazione VARCHAR(255));"
 					+ "create table messaggio(\"id\" bigint primary key, data timestamp, testo text,matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
-					+ "create table lezione(\"id\" bigint primary key,data DATE , ora_inizio real, ora_fine real,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
+					+ "create table lezione(\"id\" bigint primary key,data DATE , ora_inizio timestamp, ora_fine timestamp,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
 					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
-					+ "create table evento(title VARCHAR(255) primary key,inizio timestamp, fine timestamp, nota text );"
-					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento VARCHAR(255) REFERENCES evento(\"title\"));"
+					+ "create table evento(\"id\" bigint primary key, title VARCHAR(255),inizio timestamp, fine timestamp, nota text );"
+					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento bigint REFERENCES evento(\"id\"));"
 
 			;
 

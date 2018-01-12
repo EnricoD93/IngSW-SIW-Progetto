@@ -93,31 +93,32 @@
 											<span class="input-group-addon"> Lunedì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioLun">
 
-												<option value="08:30">08:30</option>
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="14:00">14:00</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
+													<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineLun">
 
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="13:30">13:30</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
-												<option value="19:00">19:00</option>
+											<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
+
 
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
@@ -145,31 +146,31 @@
 											<span class="input-group-addon"> Martedì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioMar">
 
-												<option value="08:30">08:30</option>
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="14:00">14:00</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
+												<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineMar">
 
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="13:30">13:30</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
-												<option value="19:00">19:00</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
 
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
@@ -197,31 +198,31 @@
 											<span class="input-group-addon"> Mercoledì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioMer">
 
-												<option value="08:30">08:30</option>
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="14:00">14:00</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
+												<option value="0000-00-00 08:30:00">08:30</option>
+												<option value="0000-00-00 09:30:00">09:30</option>
+												<option value="0000-00-00 10:30:00">10:30</option>
+												<option value="0000-00-00 11:30:00">11:30</option>
+												<option value="0000-00-00 12:30:00">12:30</option>
+												<option value="0000-00-00 14:00:00">14:00</option>
+												<option value="0000-00-00 15:00:00">15:00</option>
+												<option value="0000-00-00 16:00:00">16:00</option>
+												<option value="0000-00-00 17:00:00">17:00</option>
+												<option value="0000-00-00 18:00:00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineMer">
 
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="13:30">13:30</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
-												<option value="19:00">19:00</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
 
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
@@ -249,31 +250,31 @@
 											<span class="input-group-addon"> Giovedì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioGio">
 
-												<option value="08:30">08:30</option>
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="14:00">14:00</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
+												<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineGio">
 
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="13:30">13:30</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
-												<option value="19:00">19:00</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
 
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
@@ -301,31 +302,31 @@
 											<span class="input-group-addon"> Venerdì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioVen">
 
-												<option value="08:30">08:30</option>
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="14:00">14:00</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
+												<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineVen">
 
-												<option value="09:30">09:30</option>
-												<option value="10:30">10:30</option>
-												<option value="11:30">11:30</option>
-												<option value="12:30">12:30</option>
-												<option value="13:30">13:30</option>
-												<option value="15:00">15:00</option>
-												<option value="16:00">16:00</option>
-												<option value="17:00">17:00</option>
-												<option value="18:00">18:00</option>
-												<option value="19:00">19:00</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
 
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
