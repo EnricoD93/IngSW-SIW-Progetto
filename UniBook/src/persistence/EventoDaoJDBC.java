@@ -2,9 +2,11 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.CalendarioPersonale;
 import model.CorsoDiLaurea;
 import model.Evento;
 import persistence.dao.EventoDao;
@@ -41,9 +43,28 @@ public class EventoDaoJDBC implements EventoDao{
 	}
 
 	@Override
-	public CorsoDiLaurea findByPrimaryKey(String title) {
-		// TODO Auto-generated method stub
-		return null;
+	public Evento findByPrimaryKey(String title) {
+		Connection connection = this.dataSource.getConnection();
+		Evento evento = null;
+		try {
+			String query = "select * from evento where title = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, title);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				evento= new Evento();
+				evento.setTitle(result.getString("title"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}	
+		return evento;
 	}
 
 	@Override

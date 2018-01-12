@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import model.Aula;
@@ -369,8 +370,18 @@ public class MainJDBC {
 			Timestamp fine = new Timestamp(dateEvento.getTime());
 
 			Evento evento = new Evento("primoEvento", inizio, fine, "Evento di prova");
+			Evento evento2 = new Evento("secondoEvento", inizio, fine, "Evento di prova");
 			eventoDao.save(evento);
-			// Functionaaaaa!!
+			eventoDao.save(evento2);
+			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento);
+			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento2);
+		List<Evento> eventiricca=calendarioPersonaleDao.findAllEventsUtente(calendarioPersonaleSt.getMatricola());
+		for(int i=0;i<eventiricca.size();i++) {
+			System.out.println( "evento: "+ eventiricca.get(i).getTitle());
+		}
+		
+		
+		// Functionaaaaa!!
 
 			System.out.println(studenteDao.findByPrimaryKey("111").getNome());
 			System.out.println(docenteDao.findByPrimaryKey("555").getNome());

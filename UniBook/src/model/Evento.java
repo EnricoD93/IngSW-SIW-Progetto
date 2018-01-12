@@ -8,12 +8,14 @@ public class Evento {
 	Timestamp fine;
 	String nota;
 
-	public Evento(String title, Timestamp inizio,
-			Timestamp fine,String nota) {
+	public Evento() {
+	}
+
+	public Evento(String title, Timestamp inizio, Timestamp fine, String nota) {
 		this.title = title;
 		this.inizio = inizio;
 		this.fine = fine;
-		this.nota=nota;
+		this.nota = nota;
 	}
 
 	public String getTitle() {
@@ -39,10 +41,6 @@ public class Evento {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
-
-
 
 	public String getNota() {
 		return nota;

@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.Evento;
 import model.GiornoCalendario;
 import model.Utente;
 import persistence.DatabaseManager;
@@ -22,7 +23,7 @@ public class CalendarManager extends HttpServlet {
 
 	String request;
 	String matricola;
-	List<GiornoCalendario> listaEventi;
+	List<Evento> listaEventi;
 	Utente currentUser;
 
 	@Override
@@ -34,14 +35,14 @@ public class CalendarManager extends HttpServlet {
 		matricola=req.getParameter("matricola");
 		if(request.equals("Eventi")) {
 			CalendarioPersonaleDao calendarioPersonaleDao= DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
-		//	listaEventi=calendarioPersonaleDao.findByPrimaryKey(matricola).getEventi();
+			listaEventi=calendarioPersonaleDao.findAllEventsUtente(matricola);
 			for(int i=0; i<listaEventi.size();i++) {
 			JSONObject evento=new JSONObject();
 			try {
 				evento.put("title", "titoloprova");
-				evento.put("anno", listaEventi.get(i).getAnno());
-				evento.put("mese", listaEventi.get(i).getMese());
-				evento.put("giorno", listaEventi.get(i).getGiorno() );
+//				evento.put("anno", listaEventi.get(i).getInizio().
+//				evento.put("mese", listaEventi.get(i).getMese());
+//				evento.put("giorno", listaEventi.get(i).getGiorno() );
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
