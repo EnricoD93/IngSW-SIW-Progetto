@@ -252,8 +252,8 @@ public class MainJDBC {
 			lezioneDao.save(lezione);
 			calendarioPersonaleSt.aggiungiLezione(lezione);
 			calendarioPersonaleDao.save(calendarioPersonaleSt);
-System.out.println("la size degli eventi del calendario è "+calendarioPersonaleSt.getEventi().size());
-System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
+//System.out.println("la size degli eventi del calendario è "+calendarioPersonaleSt.getEventi().size());
+//System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
 
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			Messaggio messaggio1 = new Messaggio(date, st3.getMatricola(), ricca.getMatricola(), "Salve", 5);
