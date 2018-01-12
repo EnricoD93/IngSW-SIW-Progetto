@@ -186,7 +186,22 @@ function init() {
 												}
 
 											},
-											events : getEvent()
+											events :getEvent()
+//												function(){
+//												var events=getEvent();
+//												console.log(events);
+//												for(var i=0;i<events.length; i++){
+//													console.log(events[i].start+"anno");
+//													[{
+//														title: events[i].title,
+//														start:events[i].start,
+//														end: events[i].end,
+//														className: 'success'
+//													}]
+													
+//											}}
+																							
+												//getEvent()
 //												function(data) {
 //												$.ajax({
 //													type : "POST",
@@ -209,14 +224,15 @@ function init() {
 //
 //											};
 										
-										// [ {
-										// title : 'Click for Google',
-										// start : new Date(y, m, 28),
-										// end : new Date(y, m, 29),
-										// url : 'http://google.com/',
-										// className : 'success'
-										// } ]
-										// ,
+//										 [ {
+//										 title : 'Click for Google',
+//										 start : new Date(y, m, 28),
+//										 end : new Date(y, m, 29),
+//										 url : 'http://google.com/',
+//										 className : 'success'
+//										 } ]
+										 
+										 
 										});
 
 					});
@@ -237,14 +253,20 @@ function getEvent(){
 		},
 		success : function(data) {
 			for (var i = 0; i < data.result.length; i++){
+				
+				console.log("title:"+data.result[i].title)
+				console.log("anno:"+data.result[i].anno)
+				console.log("mese:"+data.result[i].mese )
+				console.log("giorno:"+data.result[i].giorno)
 				var event={
 					title: data.result[i].title,
-					start: new Date(data.result[i].anno,data.result[i].mese-1 , data.result[i].giorno),
-					end: new Date(data.result[i].anno,data.result[i].mese-1 , data.result[i].giorno),
+					start: new Date(data.result[i].anno,data.result[i].mese , data.result[i].giorno),
+					end: new Date(data.result[i].anno,data.result[i].mese, data.result[i].giorno),
 					className: 'success'
 			};
 				events.push(event);
-				console.log(events.length)
+				console.log("title event:"+events[0].title);
+				console.log(events.length+"size eventi");
 				
 			}
 			

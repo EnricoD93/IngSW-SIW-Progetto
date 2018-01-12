@@ -1,6 +1,10 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -28,26 +32,32 @@ public class CalendarManager extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		JSONObject result=new JSONObject();
-		JSONArray listaJson= new JSONArray();
+		JSONObject result = new JSONObject();
+		JSONArray listaJson = new JSONArray();
 		HttpSession session = req.getSession();
 		request = req.getParameter("request");
-		matricola=req.getParameter("matricola");
-		if(request.equals("Eventi")) {
-			CalendarioPersonaleDao calendarioPersonaleDao= DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
-			listaEventi=calendarioPersonaleDao.findAllEventsUtente(matricola);
-			for(int i=0; i<listaEventi.size();i++) {
-			JSONObject evento=new JSONObject();
-			try {
-				evento.put("title", "titoloprova");
-//				evento.put("anno", listaEventi.get(i).getInizio().
-//				evento.put("mese", listaEventi.get(i).getMese());
-//				evento.put("giorno", listaEventi.get(i).getGiorno() );
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			listaJson.put(evento);
+		matricola = req.getParameter("matricola");
+		if (request.equals("Eventi")) {
+			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+					.getCalendarioPersonaleDAO();
+			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
+			for (int i = 0; i < listaEventi.size(); i++) {
+				JSONObject evento = new JSONObject();
+
+				try {
+					evento.put("title", "titoloprova");
+					Date date = new Date(listaEventi.get(i).getInizio().getTime());
+					Calendar cal = new GregorianCalendar();
+					cal.setTime(date);
+
+					evento.put("anno", cal.get(Calendar.YEAR));
+					evento.put("mese", cal.get(Calendar.MONTH));
+					evento.put("giorno", cal.get(Calendar.DAY_OF_MONTH));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				listaJson.put(evento);
 			}
 			try {
 				result.put("result", listaJson);

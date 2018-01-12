@@ -362,7 +362,7 @@ public class MainJDBC {
 
 			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 			Calendar cal2 = Calendar.getInstance();
-			cal2.set(2018, Calendar.FEBRUARY, 28); // // 21 marzo 1995
+			cal2.set(2018, Calendar.FEBRUARY, 8); // // 21 marzo 1995
 			cal2.set(Calendar.HOUR_OF_DAY, 13);
 			cal2.set(Calendar.MINUTE,30);
 			Date dateEvento = (Date) cal2.getTime();
