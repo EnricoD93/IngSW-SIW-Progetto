@@ -16,11 +16,13 @@ public class UtilDao {
 
 		Connection connection = dataSource.getConnection();
 		try {
-			String delete ="drop table if exists descrizionecorso;"+ "drop table if exists esame;" + "drop table if exists messaggio;"
-					+ "drop table if exists calendariopersonale;" + "drop table if exists lezione;"
-					+ "drop table if exists aula;" + "drop table if exists iscritto;" + "drop table if exists corso;"
-					+ "drop table if exists studente;" + "drop table if exists docente;"
-					+ "drop table if exists utente;" + "drop table if exists corsodilaurea;";
+			String delete = "drop SEQUENCE if exists sequenza_id;" + "drop table if exists descrizionecorso;"
+					+ "drop table if exists esame;" + "drop table if exists messaggio;"
+					+ "drop table if exists lezione;" + "drop table if exists aula;" + "drop table if exists iscritto;"
+					+ "drop table if exists corso;" + "drop table if exists studente;" + "drop table if exists docente;"
+					+ "drop table if exists contiene;" + "drop table if exists evento;"
+					+ "drop table if exists calendariopersonale;" + "drop table if exists utente;"
+					+ "drop table if exists corsodilaurea;";
 
 			PreparedStatement statement = connection.prepareStatement(delete);
 
@@ -45,16 +47,19 @@ public class UtilDao {
 		Connection connection = dataSource.getConnection();
 		try {
 
-			String create = "create table corsodilaurea(\"codice\" VARCHAR(255) primary key,nome VARCHAR(255));"
+			String create = "create SEQUENCE sequenza_id;"
+					+ "create table corsodilaurea(\"codice\" VARCHAR(255) primary key,nome VARCHAR(255));"
 					+ "create table utente(matricola VARCHAR(255) primary key,nome VARCHAR(255),cognome varchar(255),email VARCHAR(255),password VARCHAR(255),data_nascita DATE,codice_fiscale VARCHAR(16),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ruolo int,verifycode VARCHAR(255),imagepath VARCHAR(255));"
 					+ "create table corso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,descrizione VARCHAR(255),requisiti VARCHAR(255),giorni VARCHAR(255),ore_lezioni int,ore_esercitazioni int,materiale VARCHAR(255),\"docente\" VARCHAR(255) REFERENCES utente(\"matricola\"),corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),cfu int,cognomeDocente VARCHAR(255), nomeDocente VARCHAR(255),data_inizio Date, data_fine Date);"
 					+ "create table aula(\"id\" VARCHAR(255) primary key,posti int,\"codice\" VARCHAR(255) REFERENCES corsodilaurea(\"codice\"),ubicazione VARCHAR(255));"
-					+ "create table messaggio(data DATE primary key,ora int,testo text,matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
+					+ "create table messaggio(\"id\" bigint primary key, data timestamp, testo text,matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table lezione(data DATE primary key, ora_inizio real, ora_fine real,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
 					+ "create table esame(\"codice\" bigint primary key REFERENCES corso(\"codice\"));"
 					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
+					+ "create table evento(title VARCHAR(255) primary key,data_inizio DATE, data_fine DATE, ora_inizio real, ora_fine real, nota text );"
+					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento VARCHAR(255) REFERENCES evento(\"title\"));"
 
 			;
 

@@ -32,7 +32,7 @@
 						<div class="card" style="border-radius: 5px; margin-right: 10%">
 							<div class="mycontainer">
 								<p style="font-size: 16px;">${messaggio.testo}</p>
-								<span class="time-left">${messaggio.data}&thinsp;${messaggio.ora}</span>
+								<span class="time-left">${messaggio.data}&thinsp;</span>
 							</div>
 						</div>
 					</c:if>
@@ -40,7 +40,7 @@
 						<div class="card" style="border-radius: 5px; margin-left: 10%">
 							<div class="mycontainer darker">
 								<p style="font-size: 16px;">${messaggio.testo}</p>
-								<span class="time-right">${messaggio.data}&thinsp;${messaggio.ora}</span>
+								<span class="time-right">${messaggio.data}&thinsp;</span>
 							</div>
 						</div>
 					</c:if>

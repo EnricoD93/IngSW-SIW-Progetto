@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,15 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 	public void save(Messaggio messaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into messaggio(data,ora,testo,matricola_mitt,matricola_dest) values (?,?,?,?,?)";
+			Long id= IdBroker.getId(connection);
+			messaggio.setId(id);
+			String insert = "insert into messaggio(id,data,testo,matricola_mitt,matricola_dest) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			long secs = messaggio.getData().getTime();
-			statement.setDate(1, new java.sql.Date(secs));
-			statement.setInt(2, messaggio.getOra());
+			statement.setLong(1,messaggio.getId());
+			statement.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
 			statement.setString(3, messaggio.getTesto());
 			statement.setString(4, messaggio.getMittente());
-			statement.setString(5, messaggio.getDestinatario());
+			statement.setString(5, messaggio.getDestinatario());			
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -56,8 +58,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				messaggio = new Messaggio();
-				messaggio.setData(result.getDate("data"));
-				messaggio.setOra(result.getInt("ora"));
+				messaggio.setData(result.getTimestamp("data"));
 				messaggio.setTesto(result.getString("testo"));
 				messaggio.setMittente(result.getString("matricola_mitt"));
 				messaggio.setDestinatario(result.getString("matricola_dest"));
@@ -123,11 +124,10 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			Messaggio messaggio;
 			while (result.next()) {
 				messaggio = new Messaggio();
-				messaggio.setData(result.getDate("data"));
+				messaggio.setData(result.getTimestamp("data"));
 				messaggio.setDestinatario(result.getString("matricola_mitt"));
 				messaggio.setMittente(result.getString("matricola_dest"));
 				messaggio.setTesto(result.getString("testo"));
-				messaggio.setOra(result.getInt("ora"));
 				messaggi.add(messaggio);
 			}
 		} catch (SQLException e) {

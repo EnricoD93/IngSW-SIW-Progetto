@@ -256,24 +256,24 @@ public class MainJDBC {
 //System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
 
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
-			Messaggio messaggio1 = new Messaggio(date, st3.getMatricola(), ricca.getMatricola(), "Salve", 5);
+			Messaggio messaggio1 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve");
 			messaggioDao.save(messaggio1);
 			date = format.parse("1993-06-20");
-			Messaggio messaggio2 = new Messaggio(date, ricca.getMatricola(), st3.getMatricola(), "Salve prof,\r\n" + 
+			Messaggio messaggio2 = new Messaggio( ricca.getMatricola(), st3.getMatricola(), "Salve prof,\r\n" + 
 					"Ricordo che sul calendario che mostrate di solito a lezione è fissata una prova per il 21/11 su Git e JUnit.\r\n" + 
 					"Volevo chiedervi se è confermato che ci sarà, visto che in questa settimana non c’è stata alcuna lezione per chiedervelo di persona.\r\n" + 
 					"Grazie in anticipo,\r\n" + 
 					"De Cicco E.\r\n" + 
-					"", 6);
+					"");
 			messaggioDao.save(messaggio2);
 			date = format.parse("1993-06-21");
-			Messaggio messaggio3 = new Messaggio(date, st3.getMatricola(), ricca.getMatricola(), "Come stai?", 7);
+			Messaggio messaggio3 = new Messaggio( st3.getMatricola(), ricca.getMatricola(), "Come stai?");
 			messaggioDao.save(messaggio3);
 			date = format.parse("1993-06-22");
-			Messaggio messaggio4 = new Messaggio(date, ricca.getMatricola(), st3.getMatricola(), "Bene", 8);
+			Messaggio messaggio4 = new Messaggio( ricca.getMatricola(), st3.getMatricola(), "Bene");
 			messaggioDao.save(messaggio4);
 			date = format.parse("1993-06-23");
-			Messaggio messaggio = new Messaggio(date, st3.getMatricola(), perri.getMatricola(), "Salve perri", 5);
+			Messaggio messaggio = new Messaggio( st3.getMatricola(), perri.getMatricola(), "Salve perri");
 			messaggioDao.save(messaggio);
 
 			// Functionaaaaa!!
