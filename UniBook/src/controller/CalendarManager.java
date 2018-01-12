@@ -44,7 +44,7 @@ public class CalendarManager extends HttpServlet {
 			
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
 			
-			
+			System.out.println(listaEventi.size());
 	
 			for (int i = 0; i < listaEventi.size(); i++) {
 				JSONObject evento = new JSONObject();

@@ -241,14 +241,14 @@ function init() {
 
 function getEvent(){
 	var events=[];
-	
+
 	$.ajax({
 		type : "POST",
 		url : "calendarManager",
 		async: false,
 		datatype : 'text',
 		data : {
-			matricola : "555",
+			matricola : $('#currentUser').val(),
 			request : "Eventi"
 		},
 		success : function(data) {

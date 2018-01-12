@@ -24,7 +24,7 @@
 			<div id='wrap'>
 
 				<div id='calendar'></div>
-
+<input type="hidden" id="currentUser" value="${currentUser.matricola}"/>
 				<div style='clear: both'></div>
 			</div>
 		</div>
