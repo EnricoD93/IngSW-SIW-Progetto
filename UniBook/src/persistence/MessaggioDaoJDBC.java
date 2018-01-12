@@ -29,7 +29,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			String insert = "insert into messaggio(id,data,testo,matricola_mitt,matricola_dest) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1,messaggio.getId());
-			statement.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
+			statement.setTimestamp(2,messaggio.getData());
 			statement.setString(3, messaggio.getTesto());
 			statement.setString(4, messaggio.getMittente());
 			statement.setString(5, messaggio.getDestinatario());			
@@ -62,6 +62,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 				messaggio.setTesto(result.getString("testo"));
 				messaggio.setMittente(result.getString("matricola_mitt"));
 				messaggio.setDestinatario(result.getString("matricola_dest"));
+				messaggio.parseDate(messaggio.getData());
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -128,6 +129,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 				messaggio.setDestinatario(result.getString("matricola_mitt"));
 				messaggio.setMittente(result.getString("matricola_dest"));
 				messaggio.setTesto(result.getString("testo"));
+				messaggio.parseDate(messaggio.getData());
 				messaggi.add(messaggio);
 			}
 		} catch (SQLException e) {

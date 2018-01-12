@@ -1,5 +1,6 @@
 package persistence;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -252,28 +253,108 @@ public class MainJDBC {
 			lezioneDao.save(lezione);
 			calendarioPersonaleSt.aggiungiLezione(lezione);
 			calendarioPersonaleDao.save(calendarioPersonaleSt);
-//System.out.println("la size degli eventi del calendario è "+calendarioPersonaleSt.getEventi().size());
-//System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
-
+			// System.out.println("la size degli eventi del calendario è
+			// "+calendarioPersonaleSt.getEventi().size());
+			// System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
+			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
-			Messaggio messaggio1 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve");
+			Messaggio messaggio1 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve", t);
 			messaggioDao.save(messaggio1);
-			date = format.parse("1993-06-20");
-			Messaggio messaggio2 = new Messaggio( ricca.getMatricola(), st3.getMatricola(), "Salve prof,\r\n" + 
-					"Ricordo che sul calendario che mostrate di solito a lezione è fissata una prova per il 21/11 su Git e JUnit.\r\n" + 
-					"Volevo chiedervi se è confermato che ci sarà, visto che in questa settimana non c’è stata alcuna lezione per chiedervelo di persona.\r\n" + 
-					"Grazie in anticipo,\r\n" + 
-					"De Cicco E.\r\n" + 
-					"");
+			t = new Timestamp(System.currentTimeMillis());
+			Messaggio messaggio2 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Salve prof,\r\n"
+					+ "Ricordo che sul calendario che mostrate di solito a lezione è fissata una prova per il 21/11 su Git e JUnit.\r\n"
+					+ "Volevo chiedervi se è confermato che ci sarà, visto che in questa settimana non c’è stata alcuna lezione per chiedervelo di persona.\r\n"
+					+ "Grazie in anticipo,\r\n" + "De Cicco E.\r\n", t);
 			messaggioDao.save(messaggio2);
-			date = format.parse("1993-06-21");
-			Messaggio messaggio3 = new Messaggio( st3.getMatricola(), ricca.getMatricola(), "Come stai?");
+			t = new Timestamp(System.currentTimeMillis());
+			Messaggio messaggio3 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Come stai?", t);
 			messaggioDao.save(messaggio3);
-			date = format.parse("1993-06-22");
-			Messaggio messaggio4 = new Messaggio( ricca.getMatricola(), st3.getMatricola(), "Bene");
+			t = new Timestamp(System.currentTimeMillis());
+			Messaggio messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
 			messaggioDao.save(messaggio4);
-			date = format.parse("1993-06-23");
-			Messaggio messaggio = new Messaggio( st3.getMatricola(), perri.getMatricola(), "Salve perri");
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+			messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
+			messaggioDao.save(messaggio4);
+
+			t = new Timestamp(System.currentTimeMillis());
+			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
 			messaggioDao.save(messaggio);
 
 			// Functionaaaaa!!

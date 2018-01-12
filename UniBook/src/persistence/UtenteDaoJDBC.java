@@ -75,7 +75,6 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
-				System.out.println(utente.getProfileImagePath());
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
