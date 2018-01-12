@@ -254,20 +254,14 @@ function getEvent(){
 		success : function(data) {
 			for (var i = 0; i < data.result.length; i++){
 				
-				console.log("title:"+data.result[i].title)
-				console.log("anno:"+data.result[i].anno)
-				console.log("mese:"+data.result[i].mese )
-				console.log("giorno:"+data.result[i].giorno)
 				var event={
 					title: data.result[i].title,
-					start: new Date(data.result[i].anno,data.result[i].mese , data.result[i].giorno),
-					end: new Date(data.result[i].anno,data.result[i].mese, data.result[i].giorno),
+					start: new Date(data.result[i].annoIn,data.result[i].meseIn , data.result[i].giornoIn),
+					end: new Date(data.result[i].annoFi,data.result[i].meseFi, data.result[i].giornoFi),
 					className: 'success'
 			};
 				events.push(event);
-				console.log("title event:"+events[0].title);
-				console.log(events.length+"size eventi");
-				
+			
 			}
 			
 		}

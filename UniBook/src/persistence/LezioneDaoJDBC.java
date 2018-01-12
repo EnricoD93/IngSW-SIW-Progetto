@@ -22,15 +22,17 @@ public class LezioneDaoJDBC implements LezioneDao {
 	public void save(Lezione lezione) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into lezione(data,ora_inizio,ora_fine,corso,aula,tipo) values (?,?,?,?,?,?)";
+			Long id= IdBroker.getId(connection);
+			lezione.setId(id);
+			String insert = "insert into lezione(id,data,ora_inizio,ora_fine,corso,aula,tipo) values (?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-		
-			statement.setDate(1, lezione.getData().GiornoCalendarioToDate());
-			statement.setDouble(2, lezione.getOraInizio());
-			statement.setDouble(3, lezione.getOraFine());
-			statement.setLong(4, lezione.getCorso());
-			statement.setString(5, lezione.getAula());
-			statement.setInt(6, lezione.getTipo());
+			statement.setLong(1, lezione.getId());
+			statement.setDate(2, lezione.getData().GiornoCalendarioToDate());
+			statement.setDouble(3, lezione.getOraInizio());
+			statement.setDouble(4, lezione.getOraFine());
+			statement.setLong(5, lezione.getCorso());
+			statement.setString(6, lezione.getAula());
+			statement.setInt(7, lezione.getTipo());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {

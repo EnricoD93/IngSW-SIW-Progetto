@@ -1,7 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,13 +16,17 @@ import javax.servlet.http.HttpSession;
 import model.CalendarioPersonale;
 import model.Corso;
 import model.DescrizioneCorso;
+import model.Evento;
 import model.GiornoCalendario;
 import model.Lezione;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.UtilDao;
+import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
+import persistence.dao.EventoDao;
+import persistence.dao.LezioneDao;
 
 public class CreateCourse extends HttpServlet {
 	@Override
@@ -101,27 +109,30 @@ public class CreateCourse extends HttpServlet {
 								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine()));
 			}
 			if (martedì != null) {
-				lezioni.addAll(
-						cal.getLezioniCorso(martedì.getCorso(), inizio, fine, martedì.getData().getGiornoDellaSettimana(),
-								martedì.getAula(), 0, martedì.getOraInizio(), martedì.getOraFine()));
+				lezioni.addAll(cal.getLezioniCorso(martedì.getCorso(), inizio, fine,
+						martedì.getData().getGiornoDellaSettimana(), martedì.getAula(), 0, martedì.getOraInizio(),
+						martedì.getOraFine()));
 			}
 			if (mercoledì != null) {
-				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine, mercoledì.getData().getGiornoDellaSettimana(),
-								mercoledì.getAula(), 0, mercoledì.getOraInizio(), mercoledì.getOraFine()));
+				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine,
+						mercoledì.getData().getGiornoDellaSettimana(), mercoledì.getAula(), 0, mercoledì.getOraInizio(),
+						mercoledì.getOraFine()));
 			}
 			if (giovedì != null) {
-				lezioni.addAll(
-						cal.getLezioniCorso(giovedì.getCorso(), inizio, fine, giovedì.getData().getGiornoDellaSettimana(),
-								giovedì.getAula(), 0, giovedì.getOraInizio(), giovedì.getOraFine()));
-				System.out.println("la size di lezioni è "+ lezioni.size());
+				lezioni.addAll(cal.getLezioniCorso(giovedì.getCorso(), inizio, fine,
+						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), 0, giovedì.getOraInizio(),
+						giovedì.getOraFine()));
+				System.out.println("la size di lezioni è " + lezioni.size());
 			}
 			if (venerdì != null) {
-				lezioni.addAll(
-						cal.getLezioniCorso(venerdì.getCorso(), inizio, fine, venerdì.getData().getGiornoDellaSettimana(),
-								venerdì.getAula(), 0, venerdì.getOraInizio(), venerdì.getOraFine()));
+				lezioni.addAll(cal.getLezioniCorso(venerdì.getCorso(), inizio, fine,
+						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), 0, venerdì.getOraInizio(),
+						venerdì.getOraFine()));
 			}
-			for (int i = 0; i < lezioni.size(); i++)
-				lezioni.get(i).getData().stampa();
+
+			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+
+			
 			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 			DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
@@ -146,8 +157,26 @@ public class CreateCourse extends HttpServlet {
 			g = new GiornoCalendario();
 			g.parseToGiornoCalendario(g.parseToDate(dataFine));
 			c.setDataFine(g);
-
+			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+					.getCalendarioPersonaleDAO();
+			LezioneDao lezioneDao=DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 			corsoDao.save(c);
+			
+			for (int i = 0; i < lezioni.size(); i++) {
+				lezioneDao.save(lezioni.get(i));
+				Calendar cal2 = new GregorianCalendar();
+				cal2.set(lezioni.get(i).getData().getAnno(), lezioni.get(i).getData().getMese()-1,
+						lezioni.get(i).getData().getGiorno()); 
+				cal2.set(Calendar.HOUR_OF_DAY, 13);
+				cal2.set(Calendar.MINUTE, 30);
+				Date dateEventoIn = (Date) cal2.getTime();
+				Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
+				Evento e = new Evento("Lezione " + corso.getNome()+i, ev1, ev1, "ProvaLezione");
+				eventoDao.save(e);
+				calendarioPersonaleDao.saveEvent(user.getMatricola(), e);
+				
+			}
+
 		}
 		if (request.equals("cancel")) {
 			Utente u = (Utente) session.getAttribute("currentUser");

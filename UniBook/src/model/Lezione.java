@@ -9,6 +9,7 @@ public class Lezione {
 	private double oraFine;
 	private String aula;
 	private int tipo;
+	private long id;
 
 	public Lezione(Long corso, GiornoCalendario data,double oraInizio, double oraFine, String aula, int tipo) {
 		
@@ -18,6 +19,14 @@ public class Lezione {
 		this.oraFine=oraFine;
 		this.aula=aula;
 		this.tipo=tipo;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public int getTipo() {

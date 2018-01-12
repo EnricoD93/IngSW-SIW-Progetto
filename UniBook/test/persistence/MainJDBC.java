@@ -360,25 +360,31 @@ public class MainJDBC {
 			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
 			messaggioDao.save(messaggio);
 
-			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
-			Calendar cal2 = Calendar.getInstance();
-			cal2.set(2018, Calendar.FEBRUARY, 8); // // 21 marzo 1995
-			cal2.set(Calendar.HOUR_OF_DAY, 13);
-			cal2.set(Calendar.MINUTE,30);
-			Date dateEvento = (Date) cal2.getTime();
-			Timestamp inizio = new Timestamp(dateEvento.getTime());
-			Timestamp fine = new Timestamp(dateEvento.getTime());
-
-			Evento evento = new Evento("primoEvento", inizio, fine, "Evento di prova");
-			Evento evento2 = new Evento("secondoEvento", inizio, fine, "Evento di prova");
-			eventoDao.save(evento);
-			eventoDao.save(evento2);
-			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento);
-			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento2);
-		List<Evento> eventiricca=calendarioPersonaleDao.findAllEventsUtente(calendarioPersonaleSt.getMatricola());
-		for(int i=0;i<eventiricca.size();i++) {
-			System.out.println( "evento: "+ eventiricca.get(i).getTitle());
-		}
+//			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+//			Calendar cal2 = Calendar.getInstance();
+//			cal2.set(2018, Calendar.FEBRUARY, 8); // // 21 marzo 1995
+//			cal2.set(Calendar.HOUR_OF_DAY, 13);
+//			cal2.set(Calendar.MINUTE,30);
+//			
+//			Date dateEventoIn = (Date) cal2.getTime();
+//			Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
+//			cal2 = Calendar.getInstance();
+//			cal2.set(2018, Calendar.FEBRUARY, 9); // // 21 marzo 1995
+//			cal2.set(Calendar.HOUR_OF_DAY, 13);
+//			cal2.set(Calendar.MINUTE,30);
+//			Date dateEventoFi = (Date) cal2.getTime();
+//			Timestamp ev2 = new Timestamp(dateEventoFi.getTime());
+//
+//			Evento evento = new Evento("primoEvento", ev1, ev1, "Evento di prova");
+//			Evento evento2 = new Evento("secondoEvento", ev2, ev2, "Evento di prova");
+//			eventoDao.save(evento);
+//			eventoDao.save(evento2);
+//			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento);
+//			calendarioPersonaleDao.saveEvent(calendarioPersonaleSt.getMatricola(), evento2);
+//		List<Evento> eventiricca=calendarioPersonaleDao.findAllEventsUtente(calendarioPersonaleSt.getMatricola());
+//		for(int i=0;i<eventiricca.size();i++) {
+//			System.out.println( "evento: "+ eventiricca.get(i).getTitle());
+//		}
 		
 		
 		// Functionaaaaa!!

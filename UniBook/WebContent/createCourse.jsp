@@ -131,7 +131,7 @@
 												class="show-tick selectpicker" tabindex="-98"
 												name="idAula_1" >
 												<c:forEach var="aula" items="${listaAule}">
-													<option value="${aula.id}">Aula ${aula.id}</option>
+													<option value="MT4">Aula ${aula.id}</option>
 												</c:forEach>
 											</select>
 
