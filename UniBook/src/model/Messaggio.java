@@ -2,7 +2,9 @@ package model;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Messaggio {
 	private Timestamp data;
@@ -25,6 +27,11 @@ public class Messaggio {
 		Date date = new Date(currentdata.getTime());
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		String formattedDate = sdf.format(date);
+		Calendar cal=new GregorianCalendar();
+		cal.setTime(date);
+		System.out.println(cal.get(Calendar.YEAR));
+		System.out.println(cal.get(Calendar.MONTH));
+		System.out.println(cal.get(Calendar.DAY_OF_MONTH));
 		setDatareale(formattedDate);
 	}
 

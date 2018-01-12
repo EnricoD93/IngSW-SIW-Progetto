@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import model.Aula;
 import model.Corso;
@@ -25,6 +29,32 @@ public class ChangePage extends HttpServlet {
 	String request;
 	List<Aula> aule;
 	List<Corso> corsi;
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		request = req.getParameter("request");
+		if (request.equals("inviaMessaggio")) {
+			String dest = req.getParameter("dest");
+			String mitt = req.getParameter("mitt");
+			String testo = req.getParameter("text");
+			Timestamp t = new Timestamp(System.currentTimeMillis());
+			System.out.println("Sono " + mitt + " e invio un messaggio");
+			System.out.println("Sono " + dest + " e ricevo un messaggio");
+			Messaggio m = new Messaggio(mitt, dest, testo, t);
+			String date=m.getDatareale();
+			JSONObject datareale=new JSONObject();
+			try {
+				datareale.put("date", date);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+			messDao.save(m);
+			resp.setContentType("application/json");
+			resp.getWriter().print(datareale);
+		}
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -92,39 +122,40 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("listaAule", listaAule);
 			req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
 		}
-		if(request.equals("colleghi")) {
-				UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-				List<Utente> colleghi;
-				colleghi=utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
-				req.setAttribute("colleghi", colleghi);
-				req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
+		if (request.equals("colleghi")) {
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			List<Utente> colleghi;
+			colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
+			req.setAttribute("colleghi", colleghi);
+			req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
 		}
-		if(request.equals("docenti")) {
-			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		if (request.equals("docenti")) {
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			List<Utente> docenti;
-			docenti=utenteDao.findAllProfessor();
+			docenti = utenteDao.findAllProfessor();
 			req.setAttribute("docenti", docenti);
 			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
 		}
-		if(request.equals("messaggi")) {
-			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		if (request.equals("messaggi")) {
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			List<Utente> conversazioni;
-			conversazioni=utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
+			conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
 			req.setAttribute("conversazioni", conversazioni);
 			req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
-			
+
 		}
-		if(request.equals("conversazione")) {
+		if (request.equals("conversazione")) {
 			String id = req.getParameter("id");
-			UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			Utente u=utenteDao.findByPrimaryKey(id);
-			MessaggioDao messDao=DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			Utente u = utenteDao.findByPrimaryKey(id);
+			MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
 			List<Messaggio> messaggi;
-			messaggi=messDao.findMessagesByUtenti(currentUser.getMatricola(),id);
+			messaggi = messDao.findMessagesByUtenti(currentUser.getMatricola(), id);
 			req.setAttribute("messaggi", messaggi);
 			req.setAttribute("utenteConversazione", u);
 			req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
 		}
+
 	}
 
 }
