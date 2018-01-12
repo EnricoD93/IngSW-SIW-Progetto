@@ -126,8 +126,8 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			while (result.next()) {
 				messaggio = new Messaggio();
 				messaggio.setData(result.getTimestamp("data"));
-				messaggio.setDestinatario(result.getString("matricola_mitt"));
-				messaggio.setMittente(result.getString("matricola_dest"));
+				messaggio.setDestinatario(result.getString("matricola_dest"));
+				messaggio.setMittente(result.getString("matricola_mitt"));
 				messaggio.setTesto(result.getString("testo"));
 				messaggio.parseDate(messaggio.getData());
 				messaggi.add(messaggio);

@@ -6,8 +6,20 @@
 <html>
 <head>
 <script src="plugins/autosize/autosize.js"></script>
+<script src="javascript/message.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('html, body').animate({
+			scrollTop : $('body').offset().bottom
+		//scrollTop: $('#your-id').offset().top
+		//scrollTop: $('.your-class').offset().top
+		}, 'slow');
+		window.scrollTo(0, document.body.scrollHeight);
+
+	});
+</script>
 </head>
-<section id="centralSection" class="content">
+<section id="centralSection" class="content" style="overflow: auto;">
 	<div class="content" style="background-color: #C4161C;">
 		<div class="image">
 			<div class="profile-pic-xs"
@@ -27,38 +39,42 @@
 			<br>
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
-				<c:forEach var="messaggio" varStatus="loop" items="${messaggi}">
-					<c:if test="${messaggio.mittente!=currentUser.matricola }">
-						<div class="card" style="border-radius: 5px; margin-right: 10%">
-							<div class="mycontainer">
-								<p style="font-size: 16px;">${messaggio.testo}</p>
-								<span class="time-left">${messaggio.data}&thinsp;</span>
+				<div id="messages">
+					<c:forEach var="messaggio" varStatus="loop" items="${messaggi}">
+						<c:if test="${messaggio.mittente!=currentUser.matricola }">
+							<div class="card" style="border-radius: 5px; margin-right: 10%">
+								<div class="mycontainer">
+									<p style="font-size: 16px;">${messaggio.testo}</p>
+									<span class="time-left">${messaggio.datareale}&thinsp;</span>
+								</div>
 							</div>
-						</div>
-					</c:if>
-					<c:if test="${messaggio.mittente==currentUser.matricola}">
-						<div class="card" style="border-radius: 5px; margin-left: 10%">
-							<div class="mycontainer darker">
-								<p style="font-size: 16px;">${messaggio.testo}</p>
-								<span class="time-right">${messaggio.data}&thinsp;</span>
+						</c:if>
+						<c:if test="${messaggio.mittente==currentUser.matricola}">
+							<div class="card" style="border-radius: 5px; margin-left: 10%">
+								<div class="mycontainer darker">
+									<p style="font-size: 16px;">${messaggio.testo}</p>
+									<span class="time-right">${messaggio.datareale}&thinsp;</span>
+								</div>
 							</div>
-						</div>
-					</c:if>
-				</c:forEach>
+						</c:if>
+					</c:forEach><div id="lastRow"></div>
+				</div>
 				<br>
-				<div class="form-group form-float">
+				<div class="form-group form-float" >
 					<div class="form-line">
-						<textarea name="messaggio" cols="30" rows="5"
-							class="form-control no-resize" required></textarea>
-						<label class="form-label">Messaggio</label>
+						<textarea id="text" cols="30" rows="5"
+							class="form-control no-resize" required autofocus></textarea>
+						<label class="form-label">Messaggio</label> <input type="hidden"
+							id="dest" value="${utenteConversazione.matricola}"> <input
+							type="hidden" id="mitt" value="${currentUser.matricola}">
+						<div align="right">
+							<button id="send" type="button" title="Invia"
+								class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
+								<i class="material-icons" style="line-height: inherit;">send</i>
+							</button>
+						</div>
 					</div>
 					<br>
-					<div align="right">
-						<button type="button"
-							class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
-							<i class="material-icons" style="line-height: inherit;">send</i>
-						</button>
-					</div>
 				</div>
 			</div>
 		</div>
