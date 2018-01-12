@@ -40,15 +40,10 @@ public class CalendarManager extends HttpServlet {
 		if (request.equals("Eventi")) {
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
-			
-			
+
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
-			
-			System.out.println(listaEventi.size());
-	
 			for (int i = 0; i < listaEventi.size(); i++) {
 				JSONObject evento = new JSONObject();
-
 				try {
 					evento.put("title", listaEventi.get(i).getTitle());
 					Date date = new Date(listaEventi.get(i).getInizio().getTime());
@@ -57,15 +52,12 @@ public class CalendarManager extends HttpServlet {
 					evento.put("annoIn", cal.get(Calendar.YEAR));
 					evento.put("meseIn", cal.get(Calendar.MONTH));
 					evento.put("giornoIn", cal.get(Calendar.DAY_OF_MONTH));
-					 date = new Date(listaEventi.get(i).getFine().getTime());
-					 cal = new GregorianCalendar();
+					date = new Date(listaEventi.get(i).getFine().getTime());
+					cal = new GregorianCalendar();
 					cal.setTime(date);
 					evento.put("annoFi", cal.get(Calendar.YEAR));
 					evento.put("meseFi", cal.get(Calendar.MONTH));
 					evento.put("giornoFi", cal.get(Calendar.DAY_OF_MONTH));
-					
-					
-					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
