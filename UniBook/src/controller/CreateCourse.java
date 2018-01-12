@@ -76,7 +76,6 @@ public class CreateCourse extends HttpServlet {
 				giorniLezione += "mercoledi ";
 			}
 			if (req.getParameter("giovedi") != null) {
-				System.out.println("giovedì è spuntato");
 				String aulaGio = req.getParameter("idAula_4");
 				double oraInizioGio = convert(req.getParameter("oraInizioGio"));
 				double oraFineGio = convert(req.getParameter("oraFineGio"));
@@ -132,7 +131,6 @@ public class CreateCourse extends HttpServlet {
 
 			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 
-			
 			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 			DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
@@ -159,22 +157,22 @@ public class CreateCourse extends HttpServlet {
 			c.setDataFine(g);
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
-			LezioneDao lezioneDao=DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+			LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 			corsoDao.save(c);
-			
+
 			for (int i = 0; i < lezioni.size(); i++) {
 				lezioneDao.save(lezioni.get(i));
 				Calendar cal2 = new GregorianCalendar();
-				cal2.set(lezioni.get(i).getData().getAnno(), lezioni.get(i).getData().getMese()-1,
-						lezioni.get(i).getData().getGiorno()); 
+				cal2.set(lezioni.get(i).getData().getAnno(), lezioni.get(i).getData().getMese() - 1,
+						lezioni.get(i).getData().getGiorno());
 				cal2.set(Calendar.HOUR_OF_DAY, 13);
 				cal2.set(Calendar.MINUTE, 30);
 				Date dateEventoIn = (Date) cal2.getTime();
 				Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-				Evento e = new Evento("Lezione " + corso.getNome()+i, ev1, ev1, "ProvaLezione");
+				Evento e = new Evento("Lezione " + corso.getNome() + i, ev1, ev1, "ProvaLezione");
 				eventoDao.save(e);
 				calendarioPersonaleDao.saveEvent(user.getMatricola(), e);
-				
+
 			}
 
 		}
