@@ -86,7 +86,7 @@ public class ChangePage extends HttpServlet {
 			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 			aule = aulaDao.findAll();
 			req.setAttribute("aule", aule);
-			req.getRequestDispatcher("aule.jsp").forward(req, resp);
+			//req.getRequestDispatcher("aule.jsp").forward(req, resp);
 		}
 		if (request.equals("profilo")) {
 			String profileId = req.getParameter("id");
