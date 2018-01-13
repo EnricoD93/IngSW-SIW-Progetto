@@ -71,9 +71,6 @@
 										${currentCourse.oreEsercitazione}</th>
 								</tr>
 								<tr>
-									<th scope="row">Email: ${currentUser.email}</th>
-								</tr>
-								<tr>
 									<th scope="row">Descrizione: ${currentCourse.descrizione}</th>
 								</tr>
 								<tr>

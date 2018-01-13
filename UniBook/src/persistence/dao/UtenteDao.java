@@ -46,4 +46,8 @@ public interface UtenteDao {
 	public List<EsameSuperato> findEsamiSuperati(String matricola);
 
 	public void superaEsame(String matricola, Esame ingegneriaSW, Timestamp timestamp, int i);
+
+	public List<Esame> findEsamiIscritto(String matricola);
+
+	public List<Esame> findEsamiNonSuperati(String matricola);
 }

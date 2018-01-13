@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import model.Aula;
 import model.Corso;
 import model.DescrizioneCorso;
+import model.Esame;
 import model.EsameSuperato;
 import model.Messaggio;
 import model.Utente;
@@ -161,7 +162,8 @@ public class ChangePage extends HttpServlet {
 		if (request.equals("esami")) {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
-			
+			List<Esame> esamiIscritto =utenteDao.findEsamiIscritto(currentUser.getMatricola());
+			List<Esame> esamiNonSuperati=utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
 			req.setAttribute("esami", esami);
 			req.getRequestDispatcher("esami.jsp").forward(req, resp);
 		}

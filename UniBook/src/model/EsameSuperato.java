@@ -6,49 +6,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class EsameSuperato {
+public class EsameSuperato extends Esame {
 
-	private Long corso;
-	private String nome;
-	private int cfu;
 	private Timestamp data;
 	private int voto;
 	private String datareale;
 
 	public EsameSuperato(Long corso, String nome, int cfu, Timestamp data, int voto) {
-		this.corso = corso;
-		this.nome = nome;
-		this.cfu = cfu;
+		super(corso, nome, cfu);
 		this.data = data;
 		this.voto = voto;
 		parseDate(data);
 	}
 
 	public EsameSuperato() {
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public int getCfu() {
-		return cfu;
-	}
-
-	public void setCfu(int cfu) {
-		this.cfu = cfu;
-	}
-
-	public Long getCorso() {
-		return corso;
-	}
-
-	public void setCorso(Long corso) {
-		this.corso = corso;
 	}
 
 	public Timestamp getData() {

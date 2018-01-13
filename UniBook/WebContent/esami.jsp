@@ -33,6 +33,13 @@
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
 									<td>${esame.voto}</td>
+									<td><button type="button"
+											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+											style="margin-left: 39px;"
+											onclick="javascript:void(0);">
+											<i class="material-icons">clear</i>
+
+										</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -248,6 +248,8 @@ public class MainJDBC {
 					corsoIngegneriaSW.getCfu());
 			Esame ProgrammazioneAdOggetti = new Esame(corsoProgrammazioneAdOggetti.getCodice(),
 					corsoProgrammazioneAdOggetti.getNome(), corsoProgrammazioneAdOggetti.getCfu());
+			Esame RicercaOperativa = new Esame(corsoRicercaO.getCodice(),
+					corsoRicercaO.getNome(), corsoRicercaO.getCfu());
 			esameDao.save(IngegneriaSW);
 			esameDao.save(ProgrammazioneAdOggetti);
 			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());

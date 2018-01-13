@@ -587,4 +587,64 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return esamiSuperati;
 	}
 
+	@Override
+	public List<Esame> findEsamiIscritto(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Esame> esamiSuperati = new ArrayList<>();
+		try {
+			Esame esame;
+			String query = "";//DA FARE
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				esame = new Esame();
+				esame.setCorso(result.getLong("corso"));
+				esame.setNome(result.getString("nome"));
+				esame.setCfu(result.getInt("cfu"));
+				esamiSuperati.add(esame);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return esamiSuperati;
+	}
+
+	@Override
+	public List<Esame> findEsamiNonSuperati(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Esame> esamiSuperati = new ArrayList<>();
+		try {
+			Esame esame;
+			String query = "";//DA FARE
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				esame = new Esame();
+				esame.setCorso(result.getLong("corso"));
+				esame.setNome(result.getString("nome"));
+				esame.setCfu(result.getInt("cfu"));
+				esamiSuperati.add(esame);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return esamiSuperati;
+	}
+
 }

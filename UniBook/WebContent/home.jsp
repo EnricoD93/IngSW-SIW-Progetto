@@ -13,70 +13,69 @@
 </head>
 <body>
 	<section id="centralSection" class="content">
-	<div class="container-fluid">
-		<div class="block-header">
-			<h2>
+		<div class="container-fluid">
+			<div class="block-header">
+				<h2>
 
-				<div class="body table-responsive">
-					<div class="corsiTitle">Corsi disponibili</div>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th width="30">Cod.</th>
-								<th width="50%">Nome del Corso</th>
-								<th>Docente</th>
-								<th>Corso Di Laurea</th>
-								<th>CFU</th>
-								<th></th>
-							</tr>
-
-						</thead>
-						<tbody>
-
-							<c:forEach var="corso" items="${corsi}">
-								<tr name="corsoSelezionato" value="${corso.codice}"
-									style="cursor: pointer;">
-									<th scope="row"><a
-										href="page?request=corso&id=${corso.codice}">${corso.codice}</a></th>
-									<td><a href="page?request=corso&id=${corso.codice}">${corso.nome}
-									</a></td>
-									<td><a href="page?request=corso&id=${corso.codice}">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</a></td>
-									<td><a href="page?request=corso&id=${corso.codice}">${corso.corsoDiLaurea}</a></td>
-									<td><a href="page?request=corso&id=${corso.codice}">${corso.cfu}</a></td>
-									<td><c:if test="${currentUser.ruolo==0 }">
-											<button type="button"
-												class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-												style="margin-left: 10px;"
-												onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
-												<i class="material-icons">add</i>
-
-											</button>
-										</c:if></td>
+					<div class="body table-responsive">
+						<div class="corsiTitle">Corsi disponibili</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th width="30">Cod.</th>
+									<th width="50%">Nome del Corso</th>
+									<th>Docente</th>
+									<th>Corso Di Laurea</th>
+									<th>CFU</th>
+									<th></th>
 								</tr>
-							</c:forEach>
 
-						</tbody>
-					</table>
-				</div>
+							</thead>
+							<tbody>
+
+								<c:forEach var="corso" items="${corsi}">
+									<tr name="corsoSelezionato" value="${corso.codice}"
+										style="cursor: pointer;">
+										<th scope="row">${corso.codice}</th>
+										<td><a href="page?request=corso&id=${corso.codice}">${corso.nome}
+										</a></td>
+										<td><a href="page?request=profilo&id=${corso.docente}">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</a></td>
+										<td>${corso.corsoDiLaurea}</td>
+										<td>${corso.cfu}</td>
+										<td><c:if test="${currentUser.ruolo==0 }">
+												<button type="button"
+													class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+													style="margin-left: 10px;"
+													onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
+													<i class="material-icons">add</i>
+
+												</button>
+											</c:if></td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</div>
 
 
-				<!-- <button id="button">Click me</button> -->
-				<c:if test="${currentUser==null}">
+					<!-- <button id="button">Click me</button> -->
+					<c:if test="${currentUser==null}">
+						<%
+							response.sendRedirect("index.html");
+						%>
+					</c:if>
+
 					<%
-						response.sendRedirect("index.html");
+						response.setHeader("Cache-Control", "no-cache");
+						response.setHeader("Cache-Control", "no-store");
+						response.setHeader("Pragma", "no-cache");
+						response.setDateHeader("Expires", 0);
 					%>
-				</c:if>
 
-				<%
-					response.setHeader("Cache-Control", "no-cache");
-					response.setHeader("Cache-Control", "no-store");
-					response.setHeader("Pragma", "no-cache");
-					response.setDateHeader("Expires", 0);
-				%>
-
-			</h2>
+				</h2>
+			</div>
 		</div>
-	</div>
 	</section>
 
 </body>
