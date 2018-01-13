@@ -252,6 +252,7 @@ public class MainJDBC {
 					corsoRicercaO.getNome(), corsoRicercaO.getCfu());
 			esameDao.save(IngegneriaSW);
 			esameDao.save(ProgrammazioneAdOggetti);
+			esameDao.save(RicercaOperativa);
 			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st2.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st3.getMatricola(), corsoIngegneriaSW.getCodice());
