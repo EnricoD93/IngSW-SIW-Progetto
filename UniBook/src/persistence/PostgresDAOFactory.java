@@ -76,7 +76,7 @@ public class PostgresDAOFactory extends DAOFactory {
 
 	@Override
 	public EsameDao getEsameDAO() {
-		return null;
+		return new EsameDaoJDBC(dataSource);
 	}
 
 	@Override

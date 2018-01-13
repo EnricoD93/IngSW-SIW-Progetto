@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Corso;
-import model.CorsoDiLaurea;
+import model.Esame;
+import model.EsameSuperato;
 import model.Utente;
 import persistence.dao.UtenteDao;
 
@@ -528,6 +528,63 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 		return utenti;
+	}
+
+	@Override
+	public void superaEsame(String matricola, Esame ingegneriaSW, Timestamp data, int voto) {
+		System.out.println("lo studente " + matricola + " supera l'esame: " + ingegneriaSW.getNome());
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into superato(esame,studente,data,voto) values (?,?,?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, ingegneriaSW.getCorso());
+			statement.setString(2, matricola);
+			statement.setTimestamp(3, data);
+			statement.setInt(4, voto);
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public List<EsameSuperato> findEsamiSuperati(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<EsameSuperato> esamiSuperati = new ArrayList<>();
+		try {
+			EsameSuperato esame;
+			String query = "select esame.corso,esame.nome,esame.cfu,superato.data,superato.voto from superato,esame,utente where superato.esame=esame.corso AND superato.studente=utente.matricola AND utente.matricola=?";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				esame = new EsameSuperato();
+				esame.setCorso(result.getLong("corso"));
+				esame.setNome(result.getString("nome"));
+				esame.setCfu(result.getInt("cfu"));
+				esame.setData(result.getTimestamp("data"));
+				esame.parseDate(esame.getData());
+				esame.setVoto(result.getInt("voto"));
+				esamiSuperati.add(esame);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return esamiSuperati;
 	}
 
 }

@@ -346,7 +346,7 @@
 					<li><a href="page?request=aule"> <i class="material-icons">business</i>
 							<span>Aule</span>
 					</a></li>
-					<li><a href="javascript:void(0)"> <i
+					<li><a href="page?request=esami"> <i
 							class="material-icons">collections_bookmark</i> <span>Esami</span>
 					</a></li>
 					<li><a href="javascript:void(0)"> <i

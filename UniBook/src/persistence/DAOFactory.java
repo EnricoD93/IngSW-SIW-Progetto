@@ -22,7 +22,7 @@ public abstract class DAOFactory {
 	}
 
 	public abstract DescrizioneCorsoDao getDescrizioneCorsoDao();
-	
+
 	public abstract UtenteDao getUtenteDao();
 
 	public abstract MessaggioDao getMessaggioDAO();
@@ -40,7 +40,7 @@ public abstract class DAOFactory {
 	public abstract EsameDao getEsameDAO();
 
 	public abstract EventoDao getEventoDAO();
-	
+
 	public abstract UtilDao getUtilDAO();
 
 }

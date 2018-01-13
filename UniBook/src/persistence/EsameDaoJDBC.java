@@ -9,6 +9,7 @@ import java.util.List;
 
 import model.Esame;
 import persistence.dao.EsameDao;
+import model.Esame;
 
 public class EsameDaoJDBC implements EsameDao {
 
@@ -20,16 +21,13 @@ public class EsameDaoJDBC implements EsameDao {
 
 	@Override
 	public void save(Esame esame) {
-
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into esame(codice,nome,voto,data,cfu) values (?,?,?,?,?)";
+			String insert = "insert into esame(corso,nome,cfu) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, esame.getCorso());
 			statement.setString(2, esame.getNome());
-			statement.setString(3, esame.getVoto());
-			statement.setTimestamp(4, esame.getData());
-			statement.setInt(5, esame.getCfu());
+			statement.setInt(3, esame.getCfu());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -58,8 +56,6 @@ public class EsameDaoJDBC implements EsameDao {
 				esame.setCorso(result.getLong("codice"));
 				esame.setNome(result.getString("nome"));
 				esame.setCfu(result.getInt("cfu"));
-				esame.setData(result.getTimestamp("data"));
-				esame.setVoto(result.getString("voto"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -88,8 +84,6 @@ public class EsameDaoJDBC implements EsameDao {
 				esame.setCorso(result.getLong("codice"));
 				esame.setNome(result.getString("nome"));
 				esame.setCfu(result.getInt("cfu"));
-				esame.setData(result.getTimestamp("data"));
-				esame.setVoto(result.getString("voto"));
 
 				esami.add(esame);
 			}

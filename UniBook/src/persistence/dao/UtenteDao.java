@@ -1,8 +1,11 @@
 package persistence.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import model.Corso;
+import model.Esame;
+import model.EsameSuperato;
 import model.Utente;
 
 public interface UtenteDao {
@@ -37,6 +40,10 @@ public interface UtenteDao {
 	public List<Utente> findColleaguesByCorsoDiLaurea(Utente utente);
 
 	public List<Utente> findAllProfessor();
-	
+
 	public List<Utente> findMessageSendersByMatricola(String matricola);
+
+	public List<EsameSuperato> findEsamiSuperati(String matricola);
+
+	public void superaEsame(String matricola, Esame ingegneriaSW, Timestamp timestamp, int i);
 }

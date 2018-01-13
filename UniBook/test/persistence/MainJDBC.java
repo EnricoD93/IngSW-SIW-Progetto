@@ -14,7 +14,8 @@ import model.CalendarioPersonale;
 import model.Corso;
 import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
-import model.Evento;
+import model.Esame;
+import model.EsameSuperato;
 import model.GiornoCalendario;
 import model.Lezione;
 import model.Messaggio;
@@ -24,7 +25,7 @@ import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
-import persistence.dao.EventoDao;
+import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
@@ -224,29 +225,47 @@ public class MainJDBC {
 			descCorso.save(corsoEconomia);
 			GiornoCalendario dataI = new GiornoCalendario(2, 10, 2017);
 			GiornoCalendario dataF = new GiornoCalendario(10, 1, 2018);
-			Corso corsoIngegneriaSW = new Corso(new Long(213), "Ingegneria del Software", 2017,
+			Corso corsoIngegneriaSW = new Corso(corsoIngegneria.getCodice(), "Ingegneria del Software", 2017,
 					"Corso Base di Ingegneria del Software", "Lunedi e Mercoledi",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
 					48, 48, "link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
-			Corso corsoProgrammazioneAdOggetti = new Corso(new Long(214), "Programmazione Ad Oggetti", 2017,
+			Corso corsoProgrammazioneAdOggetti = new Corso(corsoOggetti.getCodice(), "Programmazione Ad Oggetti", 2017,
 					"Lunedi e Giovedi", "Corso Avanzato di Informatica", "Fondamenti di Informatica", 48, 48,
 					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
-			Corso corsoGeometria = new Corso(new Long(600), "Geometria", 2017, "Corso Base di Geometria",
-					"Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale", marino.getMatricola(),
-					corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(), marino.getNome(), dataI, dataF);
+			Corso corsoRicercaO = new Corso(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getAnno(),
+					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale",
+					marino.getMatricola(), corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(),
+					marino.getNome(), dataI, dataF);
 			CorsoDao corsoDao = factory.getCorsoDAO();
-			corsoDao.save(corsoGeometria);
+			corsoDao.save(corsoRicercaO);
 			corsoDao.save(corsoIngegneriaSW);
 			corsoDao.save(corsoProgrammazioneAdOggetti);
+			EsameDao esameDao = factory.getEsameDAO();
 
-			studenteDao.iscriviStudente(st.getMatricola(), (long) 213);
-			studenteDao.iscriviStudente(st2.getMatricola(), (long) 213);
-			studenteDao.iscriviStudente(st3.getMatricola(), (long) 213);
-			studenteDao.iscriviStudente(st4.getMatricola(), (long) 213);
-			studenteDao.iscriviStudente(st3.getMatricola(), (long) 600);
-			studenteDao.iscriviStudente(st4.getMatricola(), (long) 600);
+			Esame IngegneriaSW = new Esame(corsoIngegneria.getCodice(), corsoIngegneriaSW.getNome(),
+					corsoIngegneriaSW.getCfu());
+			Esame ProgrammazioneAdOggetti = new Esame(corsoProgrammazioneAdOggetti.getCodice(),
+					corsoProgrammazioneAdOggetti.getNome(), corsoProgrammazioneAdOggetti.getCfu());
+			esameDao.save(IngegneriaSW);
+			esameDao.save(ProgrammazioneAdOggetti);
+			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());
+			studenteDao.iscriviStudente(st2.getMatricola(), corsoIngegneriaSW.getCodice());
+			studenteDao.iscriviStudente(st3.getMatricola(), corsoIngegneriaSW.getCodice());
+			studenteDao.iscriviStudente(st4.getMatricola(), corsoIngegneriaSW.getCodice());
+			studenteDao.iscriviStudente(st3.getMatricola(), corsoRicercaO.getCodice());
+			studenteDao.iscriviStudente(st4.getMatricola(), corsoRicercaO.getCodice());
+			studenteDao.superaEsame(st3.getMatricola(), IngegneriaSW, new Timestamp(System.currentTimeMillis()), 30);
+			studenteDao.superaEsame(st3.getMatricola(), ProgrammazioneAdOggetti,
+					new Timestamp(System.currentTimeMillis()), 18);
+
+			List<EsameSuperato> esami = studenteDao.findEsamiSuperati(st3.getMatricola());
+
+			for (EsameSuperato esameSuperato : esami) {
+				System.out.println(st3.getMatricola() + " ha superato l'esame " + esameSuperato.getNome()
+						+ " con voto: " + esameSuperato.getVoto() + " in data: " + esameSuperato.getDatareale());
+			}
 
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
@@ -280,7 +299,6 @@ public class MainJDBC {
 			t = new Timestamp(System.currentTimeMillis());
 			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
 			messaggioDao.save(messaggio);
-
 
 			// Functionaaaaa!!
 

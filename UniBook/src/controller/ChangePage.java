@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import model.Aula;
 import model.Corso;
 import model.DescrizioneCorso;
+import model.EsameSuperato;
 import model.Messaggio;
 import model.Utente;
 import persistence.DatabaseManager;
@@ -41,8 +42,8 @@ public class ChangePage extends HttpServlet {
 			System.out.println("Sono " + mitt + " e invio un messaggio");
 			System.out.println("Sono " + dest + " e ricevo un messaggio");
 			Messaggio m = new Messaggio(mitt, dest, testo, t);
-			String date=m.getDatareale();
-			JSONObject datareale=new JSONObject();
+			String date = m.getDatareale();
+			JSONObject datareale = new JSONObject();
 			try {
 				datareale.put("date", date);
 			} catch (JSONException e) {
@@ -129,6 +130,7 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("colleghi", colleghi);
 			req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
 		}
+		
 		if (request.equals("docenti")) {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			List<Utente> docenti;
@@ -136,14 +138,15 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("docenti", docenti);
 			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
 		}
+		
 		if (request.equals("messaggi")) {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			List<Utente> conversazioni;
 			conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
 			req.setAttribute("conversazioni", conversazioni);
 			req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
-
 		}
+		
 		if (request.equals("conversazione")) {
 			String id = req.getParameter("id");
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
@@ -154,6 +157,13 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("messaggi", messaggi);
 			req.setAttribute("utenteConversazione", u);
 			req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
+		}
+		if (request.equals("esami")) {
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
+			
+			req.setAttribute("esami", esami);
+			req.getRequestDispatcher("esami.jsp").forward(req, resp);
 		}
 
 	}
