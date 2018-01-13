@@ -623,10 +623,11 @@ public class UtenteDaoJDBC implements UtenteDao {
 		List<Esame> esamiSuperati = new ArrayList<>();
 		try {
 			Esame esame;
-			String query = "select * from esame e where NOT EXISTS(select * from superato where e.corso=superato.esame AND superato.studente='169983')";
+			String query = "select * from esame e,iscritto where iscritto.matricola=? AND NOT EXISTS(select * from superato where e.corso=superato.esame AND superato.studente=?)";
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
+			statement.setString(2, matricola);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				esame = new Esame();
