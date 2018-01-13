@@ -19,8 +19,8 @@
 	});
 </script>
 </head>
-<section id="centralSection" class="content" style="overflow: auto;">
-	<div class="content" style="background-color: #C4161C;">
+<section id="centralSection" class="content" style="overflow: auto; margin: 70px 0px 0px 300px;">
+	<div class="content" style="background-color: #C4161C; position: fixed; width: 100%; z-index:5">
 		<div class="image">
 			<div class="profile-pic-xs"
 				style="background-image: url('${utenteConversazione.profileImagePath}')">
