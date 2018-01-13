@@ -27,10 +27,10 @@
 			</div>
 		</div>
 		<c:if test="${currentUser.ruolo==0}">
-			<div align="center" style="color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
+			<div style="margin-left:25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
 		</c:if>
 		<c:if test="${currentUser.ruolo==1}">
-			<div align="center" style="color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
+			<div style="margin-left:25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
 				${utenteConversazione.matricola}</div>
 		</c:if>
 	</div>
