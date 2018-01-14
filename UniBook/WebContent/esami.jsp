@@ -32,11 +32,10 @@
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
 									<td><b>${esame.voto}</b></td>
-									<td><img src="images/superato.png"/></td>
+									<td><img src="images/superato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;"
-											onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:void(0);">
 											<i class="material-icons">clear</i>
 
 										</button></td>
@@ -50,11 +49,10 @@
 									<td>${esame.cfu}</td>
 									<td>-</td>
 									<td>-</td>
-									<td><img src="images/frequentando.png"/></td>
+									<td><img src="images/frequentando.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;"
-											onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:void(0);">
 											<i class="material-icons">add</i>
 
 										</button></td>
@@ -68,11 +66,10 @@
 									<td>${esame.cfu}</td>
 									<td>-</td>
 									<td>-</td>
-									<td><img src="images/nonfrequentato.png"/></td>
+									<td><img src="images/nonfrequentato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;"
-											onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:void(0);">
 											<i class="material-icons">clear</i>
 
 										</button></td>
@@ -80,6 +77,19 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div style="margin-bottom: 10px;">
+						<img src="images/superato.png"  style="margin-bottom: 5px;"  />
+						<b>Superato</b>
+					</div>
+
+					<div style="margin-bottom: 10px;">
+						<img src="images/frequentando.png" style="margin-bottom: 5px;" />
+						<b>Frequentato</b>
+					</div>
+					<div style="margin-bottom: 10px;">
+						<img src="images/nonfrequentato.png" style="margin-bottom: 5px;" />
+						<b>Non Superato</b>
+					</div>
 				</div>
 			</h2>
 		</div>
