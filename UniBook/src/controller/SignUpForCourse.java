@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Corso;
 import model.Evento;
 import model.Lezione;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
+import persistence.dao.CorsoDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.UtenteDao;
 
@@ -60,24 +62,18 @@ public class SignUpForCourse extends HttpServlet {
 				}
 			}
 			if (richiesta.equals("cancellazione")) {
-				System.out.println("sto cancellando");
-				System.out.println("la lista eventi ha "+listaEventiCal.size()+" eventi");
-				System.out.println("la lista lezioni ha "+listaLezioni.size()+" lezioni");
-				System.out.println("sto cancellando");
-				for (int i = 0; i < listaLezioni.size(); i++) {
-					for (int j = 0; j < listaEventiCal.size(); j++) {
-						if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
-							calendarioPersonaleDao.deleteEvent(matricola, listaEventiCal.get(j));
-							System.out.println("elimino la lezione con id "+listaEventiCal.get(j).getId());
-						}
-					}
-				}
-				udao.eliminaIscrizioneStudente(matricola, codice);
+					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
+					udao.eliminaIscrizioneStudente(matricola, codice);
+
 				req.getRequestDispatcher("home.jsp").forward(req, resp);
+
 			}
 		} else {
 			resp.setStatus(401);
 			System.out.println("password errata");
 		}
 	}
+
+	
+
 }

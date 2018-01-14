@@ -13,6 +13,7 @@ import model.Esame;
 import model.Evento;
 import model.GiornoCalendario;
 import model.Lezione;
+import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.LezioneDao;
 
 public class LezioneDaoJDBC implements LezioneDao {
@@ -26,7 +27,7 @@ public class LezioneDaoJDBC implements LezioneDao {
 	public void save(Lezione lezione) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			Long id= IdBroker.getId(connection);
+			Long id = IdBroker.getId(connection);
 			lezione.setId(id);
 			String insert = "insert into lezione(id,data,ora_inizio,ora_fine,corso,aula,tipo) values (?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
@@ -91,14 +92,14 @@ public class LezioneDaoJDBC implements LezioneDao {
 	public List<Evento> findCourseLessons(Long codice) {
 		Connection connection = this.dataSource.getConnection();
 		List<Evento> lezioni = new ArrayList<>();
-		Evento lezione=null;
+		Evento lezione = null;
 		try {
 			String query = "select * from evento,lezione where evento.id=lezione.id AND lezione.corso = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setLong(1, codice);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				Evento evento=new Evento();
+				Evento evento = new Evento();
 				evento.setId(result.getLong("id"));
 				evento.setTitle(result.getString("title"));
 				evento.setInizio(result.getTimestamp("inizio"));
@@ -116,20 +117,20 @@ public class LezioneDaoJDBC implements LezioneDao {
 			}
 		}
 		return lezioni;
-		
+
 	}
 
 	@Override
 	public String findLessonName(Long codice) {
 		Connection connection = this.dataSource.getConnection();
-		String lezione=null;
+		String lezione = null;
 		try {
 			String query = "select * from corso where codice= ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setLong(1, codice);
 			ResultSet result = statement.executeQuery();
-			if (result.next()) {	
-				lezione=result.getString("nome");		
+			if (result.next()) {
+				lezione = result.getString("nome");
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -141,7 +142,37 @@ public class LezioneDaoJDBC implements LezioneDao {
 			}
 		}
 		return lezione;
-		
+
+	}
+
+	@Override
+	public void deleteLessonByEvent(Evento evento) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM lezione WHERE id = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, evento.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+	@Override
+	public void eliminaLezioniDalCalendario(List<Evento> listaEventiCal, List<Evento> listaLezioni,
+			CalendarioPersonaleDao calendarioPersonaleDao, String matricola) {
+		for (int i = 0; i < listaLezioni.size(); i++) {
+			for (int j = 0; j < listaEventiCal.size(); j++) {
+				if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
+					calendarioPersonaleDao.deleteEvent(matricola, listaEventiCal.get(j));
+				}
+			}
+		}
 	}
 
 }

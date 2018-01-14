@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +30,7 @@ import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.UtenteDao;
 
 public class CreateCourse extends HttpServlet {
 	ArrayList<Lezione> lezioni;
@@ -213,7 +215,8 @@ public class CreateCourse extends HttpServlet {
 					cal2.set(Calendar.MINUTE, 30);
 					Date dateEventoIn = (Date) cal2.getTime();
 					Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-					Evento e = new Evento(lezioni.get(i).getId(),"Lezione " + corso.getNome() , ev1, ev1, "ProvaLezione");
+					Evento e = new Evento(lezioni.get(i).getId(), "Lezione " + corso.getNome(), ev1, ev1,
+							"ProvaLezione");
 					eventoDao.save(e);
 
 					// salvataggio delle lezioni nel calendario dell'utente
@@ -237,6 +240,26 @@ public class CreateCourse extends HttpServlet {
 					resp.setStatus(405);
 					return;
 				} else {
+					CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+							.getCalendarioPersonaleDAO();
+
+					List<Evento> listaEventiCal = calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
+					LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+					List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
+					List<Utente> iscritti = corsoDao.getStudentiIscritti(codice);
+					for (int i = 0; i < iscritti.size(); i++) {
+						lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
+								iscritti.get(i).getMatricola());
+						UtenteDao utente = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+						utente.eliminaIscrizioneStudente(iscritti.get(i).getMatricola(), codice);
+					}
+					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
+							matricola);
+
+					for (int i = 0; i < listaLezioni.size(); i++) {
+						lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
+					}
+
 					corsoDao.delete(c);
 				}
 			} else {
