@@ -3,7 +3,7 @@ package persistence.dao;
 import java.util.Date;
 import java.util.List;
 
-
+import model.Evento;
 import model.Lezione;
 
 public interface LezioneDao {
@@ -12,4 +12,6 @@ public interface LezioneDao {
 	public List<Lezione> findAll();       
 	public void update(Lezione lezione); //Update
 	public void delete(Lezione lezione); //Delete	
+	public List<Evento> findCourseLessons(Long codice);
+	public String findLessonName(Long codice);
 }

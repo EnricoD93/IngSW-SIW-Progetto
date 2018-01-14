@@ -272,6 +272,7 @@ public class MainJDBC {
 
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
+			CalendarioPersonale calendarioPersonaleM = new CalendarioPersonale(st4.getMatricola());
 			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
 			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), dataI,
 					new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()),
@@ -280,6 +281,7 @@ public class MainJDBC {
 			lezioneDao.save(lezione);
 			calendarioPersonaleSt.aggiungiLezione(lezione);
 			calendarioPersonaleDao.save(calendarioPersonaleSt);
+			calendarioPersonaleDao.save(calendarioPersonaleM);
 			// System.out.println("la size degli eventi del calendario è
 			// "+calendarioPersonaleSt.getEventi().size());
 			// System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());

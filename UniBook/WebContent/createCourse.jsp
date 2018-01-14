@@ -93,7 +93,7 @@
 											<span class="input-group-addon"> Lunedì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioLun">
 
-													<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
 												<option value="0000-00-00 10:30:00.00">10:30</option>
 												<option value="0000-00-00 11:30:00.00">11:30</option>
@@ -108,7 +108,7 @@
 											</span> <select class="selectpicker" tabindex="-98"
 												name="oraFineLun">
 
-											<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
 												<option value="0000-00-00 10:30:00.00">10:30</option>
 												<option value="0000-00-00 11:30:00.00">11:30</option>
 												<option value="0000-00-00 12:30:00.00">12:30</option>
@@ -198,16 +198,16 @@
 											<span class="input-group-addon"> Mercoledì dalle </span> <select
 												class="selectpicker" tabindex="-98" name="oraInizioMer">
 
-												<option value="0000-00-00 08:30:00">08:30</option>
-												<option value="0000-00-00 09:30:00">09:30</option>
-												<option value="0000-00-00 10:30:00">10:30</option>
-												<option value="0000-00-00 11:30:00">11:30</option>
-												<option value="0000-00-00 12:30:00">12:30</option>
-												<option value="0000-00-00 14:00:00">14:00</option>
-												<option value="0000-00-00 15:00:00">15:00</option>
-												<option value="0000-00-00 16:00:00">16:00</option>
-												<option value="0000-00-00 17:00:00">17:00</option>
-												<option value="0000-00-00 18:00:00">18:00</option>
+												<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
 											</span> <select class="selectpicker" tabindex="-98"

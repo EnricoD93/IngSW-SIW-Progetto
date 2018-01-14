@@ -20,7 +20,8 @@ public class Evento {
 	public Evento() {
 	}
 
-	public Evento(String title, Timestamp inizio, Timestamp fine, String nota) {
+	public Evento(Long id,String title, Timestamp inizio, Timestamp fine, String nota) {
+		this.id=id;
 		this.title = title;
 		this.inizio = inizio;
 		this.fine = fine;

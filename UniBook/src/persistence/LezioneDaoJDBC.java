@@ -1,12 +1,16 @@
 package persistence;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Corso;
+import model.Esame;
+import model.Evento;
 import model.GiornoCalendario;
 import model.Lezione;
 import persistence.dao.LezioneDao;
@@ -81,6 +85,63 @@ public class LezioneDaoJDBC implements LezioneDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public List<Evento> findCourseLessons(Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		List<Evento> lezioni = new ArrayList<>();
+		Evento lezione=null;
+		try {
+			String query = "select * from evento,lezione where evento.id=lezione.id AND lezione.corso = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Evento evento=new Evento();
+				evento.setId(result.getLong("id"));
+				evento.setTitle(result.getString("title"));
+				evento.setInizio(result.getTimestamp("inizio"));
+				evento.setFine(result.getTimestamp("fine"));
+				evento.setNota(result.getString("nota"));
+				lezioni.add(evento);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return lezioni;
+		
+	}
+
+	@Override
+	public String findLessonName(Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		String lezione=null;
+		try {
+			String query = "select * from corso where codice= ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {	
+				lezione=result.getString("nome");		
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return lezione;
+		
 	}
 
 }
