@@ -223,21 +223,26 @@ public class MainJDBC {
 			descCorso.save(corsoEconomia);
 			GiornoCalendario dataI = new GiornoCalendario(2, 10, 2017);
 			GiornoCalendario dataF = new GiornoCalendario(10, 1, 2018);
-			Corso corsoIngegneriaSW = new Corso(corsoIngegneria.getCodice(), "Ingegneria del Software", 2017,
+			Corso corsoIngegneriaSW = new Corso(corsoIngegneria.getCodice(), corsoIngegneria.getNome(), corsoIngegneria.getAnno(),
 					"Corso Base di Ingegneria del Software", "Lunedi e Mercoledi",
 					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
-					48, 48, "link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
+					corsoIngegneria.getOreLezione(), corsoIngegneria.getOreEsercitazione(), "link al materiale", ricca.getMatricola(), corsoIngegneria.getCorsoDiLaurea(), corsoIngegneria.getCfu(),
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
-			Corso corsoProgrammazioneAdOggetti = new Corso(corsoOggetti.getCodice(), "Programmazione Ad Oggetti", 2017,
-					"Lunedi e Giovedi", "Corso Avanzato di Informatica", "Fondamenti di Informatica", 48, 48,
-					"link al materiale", ricca.getMatricola(), corsoDiLaureaInformatica.getCodice(), 10,
+			Corso corsoProgrammazioneAdOggetti = new Corso(corsoOggetti.getCodice(), corsoOggetti.getNome(), corsoOggetti.getAnno(),
+					"Lunedi e Giovedi", "Corso Avanzato di Informatica", "Fondamenti di Informatica", corsoOggetti.getOreLezione(), corsoOggetti.getOreEsercitazione(),
+					"link al materiale", ricca.getMatricola(), corsoOggetti.getCorsoDiLaurea(), corsoOggetti.getCfu(),
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
 			Corso corsoRicercaO = new Corso(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getAnno(),
-					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale",
-					marino.getMatricola(), corsoDiLaureaInformatica.getCodice(), 5, marino.getCognome(),
+					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", corsoRicerca.getOreLezione(), corsoRicerca.getOreLezione(), "link al materiale",
+					marino.getMatricola(), corsoRicerca.getCorsoDiLaurea(), corsoRicerca.getCfu(), marino.getCognome(),
 					marino.getNome(), dataI, dataF);
+			Corso corsoFond = new Corso(corsoFondamenti.getCodice(), corsoFondamenti.getNome(), corsoFondamenti.getAnno(),
+					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", corsoFondamenti.getOreLezione(), corsoFondamenti.getOreLezione(), "link al materiale",
+					perri.getMatricola(), corsoFondamenti.getCorsoDiLaurea(), corsoFondamenti.getCfu(), perri.getCognome(),
+					perri.getNome(), dataI, dataF);
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoRicercaO);
+			corsoDao.save(corsoFond);
 			corsoDao.save(corsoIngegneriaSW);
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 			EsameDao esameDao = factory.getEsameDAO();
