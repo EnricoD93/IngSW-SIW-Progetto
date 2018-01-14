@@ -29,6 +29,9 @@ function iscriviStudente(codice, matricola) {
 				if (data.status === 401) {
 					swal("Password errata!", "Riprova.\n", "error");
 				}
+				if (data.status === 403) {
+					swal("Nello stesso giorno ci sono più eventi");
+				}
 			}
 
 		});

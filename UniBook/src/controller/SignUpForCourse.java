@@ -41,11 +41,21 @@ public class SignUpForCourse extends HttpServlet {
 					udao.iscriviStudente(matricola, codice);
 					LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 					List<Evento> listaLezioni=lezioneDao.findCourseLessons(codice);
+					
+					CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+							.getCalendarioPersonaleDAO();
+					
+					List<Evento> listaEventiCal=calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
+					for(int i=0; i<listaLezioni.size();i++) {
+						for(int j=0; j<listaEventiCal.size(); j++) {
+							if(listaLezioni.get(i).getId()==listaEventiCal.get(j).getId()) {
+								resp.setStatus(403);
+								break;
+							}
+						}
+					}
 					String nome=lezioneDao.findLessonName(codice);
 					for (int i = 0; i < listaLezioni.size(); i++) {
-						
-						CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-								.getCalendarioPersonaleDAO();
 						calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
 					}
 				}
