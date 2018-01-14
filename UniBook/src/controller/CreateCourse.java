@@ -215,8 +215,9 @@ public class CreateCourse extends HttpServlet {
 					cal2.set(Calendar.MINUTE, 30);
 					Date dateEventoIn = (Date) cal2.getTime();
 					Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-					Evento e = new Evento(lezioni.get(i).getId(), "Lezione " + corso.getNome(), ev1, ev1,
+					Evento e = new Evento( "Lezione " + corso.getNome(), ev1, ev1,
 							"ProvaLezione");
+					e.setId(lezioni.get(i).getId());
 					eventoDao.save(e);
 
 					// salvataggio delle lezioni nel calendario dell'utente

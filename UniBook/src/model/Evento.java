@@ -2,6 +2,8 @@ package model;
 
 import java.sql.Timestamp;
 
+import persistence.IdBroker;
+
 public class Evento {
 	String title;
 	Timestamp inizio;
@@ -20,8 +22,7 @@ public class Evento {
 	public Evento() {
 	}
 
-	public Evento(Long id,String title, Timestamp inizio, Timestamp fine, String nota) {
-		this.id=id;
+	public Evento(String title, Timestamp inizio, Timestamp fine, String nota) {
 		this.title = title;
 		this.inizio = inizio;
 		this.fine = fine;

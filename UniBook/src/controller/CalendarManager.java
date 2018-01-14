@@ -1,8 +1,11 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -21,7 +24,9 @@ import model.Evento;
 import model.GiornoCalendario;
 import model.Utente;
 import persistence.DatabaseManager;
+import persistence.IdBroker;
 import persistence.dao.CalendarioPersonaleDao;
+import persistence.dao.EventoDao;
 
 public class CalendarManager extends HttpServlet {
 
@@ -72,6 +77,23 @@ public class CalendarManager extends HttpServlet {
 			}
 			resp.setContentType("application/json");
 			resp.getWriter().print(result);
+		}
+		if (request.equals("creaEvento")) {
+			String start = req.getParameter("start");
+			String end = req.getParameter("end");
+			System.out.println(start);
+			System.out.println(end);
+			// trasformare le stringhe in Timestamp e passarle all'evento
+			String title = req.getParameter("title");
+			Evento e = new Evento(title, new Timestamp(System.currentTimeMillis()),
+					new Timestamp(System.currentTimeMillis()), "nessuna");
+			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+			System.out.println("salvo il nuovo evento " + title);
+			eventoDao.save(e);
+			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+					.getCalendarioPersonaleDAO();
+			calendarioPersonaleDao.saveEvent(matricola, e);
+
 		}
 
 	}

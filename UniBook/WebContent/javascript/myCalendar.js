@@ -89,6 +89,7 @@ function init() {
 											selectHelper : true,
 											select : function(start, end,
 													allDay) {
+												console.log(start);
 												swal(
 														{
 															title : "Crea un Evento!",
@@ -107,6 +108,22 @@ function init() {
 																			.showInputError("Scrivi qualcosa per memorizzare il tuo Evento!");
 																	return false
 																}
+																console.log("evento");
+															
+																$.ajax({
+																	type : "POST",
+																	url : "calendarManager",
+																	async: false,
+																	datatype : 'text',
+																	data : {
+																		matricola : $('#currentUser').val(),
+																		title: inputValue,
+																		request : "creaEvento",
+																		start : start,
+																		end :end
+																	}
+																});
+																
 																swal(
 																		"Ben Fatto!",
 																		"Evento creato con successo!",
@@ -187,50 +204,50 @@ function init() {
 
 											},
 											events :getEvent()
-//												function(){
-//												var events=getEvent();
-//												console.log(events);
-//												for(var i=0;i<events.length; i++){
-//													console.log(events[i].start+"anno");
-//													[{
-//														title: events[i].title,
-//														start:events[i].start,
-//														end: events[i].end,
-//														className: 'success'
-//													}]
+// function(){
+// var events=getEvent();
+// console.log(events);
+// for(var i=0;i<events.length; i++){
+// console.log(events[i].start+"anno");
+// [{
+// title: events[i].title,
+// start:events[i].start,
+// end: events[i].end,
+// className: 'success'
+// }]
 													
-//											}}
+// }}
 																							
-												//getEvent()
-//												function(data) {
-//												$.ajax({
-//													type : "POST",
-//													url : "calendarManager",
-//													datatype : 'text',
-//													data : {
-//														matricola : "555",
-//														request : "Eventi"
-//													},
-//													success : function(data) {
-//														for (var i = 0; i < data.result.length; i++) 
-//															[{
-//																title:'Lezione',
-//																start: new Date(result[i].anno,result[i].mese,result[i].giorno),
-//																end: new Date(result[i].anno,result[i].mese,result[i].giorno),
-//																className:'success'
-//															}],
-//													}
-//												});
+												// getEvent()
+// function(data) {
+// $.ajax({
+// type : "POST",
+// url : "calendarManager",
+// datatype : 'text',
+// data : {
+// matricola : "555",
+// request : "Eventi"
+// },
+// success : function(data) {
+// for (var i = 0; i < data.result.length; i++)
+// [{
+// title:'Lezione',
+// start: new Date(result[i].anno,result[i].mese,result[i].giorno),
+// end: new Date(result[i].anno,result[i].mese,result[i].giorno),
+// className:'success'
+// }],
+// }
+// });
 //
-//											};
+// };
 										
-//										 [ {
-//										 title : 'Click for Google',
-//										 start : new Date(y, m, 28),
-//										 end : new Date(y, m, 29),
-//										 url : 'http://google.com/',
-//										 className : 'success'
-//										 } ]
+// [ {
+// title : 'Click for Google',
+// start : new Date(y, m, 28),
+// end : new Date(y, m, 29),
+// url : 'http://google.com/',
+// className : 'success'
+// } ]
 										 
 										 
 										});

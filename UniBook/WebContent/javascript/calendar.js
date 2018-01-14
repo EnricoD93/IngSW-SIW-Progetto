@@ -1,5 +1,4 @@
-/*!
- * v1.6.4
+/*! * v1.6.4
  * Docs & License: http://arshaw.com/fullcalendar/
  * (c) 2013 Adam Shaw
  */
