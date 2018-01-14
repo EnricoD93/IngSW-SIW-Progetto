@@ -20,7 +20,9 @@ function iscriviStudente(codice, matricola) {
 				swal("Iscrizione avvenuta",
 						"L'iscrizione al corso è avvenuta con successo.",
 						"success");
+				sleep(1300).then(() => {
 				window.location.href="page?request=corso&id="+codice;
+				});
 			},
 			error : function(data) {
 				if (data.status === 405) {
@@ -31,12 +33,16 @@ function iscriviStudente(codice, matricola) {
 				}
 				if (data.status === 403) {
 					swal("Nello stesso giorno ci sono più eventi");
+				
 				}
 			}
 
 		});
 	});
 };
+function sleep (time) {
+	  return new Promise((resolve) => setTimeout(resolve, time));
+	}
 
 function confermaElimina(matricola, codice) {
 	swal(
