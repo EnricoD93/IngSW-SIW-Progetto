@@ -119,8 +119,8 @@ function init() {
 																		matricola : $('#currentUser').val(),
 																		title: inputValue,
 																		request : "creaEvento",
-																		start : start,
-																		end :end
+																		start : start.getTime(),
+																		end :end.getTime()
 																	}
 																});
 																

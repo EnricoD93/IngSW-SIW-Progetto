@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -83,10 +84,20 @@ public class CalendarManager extends HttpServlet {
 			String end = req.getParameter("end");
 			System.out.println(start);
 			System.out.println(end);
+			Timestamp startT = null;
+			Timestamp endT = null;
+			try {
+				startT = parseDate(start);
+				endT = parseDate(end);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			// trasformare le stringhe in Timestamp e passarle all'evento
 			String title = req.getParameter("title");
-			Evento e = new Evento(title, new Timestamp(System.currentTimeMillis()),
-					new Timestamp(System.currentTimeMillis()), "nessuna");
+			System.out.println(startT);
+			System.out.println(endT);
+			Evento e = new Evento(title, startT, endT, "nessuna");
 			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 			System.out.println("salvo il nuovo evento " + title);
 			eventoDao.save(e);
@@ -95,6 +106,14 @@ public class CalendarManager extends HttpServlet {
 			calendarioPersonaleDao.saveEvent(matricola, e);
 
 		}
+
+	}
+
+	private Timestamp parseDate(String str_date) throws ParseException {
+
+		Long secs = Long.parseLong(str_date);
+		java.sql.Timestamp timeStampDate = new Timestamp(secs);
+		return timeStampDate;
 
 	}
 }
