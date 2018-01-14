@@ -145,6 +145,26 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			}
 		}
 	}
+	@Override
+	public void deleteEvent(String matricola, Evento evento) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "delete FROM contiene WHERE calendariopersonale=? AND evento=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, matricola);
+			statement.setLong(2, evento.getId());
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
 
 
 }

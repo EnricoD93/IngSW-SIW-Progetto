@@ -31,7 +31,12 @@ public class SignUpForCourse extends HttpServlet {
 		String matricola = req.getParameter("matricola");
 		System.out.println("matricola");
 		System.out.println(typedPassword);
-		
+		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+				.getCalendarioPersonaleDAO();
+		List<Evento> listaEventiCal = calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
+		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
+
 		if (u.getPassword().equals(typedPassword)) {
 			if (richiesta.equals("iscrizione")) {
 				if (udao.iscritto(matricola, codice)) {
@@ -39,28 +44,30 @@ public class SignUpForCourse extends HttpServlet {
 					return;
 				} else {
 					udao.iscriviStudente(matricola, codice);
-					LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
-					List<Evento> listaLezioni=lezioneDao.findCourseLessons(codice);
-					
-					CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-							.getCalendarioPersonaleDAO();
-					
-					List<Evento> listaEventiCal=calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
-					for(int i=0; i<listaLezioni.size();i++) {
-						for(int j=0; j<listaEventiCal.size(); j++) {
-							if(listaLezioni.get(i).getId()==listaEventiCal.get(j).getId()) {
+
+					for (int i = 0; i < listaLezioni.size(); i++) {
+						for (int j = 0; j < listaEventiCal.size(); j++) {
+							if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
 								resp.setStatus(403);
 								break;
 							}
 						}
 					}
-					String nome=lezioneDao.findLessonName(codice);
+					String nome = lezioneDao.findLessonName(codice);
 					for (int i = 0; i < listaLezioni.size(); i++) {
 						calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
 					}
 				}
 			}
 			if (richiesta.equals("cancellazione")) {
+				for (int i = 0; i < listaLezioni.size(); i++) {
+					for (int j = 0; j < listaEventiCal.size(); j++) {
+						if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
+							calendarioPersonaleDao.deleteEvent(matricola, listaEventiCal.get(j));
+							System.out.println("elimino la lezione con id "+listaEventiCal.get(j).getId());
+						}
+					}
+				}
 				udao.eliminaIscrizioneStudente(matricola, codice);
 				req.getRequestDispatcher("home.jsp").forward(req, resp);
 			}

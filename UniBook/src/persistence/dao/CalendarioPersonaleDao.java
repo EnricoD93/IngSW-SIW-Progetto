@@ -20,4 +20,5 @@ public interface CalendarioPersonaleDao {
 
 	public void saveEvent(String matricola, Evento evento);
 
+	public void deleteEvent(String matricola, Evento evento);
 }
