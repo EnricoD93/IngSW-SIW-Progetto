@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import model.Aula;
@@ -15,7 +14,6 @@ import model.Corso;
 import model.CorsoDiLaurea;
 import model.DescrizioneCorso;
 import model.Esame;
-import model.EsameSuperato;
 import model.GiornoCalendario;
 import model.Lezione;
 import model.Messaggio;
@@ -54,12 +52,12 @@ public class MainJDBC {
 		Aula aulaMT2 = new Aula("MT2", 48, corsoDiLaureaMatematica.getCodice(), "Cubo 31B - Piano terra");
 		Aula aulaMT3 = new Aula("MT3", 48, corsoDiLaureaMatematica.getCodice(), "Cubo 31B - Piano terra");
 		Aula aulaMT4 = new Aula("MT4", 56, corsoDiLaureaMatematica.getCodice(), "Cubo 30B - Piano terra");
-		Aula aulaMT6 = new Aula("MT6", 72, corsoDiLaureaMatematica.getCodice(), "Cubo 30B - Piano terra");
+		Aula aulaMT6 = new Aula("MT6", 72, corsoDiLaureaInformatica.getCodice(), "Cubo 30B - Piano terra");
 		Aula aulaMT8 = new Aula("MT8", 28, corsoDiLaureaMatematica.getCodice(), "Cubo 30B - Piano terra");
-		Aula aulaMT13 = new Aula("MT13", 32, corsoDiLaureaMatematica.getCodice(), "Cubo 31B - Secondo piano");
-		Aula aulaMT14 = new Aula("MT14", 24, corsoDiLaureaMatematica.getCodice(), "Cubo 31B - Secondo piano");
+		Aula aulaMT13 = new Aula("MT13", 32, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
+		Aula aulaMT14 = new Aula("MT14", 24, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 		Aula aulaMT15 = new Aula("MT15", 45, corsoDiLaureaMatematica.getCodice(), "Cubo 31A - Primo piano");
-		Aula lab31B = new Aula("Laboratorio 31 B", 45, corsoDiLaureaMatematica.getCodice(), "Cubo 31B - Secondo piano");
+		Aula lab31B = new Aula("Laboratorio 31 B", 45, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 
 		AulaDao aulaDao = factory.getAulaDAO();
 		aulaDao.save(aulaMT1);
@@ -166,7 +164,7 @@ public class MainJDBC {
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1,
 					corsoDiLaureaInformatica.getCodice(), 12, 48, 48);
 			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(27005730), "Analisi Matematica", 1,
-					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+					corsoDiLaureaInformatica.getCodice(), 12, 24, 72);
 			DescrizioneCorso corsoOggetti = new DescrizioneCorso(new Long(27002209), "Programmazione ad Oggetti", 2,
 					corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 			DescrizioneCorso corsoAlgoritmi = new DescrizioneCorso(new Long(27002211), "Algoritmi e Strutture Dati", 2,
@@ -183,26 +181,26 @@ public class MainJDBC {
 					"Interfacce Grafiche e Programmazione ad Eventi", 2, corsoDiLaureaInformatica.getCodice(), 9, 24,
 					72);
 			DescrizioneCorso corsoDiscreta = new DescrizioneCorso(new Long(27000107), "Matematica Discreta", 1,
-					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+					corsoDiLaureaInformatica.getCodice(), 9, 24, 72);
 			DescrizioneCorso corsoMAD = new DescrizioneCorso(new Long(27002041), "Matematica per l'Analisi dei Dati", 2,
-					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+					corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 			DescrizioneCorso corsoSistemi = new DescrizioneCorso(new Long(27002215), "Sistemi Operativi e Reti", 3,
 					corsoDiLaureaInformatica.getCodice(), 12, 24, 72);
 			DescrizioneCorso corsoIntelligenza = new DescrizioneCorso(new Long(27002216), "Intelligenza Artificiale", 3,
 					corsoDiLaureaInformatica.getCodice(), 9, 24, 72);
 			DescrizioneCorso corsoRicerca = new DescrizioneCorso(new Long(27000023), "Ricerca Operativa", 2,
-					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+					corsoDiLaureaInformatica.getCodice(), 12, 24, 72);
 			DescrizioneCorso corsoParalleli = new DescrizioneCorso(new Long(27002222),
 					"Algoritmi Paralleli e Sistemi Distribuiti", 2, corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 			DescrizioneCorso corsoLinguaggi = new DescrizioneCorso(new Long(27002213),
 					"Linguaggi e logiche per l'informatica", 1, corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 			DescrizioneCorso corsoFisica = new DescrizioneCorso(new Long(27000005), "Fisica", 1,
-					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+					corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 			DescrizioneCorso corsoInglese = new DescrizioneCorso(new Long(27002277), "Inglese", 1,
 					corsoDiLaureaInformatica.getCodice(), 9, 24, 72);
 			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27000035),
 					"Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
-			
+
 			DescrizioneCorsoDao descCorso = factory.getDescrizioneCorsoDao();
 			descCorso.save(corsoFondamenti);
 			descCorso.save(corsoAnalisi);
@@ -236,7 +234,7 @@ public class MainJDBC {
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
 			Corso corsoRicercaO = new Corso(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getAnno(),
 					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", 24, 72, "link al materiale",
-					marino.getMatricola(), corsoDiLaureaMatematica.getCodice(), 5, marino.getCognome(),
+					marino.getMatricola(), corsoDiLaureaInformatica.getCodice(), 5, marino.getCognome(),
 					marino.getNome(), dataI, dataF);
 			CorsoDao corsoDao = factory.getCorsoDAO();
 			corsoDao.save(corsoRicercaO);
@@ -246,42 +244,30 @@ public class MainJDBC {
 
 			Esame esameFondamenti = new Esame(corsoFondamenti.getCodice(), corsoFondamenti.getNome(),
 					corsoFondamenti.getCfu());
-			Esame esameAnalisi = new Esame(corsoAnalisi.getCodice(), corsoAnalisi.getNome(),
-					corsoAnalisi.getCfu());
-			Esame esameOggetti = new Esame(corsoOggetti.getCodice(), corsoOggetti.getNome(),
-					corsoOggetti.getCfu());
+			Esame esameAnalisi = new Esame(corsoAnalisi.getCodice(), corsoAnalisi.getNome(), corsoAnalisi.getCfu());
+			Esame esameOggetti = new Esame(corsoOggetti.getCodice(), corsoOggetti.getNome(), corsoOggetti.getCfu());
 			Esame esameAlgoritmi = new Esame(corsoAlgoritmi.getCodice(), corsoAlgoritmi.getNome(),
 					corsoAlgoritmi.getCfu());
 			Esame esameArchitettura = new Esame(corsoArchitettura.getCodice(), corsoArchitettura.getNome(),
 					corsoArchitettura.getCfu());
-			Esame esameBasi = new Esame(corsoBasi.getCodice(), corsoBasi.getNome(),
-					corsoBasi.getCfu());
+			Esame esameBasi = new Esame(corsoBasi.getCodice(), corsoBasi.getNome(), corsoBasi.getCfu());
 			Esame esameIngegneria = new Esame(corsoIngegneria.getCodice(), corsoIngegneria.getNome(),
 					corsoIngegneria.getCfu());
-			Esame esameSIW = new Esame(corsoSIW.getCodice(), corsoSIW.getNome(),
-					corsoSIW.getCfu());
-			Esame esameIGPE = new Esame(corsoIGPE.getCodice(), corsoIGPE.getNome(),
-					corsoIGPE.getCfu());
-			Esame esameDiscreta = new Esame(corsoDiscreta.getCodice(), corsoDiscreta.getNome(),
-					corsoDiscreta.getCfu());
-			Esame esameMAD = new Esame(corsoMAD.getCodice(), corsoMAD.getNome(),
-					corsoMAD.getCfu());
-			Esame esameSistemi = new Esame(corsoSistemi.getCodice(), corsoSistemi.getNome(),
-					corsoSistemi.getCfu());
+			Esame esameSIW = new Esame(corsoSIW.getCodice(), corsoSIW.getNome(), corsoSIW.getCfu());
+			Esame esameIGPE = new Esame(corsoIGPE.getCodice(), corsoIGPE.getNome(), corsoIGPE.getCfu());
+			Esame esameDiscreta = new Esame(corsoDiscreta.getCodice(), corsoDiscreta.getNome(), corsoDiscreta.getCfu());
+			Esame esameMAD = new Esame(corsoMAD.getCodice(), corsoMAD.getNome(), corsoMAD.getCfu());
+			Esame esameSistemi = new Esame(corsoSistemi.getCodice(), corsoSistemi.getNome(), corsoSistemi.getCfu());
 			Esame esameIntelligenza = new Esame(corsoIntelligenza.getCodice(), corsoIntelligenza.getNome(),
 					corsoIntelligenza.getCfu());
-			Esame esameRicerca = new Esame(corsoRicerca.getCodice(), corsoRicerca.getNome(),
-					corsoRicerca.getCfu());
+			Esame esameRicerca = new Esame(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getCfu());
 			Esame esameParalleli = new Esame(corsoParalleli.getCodice(), corsoParalleli.getNome(),
 					corsoParalleli.getCfu());
 			Esame esameLinguaggi = new Esame(corsoLinguaggi.getCodice(), corsoLinguaggi.getNome(),
 					corsoLinguaggi.getCfu());
-			Esame esameFisica = new Esame(corsoFisica.getCodice(), corsoFisica.getNome(),
-					corsoFisica.getCfu());
-			Esame esameInglese = new Esame(corsoInglese.getCodice(), corsoInglese.getNome(),
-					corsoInglese.getCfu());
-			Esame esameEconomia = new Esame(corsoEconomia.getCodice(), corsoEconomia.getNome(),
-					corsoEconomia.getCfu());
+			Esame esameFisica = new Esame(corsoFisica.getCodice(), corsoFisica.getNome(), corsoFisica.getCfu());
+			Esame esameInglese = new Esame(corsoInglese.getCodice(), corsoInglese.getNome(), corsoInglese.getCfu());
+			Esame esameEconomia = new Esame(corsoEconomia.getCodice(), corsoEconomia.getNome(), corsoEconomia.getCfu());
 			esameDao.save(esameEconomia);
 			esameDao.save(esameInglese);
 			esameDao.save(esameFisica);
@@ -299,6 +285,7 @@ public class MainJDBC {
 			esameDao.save(esameArchitettura);
 			esameDao.save(esameAlgoritmi);
 			esameDao.save(esameOggetti);
+			esameDao.save(esameAnalisi);
 			esameDao.save(esameFondamenti);
 			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st2.getMatricola(), corsoIngegneriaSW.getCodice());
@@ -307,8 +294,7 @@ public class MainJDBC {
 			studenteDao.iscriviStudente(st3.getMatricola(), corsoRicercaO.getCodice());
 			studenteDao.iscriviStudente(st4.getMatricola(), corsoRicercaO.getCodice());
 			studenteDao.superaEsame(st3.getMatricola(), esameIngegneria, new Timestamp(System.currentTimeMillis()), 30);
-			studenteDao.superaEsame(st3.getMatricola(), esameOggetti,
-					new Timestamp(System.currentTimeMillis()), 18);
+			studenteDao.superaEsame(st3.getMatricola(), esameOggetti, new Timestamp(System.currentTimeMillis()), 18);
 
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
