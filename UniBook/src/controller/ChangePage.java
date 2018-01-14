@@ -165,6 +165,8 @@ public class ChangePage extends HttpServlet {
 			List<Esame> esamiIscritto =utenteDao.findEsamiIscritto(currentUser.getMatricola());
 			List<Esame> esamiNonSuperati=utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
 			req.setAttribute("esami", esami);
+			req.setAttribute("esamiIscritto", esamiIscritto);
+			req.setAttribute("esamiNonSuperati", esamiNonSuperati);
 			req.getRequestDispatcher("esami.jsp").forward(req, resp);
 		}
 

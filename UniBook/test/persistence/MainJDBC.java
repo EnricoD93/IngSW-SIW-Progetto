@@ -202,7 +202,7 @@ public class MainJDBC {
 					corsoDiLaureaInformatica.getCodice(), 9, 24, 72);
 			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27000035),
 					"Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
-
+			
 			DescrizioneCorsoDao descCorso = factory.getDescrizioneCorsoDao();
 			descCorso.save(corsoFondamenti);
 			descCorso.save(corsoAnalisi);
@@ -244,31 +244,71 @@ public class MainJDBC {
 			corsoDao.save(corsoProgrammazioneAdOggetti);
 			EsameDao esameDao = factory.getEsameDAO();
 
-			Esame IngegneriaSW = new Esame(corsoIngegneria.getCodice(), corsoIngegneriaSW.getNome(),
-					corsoIngegneriaSW.getCfu());
-			Esame ProgrammazioneAdOggetti = new Esame(corsoProgrammazioneAdOggetti.getCodice(),
-					corsoProgrammazioneAdOggetti.getNome(), corsoProgrammazioneAdOggetti.getCfu());
-			Esame RicercaOperativa = new Esame(corsoRicercaO.getCodice(),
-					corsoRicercaO.getNome(), corsoRicercaO.getCfu());
-			esameDao.save(IngegneriaSW);
-			esameDao.save(ProgrammazioneAdOggetti);
-			esameDao.save(RicercaOperativa);
+			Esame esameFondamenti = new Esame(corsoFondamenti.getCodice(), corsoFondamenti.getNome(),
+					corsoFondamenti.getCfu());
+			Esame esameAnalisi = new Esame(corsoAnalisi.getCodice(), corsoAnalisi.getNome(),
+					corsoAnalisi.getCfu());
+			Esame esameOggetti = new Esame(corsoOggetti.getCodice(), corsoOggetti.getNome(),
+					corsoOggetti.getCfu());
+			Esame esameAlgoritmi = new Esame(corsoAlgoritmi.getCodice(), corsoAlgoritmi.getNome(),
+					corsoAlgoritmi.getCfu());
+			Esame esameArchitettura = new Esame(corsoArchitettura.getCodice(), corsoArchitettura.getNome(),
+					corsoArchitettura.getCfu());
+			Esame esameBasi = new Esame(corsoBasi.getCodice(), corsoBasi.getNome(),
+					corsoBasi.getCfu());
+			Esame esameIngegneria = new Esame(corsoIngegneria.getCodice(), corsoIngegneria.getNome(),
+					corsoIngegneria.getCfu());
+			Esame esameSIW = new Esame(corsoSIW.getCodice(), corsoSIW.getNome(),
+					corsoSIW.getCfu());
+			Esame esameIGPE = new Esame(corsoIGPE.getCodice(), corsoIGPE.getNome(),
+					corsoIGPE.getCfu());
+			Esame esameDiscreta = new Esame(corsoDiscreta.getCodice(), corsoDiscreta.getNome(),
+					corsoDiscreta.getCfu());
+			Esame esameMAD = new Esame(corsoMAD.getCodice(), corsoMAD.getNome(),
+					corsoMAD.getCfu());
+			Esame esameSistemi = new Esame(corsoSistemi.getCodice(), corsoSistemi.getNome(),
+					corsoSistemi.getCfu());
+			Esame esameIntelligenza = new Esame(corsoIntelligenza.getCodice(), corsoIntelligenza.getNome(),
+					corsoIntelligenza.getCfu());
+			Esame esameRicerca = new Esame(corsoRicerca.getCodice(), corsoRicerca.getNome(),
+					corsoRicerca.getCfu());
+			Esame esameParalleli = new Esame(corsoParalleli.getCodice(), corsoParalleli.getNome(),
+					corsoParalleli.getCfu());
+			Esame esameLinguaggi = new Esame(corsoLinguaggi.getCodice(), corsoLinguaggi.getNome(),
+					corsoLinguaggi.getCfu());
+			Esame esameFisica = new Esame(corsoFisica.getCodice(), corsoFisica.getNome(),
+					corsoFisica.getCfu());
+			Esame esameInglese = new Esame(corsoInglese.getCodice(), corsoInglese.getNome(),
+					corsoInglese.getCfu());
+			Esame esameEconomia = new Esame(corsoEconomia.getCodice(), corsoEconomia.getNome(),
+					corsoEconomia.getCfu());
+			esameDao.save(esameEconomia);
+			esameDao.save(esameInglese);
+			esameDao.save(esameFisica);
+			esameDao.save(esameLinguaggi);
+			esameDao.save(esameParalleli);
+			esameDao.save(esameRicerca);
+			esameDao.save(esameIntelligenza);
+			esameDao.save(esameSistemi);
+			esameDao.save(esameMAD);
+			esameDao.save(esameDiscreta);
+			esameDao.save(esameIGPE);
+			esameDao.save(esameSIW);
+			esameDao.save(esameIngegneria);
+			esameDao.save(esameBasi);
+			esameDao.save(esameArchitettura);
+			esameDao.save(esameAlgoritmi);
+			esameDao.save(esameOggetti);
+			esameDao.save(esameFondamenti);
 			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st2.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st3.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st4.getMatricola(), corsoIngegneriaSW.getCodice());
 			studenteDao.iscriviStudente(st3.getMatricola(), corsoRicercaO.getCodice());
 			studenteDao.iscriviStudente(st4.getMatricola(), corsoRicercaO.getCodice());
-			studenteDao.superaEsame(st3.getMatricola(), IngegneriaSW, new Timestamp(System.currentTimeMillis()), 30);
-			studenteDao.superaEsame(st3.getMatricola(), ProgrammazioneAdOggetti,
+			studenteDao.superaEsame(st3.getMatricola(), esameIngegneria, new Timestamp(System.currentTimeMillis()), 30);
+			studenteDao.superaEsame(st3.getMatricola(), esameOggetti,
 					new Timestamp(System.currentTimeMillis()), 18);
-
-			List<EsameSuperato> esami = studenteDao.findEsamiSuperati(st3.getMatricola());
-
-			for (EsameSuperato esameSuperato : esami) {
-				System.out.println(st3.getMatricola() + " ha superato l'esame " + esameSuperato.getNome()
-						+ " con voto: " + esameSuperato.getVoto() + " in data: " + esameSuperato.getDatareale());
-			}
 
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());

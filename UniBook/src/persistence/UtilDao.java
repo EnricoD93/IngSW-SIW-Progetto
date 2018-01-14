@@ -55,9 +55,9 @@ public class UtilDao {
 					+ "create table messaggio(\"id\" bigint primary key, data timestamp, testo text,matricola_mitt VARCHAR(255) REFERENCES utente(\"matricola\"),matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table lezione(\"id\" bigint primary key,data DATE , ora_inizio timestamp, ora_fine timestamp,\"corso\" bigint REFERENCES corso(\"codice\"),\"aula\" VARCHAR(255) REFERENCES aula(\"id\"),tipo VARCHAR(255));"
 					+ "create table calendariopersonale(matricola VARCHAR(255) primary key REFERENCES utente(\"matricola\"));"
-					+ "create table esame(corso bigint primary key REFERENCES corso(\"codice\"),nome VARCHAR(255),cfu int);"
 					+ "create table iscritto(\"codice\" bigint REFERENCES corso(\"codice\"), matricola VARCHAR(255) REFERENCES utente(\"matricola\"));"
 					+ "create table descrizionecorso(\"codice\" bigint primary key, nome VARCHAR(255),anno int,corsodilaurea VARCHAR(255) REFERENCES corsodilaurea(\"codice\"), cfu int, ore_lezioni int,ore_esercitazioni int );"
+					+ "create table esame(corso bigint primary key REFERENCES descrizionecorso(\"codice\"),nome VARCHAR(255),cfu int);"
 					+ "create table evento(\"id\" bigint primary key, title VARCHAR(255),inizio timestamp, fine timestamp, nota text );"
 					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento bigint REFERENCES evento(\"id\"));"
 					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int)";

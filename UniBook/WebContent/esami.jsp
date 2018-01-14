@@ -25,14 +25,50 @@
 						</thead>
 						<tbody>
 							<c:forEach var="esame" items="${esami}">
-								<tr name="esameSelezionato" value="${esame.corso}"
-									style="cursor: pointer;">
+								<tr name="esameSelezionato" value="${esame.corso}">
 									<th scope="row">${esame.corso}</th>
 									<td><a href="page?request=corso&id=${esame.corso}">${esame.nome}
 									</a></td>
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
-									<td>${esame.voto}</td>
+									<td><b>${esame.voto}</b></td>
+									<td><img src="images/superato.png"/></td>
+									<td><button type="button"
+											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+											style="margin-left: 39px;"
+											onclick="javascript:void(0);">
+											<i class="material-icons">clear</i>
+
+										</button></td>
+								</tr>
+							</c:forEach>
+							<c:forEach var="esame" items="${esamiIscritto}">
+								<tr name="esameSelezionato" value="${esame.corso}">
+									<th scope="row">${esame.corso}</th>
+									<td><a href="page?request=corso&id=${esame.corso}">${esame.nome}
+									</a></td>
+									<td>${esame.cfu}</td>
+									<td>-</td>
+									<td>-</td>
+									<td><img src="images/frequentando.png"/></td>
+									<td><button type="button"
+											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+											style="margin-left: 39px;"
+											onclick="javascript:void(0);">
+											<i class="material-icons">add</i>
+
+										</button></td>
+								</tr>
+							</c:forEach>
+							<c:forEach var="esame" items="${esamiNonSuperati}">
+								<tr name="esameSelezionato" value="${esame.corso}">
+									<th scope="row">${esame.corso}</th>
+									<td><a href="page?request=corso&id=${esame.corso}">${esame.nome}
+									</a></td>
+									<td>${esame.cfu}</td>
+									<td>-</td>
+									<td>-</td>
+									<td><img src="images/nonfrequentato.png"/></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 											style="margin-left: 39px;"
