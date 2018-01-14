@@ -88,6 +88,7 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Evento evento = new Evento();
+				evento.setId(result.getLong("id"));
 				evento.setTitle(result.getString("title"));
 				evento.setInizio(result.getTimestamp("inizio"));
 				evento.setFine(result.getTimestamp("fine"));

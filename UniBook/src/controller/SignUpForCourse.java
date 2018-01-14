@@ -60,6 +60,10 @@ public class SignUpForCourse extends HttpServlet {
 				}
 			}
 			if (richiesta.equals("cancellazione")) {
+				System.out.println("sto cancellando");
+				System.out.println("la lista eventi ha "+listaEventiCal.size()+" eventi");
+				System.out.println("la lista lezioni ha "+listaLezioni.size()+" lezioni");
+				System.out.println("sto cancellando");
 				for (int i = 0; i < listaLezioni.size(); i++) {
 					for (int j = 0; j < listaEventiCal.size(); j++) {
 						if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
