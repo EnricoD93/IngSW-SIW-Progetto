@@ -274,7 +274,7 @@ public class CreateCourse extends HttpServlet {
 				resp.setStatus(401);
 			}
 		}
-		req.getRequestDispatcher("page?request=corsi").forward(req, resp);
+		resp.sendRedirect("page?request=corsi");
 	}
 
 	public double convert(String s) {
