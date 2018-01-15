@@ -1,7 +1,11 @@
 package model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CalendarioPersonale {
 	private String matricola;
@@ -39,10 +43,23 @@ public class CalendarioPersonale {
 			String giorniLezione, String aula, int tipo, Timestamp oraInizio, Timestamp oraFine) {
 		ArrayList<Lezione> lez = new ArrayList<>();
 		GiornoCalendario i = new GiornoCalendario(inizio.giorno, inizio.mese, inizio.anno);
+
 		for (; i.diverso(fine); i.next()) {
+
 			if (i.getGiornoDellaSettimana().equals(giorniLezione)) {
-				lez.add(new Lezione(codice, new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno()), oraInizio,
-						oraFine, aula, tipo));
+				String ora = new SimpleDateFormat("hh:mm").format(new Date(oraInizio.getTime()));
+				String fin = new SimpleDateFormat("hh:mm").format(new Date(oraFine.getTime()));
+				String[] oraMin = ora.split(":");
+				String[] oraMinFin = fin.split(":");
+				Calendar cal = new GregorianCalendar(i.getAnno(), i.getMese(), i.getGiorno(),
+						Integer.parseInt(oraMin[0]), Integer.parseInt(oraMin[1]));
+				Calendar calfin = new GregorianCalendar(i.getAnno(), i.getMese(), i.getGiorno(),
+						Integer.parseInt(oraMinFin[0]), Integer.parseInt(oraMinFin[1]));
+
+				Timestamp oraIn = new Timestamp(cal.getTimeInMillis());
+				Timestamp oraFin = new Timestamp(calfin.getTimeInMillis());
+				lez.add(new Lezione(codice, new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno()), oraIn,
+						oraFin, aula, tipo));
 			}
 		}
 
