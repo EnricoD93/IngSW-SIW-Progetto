@@ -84,18 +84,20 @@
 							</tbody>
 						</table>
 					</div>
-					<div align="right">
-						<div class="bg-unibook info-box-3 hover-zoom-effect">
-							<a href="javascript:changeProfile();">
-								<div class="icon">
-									<i class="material-icons">mode_edit</i>
-								</div>
-								<div class="content">
-									<div class="text">Modifica Profilo</div>
-								</div>
-							</a>
+					<c:if test="${currentUser.matricola==currentCourse.docente }">
+						<div align="right">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a href="javascript:changeProfile();">
+									<div class="icon">
+										<i class="material-icons">mode_edit</i>
+									</div>
+									<div class="content">
+										<div class="text">Modifica Corso</div>
+									</div>
+								</a>
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</h2>
 			</div>
 		</div>

@@ -70,7 +70,7 @@
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 											style="margin-left: 39px;" onclick="javascript:void(0);">
-											<i class="material-icons">clear</i>
+											<i class="material-icons">add</i>
 
 										</button></td>
 								</tr>

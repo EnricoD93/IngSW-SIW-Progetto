@@ -74,15 +74,17 @@
 
 				</div>
 				<c:if test="${currentUser.ruolo == 1 }">
-					<div class="bg-unibook info-box-4 hover-zoom-effect">
-						<a href="page?request=creaCorso" class="waves-block waves-effect">
-							<div class="icon">
-								<i class="material-icons">library_add</i>
-							</div>
-							<div class="content">
-								<div class="text">Crea un nuovo Corso (CAMBIARE)</div>
-							</div>
-						</a>
+					<div align="right">
+						<div class="bg-unibook info-box-3 hover-zoom-effect">
+							<a href="page?request=creaCorso">
+								<div class="icon">
+									<i class="material-icons">mode_edit</i>
+								</div>
+								<div class="content">
+									<div class="text">Crea un Corso</div>
+								</div>
+							</a>
+						</div>
 					</div>
 				</c:if>
 			</h2>

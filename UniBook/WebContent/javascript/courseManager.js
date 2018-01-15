@@ -47,7 +47,7 @@ function sleep (time) {
 function confermaElimina(matricola, codice) {
 	swal(
 			{
-				title : "Inserisci la tua password per confermare la cancellazione:",
+				title : "Inserisci la tua password per confermare l'eliminazione del corso:",
 				type : "input",
 				inputType : "password",
 				showCancelButton : true,

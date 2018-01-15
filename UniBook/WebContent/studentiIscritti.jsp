@@ -42,14 +42,15 @@
 
 							<c:forEach var="studente" varStatus="loop"
 								items="${studentiIscritti}">
-								<tr style="cursor: pointer;">
+								<tr>
 									<td>${loop.index+1}</td>
 									<td><a
 										href="page?request=profilo&id=${studente.matricola}">
 											<div class="profile-pic-xs"
 												style="background-image: url('${studente.profileImagePath}')"></div>
 									</a></td>
-									<td scope="row">${studente.cognome}&nbsp;${studente.nome}</td>
+									<td scope="row"><a
+										href="page?request=profilo&id=${studente.matricola}">${studente.cognome}&nbsp;${studente.nome}</a></td>
 									<td>${studente.matricola}</td>
 									<c:if test="${currentUser.matricola==currentCourse.docente}">
 										<td>${studente.codicefiscale}</td>

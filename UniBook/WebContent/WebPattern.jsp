@@ -219,8 +219,9 @@
 						</ul></li>
 					<!-- #END# Notifications -->
 					<!-- Tasks -->
-					<li class="dropdown"><a href="page?request=messaggi"role="button">
-							<i class="material-icons">message</i> <span class="label-count">9</span>
+					<li class="dropdown"><a href="page?request=messaggi"
+						role="button"> <i class="material-icons">message</i> <span
+							class="label-count">9</span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">TASKS</li>
@@ -346,9 +347,11 @@
 					<li><a href="page?request=aule"> <i class="material-icons">business</i>
 							<span>Aule</span>
 					</a></li>
-					<li><a href="page?request=esami"> <i
-							class="material-icons">collections_bookmark</i> <span>Esami</span>
-					</a></li>
+					<c:if test="${currentUser.ruolo==0 }">
+						<li><a href="page?request=esami"> <i
+								class="material-icons">collections_bookmark</i> <span>Esami</span>
+						</a></li>
+					</c:if>
 					<li><a href="javascript:void(0)"> <i
 							class="material-icons">my_location</i> <span>Dove siamo</span>
 					</a></li>

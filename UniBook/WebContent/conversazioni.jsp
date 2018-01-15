@@ -39,7 +39,7 @@
 			<br>
 			<div class="row clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
-				<div id="messages">
+				<div id="messages" style="overflow-wrap: break-word;">
 					<c:forEach var="messaggio" varStatus="loop" items="${messaggi}">
 						<c:if test="${messaggio.mittente!=currentUser.matricola }">
 							<div class="card" style="border-radius: 5px; margin-right: 10%">
