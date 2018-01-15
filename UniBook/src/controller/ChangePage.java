@@ -34,6 +34,7 @@ public class ChangePage extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		request = req.getParameter("request");
 		if (request.equals("inviaMessaggio")) {
 			String dest = req.getParameter("dest");
@@ -61,106 +62,116 @@ public class ChangePage extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		Utente currentUser = (Utente) session.getAttribute("currentUser");
+		System.out.println(session.getAttribute("currentUser"));
 		request = req.getParameter("request");
-		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-		AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-		switch (request) {
-		case "aule":
-			aule = aulaDao.findAll();
-			req.setAttribute("aule", aule);
-			req.getRequestDispatcher("aule.jsp").forward(req, resp);
-			break;
-		case "calendario":
+		if (session.getAttribute("currentUser") != null) {
+			Utente currentUser = (Utente) session.getAttribute("currentUser");
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+			System.out.println(request);
+			if (request != null) {
+				switch (request) {
+				case "aule":
+					aule = aulaDao.findAll();
+					req.setAttribute("aule", aule);
+					req.getRequestDispatcher("aule.jsp").forward(req, resp);
+					break;
+				case "calendario":
 
-			req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
-			break;
-		case "corsi":
-			if (currentUser.getRuolo() == 0) {
-				corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
-			} else if (currentUser.getRuolo() == 1) {
-				corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
+					req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
+					break;
+				case "corsi":
+					if (currentUser.getRuolo() == 0) {
+						corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
+					} else if (currentUser.getRuolo() == 1) {
+						corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
+					}
+					req.setAttribute("corsi", corsi);
+					req.getRequestDispatcher("corsi.jsp").forward(req, resp);
+					break;
+				case "profilo":
+					String profileId = req.getParameter("id");
+					Utente utente = utenteDao.findByPrimaryKey(profileId);
+					req.setAttribute("profilo", utente);
+					req.getRequestDispatcher("profilo.jsp").forward(req, resp);
+					break;
+				case "corso":
+					Long codice = Long.parseLong(req.getParameter("id"));
+					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
+					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
+					req.setAttribute("courseDocente", courseDocente);
+					req.setAttribute("currentCourse", currentCourse);
+					System.out.println("cambio pagina");
+					req.getRequestDispatcher("course.jsp").forward(req, resp);
+					break;
+				case "listaStudenti":
+					Long codicec = Long.parseLong(req.getParameter("id"));
+					List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codicec);
+					req.setAttribute("studentiIscritti", studentiIscritti);
+					req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
+					break;
+				case "creaCorso":
+					List<DescrizioneCorso> listaCorsi;
+					List<Aula> listaAule;
+					DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory()
+							.getDescrizioneCorsoDao();
+					listaAule = aulaDao.findAll();
+					listaCorsi = descrizioneDao.findAll();
+					req.setAttribute("listaCorsi", listaCorsi);
+					req.setAttribute("listaAule", listaAule);
+					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
+					break;
+				case "colleghi":
+					List<Utente> colleghi;
+					colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
+					req.setAttribute("colleghi", colleghi);
+					req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
+					break;
+
+				case "docenti":
+					List<Utente> docenti;
+					docenti = utenteDao.findAllProfessor();
+					req.setAttribute("docenti", docenti);
+					req.getRequestDispatcher("docenti.jsp").forward(req, resp);
+					break;
+
+				case "messaggi":
+					List<Utente> conversazioni;
+					conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
+					req.setAttribute("conversazioni", conversazioni);
+					req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
+					break;
+
+				case "conversazione":
+					String id = req.getParameter("id");
+					Utente u = utenteDao.findByPrimaryKey(id);
+					MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+					List<Messaggio> messaggi;
+					messaggi = messDao.findMessagesByUtenti(currentUser.getMatricola(), id);
+					req.setAttribute("messaggi", messaggi);
+					req.setAttribute("utenteConversazione", u);
+					req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
+					break;
+				case "esami":
+					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
+					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
+					List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
+					req.setAttribute("esami", esami);
+					req.setAttribute("esamiIscritto", esamiIscritto);
+					req.setAttribute("esamiNonSuperati", esamiNonSuperati);
+					req.getRequestDispatcher("esami.jsp").forward(req, resp);
+					break;
+				default:
+					req.getRequestDispatcher("home").forward(req, resp);
+					break;
+				}
+			} else {
+				req.getRequestDispatcher("home").forward(req, resp);
 			}
-			req.setAttribute("corsi", corsi);
-			req.getRequestDispatcher("corsi.jsp").forward(req, resp);
-			break;
-		case "profilo":
-			String profileId = req.getParameter("id");
-			Utente utente = utenteDao.findByPrimaryKey(profileId);
-			req.setAttribute("profilo", utente);
-			req.getRequestDispatcher("profilo.jsp").forward(req, resp);
-			break;
-		case "corso":
-			Long codice = Long.parseLong(req.getParameter("id"));
-			Corso currentCourse = corsoDao.findByPrimaryKey(codice);
-			Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
-			req.setAttribute("courseDocente", courseDocente);
-			req.setAttribute("currentCourse", currentCourse);
-			System.out.println("cambio pagina");
-			req.getRequestDispatcher("course.jsp").forward(req, resp);
-			break;
-		case "listaStudenti":
-			Long codicec = Long.parseLong(req.getParameter("id"));
-			List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codicec);
-			req.setAttribute("studentiIscritti", studentiIscritti);
-			req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
-			break;
-		case "creaCorso":
-			List<DescrizioneCorso> listaCorsi;
-			List<Aula> listaAule;
-			DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
-			listaAule = aulaDao.findAll();
-			listaCorsi = descrizioneDao.findAll();
-			req.setAttribute("listaCorsi", listaCorsi);
-			req.setAttribute("listaAule", listaAule);
-			req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
-			break;
-		case "colleghi":
-			List<Utente> colleghi;
-			colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
-			req.setAttribute("colleghi", colleghi);
-			req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
-			break;
-
-		case "docenti":
-			List<Utente> docenti;
-			docenti = utenteDao.findAllProfessor();
-			req.setAttribute("docenti", docenti);
-			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
-			break;
-
-		case "messaggi":
-			List<Utente> conversazioni;
-			conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
-			req.setAttribute("conversazioni", conversazioni);
-			req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
-			break;
-
-		case "conversazione":
-			String id = req.getParameter("id");
-			Utente u = utenteDao.findByPrimaryKey(id);
-			MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
-			List<Messaggio> messaggi;
-			messaggi = messDao.findMessagesByUtenti(currentUser.getMatricola(), id);
-			req.setAttribute("messaggi", messaggi);
-			req.setAttribute("utenteConversazione", u);
-			req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
-			break;
-		case "esami":
-			List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
-			List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
-			List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
-			req.setAttribute("esami", esami);
-			req.setAttribute("esamiIscritto", esamiIscritto);
-			req.setAttribute("esamiNonSuperati", esamiNonSuperati);
-			req.getRequestDispatcher("esami.jsp").forward(req, resp);
-			break;
-		default:
+		} else {
 			req.getRequestDispatcher("home").forward(req, resp);
-			break;
 		}
-
 	}
 
 }

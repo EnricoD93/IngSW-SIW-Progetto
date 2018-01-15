@@ -18,6 +18,10 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().setAttribute("currentUser", null);
 		req.getSession().invalidate();
-		req.getRequestDispatcher("/").forward(req, resp);
+		resp.setHeader("Cache-Control", "no-cache");
+		resp.setHeader("Cache-Control", "no-store");
+		resp.setHeader("Pragma", "no-cache");
+		resp.setDateHeader("Expires", 0);
+		req.getRequestDispatcher("home").forward(req, resp);
 	}
 }
