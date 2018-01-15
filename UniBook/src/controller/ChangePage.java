@@ -63,17 +63,20 @@ public class ChangePage extends HttpServlet {
 		HttpSession session = req.getSession();
 		Utente currentUser = (Utente) session.getAttribute("currentUser");
 		request = req.getParameter("request");
-		if (request.equals("aule")) {
-			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+		AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+		switch (request) {
+		case "aule":
 			aule = aulaDao.findAll();
 			req.setAttribute("aule", aule);
 			req.getRequestDispatcher("aule.jsp").forward(req, resp);
-		}
-		if (request.equals("calendario")) {
+			break;
+		case "calendario":
+
 			req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
-		}
-		if (request.equals("corsi")) {
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			break;
+		case "corsi":
 			if (currentUser.getRuolo() == 0) {
 				corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
 			} else if (currentUser.getRuolo() == 1) {
@@ -81,76 +84,61 @@ public class ChangePage extends HttpServlet {
 			}
 			req.setAttribute("corsi", corsi);
 			req.getRequestDispatcher("corsi.jsp").forward(req, resp);
-		}
-		if (request.equals("aule")) {
-			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-			aule = aulaDao.findAll();
-			req.setAttribute("aule", aule);
-			//req.getRequestDispatcher("aule.jsp").forward(req, resp);
-		}
-		if (request.equals("profilo")) {
+			break;
+		case "profilo":
 			String profileId = req.getParameter("id");
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Utente utente = utenteDao.findByPrimaryKey(profileId);
 			req.setAttribute("profilo", utente);
 			req.getRequestDispatcher("profilo.jsp").forward(req, resp);
-		}
-		if (request.equals("corso")) {
+			break;
+		case "corso":
 			Long codice = Long.parseLong(req.getParameter("id"));
-			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 			Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 			req.setAttribute("courseDocente", courseDocente);
 			req.setAttribute("currentCourse", currentCourse);
 			System.out.println("cambio pagina");
 			req.getRequestDispatcher("course.jsp").forward(req, resp);
-		}
-		if (request.equals("listaStudenti")) {
-			Long codice = Long.parseLong(req.getParameter("id"));
-			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-			List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codice);
+			break;
+		case "listaStudenti":
+			Long codicec = Long.parseLong(req.getParameter("id"));
+			List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codicec);
 			req.setAttribute("studentiIscritti", studentiIscritti);
 			req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
-		}
-		if (request.equals("creaCorso")) {
+			break;
+		case "creaCorso":
 			List<DescrizioneCorso> listaCorsi;
 			List<Aula> listaAule;
-			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 			DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
 			listaAule = aulaDao.findAll();
 			listaCorsi = descrizioneDao.findAll();
 			req.setAttribute("listaCorsi", listaCorsi);
 			req.setAttribute("listaAule", listaAule);
 			req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
-		}
-		if (request.equals("colleghi")) {
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			break;
+		case "colleghi":
 			List<Utente> colleghi;
 			colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
 			req.setAttribute("colleghi", colleghi);
 			req.getRequestDispatcher("colleghi.jsp").forward(req, resp);
-		}
-		
-		if (request.equals("docenti")) {
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			break;
+
+		case "docenti":
 			List<Utente> docenti;
 			docenti = utenteDao.findAllProfessor();
 			req.setAttribute("docenti", docenti);
 			req.getRequestDispatcher("docenti.jsp").forward(req, resp);
-		}
-		
-		if (request.equals("messaggi")) {
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			break;
+
+		case "messaggi":
 			List<Utente> conversazioni;
 			conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
 			req.setAttribute("conversazioni", conversazioni);
 			req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
-		}
-		
-		if (request.equals("conversazione")) {
+			break;
+
+		case "conversazione":
 			String id = req.getParameter("id");
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Utente u = utenteDao.findByPrimaryKey(id);
 			MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
 			List<Messaggio> messaggi;
@@ -158,16 +146,19 @@ public class ChangePage extends HttpServlet {
 			req.setAttribute("messaggi", messaggi);
 			req.setAttribute("utenteConversazione", u);
 			req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
-		}
-		if (request.equals("esami")) {
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			break;
+		case "esami":
 			List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
-			List<Esame> esamiIscritto =utenteDao.findEsamiIscritto(currentUser.getMatricola());
-			List<Esame> esamiNonSuperati=utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
+			List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
+			List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
 			req.setAttribute("esami", esami);
 			req.setAttribute("esamiIscritto", esamiIscritto);
 			req.setAttribute("esamiNonSuperati", esamiNonSuperati);
 			req.getRequestDispatcher("esami.jsp").forward(req, resp);
+			break;
+		default:
+			req.getRequestDispatcher("home").forward(req, resp);
+			break;
 		}
 
 	}

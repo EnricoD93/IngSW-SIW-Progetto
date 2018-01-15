@@ -108,7 +108,7 @@
 				<a href="javascript:void(0);" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-collapse"
 					aria-expanded="false"></a> <a href="javascript:void(0);"
-					class="bars"></a> <a class="navbar-brand" href="home.jsp"><logoimg>
+					class="bars"></a> <a class="navbar-brand" href="home"><logoimg>
 					<image src="logo.png"></image></logoimg></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
@@ -333,8 +333,7 @@
 			<div class="menu">
 				<ul class="list">
 					<li class="header">Navigazione principale</li>
-					<li><a href="home.jsp"> <i class="material-icons">home</i>
-							<span>Home</span>
+					<li><a href="home"> <i class="material-icons">home</i> <span>Home</span>
 					</a></li>
 					<li><a href="page?request=corsi"> <i
 							class="material-icons">library_books</i> <span>I miei
@@ -400,11 +399,6 @@
 		<!-- #END# Right Sidebar -->
 	</section>
 </body>
-<c:if test="${currentUser==null}">
-	<%
-		response.sendRedirect("index.html");
-	%>
-</c:if>
 <%
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Cache-Control", "no-store");

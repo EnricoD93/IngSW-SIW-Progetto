@@ -18,37 +18,37 @@
 							<form onsubmit="return updateImage();"
 								enctype="multipart/form-data">
 								<c:if test="${currentUser.matricola==profilo.matricola }">
-								<a href="javascript:uploadImage()" class="profile-pic"
-									style="cursor: pointer;"> <span
-									class="glyphicon glyphicon-camera"></span> <span>Cambia
-										Immagine</span>
-								</a>
+									<a href="javascript:uploadImage()" class="profile-pic"
+										style="cursor: pointer;"> <span
+										class="glyphicon glyphicon-camera"></span> <span>Cambia
+											Immagine</span>
+									</a>
 								</c:if>
 								<c:if test="${currentUser.matricola==profilo.matricola }">
-								<button type="submit"
-									class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
-									<i class="material-icons">publish</i>
-								</button>
+									<button type="submit"
+										class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+										<i class="material-icons">publish</i>
+									</button>
 								</c:if>
 								<input type="file" class="form-control hidden" name="image"
 									id="imagebtn" accept=".png, .jpeg, .jpg" required="">
 							</form>
 						</div>
 					</div>
-<br>
-<c:if test="${currentUser.matricola==profilo.matricola }">
-					<div align="right">
-						<div class="bg-unibook info-box-3 hover-zoom-effect">
-							<a href="javascript:changeProfile();">
-								<div class="icon">
-									<i class="material-icons">mode_edit</i>
-								</div>
-								<div class="content">
-									<div class="text">Modifica Profilo</div>
-								</div>
-							</a>
+					<br>
+					<c:if test="${currentUser.matricola==profilo.matricola }">
+						<div align="right">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a href="javascript:changeProfile();">
+									<div class="icon">
+										<i class="material-icons">mode_edit</i>
+									</div>
+									<div class="content">
+										<div class="text">Modifica Profilo</div>
+									</div>
+								</a>
+							</div>
 						</div>
-					</div>
 					</c:if>
 					<table class="table table-striped">
 						<tbody>
@@ -57,13 +57,16 @@
 								<th scope="row">Nome:&nbsp;&nbsp;${profilo.nome}
 									${profilo.cognome}</th>
 							</tr>
-							<tr>
-								<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
-							</tr>
+							<c:if test="${currentUser.matricola==profilo.matricola }">
+								<tr>
+									<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
+								</tr>
+							</c:if>
 							<c:if test="${currentUser.matricola==profilo.matricola }">
 								<tr>
 									<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
 								</tr>
+
 							</c:if>
 
 							<tr>
@@ -73,10 +76,10 @@
 							Ruolo:&nbsp;&nbsp;Docente
 							</c:if></th>
 							</tr>
+							<tr>
+								<th>Email:&nbsp;&nbsp;${profilo.email}</th>
+							</tr>
 							<c:if test="${currentUser.matricola==profilo.matricola }">
-								<tr>
-									<th>Email:&nbsp;&nbsp;${profilo.email}</th>
-								</tr>
 								<tr>
 									<th>Data di
 										Nascita:&nbsp;&nbsp;${profilo.getDataNascitaString()}</th>

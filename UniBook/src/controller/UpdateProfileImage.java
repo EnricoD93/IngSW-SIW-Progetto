@@ -72,4 +72,6 @@ public class UpdateProfileImage extends HttpServlet {
 		ImageIO.write(image, "png", outputfile2);
 		ImageIO.write(image, "png", outputfile);
 	}
+	
+	
 }

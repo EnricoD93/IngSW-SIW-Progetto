@@ -23,11 +23,17 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = -9139149609635447743L;
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("home.jsp").forward(req, resp);
+		
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		RequestDispatcher dispacher;
 		List<Corso> corsi;
-		
+
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		if (session.getAttribute("currentUser") == null) {
@@ -59,7 +65,7 @@ public class Login extends HttpServlet {
 				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
 			}
-		}else {
+		} else {
 			Utente currentUser = (Utente) session.getAttribute("currentUser");
 			corsi = utenteDao.getCorsi(currentUser.getMatricola());
 			session.setAttribute("corsi", corsi);

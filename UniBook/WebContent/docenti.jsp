@@ -16,7 +16,7 @@
 					<div class="row clearfix">
 						<c:forEach var="docente" items="${docenti}">
 							<c:if test="${docente.corsoDiLaurea==0733 }">
-								<div class="col-xs-6" style="min-width: 170px">
+								<div class="col-xs-2" style="min-width: 170px">
 									<a href="page?request=profilo&id=${docente.matricola}">
 										<div class="card">
 											<div class="header bg-unibook" style="padding: 10px">
@@ -46,7 +46,7 @@
 					<div class="row clearfix">
 						<c:forEach var="docente" items="${docenti}">
 						<c:if test="${docente.corsoDiLaurea==0726 }">
-							<div class="col-xs-6" style="min-width: 170px">
+							<div class="col-xs-2" style="min-width: 170px">
 								<a href="page?request=profilo&id=${docente.matricola}">
 									<div class="card">
 										<div class="header bg-unibook" style="padding: 10px">

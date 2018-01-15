@@ -59,13 +59,14 @@ public class SignUpForCourse extends HttpServlet {
 					for (int i = 0; i < listaLezioni.size(); i++) {
 						calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
 					}
+					
 				}
 			}
 			if (richiesta.equals("cancellazione")) {
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
 					udao.eliminaIscrizioneStudente(matricola, codice);
 
-				req.getRequestDispatcher("home.jsp").forward(req, resp);
+				req.getRequestDispatcher("home").forward(req, resp);
 
 			}
 		} else {
