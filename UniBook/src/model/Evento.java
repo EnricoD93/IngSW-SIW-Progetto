@@ -9,7 +9,7 @@ public class Evento {
 	Timestamp inizio;
 	Timestamp fine;
 	String nota;
-	long id;
+	long id=0;
 
 	public long getId() {
 		return id;
@@ -23,6 +23,13 @@ public class Evento {
 	}
 
 	public Evento(String title, Timestamp inizio, Timestamp fine, String nota) {
+		this.title = title;
+		this.inizio = inizio;
+		this.fine = fine;
+		this.nota = nota;
+	}
+	public Evento(Long id,String title, Timestamp inizio, Timestamp fine, String nota) {
+		this.id=id;
 		this.title = title;
 		this.inizio = inizio;
 		this.fine = fine;
