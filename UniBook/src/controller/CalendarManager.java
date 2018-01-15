@@ -93,6 +93,7 @@ public class CalendarManager extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 			// trasformare le stringhe in Timestamp e passarle all'evento
 			String title = req.getParameter("title");
 			System.out.println(startT);
