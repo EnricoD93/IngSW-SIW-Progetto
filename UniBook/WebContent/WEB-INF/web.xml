@@ -93,6 +93,14 @@
     <servlet-name>ShowCourseServlet</servlet-name>
     <url-pattern>/showcourse</url-pattern>
   </servlet-mapping> 
+   <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>controller.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping> 
   
    <servlet>
     <servlet-name>SignUpCourseServlet</servlet-name>

@@ -257,9 +257,12 @@ public class CreateCourse extends HttpServlet {
 						UtenteDao utente = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 						utente.eliminaIscrizioneStudente(iscritti.get(i).getMatricola(), codice);
 					}
+					System.out.println(listaLezioni.size());
 					// eliminazione lezioni dal calendario del docente
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 							matricola);
+					
+					System.out.println("Dopo: "+listaLezioni.size());
 					// eliminazione lezioni dal db
 					for (int i = 0; i < listaLezioni.size(); i++) {
 						lezioneDao.deleteLessonByEvent(listaLezioni.get(i));

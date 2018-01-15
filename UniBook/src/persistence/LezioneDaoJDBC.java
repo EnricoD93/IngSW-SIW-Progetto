@@ -107,6 +107,7 @@ public class LezioneDaoJDBC implements LezioneDao {
 				evento.setNota(result.getString("nota"));
 				lezioni.add(evento);
 			}
+			System.out.println("JDBC: "+lezioni.size());
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
 		} finally {

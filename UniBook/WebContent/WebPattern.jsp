@@ -322,7 +322,7 @@
 							<li><a href="page?request=docenti"><i
 									class="material-icons">school</i>Docenti</a></li>
 							<li role="seperator" class="divider"></li>
-							<li><a href="logout.jsp"><i class="material-icons">exit_to_app</i>Log
+							<li><a href="logout"><i class="material-icons">exit_to_app</i>Log
 									Out </a></li>
 						</ul>
 					</div>
