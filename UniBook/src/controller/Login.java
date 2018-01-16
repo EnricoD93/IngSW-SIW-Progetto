@@ -34,7 +34,6 @@ public class Login extends HttpServlet {
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
 		} else
 			req.getRequestDispatcher("index.html").forward(req, resp);
-
 	}
 
 	@Override
