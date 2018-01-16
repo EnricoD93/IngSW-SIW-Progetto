@@ -27,7 +27,6 @@
 									<th>Docente</th>
 									<th>Corso Di Laurea</th>
 									<th>CFU</th>
-									<th></th>
 								</tr>
 
 							</thead>
@@ -42,15 +41,6 @@
 										<td><a href="page?request=profilo&id=${corso.docente}">${corso.cognomeDocente}&nbsp;${corso.nomeDocente}</a></td>
 										<td>${corso.corsoDiLaurea}</td>
 										<td>${corso.cfu}</td>
-										<td><c:if test="${currentUser.ruolo==0 }">
-												<button type="button"
-													class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-													style="margin-left: 10px;"
-													onclick="javascript:iscriviStudente(${corso.codice},${currentUser.matricola});">
-													<i class="material-icons">add</i>
-
-												</button>
-											</c:if></td>
 									</tr>
 								</c:forEach>
 
