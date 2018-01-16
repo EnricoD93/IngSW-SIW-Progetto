@@ -9,7 +9,7 @@ public class Evento {
 	Timestamp inizio;
 	Timestamp fine;
 	String nota;
-	long id=0;
+	long id=-1;
 
 	public long getId() {
 		return id;

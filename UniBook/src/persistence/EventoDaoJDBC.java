@@ -22,7 +22,7 @@ public class EventoDaoJDBC implements EventoDao{
 	public void save(Evento evento) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			if(evento.getId()==0) 
+			if(evento.getId()==-1) 
 			evento.setId(IdBroker.getId(connection));
 			String insert = "insert into evento(id,title,inizio,fine,nota) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
