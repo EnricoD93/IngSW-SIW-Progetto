@@ -1,3 +1,4 @@
+
 function iscriviStudente(codice, matricola) {
 	swal({
 		title : "Inserisci la tua password per iscriverti:",
@@ -123,3 +124,46 @@ function confermaEliminaCorso(matricola, codice) {
 			});
 
 };
+function salvaPresenze(){
+	
+		console.log("in function");
+		console.log( $('#codice').val());
+	$.ajax({
+		type : "GET",
+		url : "showcourse",
+		async: false,
+		datatype : 'text',
+		data : {
+			codice : $('#codice').val(),
+			richiesta : "studentiCorso"
+		},
+		success : function(data) {
+			console.log("data");
+			for (var i = 0; i < data.result.length; i++){
+					console.log(data.result[i].studente);
+					var str=data.result[i].studente;
+					var check = document.getElementById(str);
+					if(check.checked==1)
+						{
+						$.ajax({
+							type : "GET",
+							url : "showcourse",
+							async: false,
+							datatype : 'text',
+							data : {
+								codice : $('#codice').val(),
+								lezione : $('#lezione').val(),
+								richiesta : "salvaPresenza",
+								matricola : data.result[i].studente
+							}
+						});
+						}
+				
+			}
+		}
+	
+	});
+};
+
+
+

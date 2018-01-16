@@ -21,7 +21,7 @@
 						<div align="right" class="listaStudenti">
 							<form action="page" method="GET">
 								<input type="hidden" name="request" value=listaStudenti>
-								<input type="hidden" name="id" value="${currentCourse.codice}">
+								<input type="hidden" name="codice" value="${currentCourse.codice}">
 								<button type="submit"
 									class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 									title="Studenti iscritti">

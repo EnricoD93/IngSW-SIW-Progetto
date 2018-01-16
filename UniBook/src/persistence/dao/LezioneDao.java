@@ -9,7 +9,7 @@ import model.Lezione;
 public interface LezioneDao {
 	public void save(Lezione lezione); // Create
 
-	public Lezione findByPrimaryKey(Date data); // Retrieve
+	public Lezione findByPrimaryKey(long id); // Retrieve
 
 	public List<Lezione> findAll();
 

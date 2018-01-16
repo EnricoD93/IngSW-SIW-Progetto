@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,12 +19,15 @@ import model.Corso;
 import model.DescrizioneCorso;
 import model.Esame;
 import model.EsameSuperato;
+import model.Evento;
+import model.Lezione;
 import model.Messaggio;
 import model.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
+import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
 
@@ -112,9 +116,18 @@ public class ChangePage extends HttpServlet {
 					break;
 					
 				case "listaStudenti":
-					Long codicec = Long.parseLong(req.getParameter("id"));
+					Long codicec = Long.parseLong(req.getParameter("codice"));
 					List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codicec);
+					LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 					req.setAttribute("studentiIscritti", studentiIscritti);
+					List<Evento> eventi=lezioneDao.findCourseLessons(codicec);
+					List<Lezione> lezioni= new ArrayList<>();
+					for(int i=0; i<eventi.size();i++) {
+						lezioni.add(lezioneDao.findByPrimaryKey(eventi.get(i).getId()));
+					}
+					req.setAttribute("lezioni", lezioni);
+					req.getSession().setAttribute("codice",codicec);
+					System.out.println("la size di lezioni è"+lezioni.size()+" e il codice è "+codicec);
 					req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
 					break;
 					

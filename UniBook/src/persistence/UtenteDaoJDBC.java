@@ -660,4 +660,27 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return esamiSuperati;
 	}
 
+	@Override
+	public void salvaPresenza(String matricola, Long lezione) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into presenza(studente,lezione) values (?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1,matricola);
+			statement.setLong(2, lezione);
+		
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		
+	}
+
 }

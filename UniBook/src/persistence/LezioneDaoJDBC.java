@@ -13,6 +13,7 @@ import model.Esame;
 import model.Evento;
 import model.GiornoCalendario;
 import model.Lezione;
+import model.Messaggio;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.LezioneDao;
 
@@ -53,8 +54,35 @@ public class LezioneDaoJDBC implements LezioneDao {
 	}
 
 	@Override
-	public Lezione findByPrimaryKey(Date data) {
-		return null;
+	public Lezione findByPrimaryKey(long id) {
+		Connection connection = this.dataSource.getConnection();
+		Lezione lezione = null;
+		try {
+			String query = "select * from lezione where id = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, id);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				lezione = new Lezione();
+				GiornoCalendario g= new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data"));
+				lezione.setData(g);
+				lezione.setAula(result.getString("aula"));
+				lezione.setCorso(result.getLong("corso"));
+				lezione.setOraInizio(result.getTimestamp("ora_inizio"));
+				lezione.setOraFine(result.getTimestamp("ora_fine"));
+				lezione.setTipo(result.getInt("tipo"));
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return lezione;
 	}
 
 	@Override

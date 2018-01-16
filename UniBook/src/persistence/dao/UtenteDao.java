@@ -50,4 +50,6 @@ public interface UtenteDao {
 	public List<Esame> findEsamiIscritto(String matricola);
 
 	public List<Esame> findEsamiNonSuperati(String matricola);
+	
+	public void salvaPresenza(String matricola,Long lezione);
 }

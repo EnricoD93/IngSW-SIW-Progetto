@@ -16,7 +16,7 @@ public class UtilDao {
 
 		Connection connection = dataSource.getConnection();
 		try {
-			String delete = "drop SEQUENCE if exists sequenza_id;" + "drop table if exists messaggio;"
+			String delete = "drop SEQUENCE if exists sequenza_id;" + "drop table if exists messaggio;"+"drop table if exists presenza;"
 					+ "drop table if exists lezione;" + "drop table if exists aula;" + "drop table if exists iscritto;"
 					+ "drop table if exists studente;" + "drop table if exists docente;"
 					+ "drop table if exists contiene;" + "drop table if exists evento;"
@@ -61,7 +61,8 @@ public class UtilDao {
 					+ "create table esame(corso bigint primary key REFERENCES descrizionecorso(\"codice\"),nome VARCHAR(255),cfu int);"
 					+ "create table evento(\"id\" bigint primary key, title VARCHAR(255),inizio timestamp, fine timestamp, nota text );"
 					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento bigint REFERENCES evento(\"id\"));"
-					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int)";
+					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int);"
+					+ "create table presenza(studente VARCHAR(255) REFERENCES utente(\"matricola\"), lezione bigint REFERENCES lezione (\"id\"));";
 
 			//
 			// + "create table afferisce(\"id\" bigint primary key, corso_codice bigint
