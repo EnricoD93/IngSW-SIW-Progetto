@@ -680,13 +680,12 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public void deletePresenze(String matricola,Long lezione) {
+	public void deletePresenze(Long lezione) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String delete = "delete FROM presenza WHERE lezione = ? AND studente =?";
+			String delete = "delete FROM presenza WHERE lezione = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setLong(1, lezione);
-			statement.setString(2, matricola);
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {

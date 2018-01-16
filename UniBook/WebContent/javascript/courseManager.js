@@ -125,7 +125,7 @@ function confermaEliminaCorso(matricola, codice) {
 
 };
 function salvaPresenze(){
-	
+		var saved="null";
 		console.log("in function");
 		console.log( $('#lezioneid').val());
 	$.ajax({
@@ -135,7 +135,8 @@ function salvaPresenze(){
 		datatype : 'text',
 		data : {
 			codice : $('#codice').val(),
-			richiesta : "studentiCorso"
+			lezione : $('#lezioneid').val(),
+			richiesta : "studentiCorsoPresenze"
 		},
 		success : function(data) {
 			console.log("data");
@@ -144,7 +145,7 @@ function salvaPresenze(){
 					var str=data.result[i].studente;
 					var check = document.getElementById(str);
 					
-						
+						if(check.checked==1){
 						$.ajax({
 							type : "GET",
 							url : "showcourse",
@@ -158,17 +159,23 @@ function salvaPresenze(){
 								checked : check.checked
 							},
 							success: function(){
-					
-								swal(
-										"Presenze salvate",
-										"Presenze salvate con successo.",
-										"success");
+								saved="true";	
 							}
 						});
 						
-				
+						}
+						saved="false";
 			}
-		}
+			if(saved=="true" || saved=="false"){
+				swal(
+					"Presenze salvate",
+					"Presenze salvate con successo.",
+					"success");
+			}
+		
+		},
+		error:function(){	swal(
+		"Seleziona una lezione per poter salvare le presenze!");}
 	
 	});
 };

@@ -53,5 +53,5 @@ public interface UtenteDao {
 	
 	public void salvaPresenza(String matricola,Long lezione);
 	
-	public void deletePresenze(String matricola, Long lezione);
+	public void deletePresenze(Long lezione);
 }

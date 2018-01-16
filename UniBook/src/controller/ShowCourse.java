@@ -51,7 +51,10 @@ public class ShowCourse extends HttpServlet {
 			String matricolaStudente = req.getParameter("matricolaStudente");
 			utenteDao.eliminaIscrizioneStudente(matricolaStudente, currentCourse.getCodice());
 		}
-		if (richiesta.equals("studentiCorso")) {
+		if (richiesta.equals("studentiCorsoPresenze")) {
+			Long lezione = Long.parseLong(req.getParameter("lezione"));
+			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			u.deletePresenze( lezione);
 			System.out.println("servlet");
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
 			JSONObject result = new JSONObject();
@@ -82,11 +85,7 @@ public class ShowCourse extends HttpServlet {
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			String checked = req.getParameter("checked");
 			System.out.println(checked);
-			
-			if(checked.equals("false")) {
-				u.deletePresenze(matricola,lezione);
-			}
-			if(checked.equals("true"));
+		
 			u.salvaPresenza(matricola, lezione);
 		}
 
