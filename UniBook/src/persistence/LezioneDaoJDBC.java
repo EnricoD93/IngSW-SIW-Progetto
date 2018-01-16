@@ -64,6 +64,7 @@ public class LezioneDaoJDBC implements LezioneDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				lezione = new Lezione();
+				lezione.setId(result.getLong("id"));
 				GiornoCalendario g= new GiornoCalendario();
 				g.parseToGiornoCalendario(result.getDate("data"));
 				lezione.setData(g);

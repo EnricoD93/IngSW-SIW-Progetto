@@ -39,7 +39,7 @@ public class ShowCourse extends HttpServlet {
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		currentCourse = corsoDao.findByPrimaryKey(codice);
 		courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
-	
+
 		if (richiesta.equals("mostraCorso")) {
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
 			session.setAttribute("courseDocente", courseDocente);
@@ -80,6 +80,13 @@ public class ShowCourse extends HttpServlet {
 			Long lezione = Long.parseLong(req.getParameter("lezione"));
 			String matricola = req.getParameter("matricola");
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			String checked = req.getParameter("checked");
+			System.out.println(checked);
+			
+			if(checked.equals("false")) {
+				u.deletePresenze(matricola,lezione);
+			}
+			if(checked.equals("true"));
 			u.salvaPresenza(matricola, lezione);
 		}
 

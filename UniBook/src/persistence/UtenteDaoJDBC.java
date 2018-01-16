@@ -624,18 +624,14 @@ public class UtenteDaoJDBC implements UtenteDao {
 		List<Esame> esamiSuperati = new ArrayList<>();
 		try {
 			Esame esame;
-			String query = "select *\r\n" + 
-					"from esame e\r\n" + 
-					"where NOT EXISTS (select*\r\n" + 
-					"from corso,corsodilaurea ,utente u\r\n" + 
-					"where e.corso=corso.codice AND\r\n" + 
-					"		corso.corsodilaurea=corsodilaurea.codice AND\r\n" + 
-					"        u.corsodilaurea=corsodilaurea.codice\r\n" + 
-					"        AND NOT EXISTS (select *\r\n" + 
-					"                  from superato s\r\n" + 
-					"                 where e.corso=s.esame AND s.studente=?) AND NOT EXISTS (select*\r\n" + 
-					"																					from  iscritto\r\n" + 
-					"												where iscritto.codice=e.corso AND iscritto.matricola=?))";
+			String query = "select *\r\n" + "from esame e\r\n" + "where NOT EXISTS (select*\r\n"
+					+ "from corso,corsodilaurea ,utente u\r\n" + "where e.corso=corso.codice AND\r\n"
+					+ "		corso.corsodilaurea=corsodilaurea.codice AND\r\n"
+					+ "        u.corsodilaurea=corsodilaurea.codice\r\n" + "        AND NOT EXISTS (select *\r\n"
+					+ "                  from superato s\r\n"
+					+ "                 where e.corso=s.esame AND s.studente=?) AND NOT EXISTS (select*\r\n"
+					+ "																					from  iscritto\r\n"
+					+ "												where iscritto.codice=e.corso AND iscritto.matricola=?))";
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
@@ -662,13 +658,14 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void salvaPresenza(String matricola, Long lezione) {
+		System.out.println(lezione+"fuck"+matricola);
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into presenza(studente,lezione) values (?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1,matricola);
+			statement.setString(1, matricola);
 			statement.setLong(2, lezione);
-		
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -680,7 +677,27 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		}
 
-		
+	}
+
+	@Override
+	public void deletePresenze(String matricola,Long lezione) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM presenza WHERE lezione = ? AND studente =?";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, lezione);
+			statement.setString(2, matricola);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

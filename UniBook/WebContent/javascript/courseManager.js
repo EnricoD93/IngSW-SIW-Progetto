@@ -127,7 +127,7 @@ function confermaEliminaCorso(matricola, codice) {
 function salvaPresenze(){
 	
 		console.log("in function");
-		console.log( $('#codice').val());
+		console.log( $('#lezioneid').val());
 	$.ajax({
 		type : "GET",
 		url : "showcourse",
@@ -143,8 +143,8 @@ function salvaPresenze(){
 					console.log(data.result[i].studente);
 					var str=data.result[i].studente;
 					var check = document.getElementById(str);
-					if(check.checked==1)
-						{
+					
+						
 						$.ajax({
 							type : "GET",
 							url : "showcourse",
@@ -152,12 +152,20 @@ function salvaPresenze(){
 							datatype : 'text',
 							data : {
 								codice : $('#codice').val(),
-								lezione : $('#lezione').val(),
+								lezione : $('#lezioneid').val(),
 								richiesta : "salvaPresenza",
-								matricola : data.result[i].studente
+								matricola : data.result[i].studente,
+								checked : check.checked
+							},
+							success: function(){
+					
+								swal(
+										"Presenze salvate",
+										"Presenze salvate con successo.",
+										"success");
 							}
 						});
-						}
+						
 				
 			}
 		}

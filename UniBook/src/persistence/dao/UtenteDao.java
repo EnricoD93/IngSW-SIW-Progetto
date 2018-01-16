@@ -52,4 +52,6 @@ public interface UtenteDao {
 	public List<Esame> findEsamiNonSuperati(String matricola);
 	
 	public void salvaPresenza(String matricola,Long lezione);
+	
+	public void deletePresenze(String matricola, Long lezione);
 }
