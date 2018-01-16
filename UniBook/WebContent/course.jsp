@@ -21,7 +21,8 @@
 						<div align="right" class="listaStudenti">
 							<form action="page" method="GET">
 								<input type="hidden" name="request" value=listaStudenti>
-								<input type="hidden" name="codice" value="${currentCourse.codice}">
+								<input type="hidden" name="codice"
+									value="${currentCourse.codice}">
 								<button type="submit"
 									class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 									title="Studenti iscritti">
@@ -97,6 +98,22 @@
 								</a>
 							</div>
 						</div>
+					</c:if>
+					<c:if test="${currentUser.ruolo==0 }">
+						<div align="right">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a
+									href="javascript:iscriviStudente(${currentCourse.codice},${currentUser.matricola});">
+									<div class="icon">
+										<i class="material-icons">add</i>
+									</div>
+									<div class="content">
+										<div class="text">Iscrivi</div>
+									</div>
+								</a>
+							</div>
+						</div>
+
 					</c:if>
 				</h2>
 			</div>

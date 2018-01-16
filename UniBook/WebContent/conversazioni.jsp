@@ -19,22 +19,24 @@
 	});
 </script>
 </head>
-<section id="centralSection" class="content" style="overflow: auto; margin: 70px 0px 0px 300px;">
-	<div class="content" style="background-color: #C4161C; position: fixed; width: 100%; z-index:5">
+<section id="centralSection" class="content"
+	style="overflow: auto; margin: 70px 0px 0px 300px;">
+	<div class="content"
+		style="background-color: #C4161C; position: fixed; width: 100%; z-index: 5">
 		<div class="image">
 			<div class="profile-pic-xs"
 				style="background-image: url('${utenteConversazione.profileImagePath}')">
 			</div>
 		</div>
 		<c:if test="${currentUser.ruolo==0}">
-			<div style="margin-left:25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
+			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
 		</c:if>
 		<c:if test="${currentUser.ruolo==1}">
-			<div style="margin-left:25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
+			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
 				${utenteConversazione.matricola}</div>
 		</c:if>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid" style="margin-top: 100px">
 		<div class="block-header">
 			<br>
 			<div class="row clearfix">
@@ -57,27 +59,28 @@
 								</div>
 							</div>
 						</c:if>
-					</c:forEach><div id="lastRow"></div>
+					</c:forEach>
+					<div id="lastRow"></div>
 				</div>
 				<br>
-				<div class="form-group form-float" >
-					<div class="form-line">
-						<textarea id="text" cols="30" rows="5"
-							class="form-control no-resize" required autofocus></textarea>
-						<label class="form-label">Messaggio</label> <input type="hidden"
-							id="dest" value="${utenteConversazione.matricola}"> <input
-							type="hidden" id="mitt" value="${currentUser.matricola}">
-						<div align="right">
-							<button id="send" type="button" title="Invia"
-								class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
-								<i class="material-icons" style="line-height: inherit;">send</i>
-							</button>
-						</div>
-					</div>
-					<br>
-				</div>
 			</div>
 		</div>
 	</div>
+	<div class="form-group form-float content" style="position: fixed;">
+		<div class="form-line">
+			<textarea id="text" cols="30" rows="5" class="form-control no-resize"
+				required autofocus></textarea>
+			<label class="form-label">Messaggio</label> <input type="hidden"
+				id="dest" value="${utenteConversazione.matricola}">
+		</div>
+		<input type="hidden" id="mitt" value="${currentUser.matricola}">
+		<div align="right">
+			<button id="send" type="button" title="Invia"
+				class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
+				<i class="material-icons" style="line-height: inherit;">send</i>
+			</button>
+		</div>
+		<br>
+				</div>
 </section>
 </html>

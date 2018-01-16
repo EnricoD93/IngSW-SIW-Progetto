@@ -82,8 +82,6 @@ public class CalendarManager extends HttpServlet {
 		if (request.equals("creaEvento")) {
 			String start = req.getParameter("start");
 			String end = req.getParameter("end");
-			System.out.println(start);
-			System.out.println(end);
 			Timestamp startT = null;
 			Timestamp endT = null;
 			try {
@@ -96,8 +94,6 @@ public class CalendarManager extends HttpServlet {
 			
 			// trasformare le stringhe in Timestamp e passarle all'evento
 			String title = req.getParameter("title");
-			System.out.println(startT);
-			System.out.println(endT);
 			Evento e = new Evento(title, startT, endT, "nessuna");
 			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 			System.out.println("salvo il nuovo evento " + title);

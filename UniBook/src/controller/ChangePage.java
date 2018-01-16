@@ -45,8 +45,6 @@ public class ChangePage extends HttpServlet {
 			String mitt = req.getParameter("mitt");
 			String testo = req.getParameter("text");
 			Timestamp t = new Timestamp(System.currentTimeMillis());
-			System.out.println("Sono " + mitt + " e invio un messaggio");
-			System.out.println("Sono " + dest + " e ricevo un messaggio");
 			Messaggio m = new Messaggio(mitt, dest, testo, t);
 			String date = m.getDatareale();
 			JSONObject datareale = new JSONObject();
@@ -73,7 +71,6 @@ public class ChangePage extends HttpServlet {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-			System.out.println(request);
 			if (request != null) {
 
 				switch (request) {
@@ -111,7 +108,6 @@ public class ChangePage extends HttpServlet {
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
-					System.out.println("cambio pagina");
 					req.getRequestDispatcher("course.jsp").forward(req, resp);
 					break;
 

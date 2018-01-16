@@ -215,7 +215,7 @@ public class CreateCourse extends HttpServlet {
 					cal2.set(Calendar.MINUTE, 30);
 					Date dateEventoIn = (Date) cal2.getTime();
 					Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-					Evento e = new Evento( lezioni.get(i).getId(),"Lezione " + corso.getNome(), ev1, ev1,
+					Evento e = new Evento(lezioni.get(i).getId(), "Lezione " + corso.getNome(), ev1, ev1,
 							"ProvaLezione");
 					e.setId(lezioni.get(i).getId());
 					eventoDao.save(e);
@@ -261,8 +261,8 @@ public class CreateCourse extends HttpServlet {
 					// eliminazione lezioni dal calendario del docente
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 							matricola);
-					
-					System.out.println("Dopo: "+listaLezioni.size());
+
+					System.out.println("Dopo: " + listaLezioni.size());
 					// eliminazione lezioni dal db
 					for (int i = 0; i < listaLezioni.size(); i++) {
 						lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
@@ -272,6 +272,7 @@ public class CreateCourse extends HttpServlet {
 				}
 			} else {
 				resp.setStatus(401);
+				return;
 			}
 		}
 		resp.sendRedirect("page?request=corsi");

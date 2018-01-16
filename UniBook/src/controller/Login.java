@@ -24,11 +24,16 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(req.getSession().getAttribute("currentUser")!=null)
-		req.getRequestDispatcher("home.jsp").forward(req, resp);
-		else
+		HttpSession session = req.getSession();
+		if (session.getAttribute("currentUser") != null) {
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			Utente currentUser = (Utente) session.getAttribute("currentUser");
+			List<Corso> corsi = utenteDao.getCorsi(currentUser.getMatricola());
+			session.setAttribute("currentUser", currentUser);
+			session.setAttribute("corsi", corsi);
+			req.getRequestDispatcher("home.jsp").forward(req, resp);
+		} else
 			req.getRequestDispatcher("index.html").forward(req, resp);
-		
 	}
 
 	@Override
@@ -68,7 +73,7 @@ public class Login extends HttpServlet {
 				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
 			}
-		} 
+		}
 
 	}
 
