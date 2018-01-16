@@ -14,17 +14,23 @@
 				<div class="body table-responsive">
 					<div class="corsiTitle" align="center">${currentCourse.nome }</div>
 					<div class="corsiTitle" align="left">
-						Studenti Iscritti
-						<div align="center" class="input-group ">
-							<span class="input-group-addon"> Lezione </span> <select
-								class="selectpicker" tabindex="-98" name="lezione" id="lezione">
-								<c:forEach var="lezione" items="${lezioni}">
+						Studenti Iscritti <br>
+						${currentCourse.docente } 
+						<br>
+						${currentUser.matricola }
+						<c:if
+							test="${currentUser.ruolo == 1 && currentCourse.docente==currentUser.matricola}">
+							<div align="center" class="input-group ">
+								<span class="input-group-addon"> Lezione </span> <select
+									class="selectpicker" tabindex="-98" name="lezione" id="lezione">
+									<c:forEach var="lezione" items="${lezioni}">
 
-									<option value="${lezione.id}">${lezione.data.giorno}/${lezione.data.mese}/${lezione.data.anno}</option>
+										<option value="${lezione.id}">${lezione.data.giorno}/${lezione.data.mese}/${lezione.data.anno}</option>
 
-								</c:forEach>
-							</select>
-						</div>
+									</c:forEach>
+								</select>
+							</div>
+						</c:if>
 
 
 						<c:if test="${currentUser.matricola==currentCourse.docente}">
@@ -50,7 +56,10 @@
 								</c:if>
 								<th>Email</th>
 								<th></th>
-								<th>Presenze</th>
+								<c:if
+									test="${currentUser.ruolo == 1 && currentCourse.docente==currentUser.matricola}">
+									<th>Presenze</th>
+								</c:if>
 							</tr>
 
 						</thead>
@@ -83,9 +92,12 @@
 													<i class="material-icons">delete</i>
 												</button>
 											</c:if></td>
-										<td><input type="checkbox" id="${studente.matricola}"
-											name="${studente.matricola}"> <label
-											for="${studente.matricola}"></label></td>
+										<c:if
+											test="${currentUser.ruolo == 1 && currentCourse.docente==currentUser.matricola}">
+											<td><input type="checkbox" id="${studente.matricola}"
+												name="${studente.matricola}"> <label
+												for="${studente.matricola}"></label></td>
+										</c:if>
 									</tr>
 
 								</c:forEach>
@@ -95,17 +107,18 @@
 						</tbody>
 					</table>
 				</div>
-				<c:if test="${currentUser.ruolo == 1 }">
+				<c:if
+					test="${currentUser.ruolo == 1 && currentCourse.docente==currentUser.matricola}">
 					<div align="right">
 						<div class="bg-unibook info-box-3 hover-zoom-effect">
-							<button id="presenze" onclick="javascript:salvaPresenze();">
+							<a href="javascript:salvaPresenze();">
 								<div class="icon">
-									<i class="material-icons">mode_edit</i>
+									<i class="material-icons">assignment_turned_in</i>
 								</div>
 								<div class="content">
 									<div class="text">Salva Presenze</div>
 								</div>
-							</button>
+							</a>
 						</div>
 					</div>
 				</c:if>

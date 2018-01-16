@@ -75,19 +75,19 @@ public class ChangePage extends HttpServlet {
 			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 			System.out.println(request);
 			if (request != null) {
-				
+
 				switch (request) {
-				
+
 				case "aule":
 					aule = aulaDao.findAll();
 					req.setAttribute("aule", aule);
 					req.getRequestDispatcher("aule.jsp").forward(req, resp);
 					break;
-					
+
 				case "calendario":
 					req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
 					break;
-					
+
 				case "corsi":
 					if (currentUser.getRuolo() == 0) {
 						corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
@@ -97,14 +97,14 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("corsi", corsi);
 					req.getRequestDispatcher("corsi.jsp").forward(req, resp);
 					break;
-					
+
 				case "profilo":
 					String profileId = req.getParameter("id");
 					Utente utente = utenteDao.findByPrimaryKey(profileId);
 					req.setAttribute("profilo", utente);
 					req.getRequestDispatcher("profilo.jsp").forward(req, resp);
 					break;
-					
+
 				case "corso":
 					Long codice = Long.parseLong(req.getParameter("id"));
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
@@ -114,23 +114,25 @@ public class ChangePage extends HttpServlet {
 					System.out.println("cambio pagina");
 					req.getRequestDispatcher("course.jsp").forward(req, resp);
 					break;
-					
+
 				case "listaStudenti":
 					Long codicec = Long.parseLong(req.getParameter("codice"));
 					List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(codicec);
-					LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+					LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+					Corso currentCourse1 = corsoDao.findByPrimaryKey(codicec);
 					req.setAttribute("studentiIscritti", studentiIscritti);
-					List<Evento> eventi=lezioneDao.findCourseLessons(codicec);
-					List<Lezione> lezioni= new ArrayList<>();
-					for(int i=0; i<eventi.size();i++) {
+					req.setAttribute("currentCourse", currentCourse1);
+					List<Evento> eventi = lezioneDao.findCourseLessons(codicec);
+					List<Lezione> lezioni = new ArrayList<>();
+					for (int i = 0; i < eventi.size(); i++) {
 						lezioni.add(lezioneDao.findByPrimaryKey(eventi.get(i).getId()));
 					}
 					req.setAttribute("lezioni", lezioni);
-					req.getSession().setAttribute("codice",codicec);
-					System.out.println("la size di lezioni è"+lezioni.size()+" e il codice è "+codicec);
+					req.getSession().setAttribute("codice", codicec);
+					System.out.println("la size di lezioni è" + lezioni.size() + " e il codice è " + codicec);
 					req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
 					break;
-					
+
 				case "creaCorso":
 					List<DescrizioneCorso> listaCorsi;
 					List<Aula> listaAule;
@@ -142,7 +144,7 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("listaAule", listaAule);
 					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
 					break;
-					
+
 				case "colleghi":
 					List<Utente> colleghi;
 					colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
@@ -156,14 +158,14 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("docenti", docenti);
 					req.getRequestDispatcher("docenti.jsp").forward(req, resp);
 					break;
-					
+
 				case "messaggi":
 					List<Utente> conversazioni;
 					conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
 					req.setAttribute("conversazioni", conversazioni);
 					req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
 					break;
-					
+
 				case "conversazione":
 					String id = req.getParameter("id");
 					Utente u = utenteDao.findByPrimaryKey(id);
@@ -174,7 +176,7 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("utenteConversazione", u);
 					req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
 					break;
-					
+
 				case "esami":
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
@@ -184,12 +186,12 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("esamiNonSuperati", esamiNonSuperati);
 					req.getRequestDispatcher("esami.jsp").forward(req, resp);
 					break;
-					
+
 				default:
 					resp.setStatus(404);
 					break;
 				}
-				
+
 			} else {
 				req.getRequestDispatcher("home").forward(req, resp);
 			}
