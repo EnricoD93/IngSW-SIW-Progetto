@@ -24,7 +24,7 @@
   
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>controller.Register</servlet-class>
+    <servlet-class>controller.servlet.Register</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
@@ -34,7 +34,7 @@
   
   <servlet>
     <servlet-name>UpdateProfileImageServlet</servlet-name>
-    <servlet-class>controller.UpdateProfileImage</servlet-class>
+    <servlet-class>controller.servlet.UpdateProfileImage</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateProfileImageServlet</servlet-name>
@@ -43,7 +43,7 @@
   
   <servlet>
     <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>controller.ChangePage</servlet-class>
+    <servlet-class>controller.servlet.ChangePage</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
@@ -52,7 +52,7 @@
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>controller.Login</servlet-class>
+    <servlet-class>controller.servlet.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -61,7 +61,7 @@
  
    <servlet>
     <servlet-name>EmailSenderServlet</servlet-name>
-    <servlet-class>controller.EmailVerify</servlet-class>
+    <servlet-class>controller.servlet.EmailVerify</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>EmailSenderServlet</servlet-name>
@@ -69,7 +69,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>ForgotPasswordServlet</servlet-name>
-    <servlet-class>controller.ForgotPassword</servlet-class>
+    <servlet-class>controller.servlet.ForgotPassword</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ForgotPasswordServlet</servlet-name>
@@ -79,7 +79,7 @@
   
    <servlet>
     <servlet-name>CreateCourseServlet</servlet-name>
-    <servlet-class>controller.CreateCourse</servlet-class>
+    <servlet-class>controller.servlet.CreateCourse</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateCourseServlet</servlet-name>
@@ -88,7 +88,7 @@
  
    <servlet>
     <servlet-name>ShowCourseServlet</servlet-name>
-    <servlet-class>controller.ShowCourse</servlet-class>
+    <servlet-class>controller.servlet.ShowCourse</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowCourseServlet</servlet-name>
@@ -96,7 +96,7 @@
   </servlet-mapping> 
    <servlet>
     <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>controller.Logout</servlet-class>
+    <servlet-class>controller.servlet.Logout</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
@@ -105,7 +105,7 @@
   
    <servlet>
     <servlet-name>SignUpCourseServlet</servlet-name>
-    <servlet-class>controller.SignUpForCourse</servlet-class>
+    <servlet-class>controller.servlet.SignUpForCourse</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SignUpCourseServlet</servlet-name>
@@ -113,7 +113,7 @@
   </servlet-mapping> 
    <servlet>
     <servlet-name>ChangePageServlet</servlet-name>
-    <servlet-class>controller.ChangePage</servlet-class>
+    <servlet-class>controller.servlet.ChangePage</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ChangePageServlet</servlet-name>
@@ -121,7 +121,7 @@
   </servlet-mapping> 
      <servlet>
     <servlet-name>CalendarManagerServlet</servlet-name>
-    <servlet-class>controller.CalendarManager</servlet-class>
+    <servlet-class>controller.servlet.CalendarManager</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CalendarManagerServlet</servlet-name>
