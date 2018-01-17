@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -14,15 +14,15 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Aula;
-import model.Corso;
-import model.DescrizioneCorso;
-import model.Esame;
-import model.EsameSuperato;
-import model.Evento;
-import model.Lezione;
-import model.Messaggio;
-import model.Utente;
+import model.course.Aula;
+import model.course.Corso;
+import model.course.DescrizioneCorso;
+import model.course.Lezione;
+import model.user.Esame;
+import model.user.EsameSuperato;
+import model.user.Evento;
+import model.user.Messaggio;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CorsoDao;

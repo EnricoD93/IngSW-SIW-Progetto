@@ -1,4 +1,4 @@
-package controller;
+package controller.util;
 
 import java.util.Date;
 import java.util.Properties;

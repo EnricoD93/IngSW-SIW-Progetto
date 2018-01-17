@@ -1,6 +1,8 @@
-package model;
+package model.course;
 
 import java.io.Serializable;
+
+import model.user.GiornoCalendario;
 
 public class Corso implements Serializable{
 	/**

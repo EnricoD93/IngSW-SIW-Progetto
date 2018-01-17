@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.CalendarioPersonale;
-import model.CorsoDiLaurea;
-import model.Evento;
+import model.course.CorsoDiLaurea;
+import model.user.CalendarioPersonale;
+import model.user.Evento;
 import persistence.dao.EventoDao;
 
 public class EventoDaoJDBC implements EventoDao{

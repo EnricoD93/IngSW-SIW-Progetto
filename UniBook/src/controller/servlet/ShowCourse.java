@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,10 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Corso;
-import model.Evento;
-import model.Lezione;
-import model.Utente;
+import model.course.Corso;
+import model.course.Lezione;
+import model.user.Evento;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CorsoDao;
 import persistence.dao.LezioneDao;

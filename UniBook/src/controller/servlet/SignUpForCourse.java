@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Corso;
-import model.Evento;
-import model.Lezione;
-import model.Utente;
+import model.course.Corso;
+import model.course.Lezione;
+import model.user.Evento;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;

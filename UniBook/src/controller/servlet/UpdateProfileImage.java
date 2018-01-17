@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.json.Test;
 
-import model.Utente;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.UtilDao;
 import persistence.dao.UtenteDao;

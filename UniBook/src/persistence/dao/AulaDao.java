@@ -2,7 +2,7 @@ package persistence.dao;
 
 import java.util.List;
 
-import model.Aula;
+import model.course.Aula;
 
 public interface AulaDao {
 	public void save(Aula aula);  // Create

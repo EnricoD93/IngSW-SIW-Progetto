@@ -2,9 +2,9 @@ package persistence.dao;
 
 import java.util.List;
 
-import model.Corso;
-import model.DescrizioneCorso;
-import model.Utente;
+import model.course.Corso;
+import model.course.DescrizioneCorso;
+import model.user.Utente;
 
 public interface DescrizioneCorsoDao {
 	public void save(DescrizioneCorso descrizioneCorso);  // Create

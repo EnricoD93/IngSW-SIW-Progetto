@@ -8,12 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.Corso;
-import model.Esame;
-import model.Evento;
-import model.GiornoCalendario;
-import model.Lezione;
-import model.Messaggio;
+import model.course.Corso;
+import model.course.Lezione;
+import model.user.Esame;
+import model.user.Evento;
+import model.user.GiornoCalendario;
+import model.user.Messaggio;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.LezioneDao;
 

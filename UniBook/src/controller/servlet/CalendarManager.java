@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.util.Date;
@@ -21,9 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Evento;
-import model.GiornoCalendario;
-import model.Utente;
+import model.user.Evento;
+import model.user.GiornoCalendario;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.IdBroker;
 import persistence.dao.CalendarioPersonaleDao;

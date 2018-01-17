@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.CorsoDiLaurea;
+import model.course.CorsoDiLaurea;
 import persistence.dao.CorsoDiLaureaDao;
 
 public class CorsoDiLaureaDaoJDBC implements CorsoDiLaureaDao {

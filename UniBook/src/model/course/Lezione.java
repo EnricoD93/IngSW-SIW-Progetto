@@ -1,6 +1,8 @@
-package model;
+package model.course;
 
 import java.sql.Timestamp;
+
+import model.user.GiornoCalendario;
 
 public class Lezione {
 	private Long corso;

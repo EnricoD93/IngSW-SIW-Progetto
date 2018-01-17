@@ -2,8 +2,8 @@ package persistence.dao;
 
 import java.util.List;
 
-import model.CorsoDiLaurea;
-import model.Evento;
+import model.course.CorsoDiLaurea;
+import model.user.Evento;
 
 public interface EventoDao {
 	public void save(Evento Evento);  // Create

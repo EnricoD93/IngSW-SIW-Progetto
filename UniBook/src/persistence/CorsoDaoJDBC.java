@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Aula;
-import model.Corso;
-import model.GiornoCalendario;
-import model.Utente;
+import model.course.Aula;
+import model.course.Corso;
+import model.user.GiornoCalendario;
+import model.user.Utente;
 import persistence.dao.CorsoDao;
 
 public class CorsoDaoJDBC implements CorsoDao {

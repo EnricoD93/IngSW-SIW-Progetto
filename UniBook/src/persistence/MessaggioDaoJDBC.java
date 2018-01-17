@@ -9,8 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Messaggio;
-import model.Utente;
+import model.user.Messaggio;
+import model.user.Utente;
 import persistence.dao.MessaggioDao;
 
 public class MessaggioDaoJDBC implements MessaggioDao {

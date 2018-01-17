@@ -1,4 +1,4 @@
-package model;
+package model.course;
 
 public class CorsoDiLaurea {
 	private String codice;

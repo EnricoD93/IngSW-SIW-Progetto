@@ -2,8 +2,8 @@ package persistence.dao;
 
 import java.util.List;
 
-import model.CalendarioPersonale;
-import model.Evento;
+import model.user.CalendarioPersonale;
+import model.user.Evento;
 
 public interface CalendarioPersonaleDao {
 	public void save(CalendarioPersonale calendarioPersonale); // Create

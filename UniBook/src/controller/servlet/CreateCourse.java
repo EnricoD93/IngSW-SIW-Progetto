@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.CalendarioPersonale;
-import model.Corso;
-import model.DescrizioneCorso;
-import model.Evento;
-import model.GiornoCalendario;
-import model.Lezione;
-import model.Utente;
+import model.course.Corso;
+import model.course.DescrizioneCorso;
+import model.course.Lezione;
+import model.user.CalendarioPersonale;
+import model.user.Evento;
+import model.user.GiornoCalendario;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;

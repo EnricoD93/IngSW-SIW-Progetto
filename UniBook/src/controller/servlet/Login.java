@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Corso;
-import model.Utente;
+import model.course.Corso;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CorsoDao;
 import persistence.dao.UtenteDao;

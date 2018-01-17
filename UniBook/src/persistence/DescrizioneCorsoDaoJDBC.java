@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Aula;
-import model.Corso;
-import model.DescrizioneCorso;
+import model.course.Aula;
+import model.course.Corso;
+import model.course.DescrizioneCorso;
 import persistence.dao.DescrizioneCorsoDao;
 
 public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{

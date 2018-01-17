@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.CalendarioPersonale;
-import model.Evento;
-import model.Utente;
+import model.user.CalendarioPersonale;
+import model.user.Evento;
+import model.user.Utente;
 import persistence.dao.CalendarioPersonaleDao;
 
 public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {

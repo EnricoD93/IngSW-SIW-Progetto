@@ -7,9 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Esame;
+import model.user.Esame;
 import persistence.dao.EsameDao;
-import model.Esame;
 
 public class EsameDaoJDBC implements EsameDao {
 

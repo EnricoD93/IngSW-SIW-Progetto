@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.GiornoCalendario;
-import model.Utente;
+import controller.util.EmailSender;
+import model.user.GiornoCalendario;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.UtenteDao;
 

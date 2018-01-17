@@ -3,8 +3,8 @@ package persistence.dao;
 import java.util.Date;
 import java.util.List;
 
-import model.Evento;
-import model.Lezione;
+import model.course.Lezione;
+import model.user.Evento;
 
 public interface LezioneDao {
 	public void save(Lezione lezione); // Create

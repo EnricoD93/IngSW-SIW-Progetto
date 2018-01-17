@@ -8,10 +8,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Corso;
-import model.Esame;
-import model.EsameSuperato;
-import model.Utente;
+import model.course.Corso;
+import model.user.Esame;
+import model.user.EsameSuperato;
+import model.user.Utente;
 import persistence.dao.UtenteDao;
 
 public class UtenteDaoJDBC implements UtenteDao {

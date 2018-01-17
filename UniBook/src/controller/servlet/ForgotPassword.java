@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet;
 
 import java.io.IOException;
 
@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Utente;
+import controller.util.EmailSender;
+import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.UtenteDao;
 

@@ -3,10 +3,10 @@ package persistence.dao;
 import java.sql.Timestamp;
 import java.util.List;
 
-import model.Corso;
-import model.Esame;
-import model.EsameSuperato;
-import model.Utente;
+import model.course.Corso;
+import model.user.Esame;
+import model.user.EsameSuperato;
+import model.user.Utente;
 
 public interface UtenteDao {
 	public void save(Utente utente); // Create

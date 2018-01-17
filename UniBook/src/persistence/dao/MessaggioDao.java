@@ -3,7 +3,7 @@ package persistence.dao;
 import java.sql.Date;
 import java.util.List;
 
-import model.Messaggio;
+import model.user.Messaggio;
 
 public interface MessaggioDao {
 	public void save(Messaggio messaggio);  // Create
