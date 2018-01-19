@@ -124,8 +124,7 @@ public class ChangePage extends HttpServlet {
 						lezioni.add(lezioneDao.findByPrimaryKey(eventi.get(i).getId()));
 					}
 					req.setAttribute("lezioni", lezioni);
-					req.getSession().setAttribute("codice", codicec);
-					System.out.println("la size di lezioni è" + lezioni.size() + " e il codice è " + codicec);
+					req.setAttribute("codice", codicec);
 					req.getRequestDispatcher("studentiIscritti.jsp").forward(req, resp);
 					break;
 

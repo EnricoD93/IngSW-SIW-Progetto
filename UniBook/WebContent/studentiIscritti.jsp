@@ -32,9 +32,9 @@
 
 						</c:if>
 
-
 						<c:if test="${currentUser.matricola==currentCourse.docente}">
 							<button type="button" id="aggiungiStudente"
+								onclick="javascript:iscriviStudenteM(${currentCourse.codice})"
 								style="margin-left: 700px;"
 								class="bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 								title="Aggiungi Studente">
@@ -95,7 +95,7 @@
 											<c:if test="${currentCourse.docente==currentUser.matricola}">
 												<td style="padding-top: 16px; padding-left: 35px;"><input
 													type="checkbox" id="${studente.matricola}"
-													name="${studente.matricola}" > <label
+													name="${studente.matricola}"> <label
 													for="${studente.matricola}"></label></td>
 											</c:if>
 										</tr>

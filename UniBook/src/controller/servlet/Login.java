@@ -59,9 +59,9 @@ public class Login extends HttpServlet {
 						dispacher.forward(req, resp);
 
 					} else {
+						
 						dispacher = req.getRequestDispatcher("index.html");
 						dispacher.forward(req, resp);
-						// Password errata
 					}
 				} else {
 					// Utente non esiste

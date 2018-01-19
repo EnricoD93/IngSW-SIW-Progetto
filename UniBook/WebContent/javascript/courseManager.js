@@ -15,7 +15,7 @@ function iscriviStudente(codice, matricola) {
 				codice : codice,
 				matricola : matricola,
 				typedPassword : typedPassword,
-				richiesta : "iscrizione"
+				request : "iscrizione"
 			},
 			success : function(data) {
 				swal("Iscrizione avvenuta",
@@ -43,8 +43,9 @@ function iscriviStudente(codice, matricola) {
 };
 
 function iscriviStudenteM(codice) {
+	console.log(codice);
 	swal({
-		title : "Inserisci la tua matricola dello studente da iscrivere",
+		title : "Inserisci la matricola dello studente da iscrivere",
 		type : "input",
 		inputType : "number",
 		showCancelButton : true,
@@ -57,14 +58,14 @@ function iscriviStudenteM(codice) {
 			data : {
 				codice : codice,
 				matricola : matricola,
-				richiesta : "iscrizioneM"
+				request : "iscrizioneM"
 			},
 			success : function(data) {
 				swal("Iscrizione avvenuta",
 						"L'iscrizione dello studente al corso è avvenuta con successo.",
 						"success");
 				sleep(1300).then(() => {
-				window.location.href="page?request=corso&id="+codice;
+				window.location.href="page?request=listaStudenti&codice="+codice;
 				});
 			},
 			error : function(data) {
@@ -72,7 +73,7 @@ function iscriviStudenteM(codice) {
 					swal("Lo studente risulta già iscritto a questo corso", "", "error");
 				}
 				if (data.status === 403) {
-					swal("Nello stesso giorno ci sono più eventi");
+					swal("Lo studente inserito non esiste","", "error");
 				
 				}
 			}
@@ -108,7 +109,7 @@ function confermaElimina(matricola, codice) {
 								codice : codice,
 								matricola : matricola,
 								typedPassword : typedPassword,
-								richiesta : "cancellazione"
+								request : "cancellazione"
 							},
 							success : function(data) {
 								swal(
