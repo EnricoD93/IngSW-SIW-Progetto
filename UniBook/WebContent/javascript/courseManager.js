@@ -1,7 +1,7 @@
 
 function iscriviStudente(codice, matricola) {
 	swal({
-		title : "Inserisci la tua password per iscriverti:",
+		title : "Inserisci la tua password per iscriverti",
 		type : "input",
 		inputType : "password",
 		showCancelButton : true,
@@ -41,6 +41,50 @@ function iscriviStudente(codice, matricola) {
 		});
 	});
 };
+
+function iscriviStudenteM(codice) {
+	swal({
+		title : "Inserisci la tua matricola dello studente da iscrivere",
+		type : "input",
+		inputType : "number",
+		showCancelButton : true,
+		closeOnConfirm : false
+	}, function(matricola) {
+		$.ajax({
+			type : "GET",
+			url : "iscrivistudente",
+			datatype : 'text',
+			data : {
+				codice : codice,
+				matricola : matricola,
+				richiesta : "iscrizioneM"
+			},
+			success : function(data) {
+				swal("Iscrizione avvenuta",
+						"L'iscrizione dello studente al corso è avvenuta con successo.",
+						"success");
+				sleep(1300).then(() => {
+				window.location.href="page?request=corso&id="+codice;
+				});
+			},
+			error : function(data) {
+				if (data.status === 405) {
+					swal("Lo studente risulta già iscritto a questo corso", "", "error");
+				}
+				if (data.status === 403) {
+					swal("Nello stesso giorno ci sono più eventi");
+				
+				}
+			}
+
+		});
+	});
+};
+
+
+
+
+
 function sleep (time) {
 	  return new Promise((resolve) => setTimeout(resolve, time));
 	}
@@ -48,7 +92,7 @@ function sleep (time) {
 function confermaElimina(matricola, codice) {
 	swal(
 			{
-				title : "Inserisci la tua password per confermare l'eliminazione del corso:",
+				title : "Inserisci la tua password per confermare la cancellazione dell'iscrizione",
 				type : "input",
 				inputType : "password",
 				showCancelButton : true,
@@ -87,7 +131,7 @@ function confermaElimina(matricola, codice) {
 function confermaEliminaCorso(matricola, codice) {
 	swal(
 			{
-				title : "Inserisci la tua password per confermare la cancellazione:",
+				title : "Inserisci la tua password per confermare l'eliminazione del Corso",
 				type : "input",
 				inputType : "password",
 				showCancelButton : true,

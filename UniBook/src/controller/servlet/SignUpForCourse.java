@@ -31,50 +31,68 @@ public class SignUpForCourse extends HttpServlet {
 		Utente u = (Utente) session.getAttribute("currentUser");
 		String typedPassword = req.getParameter("typedPassword");
 		String matricola = req.getParameter("matricola");
-		System.out.println("matricola");
-		System.out.println(typedPassword);
 		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 				.getCalendarioPersonaleDAO();
 		List<Evento> listaEventiCal = calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
+		if (richiesta.equals("iscrizioneM")) {
+			if (udao.iscritto(matricola, codice)) {
+				resp.setStatus(405);
+				return;
+			} else {
+				udao.iscriviStudente(matricola, codice);
 
-		if (u.getPassword().equals(typedPassword)) {
-			if (richiesta.equals("iscrizione")) {
-				if (udao.iscritto(matricola, codice)) {
-					resp.setStatus(405);
-					return;
-				} else {
-					udao.iscriviStudente(matricola, codice);
-
-					for (int i = 0; i < listaLezioni.size(); i++) {
-						for (int j = 0; j < listaEventiCal.size(); j++) {
-							if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
-								resp.setStatus(403);
-								break;
-							}
+				for (int i = 0; i < listaLezioni.size(); i++) {
+					for (int j = 0; j < listaEventiCal.size(); j++) {
+						if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
+							resp.setStatus(403);
+							break;
 						}
 					}
-					String nome = lezioneDao.findLessonName(codice);
-					for (int i = 0; i < listaLezioni.size(); i++) {
-						calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
-					}
-					
 				}
-			}
-			if (richiesta.equals("cancellazione")) {
-					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
-					udao.eliminaIscrizioneStudente(matricola, codice);
-
-				req.getRequestDispatcher("home").forward(req, resp);
+				String nome = lezioneDao.findLessonName(codice);
+				for (int i = 0; i < listaLezioni.size(); i++) {
+					calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
+				}
 
 			}
 		} else {
-			resp.setStatus(401);
-			System.out.println("password errata");
+			if (u.getPassword().equals(typedPassword)) {
+				if (richiesta.equals("iscrizione")) {
+					if (udao.iscritto(matricola, codice)) {
+						resp.setStatus(405);
+						return;
+					} else {
+						udao.iscriviStudente(matricola, codice);
+
+						for (int i = 0; i < listaLezioni.size(); i++) {
+							for (int j = 0; j < listaEventiCal.size(); j++) {
+								if (listaLezioni.get(i).getId() == listaEventiCal.get(j).getId()) {
+									resp.setStatus(403);
+									break;
+								}
+							}
+						}
+						String nome = lezioneDao.findLessonName(codice);
+						for (int i = 0; i < listaLezioni.size(); i++) {
+							calendarioPersonaleDao.saveEvent(matricola, listaLezioni.get(i));
+						}
+
+					}
+				}
+				if (richiesta.equals("cancellazione")) {
+					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
+							matricola);
+					udao.eliminaIscrizioneStudente(matricola, codice);
+
+					req.getRequestDispatcher("home").forward(req, resp);
+
+				}
+			} else {
+				resp.setStatus(401);
+			}
 		}
 	}
-
-	
 
 }

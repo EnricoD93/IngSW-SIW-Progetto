@@ -73,6 +73,9 @@ public class Login extends HttpServlet {
 				dispacher = req.getRequestDispatcher("index.html");
 				dispacher.forward(req, resp);
 			}
+		} else {
+			dispacher = req.getRequestDispatcher("home.jsp");
+			dispacher.forward(req, resp);
 		}
 
 	}

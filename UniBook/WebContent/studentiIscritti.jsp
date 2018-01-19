@@ -86,7 +86,7 @@
 											<td><c:if
 													test="${currentUser.matricola==currentCourse.docente}">
 													<button type="button" id="eliminaStudente"
-														onclick="javascript:confermaEliminaStudente(${studente.matricola},${currentCourse.codice})"
+														onclick="javascript:confermaElimina(${studente.matricola},${currentCourse.codice})"
 														class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 														title="Elimina Studente">
 														<i class="material-icons">delete</i>

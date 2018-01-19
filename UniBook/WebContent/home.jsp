@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="model.Utente"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="WebPattern.jsp"%>
 <!DOCTYPE html>
@@ -47,21 +47,6 @@
 							</tbody>
 						</table>
 					</div>
-
-
-					<!-- <button id="button">Click me</button> -->
-					<c:if test="${currentUser==null}">
-						<%
-							response.sendRedirect("index.html");
-						%>
-					</c:if>
-
-					<%
-						response.setHeader("Cache-Control", "no-cache");
-						response.setHeader("Cache-Control", "no-store");
-						response.setHeader("Pragma", "no-cache");
-						response.setDateHeader("Expires", 0);
-					%>
 
 				</h2>
 			</div>
