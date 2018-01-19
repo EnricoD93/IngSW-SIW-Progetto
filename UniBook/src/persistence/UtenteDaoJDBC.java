@@ -633,6 +633,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 					+ "																					from  iscritto\r\n"
 					+ "												where iscritto.codice=e.corso AND iscritto.matricola=? AND u.matricola=iscritto.matricola))";
 			PreparedStatement statement;
+			
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			statement.setString(2, matricola);
