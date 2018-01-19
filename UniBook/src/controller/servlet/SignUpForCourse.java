@@ -37,11 +37,18 @@ public class SignUpForCourse extends HttpServlet {
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
 		if (request.equals("iscrizioneM")) {
-			if (udao.findByPrimaryKey(matricola) != null) {
+			Utente studente=udao.findByPrimaryKey(matricola);
+			if (studente != null) {
 				if (udao.iscritto(matricola, codice)) {
 					resp.setStatus(405);
 					return;
 				} else {
+					req.setAttribute("matricola", studente.getMatricola());
+					req.setAttribute("nome", studente.getNome());
+					req.setAttribute("cognome", studente.getCognome());
+					req.setAttribute("email", studente.getEmail());
+					req.setAttribute("codicefiscale", studente.getCodicefiscale());
+					req.setAttribute("docente",u.getMatricola());
 					udao.iscriviStudente(matricola, codice);
 
 					for (int i = 0; i < listaLezioni.size(); i++) {
@@ -49,10 +56,15 @@ public class SignUpForCourse extends HttpServlet {
 					}
 
 				}
-			}else {
+			} else {
 				resp.setStatus(403);
 				return;
 			}
+		} else if (request.equals("cancellazioneM")) {
+			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
+			udao.eliminaIscrizioneStudente(matricola, codice);
+
+			req.getRequestDispatcher("home").forward(req, resp);
 		} else {
 			if (u.getPassword().equals(typedPassword)) {
 				if (request.equals("iscrizione")) {

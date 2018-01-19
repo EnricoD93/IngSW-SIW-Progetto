@@ -64,7 +64,7 @@
 
 							</thead>
 							<tbody>
-							<thead>
+							<thead id="students">
 								<tr>
 									<c:forEach var="studente" varStatus="loop"
 										items="${studentiIscritti}">
@@ -86,7 +86,7 @@
 											<td><c:if
 													test="${currentUser.matricola==currentCourse.docente}">
 													<button type="button" id="eliminaStudente"
-														onclick="javascript:confermaElimina(${studente.matricola},${currentCourse.codice})"
+														onclick="javascript:confermaEliminaM(${studente.matricola},${currentCourse.codice})"
 														class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
 														title="Elimina Studente">
 														<i class="material-icons">delete</i>
@@ -99,8 +99,8 @@
 													for="${studente.matricola}"></label></td>
 											</c:if>
 										</tr>
-
 									</c:forEach>
+										<tr id="lastRow"></tr>
 								</tr>
 
 							</thead>
