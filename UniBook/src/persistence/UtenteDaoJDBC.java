@@ -631,7 +631,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 					+ "                  from superato s\r\n"
 					+ "                 where e.corso=s.esame AND s.studente=?) AND NOT EXISTS (select*\r\n"
 					+ "																					from  iscritto\r\n"
-					+ "												where iscritto.codice=e.corso AND iscritto.matricola=?))";
+					+ "												where iscritto.codice=e.corso AND iscritto.matricola=? AND u.matricola=iscritto.matricola))";
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
