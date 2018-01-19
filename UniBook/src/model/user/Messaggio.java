@@ -25,7 +25,7 @@ public class Messaggio {
 
 	public void parseDate(Timestamp currentdata) {
 		Date date = new Date(currentdata.getTime());
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
 		String formattedDate = sdf.format(date);
 		Calendar cal=new GregorianCalendar();
 		cal.setTime(date);

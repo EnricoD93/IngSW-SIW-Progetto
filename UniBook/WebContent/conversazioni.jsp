@@ -46,7 +46,7 @@
 						<c:if test="${messaggio.mittente!=currentUser.matricola }">
 							<div class="card" style="border-radius: 5px; margin-right: 10%">
 								<div class="mycontainer">
-									<p style="font-size: 16px;">${messaggio.testo}</p>
+									<p style="font-size: 14px;">${messaggio.testo}</p>
 									<span class="time-left">${messaggio.datareale}&thinsp;</span>
 								</div>
 							</div>
