@@ -490,6 +490,27 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
+	public int findUnreadMessages(String dest) {
+		Connection connection = this.dataSource.getConnection();
+		int count = 0;
+		try {
+			String query = "select count(*) from messaggio where messaggio.matricola_dest=? AND messaggio.letta='FALSE'";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, dest);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				count = result.getInt("count");
+			}
+			System.out.println(count);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
 	public List<Utente> findMessageSendersByMatricola(String matricola) {
 		Connection connection = this.dataSource.getConnection();
 		List<Utente> utenti;
@@ -633,7 +654,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 					+ "																					from  iscritto\r\n"
 					+ "												where iscritto.codice=e.corso AND iscritto.matricola=? AND u.matricola=iscritto.matricola))";
 			PreparedStatement statement;
-			
+
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			statement.setString(2, matricola);
@@ -659,7 +680,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void salvaPresenza(String matricola, Long lezione) {
-		System.out.println(lezione+"fuck"+matricola);
+		System.out.println(lezione + "fuck" + matricola);
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into presenza(studente,lezione) values (?,?)";
@@ -687,7 +708,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			String delete = "delete FROM presenza WHERE lezione = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
 			statement.setLong(1, lezione);
-			
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

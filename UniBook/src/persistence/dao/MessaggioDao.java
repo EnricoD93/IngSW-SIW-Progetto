@@ -12,4 +12,5 @@ public interface MessaggioDao {
 	public void update(Messaggio messaggio); //Update
 	public void delete(Messaggio messaggio); //Delete
 	public List<Messaggio> findMessagesByUtenti(String utente1,String utente2);
+	public void updateUnreadMessages(long id);
 }

@@ -67,6 +67,7 @@
 
 <script src="js/admin.js"></script>
 <script src="js/demo.js"></script>
+<script src="javascript/notificationManager.js"></script>
 
 </head>
 <body class="theme-red">
@@ -362,6 +363,7 @@
 					<li class="active"></li>
 				</ul>
 			</div>
+			<input type="hidden" name="user" value="${ currentUser.matricola }" />
 			<!-- #Menu -->
 			<!-- Footer -->
 			<div class="legal">Progetto realizzato per Ingegneria del

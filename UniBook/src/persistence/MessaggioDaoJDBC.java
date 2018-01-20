@@ -24,15 +24,16 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 	public void save(Messaggio messaggio) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			Long id= IdBroker.getId(connection);
+			Long id = IdBroker.getId(connection);
 			messaggio.setId(id);
-			String insert = "insert into messaggio(id,data,testo,matricola_mitt,matricola_dest) values (?,?,?,?,?)";
+			String insert = "insert into messaggio(id,data,testo,matricola_mitt,matricola_dest,letta) values (?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setLong(1,messaggio.getId());
-			statement.setTimestamp(2,messaggio.getData());
+			statement.setLong(1, messaggio.getId());
+			statement.setTimestamp(2, messaggio.getData());
 			statement.setString(3, messaggio.getTesto());
 			statement.setString(4, messaggio.getMittente());
-			statement.setString(5, messaggio.getDestinatario());			
+			statement.setString(5, messaggio.getDestinatario());
+			statement.setBoolean(6, messaggio.isLetta());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -63,6 +64,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 				messaggio.setMittente(result.getString("matricola_mitt"));
 				messaggio.setDestinatario(result.getString("matricola_dest"));
 				messaggio.parseDate(messaggio.getData());
+				messaggio.setLetta(result.getBoolean("letta"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -119,17 +121,19 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 			statement.setString(2, utente2);
 			statement.setString(3, utente2);
 			statement.setString(4, utente1);
-			
+
 			ResultSet result = statement.executeQuery();
 			messaggi = new ArrayList<>();
 			Messaggio messaggio;
 			while (result.next()) {
 				messaggio = new Messaggio();
+				messaggio.setId(result.getLong("id"));
 				messaggio.setData(result.getTimestamp("data"));
 				messaggio.setDestinatario(result.getString("matricola_dest"));
 				messaggio.setMittente(result.getString("matricola_mitt"));
 				messaggio.setTesto(result.getString("testo"));
 				messaggio.parseDate(messaggio.getData());
+				messaggio.setLetta(result.getBoolean("letta"));
 				messaggi.add(messaggio);
 			}
 		} catch (SQLException e) {
@@ -144,4 +148,27 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 		return messaggi;
 	}
 
+	@Override
+	public void updateUnreadMessages(long id) {
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		System.out.println(id);
+		String query = "UPDATE messaggio " + "SET letta = true " + "WHERE id = ?";
+		System.out.println(query);
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	
 }

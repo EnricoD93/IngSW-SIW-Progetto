@@ -58,6 +58,15 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>NotificationServlet</servlet-name>
+    <servlet-class>controller.servlet.NotificationManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NotificationServlet</servlet-name>
+    <url-pattern>/checkNotifications</url-pattern>
+  </servlet-mapping>
  
    <servlet>
     <servlet-name>EmailSenderServlet</servlet-name>

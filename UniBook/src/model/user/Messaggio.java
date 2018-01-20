@@ -14,6 +14,7 @@ public class Messaggio {
 	private String testo;
 	private long id;
 	private String datareale;
+	private boolean letta;
 
 	public Messaggio(String mittente, String destinatario, String testo, Timestamp currentdata) {
 		this.data = currentdata;
@@ -21,13 +22,14 @@ public class Messaggio {
 		this.destinatario = destinatario;
 		this.testo = testo;
 		parseDate(currentdata);
+		this.letta = false;
 	}
 
 	public void parseDate(Timestamp currentdata) {
 		Date date = new Date(currentdata.getTime());
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
 		String formattedDate = sdf.format(date);
-		Calendar cal=new GregorianCalendar();
+		Calendar cal = new GregorianCalendar();
 		cal.setTime(date);
 		System.out.println(cal.get(Calendar.YEAR));
 		System.out.println(cal.get(Calendar.MONTH));
@@ -84,6 +86,14 @@ public class Messaggio {
 
 	public void setDatareale(String datareale) {
 		this.datareale = datareale;
+	}
+
+	public boolean isLetta() {
+		return letta;
+	}
+
+	public void setLetta(boolean letta) {
+		this.letta = letta;
 	}
 
 }

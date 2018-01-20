@@ -2,6 +2,7 @@ package persistence.dao;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import model.course.Corso;
 import model.user.Esame;
@@ -54,4 +55,6 @@ public interface UtenteDao {
 	public void salvaPresenza(String matricola,Long lezione);
 	
 	public void deletePresenze(Long lezione);
+	
+	public int findUnreadMessages(String dest);
 }

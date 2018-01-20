@@ -17,8 +17,17 @@
 							href="page?request=conversazione&id=${utente.matricola}">
 								<div class="profile-pic-xs"
 									style="background-image: url('${utente.profileImagePath}')"></div>
-						</a> <span>${utente.nome}&thinsp;${utente.cognome}</span><span
-							class="badge bg-unibook">1 nuovo messaggio</span></li>
+						</a> <span>${utente.nome}&thinsp;${utente.cognome}</span> <c:if
+								test="${letti[utente.matricola]>0 &&letti[utente.matricola]<2}">
+								<span class="badge bg-unibook"> <c:out
+										value="${ letti[utente.matricola] }"/> nuovo
+									messaggio
+								</span>
+								
+							</c:if> <c:if test="${ letti[utente.matricola]>1}">
+								<span class="badge bg-unibook"><c:out
+										value="${ letti[utente.matricola] }"/> nuovi messaggi</span>
+							</c:if></li>
 					</c:forEach>
 				</ul>
 			</div>

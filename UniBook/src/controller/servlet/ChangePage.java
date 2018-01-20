@@ -3,7 +3,9 @@ package controller.servlet;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -157,7 +159,12 @@ public class ChangePage extends HttpServlet {
 				case "messaggi":
 					List<Utente> conversazioni;
 					conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
+					Map<String,Integer> letti=new HashMap<String, Integer>();
+					for (Utente utente2 : conversazioni) {
+						letti.put(utente2.getMatricola(), utenteDao.findUnreadMessages(currentUser.getMatricola()));
+					}
 					req.setAttribute("conversazioni", conversazioni);
+					req.setAttribute("letti", letti);
 					req.getRequestDispatcher("messaggi.jsp").forward(req, resp);
 					break;
 
@@ -167,6 +174,11 @@ public class ChangePage extends HttpServlet {
 					MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
 					List<Messaggio> messaggi;
 					messaggi = messDao.findMessagesByUtenti(currentUser.getMatricola(), id);
+					for (Messaggio messaggio : messaggi) {
+						System.out.println("sono: "+currentUser.getMatricola()+" ");
+						if(messaggio.getDestinatario().equals(currentUser.getMatricola()))
+						messDao.updateUnreadMessages(messaggio.getId());
+					}
 					req.setAttribute("messaggi", messaggi);
 					req.setAttribute("utenteConversazione", u);
 					req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
