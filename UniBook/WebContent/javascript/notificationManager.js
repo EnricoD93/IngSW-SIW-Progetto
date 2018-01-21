@@ -2,12 +2,13 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 2000)
+	}, 3000)
 });
 
 function checkMessages() {
 	var messages;
-	var user = $('user');
+	var user = $('#curUser').val();
+	console.log(user);
 	$.ajax({
 		type : "GET",
 		url : "checkNotifications",
@@ -17,8 +18,10 @@ function checkMessages() {
 			request : "message"
 		},
 		success : function(data) {
-			console.log(data.messages.number);
-			messages = data.messages.number;
+			var json = JSON.parse(data);
+			messages = json.number;
+			if(messages!=0)
+			document.getElementById("msgcount").innerHTML=messages;
 		}
 	});
 

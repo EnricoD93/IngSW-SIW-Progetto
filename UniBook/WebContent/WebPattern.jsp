@@ -224,7 +224,7 @@
 					<!-- Tasks -->
 					<li class="dropdown"><a href="page?request=messaggi"
 						role="button"> <i class="material-icons">message</i> <span
-							class="label-count">9</span>
+							 id="msgcount" class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">TASKS</li>
@@ -365,7 +365,7 @@
 					<li class="active"></li>
 				</ul>
 			</div>
-			<input type="hidden" name="user" value="${ currentUser.matricola }" />
+			<input type="hidden" id="curUser" value="${ currentUser.matricola }" />
 			<!-- #Menu -->
 			<!-- Footer -->
 			<div class="legal">Progetto realizzato per Ingegneria del

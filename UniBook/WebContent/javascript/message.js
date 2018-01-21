@@ -44,6 +44,10 @@ $(document)
 														lastRow.before(div);
 														document
 																.getElementById("text").value = "";
+														$('html, body').animate({
+															scrollTop : $('body').offset().bottom
+														}, 'slow');
+														window.scrollTo(0, document.body.scrollHeight);
 													}
 												});
 									});

@@ -21,7 +21,7 @@ public class NotificationManager extends HttpServlet {
 		if (request.equals("message")) {
 			UtenteDao udao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			int unread = udao.findUnreadMessages(utente);
-			JSONObject messages=new JSONObject();
+			JSONObject messages = new JSONObject();
 			try {
 				messages.put("number", unread);
 			} catch (JSONException e) {
@@ -31,7 +31,7 @@ public class NotificationManager extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().print(messages);
 		}
-		if (request.equals("notification"))
-			;
+		if (request.equals("notification")) {
+		}
 	}
 }
