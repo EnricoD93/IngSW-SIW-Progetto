@@ -502,7 +502,6 @@ public class UtenteDaoJDBC implements UtenteDao {
 			while (result.next()) {
 				count = result.getInt("count");
 			}
-			System.out.println(count);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,7 +12,7 @@
 			<br>
 			<div class="body">
 				<ul class="list-group">
-					<c:forEach var="utente" varStatus="loop" items="${conversazioni}">
+					<c:forEach var="utente" items="${conversazioni}">
 						<li class="list-group-item"><a
 							href="page?request=conversazione&id=${utente.matricola}">
 								<div class="profile-pic-xs"
@@ -20,13 +20,12 @@
 						</a> <span>${utente.nome}&thinsp;${utente.cognome}</span> <c:if
 								test="${letti[utente.matricola]>0 &&letti[utente.matricola]<2}">
 								<span class="badge bg-unibook"> <c:out
-										value="${ letti[utente.matricola] }"/> nuovo
-									messaggio
+										value="${letti[utente.matricola]}" /> nuovo messaggio
 								</span>
-								
+
 							</c:if> <c:if test="${ letti[utente.matricola]>1}">
 								<span class="badge bg-unibook"><c:out
-										value="${ letti[utente.matricola] }"/> nuovi messaggi</span>
+										value="${letti[utente.matricola]}" /> nuovi messaggi</span>
 							</c:if></li>
 					</c:forEach>
 				</ul>

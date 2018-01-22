@@ -115,7 +115,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 		Connection connection = this.dataSource.getConnection();
 		List<Messaggio> messaggi;
 		try {
-			String query = "SELECT * FROM messaggio WHERE (messaggio.matricola_mitt=? AND messaggio.matricola_dest=?) OR(messaggio.matricola_mitt=? AND messaggio.matricola_dest=?)";
+			String query = "SELECT * FROM messaggio WHERE (messaggio.matricola_mitt=? AND messaggio.matricola_dest=?) OR(messaggio.matricola_mitt=? AND messaggio.matricola_dest=?) ORDER BY messaggio.data";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, utente1);
 			statement.setString(2, utente2);
@@ -152,9 +152,7 @@ public class MessaggioDaoJDBC implements MessaggioDao {
 	public void updateUnreadMessages(long id) {
 		Connection connection = this.dataSource.getConnection();
 		PreparedStatement statement;
-		System.out.println(id);
 		String query = "UPDATE messaggio " + "SET letta = true " + "WHERE id = ?";
-		System.out.println(query);
 		try {
 			statement = connection.prepareStatement(query);
 			statement.setLong(1, id);

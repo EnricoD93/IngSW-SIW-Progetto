@@ -174,11 +174,8 @@ public class ChangePage extends HttpServlet {
 					String id = req.getParameter("id");
 					Utente u = utenteDao.findByPrimaryKey(id);
 					MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
-					List<Messaggio> messaggi = null;
-
-					Comparator<Timestamp> c;
+					List<Messaggio> messaggi;
 					messaggi = messDao.findMessagesByUtenti(currentUser.getMatricola(), id);
-					messaggi.sort((e1, e2) -> e1.getData().compareTo(e2.getData()));
 					for (Messaggio messaggio : messaggi) {
 						if (messaggio.getDestinatario().equals(currentUser.getMatricola()))
 							messDao.updateUnreadMessages(messaggio.getId());

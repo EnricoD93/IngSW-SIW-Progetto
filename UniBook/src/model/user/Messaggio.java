@@ -31,9 +31,6 @@ public class Messaggio {
 		String formattedDate = sdf.format(date);
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(date);
-		System.out.println(cal.get(Calendar.YEAR));
-		System.out.println(cal.get(Calendar.MONTH));
-		System.out.println(cal.get(Calendar.DAY_OF_MONTH));
 		setDatareale(formattedDate);
 	}
 

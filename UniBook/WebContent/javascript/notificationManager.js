@@ -2,7 +2,7 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 3000)
+	}, 5000)
 });
 
 function checkMessages() {
@@ -13,6 +13,7 @@ function checkMessages() {
 		type : "GET",
 		url : "checkNotifications",
 		dataType : 'text',
+		async: true,
 		data : {
 			user : user,
 			request : "message"
