@@ -43,7 +43,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
 				<div id="messages" style="overflow-wrap: break-word;">
 					<c:forEach var="messaggio" varStatus="loop" items="${messaggi}">
-						<c:if test="${messaggio.mittente!=currentUser.matricola }">
+						<c:if test="${messaggio.mittente!=currentUser.matricola}">
 							<div class="card" style="border-radius: 5px; margin-right: 10%">
 								<div class="mycontainer">
 									<p style="font-size: 14px;">${messaggio.testo}</p>
@@ -66,21 +66,21 @@
 			</div>
 		</div>
 	</div>
-<div class="form-group form-float content" >
-	<div class="form-line">
-		<textarea id="text" cols="30" rows="5" class="form-control no-resize"
-			required autofocus></textarea>
-		<label class="form-label">Messaggio</label> <input type="hidden"
-			id="dest" value="${utenteConversazione.matricola}">
+	<div class="form-group form-float content">
+		<div class="form-line">
+			<textarea id="text" cols="30" rows="5" class="form-control no-resize"
+				required autofocus></textarea>
+			<label class="form-label">Messaggio</label> <input type="hidden"
+				id="dest" value="${utenteConversazione.matricola}">
+		</div>
+		<input type="hidden" id="mitt" value="${currentUser.matricola}">
+		<div align="right">
+			<button id="send" type="button" title="Invia"
+				class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
+				<i class="material-icons" style="line-height: inherit;">send</i>
+			</button>
+		</div>
+		<br>
 	</div>
-	<input type="hidden" id="mitt" value="${currentUser.matricola}">
-	<div align="right">
-		<button id="send" type="button" title="Invia"
-			class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float">
-			<i class="material-icons" style="line-height: inherit;">send</i>
-		</button>
-	</div>
-	<br>
-</div>
 </section>
 </html>

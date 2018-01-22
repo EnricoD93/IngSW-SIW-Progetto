@@ -490,7 +490,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public int findUnreadMessages(String dest) {
+	public int findAllUnreadMessages(String dest) {
 		Connection connection = this.dataSource.getConnection();
 		int count = 0;
 		try {
@@ -498,6 +498,27 @@ public class UtenteDaoJDBC implements UtenteDao {
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, dest);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				count = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public int findUnreadMessages(String mitt, String dest) {
+		Connection connection = this.dataSource.getConnection();
+		int count = 0;
+		try {
+			String query = "select count(*) from messaggio where messaggio.matricola_mitt=? AND messaggio.matricola_dest=? AND messaggio.letta='FALSE'";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, mitt);
+			statement.setString(2, dest);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				count = result.getInt("count");

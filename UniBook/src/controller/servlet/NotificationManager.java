@@ -20,7 +20,7 @@ public class NotificationManager extends HttpServlet {
 		String request = req.getParameter("request");
 		if (request.equals("message")) {
 			UtenteDao udao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			int unread = udao.findUnreadMessages(utente);
+			int unread = udao.findAllUnreadMessages(utente);
 			JSONObject messages = new JSONObject();
 			try {
 				messages.put("number", unread);

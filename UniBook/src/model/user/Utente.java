@@ -117,8 +117,8 @@ public class Utente {
 	public String toString() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		return "Studente[" + this.getMatricola() + ", " + this.getNome() + ", " + this.getCognome() + ", "
-				+ sdf.format(this.getDataNascita()) + "]";
+		return "Utente[" + this.getMatricola() + ", " + this.getNome() + ", " + this.getCognome() + ", "
+				+ sdf.format(this.getDataNascita()) + ","+this.getRuolo()+"]";
 	}
 
 	public String getCorsoDiLaurea() {

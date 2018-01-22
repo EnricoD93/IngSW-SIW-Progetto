@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	checkMessages();
+	checkNotifications();
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 5000)
+	}, 60000)
 });
 
 function checkMessages() {

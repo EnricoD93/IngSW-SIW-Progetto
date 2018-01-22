@@ -135,5 +135,10 @@
   <servlet-mapping>
     <servlet-name>CalendarManagerServlet</servlet-name>
     <url-pattern>/calendarManager</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
+  
+  <session-config>
+  	<session-timeout>1</session-timeout>
+  </session-config>
+  
 </web-app>

@@ -161,9 +161,10 @@ public class ChangePage extends HttpServlet {
 				case "messaggi":
 					List<Utente> conversazioni;
 					conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
+					System.out.println(conversazioni);
 					Map<String, Integer> letti = new HashMap<String, Integer>();
 					for (Utente utente2 : conversazioni) {
-						letti.put(utente2.getMatricola(), utenteDao.findUnreadMessages(currentUser.getMatricola()));
+						letti.put(utente2.getMatricola(), utenteDao.findUnreadMessages(utente2.getMatricola(),currentUser.getMatricola()));
 					}
 					req.setAttribute("conversazioni", conversazioni);
 					req.setAttribute("letti", letti);
