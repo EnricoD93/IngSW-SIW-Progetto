@@ -101,28 +101,57 @@
 								</a>
 							</div>
 						</div>
-						<div align="center" class="corsiTitle">Avvisi</div>
-						<c:if test="${empty advices}">Nessun avviso pubblicato</c:if>
-						<c:forEach var="avviso" items="${advices}">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="card">
-									<div class="header">
-										<h2>
-											<small>Pubblicato il ${avviso.datareale}</small>
-										</h2>
+					</c:if>
+					<c:if test="${currentUser.ruolo==0 }">
+						<div align="right">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a
+									href="javascript:iscriviStudente(${currentCourse.codice},${currentUser.matricola});">
+									<div class="icon">
+										<i class="material-icons">add</i>
 									</div>
-									<div class="body">${avviso.text}</div>
-								</div>
+									<div class="content">
+										<div class="text">Iscrivi</div>
+									</div>
+								</a>
 							</div>
-						</c:forEach>
+						</div>
+
+					</c:if>
+					<div align="center" class="corsiTitle">Avvisi</div>
+					<c:if test="${empty advices}">Nessun avviso pubblicato</c:if>
+					<c:forEach var="avviso" items="${advices}">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="card">
+								<div class="header">
+									<h2>
+										<small>Pubblicato il ${avviso.datareale}</small>
+										<c:if test="${currentUser.matricola==currentCourse.docente }">
+											<div class="header-dropdown">
+												<a href=""> <i class="material-icons"
+													title="Elimina Avviso">close</i></a>
+											</div>
+										</c:if>
+									</h2>
+								</div>
+								<div class="body">${avviso.text}</div>
+							</div>
+						</div>
+					</c:forEach>
+					<c:if test="${currentUser.matricola==currentCourse.docente }">
 						<div class="hidden" id="preview">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<h3>Anteprima Avviso:</h3>
+								<h3>Anteprima Avviso:</h3>
 								<div class="card">
 									<div class="header">
+
 										<h2>
-											<small>Pubblicato il 23/01/2018 - 16:11</small>
+											<strong>
+												<div id="titlecontent"></div>
+											</strong>
 										</h2>
+										<small>Pubblicato il gg/mm/aaaa - hh:mm</small>
+
 									</div>
 									<div class="body">
 										<div id="editorcontent2"></div>
@@ -131,7 +160,8 @@
 							</div>
 						</div>
 						<div class="hidden" id="txteditor">
-
+							<input type="text" class="form-control"
+								placeholder="Titolo Avviso" id="advicetitle">
 							<textarea name="myeditor"></textarea>
 
 						</div>
@@ -161,22 +191,6 @@
 								</a>
 							</div>
 						</div>
-					</c:if>
-					<c:if test="${currentUser.ruolo==0 }">
-						<div align="right">
-							<div class="bg-unibook info-box-3 hover-zoom-effect">
-								<a
-									href="javascript:iscriviStudente(${currentCourse.codice},${currentUser.matricola});">
-									<div class="icon">
-										<i class="material-icons">add</i>
-									</div>
-									<div class="content">
-										<div class="text">Iscrivi</div>
-									</div>
-								</a>
-							</div>
-						</div>
-
 					</c:if>
 				</h2>
 			</div>

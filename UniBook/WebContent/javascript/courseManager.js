@@ -1,4 +1,5 @@
 var editor2;
+var title;
 $(document).ready(function(){
 	(function () {
 									editor2 = CKEDITOR.replace( 'myeditor', {
@@ -7,9 +8,15 @@ $(document).ready(function(){
 									} );
 									editor2.on( 'change', function ( ev ) {
 										document.getElementById( 'editorcontent2' ).innerHTML = editor2.getData();
+										
 									} );
+									$('#advicetitle').on('change keydown paste input',function(ev){
+										console.log($('#advicetitle').val());
+										title=$('#advicetitle');
+										document.getElementById('titlecontent').innerHTML=$('#advicetitle').val();
+									});
 								})();
-})
+});
 
 
 function iscriviStudente(codice, matricola) {
@@ -302,14 +309,14 @@ function postAdvice(){
 function saveAdvice(){
 	var text=editor2.getData();
 	var corso=$('#codice').val();
-	console.log(corso);
-	console.log(text);
+	var title=$('#titlecontent').val();
 	$
 	.ajax({
 		type : "GET",
 		url : "showcourse",
 		datatype : 'text',
 		data : {
+			title:title,
 			text : text,
 			codice : corso,
 			richiesta : "salvaAvviso"
