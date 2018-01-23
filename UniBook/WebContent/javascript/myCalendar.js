@@ -89,8 +89,8 @@ function init() {
 											selectHelper : true,
 											select : function(start, end,
 													allDay) {
-												console
-												.log("corso"+$('#cor').val());
+												console.log("aula"
+														+ $('#aulaid').val());
 
 												console
 														.log("lezione"
@@ -100,6 +100,23 @@ function init() {
 														.log("evento"
 																+ document
 																		.getElementById('evento').checked);
+												if (document
+														.getElementById('lezione').checked == 1
+														&& $('#corsoid').val()== "") {
+													swal(
+																	"Non hai selezionato il corso",
+																	"Seleziona un corso per poter salvare la lezione",
+																	"info");
+													return;
+												}	if (document
+														.getElementById('lezione').checked == 1
+														&& $('#aulaid').val() == "") {
+													swal(
+																	"Non hai selezionato l'aula",
+																	"Seleziona un'aula per poter salvare la lezione",
+																	"info");
+													return;
+												}
 												swal(
 														{
 															title : "Crea un Evento!",
@@ -118,7 +135,7 @@ function init() {
 																			.showInputError("Scrivi qualcosa per memorizzare il tuo Evento!");
 																	return false
 																}
-															
+
 																$
 																		.ajax({
 																			type : "POST",
@@ -135,9 +152,14 @@ function init() {
 																						.getTime(),
 																				end : end
 																						.getTime(),
-																				lezione: document.getElementById('lezione').checked,
-																				evento :document.getElementById('evento').checked,
-																				corso: $('#cor').val()
+																				lezione : document
+																						.getElementById('lezione').checked,
+																				evento : document
+																						.getElementById('evento').checked,
+																				corso : $(
+																						'#corid')
+																						.val(),
+																			    aula : $('#aulaid').val()
 																			}
 																		});
 
@@ -312,9 +334,12 @@ function lessonVerify() {
 	var lezione = document.getElementById('lezione').checked;
 	console.log(evento);
 	console.log(lezione);
-	if (lezione == 1){
+	if (lezione == 1) {
 		$('#evento').prop('checked', false);
-	$('#corsi').removeClass("hidden");}else{$('#corsi').addClass("hidden");}
+		$('#corsi').removeClass("hidden");
+	} else {
+		$('#corsi').addClass("hidden");
+	}
 };
 function eventVerify() {
 	console.log("sono in verify ")
@@ -322,8 +347,9 @@ function eventVerify() {
 	var lezione = document.getElementById('lezione').checked;
 	console.log(evento);
 	console.log(lezione);
-	if (lezione == 1 && evento == 1){
+	if (lezione == 1 && evento == 1) {
 		$('#lezione').prop('checked', false);
-	$('#corsi').addClass("hidden");}
+		$('#corsi').addClass("hidden");
+	}
 };
 
