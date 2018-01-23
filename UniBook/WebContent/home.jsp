@@ -16,9 +16,21 @@
 		<div class="container-fluid">
 			<div class="block-header">
 				<h2>
+					<div class="corsiTitle">Benvenuto ${currentUser.nome}&nbsp;!</div>
 
+					</br>
 					<div class="body table-responsive">
-						<div class="corsiTitle">Corsi disponibili</div>
+						<div align="center" class="corsiTitle">Corsi disponibili</div>
+						
+					
+					<div align="center">		
+					Di seguito l'elenco dei corsi del tuo corso di
+									laurea, clicca sul nome del corso per consultare la scheda del
+									corso ed iscriverti ad esso.</br> Potrai ricevere in tempo reale
+									ogni avviso.
+					</div>
+					
+						
 						<table class="table table-striped">
 							<thead>
 								<tr>
