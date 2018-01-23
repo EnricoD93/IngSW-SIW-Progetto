@@ -89,17 +89,7 @@ function init() {
 											selectHelper : true,
 											select : function(start, end,
 													allDay) {
-												console.log("corso"
-														+ $('#corsoid').val());
-
-												console
-														.log("lezione"
-																+ document
-																		.getElementById('lezione').checked);
-												console
-														.log("evento"
-																+ document
-																		.getElementById('evento').checked);
+										if($('#ruolo').val()==1){
 												if (document
 														.getElementById('lezione').checked == 1
 														&& $('#corsoid').val()== "") {
@@ -117,6 +107,7 @@ function init() {
 																	"info");
 													return;
 												}
+										}
 												swal(
 														{
 															title : "Crea un Evento!",
@@ -135,7 +126,7 @@ function init() {
 																			.showInputError("Scrivi qualcosa per memorizzare il tuo Evento!");
 																	return false
 																}
-
+																if($('#ruolo').val()==1){
 																$
 																		.ajax({
 																			type : "POST",
@@ -162,7 +153,29 @@ function init() {
 																			    aula : $('#aulaid').val()
 																			}
 																		});
-
+																}
+																else{
+																$
+																.ajax({
+																	type : "POST",
+																	url : "calendarManager",
+																	async : false,
+																	datatype : 'text',
+																	data : {
+																		matricola : $(
+																				'#currentUser')
+																				.val(),
+																		title : inputValue,
+																		request : "creaEvento",
+																		start : start
+																				.getTime(),
+																		end : end
+																				.getTime(),
+																		lezione : false,
+																		evento :false,
+																	}
+																});
+																}
 																swal(
 																		"Ben Fatto!",
 																		"Evento creato con successo!",

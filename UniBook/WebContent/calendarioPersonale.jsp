@@ -19,6 +19,7 @@
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
+		<input id="ruolo" class="hidden" value="${currentUser.ruolo}">
 			<div class="corsiTitle" align="center">Calendario Personale</div>
 			<c:if test="${currentUser.ruolo == 1}">
 			<div class="input-group col-sm-3">
