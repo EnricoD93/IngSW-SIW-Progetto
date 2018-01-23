@@ -124,7 +124,7 @@ public class GiornoCalendario {
 		Calendar g = new GregorianCalendar();
 		g.setTime(d);
 		giorno = g.get(Calendar.DAY_OF_MONTH);
-		mese = g.get(Calendar.MONTH) + 1;
+		mese = g.get(Calendar.MONTH) ;
 		anno = g.get(Calendar.YEAR);
 		giornoDellaSettimana = giorniIt[(g.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
 	}

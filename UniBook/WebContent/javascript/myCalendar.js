@@ -89,8 +89,8 @@ function init() {
 											selectHelper : true,
 											select : function(start, end,
 													allDay) {
-												console.log("aula"
-														+ $('#aulaid').val());
+												console.log("corso"
+														+ $('#corsoid').val());
 
 												console
 														.log("lezione"
@@ -157,7 +157,7 @@ function init() {
 																				evento : document
 																						.getElementById('evento').checked,
 																				corso : $(
-																						'#corid')
+																						'#corsoid')
 																						.val(),
 																			    aula : $('#aulaid').val()
 																			}

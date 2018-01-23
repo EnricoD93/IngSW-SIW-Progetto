@@ -1,15 +1,12 @@
 package controller.servlet;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,15 +18,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.course.Aula;
+import model.course.Lezione;
+import model.user.CalendarioPersonale;
 import model.user.Evento;
 import model.user.GiornoCalendario;
 import model.user.Utente;
 import persistence.DatabaseManager;
-import persistence.IdBroker;
-import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
+import persistence.dao.CorsoDao;
 import persistence.dao.EventoDao;
+import persistence.dao.LezioneDao;
 
 public class CalendarManager extends HttpServlet {
 
@@ -84,13 +82,12 @@ public class CalendarManager extends HttpServlet {
 		if (request.equals("creaEvento")) {
 			String start = req.getParameter("start");
 			String end = req.getParameter("end");
-			Boolean lezione=Boolean.parseBoolean(req.getParameter("lezione"));
-			Boolean evento=Boolean.parseBoolean(req.getParameter("evento"));
-			System.out.println(req.getParameter("corso"));
-			Long corso= Long.parseLong(req.getParameter("corso"));
-			String aula= req.getParameter("aula");
+			Boolean lezione = Boolean.parseBoolean(req.getParameter("lezione"));
+			Boolean evento = Boolean.parseBoolean(req.getParameter("evento"));
 			Timestamp startT = null;
 			Timestamp endT = null;
+			String title = req.getParameter("title");
+
 			try {
 				startT = parseDate(start);
 				endT = parseDate(end);
@@ -98,9 +95,6 @@ public class CalendarManager extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			// trasformare le stringhe in Timestamp e passarle all'evento
-			String title = req.getParameter("title");
 			Evento e = new Evento(title, startT, endT, "nessuna");
 			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 			System.out.println("salvo il nuovo evento " + title);
@@ -108,9 +102,32 @@ public class CalendarManager extends HttpServlet {
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
 			calendarioPersonaleDao.saveEvent(matricola, e);
+			if (lezione) {
+				System.out.println(req.getParameter("corso"));
+				Long corso = Long.parseLong(req.getParameter("corso"));
+				String aula = req.getParameter("aula");
+
+				Date data = new Date(startT.getTime());
+				System.out.println("la data" + data.toString());
+				System.out.println("devo creare lezione");
+				LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+				GiornoCalendario g = new GiornoCalendario();
+				g.parseToGiornoCalendario(data);
+				Lezione l = new Lezione(corso, g, startT, endT, aula, 0);
+				lezioneDao.save(l);
+				// salvo la lezione nel calendario degli studenti
+				CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
+				System.out.println("gli studenti iscritti sono :");
+
+				for (int i = 0; i < studentiIscritti.size(); i++) {
+					System.out.println(studentiIscritti.get(i).getNome());
+					calendarioPersonaleDao.saveEvent(studentiIscritti.get(i).getMatricola(), e);
+				}
+
+			}
 
 		}
-
 	}
 
 	private Timestamp parseDate(String str_date) throws ParseException {
