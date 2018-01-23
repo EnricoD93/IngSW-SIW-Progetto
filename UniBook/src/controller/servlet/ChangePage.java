@@ -3,7 +3,6 @@ package controller.servlet;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import model.course.Aula;
+import model.course.Avviso;
 import model.course.Corso;
 import model.course.DescrizioneCorso;
 import model.course.Lezione;
@@ -28,6 +28,7 @@ import model.user.Messaggio;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
+import persistence.dao.AvvisoDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.LezioneDao;
@@ -38,6 +39,7 @@ public class ChangePage extends HttpServlet {
 	String request;
 	List<Aula> aule;
 	List<Corso> corsi;
+	List<Avviso> avvisi;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -75,6 +77,7 @@ public class ChangePage extends HttpServlet {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+			AvvisoDao avvDao=DatabaseManager.getInstance().getDaoFactory().getAvvisoDAO();
 			if (request != null) {
 
 				switch (request) {
@@ -115,8 +118,14 @@ public class ChangePage extends HttpServlet {
 					Long codice = Long.parseLong(req.getParameter("id"));
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
+					avvisi=avvDao.findAllByCourse(codice);
+					for (Avviso avviso : avvisi) {
+						System.out.println(avviso.getDatareale());
+						System.out.println(avviso.getText());
+					}
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
+					req.setAttribute("advices", avvisi);
 					req.getRequestDispatcher("course.jsp").forward(req, resp);
 					break;
 

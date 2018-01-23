@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="plugins/ckeditor/ckeditor.js"></script>
+</head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <body>
 	<section id="centralSection" class="content">
@@ -86,6 +88,7 @@
 						</table>
 					</div>
 					<c:if test="${currentUser.matricola==currentCourse.docente }">
+						<input type="hidden" id="codice" value="${currentCourse.codice}">
 						<div align="right">
 							<div class="bg-unibook info-box-3 hover-zoom-effect">
 								<a href="javascript:changeProfile();">
@@ -94,6 +97,66 @@
 									</div>
 									<div class="content">
 										<div class="text">Modifica Corso</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div align="center" class="corsiTitle">Avvisi</div>
+						<c:if test="${empty advices}">Nessun avviso pubblicato</c:if>
+						<c:forEach var="avviso" items="${advices}">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="card">
+									<div class="header">
+										<h2>
+											<small>Pubblicato il ${avviso.datareale}</small>
+										</h2>
+									</div>
+									<div class="body">${avviso.text}</div>
+								</div>
+							</div>
+						</c:forEach>
+						<div class="hidden" id="preview">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Anteprima Avviso:</h3>
+								<div class="card">
+									<div class="header">
+										<h2>
+											<small>Pubblicato il 23/01/2018 - 16:11</small>
+										</h2>
+									</div>
+									<div class="body">
+										<div id="editorcontent2"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="hidden" id="txteditor">
+
+							<textarea name="myeditor"></textarea>
+
+						</div>
+
+						<br>
+						<div align="right" id="advicebutton" class=" ">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a href="javascript:postAdvice();">
+									<div class="icon">
+										<i class="material-icons">content_paste</i>
+									</div>
+									<div class="content">
+										<div class="text">Pubblica Avviso</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="hidden" align="right" id="saveadvicebutton">
+							<div class="bg-unibook info-box-3 hover-zoom-effect">
+								<a href="javascript:saveAdvice();">
+									<div class="icon">
+										<i class="material-icons">save</i>
+									</div>
+									<div class="content">
+										<div class="text">Salva Avviso</div>
 									</div>
 								</a>
 							</div>

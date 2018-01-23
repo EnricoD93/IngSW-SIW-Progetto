@@ -1,7 +1,7 @@
 package controller.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,21 +14,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.course.Avviso;
 import model.course.Corso;
-import model.course.Lezione;
-import model.user.Evento;
 import model.user.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.AvvisoDao;
 import persistence.dao.CorsoDao;
-import persistence.dao.LezioneDao;
 import persistence.dao.UtenteDao;
 
 public class ShowCourse extends HttpServlet {
 	Corso currentCourse;
-	Utente currentStudent;
 	Utente courseDocente;
 	List<Utente> studentiIscritti;
 	String richiesta = "vuota";
+	List<Avviso> avvisi;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,15 +36,18 @@ public class ShowCourse extends HttpServlet {
 		Long codice = Long.parseLong(req.getParameter("codice"));
 		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		AvvisoDao avvDao=DatabaseManager.getInstance().getDaoFactory().getAvvisoDAO();
 		currentCourse = corsoDao.findByPrimaryKey(codice);
 		courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 
 		if (richiesta.equals("mostraCorso")) {
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
-			session.setAttribute("courseDocente", courseDocente);
-			session.setAttribute("currentCourse", currentCourse);
-			session.setAttribute("currentStudent", currentStudent);
-			session.setAttribute("studentiIscritti", studentiIscritti);
+			avvisi=avvDao.findAllByCourse(codice);
+			System.out.println(avvisi.size());
+			req.setAttribute("courseDocente", courseDocente);
+			req.setAttribute("currentCourse", currentCourse);
+			req.setAttribute("studentiIscritti", studentiIscritti);
+			req.setAttribute("advices", avvisi);
 		}
 		if (richiesta.equals("eliminaIscrizioneStudente")) {
 			String matricolaStudente = req.getParameter("matricolaStudente");
@@ -54,7 +56,7 @@ public class ShowCourse extends HttpServlet {
 		if (richiesta.equals("studentiCorsoPresenze")) {
 			Long lezione = Long.parseLong(req.getParameter("lezione"));
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			u.deletePresenze( lezione);
+			u.deletePresenze(lezione);
 			System.out.println("servlet");
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
 			JSONObject result = new JSONObject();
@@ -85,8 +87,15 @@ public class ShowCourse extends HttpServlet {
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			String checked = req.getParameter("checked");
 			System.out.println(checked);
-		
+
 			u.salvaPresenza(matricola, lezione);
+		}
+		if (richiesta.equals("salvaAvviso")) {
+			String text= req.getParameter("text");
+			Timestamp t=new Timestamp(System.currentTimeMillis());
+			Avviso avviso=new Avviso(text,codice,t);
+			avvDao.save(avviso);
+			
 		}
 
 	}

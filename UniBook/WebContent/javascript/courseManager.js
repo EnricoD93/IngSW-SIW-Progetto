@@ -1,3 +1,16 @@
+var editor2;
+$(document).ready(function(){
+	(function () {
+									editor2 = CKEDITOR.replace( 'myeditor', {
+										removePlugins: 'sourcearea'
+
+									} );
+									editor2.on( 'change', function ( ev ) {
+										document.getElementById( 'editorcontent2' ).innerHTML = editor2.getData();
+									} );
+								})();
+})
+
 
 function iscriviStudente(codice, matricola) {
 	swal({
@@ -279,5 +292,45 @@ function salvaPresenze(){
 	});
 };
 
+function postAdvice(){
+	$('#txteditor').removeClass("hidden");
+	$('#preview').removeClass("hidden");
+	$('#advicebutton').addClass("hidden");
+	$('#saveadvicebutton').removeClass("hidden");
+	
+};
+function saveAdvice(){
+	var text=editor2.getData();
+	var corso=$('#codice').val();
+	console.log(corso);
+	console.log(text);
+	$
+	.ajax({
+		type : "GET",
+		url : "showcourse",
+		datatype : 'text',
+		data : {
+			text : text,
+			codice : corso,
+			richiesta : "salvaAvviso"
+		},
+		success : function(data) {
+			swal(
+					"Avviso pubblicato",
+					"L'avviso è stato pubblicato con successo.",
+					"success");
+		},
+		error : function(data) {
+		}
+
+	});
+	
+	
+	
+	$('#txteditor').addClass("hidden");
+	$('#preview').addClass("hidden");
+	$('#advicebutton').removeClass("hidden");
+	$('#saveadvicebutton').addClass("hidden");
+}
 
 

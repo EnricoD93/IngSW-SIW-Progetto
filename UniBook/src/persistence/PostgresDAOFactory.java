@@ -1,6 +1,7 @@
 package persistence;
 
 import persistence.dao.AulaDao;
+import persistence.dao.AvvisoDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
@@ -96,6 +97,11 @@ public class PostgresDAOFactory extends DAOFactory {
 	@Override
 	public EventoDao getEventoDAO() {
 		return new EventoDaoJDBC(dataSource);
+	}
+
+	@Override
+	public AvvisoDao getAvvisoDAO() {
+		return new AvvisoDaoJDBC(dataSource);
 	}
 
 }

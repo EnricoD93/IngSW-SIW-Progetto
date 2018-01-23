@@ -21,7 +21,7 @@ public class UtilDao {
 					+ "drop table if exists studente;" + "drop table if exists docente;"
 					+ "drop table if exists contiene;" + "drop table if exists evento;"
 					+ "drop table if exists calendariopersonale;" + "drop table if exists superato;"
-					+ "drop table if exists esame;" + "drop table if exists descrizionecorso;"
+					+ "drop table if exists esame;" + "drop table if exists descrizionecorso;"+ "drop table if exists avviso;"
 					+ "drop table if exists corso;" + "drop table if exists utente;"
 					+ "drop table if exists corsodilaurea;";
 
@@ -62,7 +62,9 @@ public class UtilDao {
 					+ "create table evento(\"id\" bigint primary key, title VARCHAR(255),inizio timestamp, fine timestamp, nota text );"
 					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento bigint REFERENCES evento(\"id\"));"
 					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int);"
-					+ "create table presenza(studente VARCHAR(255) REFERENCES utente(\"matricola\"), lezione bigint REFERENCES lezione (\"id\"));";
+					+ "create table presenza(studente VARCHAR(255) REFERENCES utente(\"matricola\"), lezione bigint REFERENCES lezione (\"id\"));"
+					+ "create table avviso(\"id\" bigint primary key, text text, corso bigint REFERENCES corso(\"codice\"),data timestamp);";
+
 
 			//
 			// + "create table afferisce(\"id\" bigint primary key, corso_codice bigint

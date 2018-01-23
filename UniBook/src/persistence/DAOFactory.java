@@ -1,6 +1,7 @@
 package persistence;
 
 import persistence.dao.AulaDao;
+import persistence.dao.AvvisoDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
@@ -40,6 +41,7 @@ public abstract class DAOFactory {
 	public abstract EsameDao getEsameDAO();
 
 	public abstract EventoDao getEventoDAO();
+	public abstract AvvisoDao getAvvisoDAO();
 
 	public abstract UtilDao getUtilDAO();
 
