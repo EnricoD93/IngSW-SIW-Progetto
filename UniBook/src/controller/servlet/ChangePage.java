@@ -86,6 +86,10 @@ public class ChangePage extends HttpServlet {
 					break;
 
 				case "calendario":
+					corsi= utenteDao.getCorsiDocente(currentUser.getMatricola());
+					for(int i=0; i<corsi.size(); i++)
+						System.out.println(corsi.get(i).getNome());
+					req.setAttribute("corsi", corsi);
 					req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
 					break;
 

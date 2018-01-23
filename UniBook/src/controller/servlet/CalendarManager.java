@@ -82,6 +82,10 @@ public class CalendarManager extends HttpServlet {
 		if (request.equals("creaEvento")) {
 			String start = req.getParameter("start");
 			String end = req.getParameter("end");
+			Boolean lezione=Boolean.parseBoolean(req.getParameter("lezione"));
+			Boolean evento=Boolean.parseBoolean(req.getParameter("evento"));
+			System.out.println(req.getParameter("corso"));
+			Long corso= Long.parseLong(req.getParameter("corso"));
 			Timestamp startT = null;
 			Timestamp endT = null;
 			try {

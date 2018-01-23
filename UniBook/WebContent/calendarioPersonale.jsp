@@ -20,13 +20,46 @@
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
 			<div class="corsiTitle" align="center">Calendario Personale</div>
+			<c:if test="${currentUser.ruolo == 1}">
+			<div class="input-group col-sm-3">
+					<div class="switch">
+						<span class="input-group-addon">Lezione </span> <label><input
+							class="switch" type="checkbox" name="lezione" id="lezione" onclick="lessonVerify()"
+							 ><span class="lever bg-unibook-switch"></span></label>
+					</div>
 
+					<div class="hidden" id="corsi">
+
+						<span class="input-group-addon"> Corsi </span> <select
+							class="selectpicker" tabindex="-98" name="lezione" id="lezioneid"
+							required>
+							<c:forEach var="corso" items="${corsi}">
+
+								<option id="cor" value="${corso.codice}">${corso.nome}</option>
+
+							</c:forEach>
+						</select>
+
+					</div>
+
+					<div class="switch">
+						<span class="input-group-addon">Evento </span> <label><input
+							class="switch" type="checkbox" checked="" name="evento"onclick="eventVerify()"
+							id="evento"><span class="lever bg-unibook-switch"></span></label>
+					</div>
+				</div>
+			</c:if>
 			<div id='wrap'>
 
 				<div id='calendar'></div>
-<input type="hidden" id="currentUser" value="${currentUser.matricola}"/>
+				<input type="hidden" id="currentUser"
+					value="${currentUser.matricola}" />
 				<div style='clear: both'></div>
 			</div>
+
+
+
+
 		</div>
 	</section>
 </body>
