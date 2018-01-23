@@ -330,7 +330,8 @@ function getEvent() {
 							data.result[i].meseIn, data.result[i].giornoIn),
 					end : new Date(data.result[i].annoFi,
 							data.result[i].meseFi, data.result[i].giornoFi),
-					className : 'success'
+					className : 'success',
+					url : 'http://google.com/'
 				};
 				events.push(event);
 
