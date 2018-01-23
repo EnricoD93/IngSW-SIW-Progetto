@@ -29,17 +29,27 @@
 					</div>
 
 					<div class="hidden" id="corsi">
-
+<form id="form validation">
 						<span class="input-group-addon"> Corsi </span> <select
-							class="selectpicker" tabindex="-98" name="lezione" id="lezioneid"
+							class="selectpicker" tabindex="-98" name="corso" id="corsoid" 
 							required>
 							<c:forEach var="corso" items="${corsi}">
 
-								<option id="cor" value="${corso.codice}">${corso.nome}</option>
+								<option id="cor" value="${corso.codice}" >${corso.nome}</option>
 
 							</c:forEach>
 						</select>
 
+						<span class="input-group-addon"> Aula </span> <select
+							class="selectpicker" tabindex="-98" name="aula" id="aulaid"
+							required>
+							<c:forEach var="aula" items="${aule}">
+
+								<option id="aula" value="${aula.id}" >${aula.id}</option>
+
+							</c:forEach>
+						</select>
+</form>
 					</div>
 
 					<div class="switch">
@@ -51,7 +61,7 @@
 			</c:if>
 			<div id='wrap'>
 
-				<div id='calendar'></div>
+				<div id='calendar' ></div>
 				<input type="hidden" id="currentUser"
 					value="${currentUser.matricola}" />
 				<div style='clear: both'></div>

@@ -21,11 +21,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.course.Aula;
 import model.user.Evento;
 import model.user.GiornoCalendario;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.IdBroker;
+import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.EventoDao;
 
@@ -86,6 +88,7 @@ public class CalendarManager extends HttpServlet {
 			Boolean evento=Boolean.parseBoolean(req.getParameter("evento"));
 			System.out.println(req.getParameter("corso"));
 			Long corso= Long.parseLong(req.getParameter("corso"));
+			String aula= req.getParameter("aula");
 			Timestamp startT = null;
 			Timestamp endT = null;
 			try {
