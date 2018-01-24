@@ -7,7 +7,7 @@ import model.course.Avviso;
 public interface AvvisoDao {
 	public void save(Avviso avviso); // Create
 
-	public Avviso findByPrimaryKey(String id); // Retrieve
+	public Avviso findByPrimaryKey(Long id); // Retrieve
 
 	public List<Avviso> findAll();
 	public List<Avviso> findAllByCourse(Long codice);

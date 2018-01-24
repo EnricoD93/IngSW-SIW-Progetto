@@ -10,7 +10,7 @@ $(document).ready(function(){
 										document.getElementById( 'editorcontent2' ).innerHTML = editor2.getData();
 										
 									} );
-									$('#advicetitle').on('change keydown paste input',function(ev){
+									$('#advicetitle').on('change keydown keypress keyup mousedown click mouseup',function(ev){
 										console.log($('#advicetitle').val());
 										title=$('#advicetitle');
 										document.getElementById('titlecontent').innerHTML=$('#advicetitle').val();
@@ -308,20 +308,25 @@ function postAdvice(){
 };
 function saveAdvice(){
 	var text=editor2.getData();
+	var id=$('#idadvice').val();
 	var corso=$('#codice').val();
-	var title=$('#titlecontent').val();
+	var title=$('#advicetitle').val();
+	console.log(title);
 	$
 	.ajax({
 		type : "GET",
 		url : "showcourse",
 		datatype : 'text',
 		data : {
+			id:id,
 			title:title,
 			text : text,
 			codice : corso,
 			richiesta : "salvaAvviso"
 		},
 		success : function(data) {
+			document.getElementById('idadvice').value="new";
+			
 			swal(
 					"Avviso pubblicato",
 					"L'avviso è stato pubblicato con successo.",
@@ -378,22 +383,30 @@ function modifyAdvice(id){
 		datatype : 'text',
 		data : {
 			id:id,
-			richiesta: "eliminaAvviso",
+			richiesta: "getAvviso",
 			codice:corso
 		},
 		success : function(data) {
-			swal(
-					"Avviso eliminato",
-					"L'avviso è stato eliminato con successo.",
-					"success").then(() => {
-						window.location.href="page?request=corso&id="+corso;
-					});
-			
+			var avviso={
+					id: data.id,
+					titolo: data.titolo,
+					testo: data.testo,
+					corso: data.corso,
+					data: data.data
+					
+			}
+			postAdvice();
+			$('#txteditor').removeClass("hidden");
+			document.getElementById('advicetitle').value=avviso.titolo;
+			document.getElementById('idadvice').value=avviso.id;
+			document.getElementById('titlecontent').innerHTML=$('#advicetitle').val();
+			editor2.setData(avviso.testo);
+			var elmnt = document.getElementById('advicetitle');
+			elmnt.scrollIntoView();
 		},
 		error : function(data) {
 		}
 
 	});
 }
-
 

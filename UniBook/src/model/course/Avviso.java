@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 public class Avviso {
 	private long id;
+	private String titolo;
 	private String text;
 	private long corso;
 	private Timestamp data;
@@ -19,6 +20,7 @@ public class Avviso {
 
 	public void setData(Timestamp data) {
 		this.data = data;
+		parseDate(data);
 	}
 
 	public String getDatareale() {
@@ -41,10 +43,11 @@ public class Avviso {
 		this.corso = corso;
 	}
 
-	public Avviso(String text, long corso, Timestamp data) {
+	public Avviso(String text, String titolo, long corso, Timestamp data) {
+		this.titolo = titolo;
 		this.text = text;
 		this.corso = corso;
-		this.data=data;
+		this.data = data;
 		parseDate(data);
 	}
 
@@ -71,6 +74,14 @@ public class Avviso {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public String getTitolo() {
+		return titolo;
+	}
+
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
 	}
 
 }

@@ -63,7 +63,7 @@ public class UtilDao {
 					+ "create table contiene(calendariopersonale VARCHAR(255) REFERENCES calendariopersonale(\"matricola\"), evento bigint REFERENCES evento(\"id\"));"
 					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int);"
 					+ "create table presenza(studente VARCHAR(255) REFERENCES utente(\"matricola\"), lezione bigint REFERENCES lezione (\"id\"));"
-					+ "create table avviso(\"id\" bigint primary key, text text, corso bigint REFERENCES corso(\"codice\"),data timestamp);";
+					+ "create table avviso(\"id\" bigint primary key, titolo text, text text, corso bigint REFERENCES corso(\"codice\"),data timestamp);";
 
 
 			//

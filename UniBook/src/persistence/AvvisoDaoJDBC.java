@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import model.course.Avviso;
 import model.user.Messaggio;
 import persistence.dao.AvvisoDao;
@@ -24,12 +26,13 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 		try {
 			Long id = IdBroker.getId(connection);
 			avviso.setId(id);
-			String insert = "insert into avviso(id,text,corso,data) values (?,?,?,?)";
+			String insert = "insert into avviso(id,titolo,text,corso,data) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, avviso.getId());
-			statement.setString(2, avviso.getText());
-			statement.setLong(3, avviso.getCorso());
-			statement.setTimestamp(4, avviso.getData());
+			statement.setString(2, avviso.getTitolo());
+			statement.setString(3, avviso.getText());
+			statement.setLong(4, avviso.getCorso());
+			statement.setTimestamp(5, avviso.getData());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -41,12 +44,6 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 			}
 		}
 
-	}
-
-	@Override
-	public Avviso findByPrimaryKey(String id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -96,9 +93,9 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 			while (result.next()) {
 				avviso = new Avviso();
 				avviso.setId(result.getLong("id"));
+				avviso.setTitolo(result.getString("titolo"));
 				avviso.setData(result.getTimestamp("data"));
 				avviso.setText(result.getString("text"));
-				avviso.parseDate(avviso.getData());
 				avviso.setCorso(result.getLong("corso"));
 				avvisi.add(avviso);
 			}
@@ -112,6 +109,36 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 			}
 		}
 		return avvisi;
+	}
+
+	@Override
+	public Avviso findByPrimaryKey(Long id) {
+		Connection connection = this.dataSource.getConnection();
+		Avviso a=null;
+		try {
+			String query = "select * FROM avviso WHERE id = ? ";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, id);
+			ResultSet result=statement.executeQuery();
+			if (result.next()) {
+				a=new Avviso();
+				a.setId(result.getLong("id"));
+				a.setData(result.getTimestamp("data"));
+				a.setText(result.getString("text"));
+				a.setTitolo(result.getString("titolo"));
+				a.setCorso(result.getLong("corso"));
+			}
+
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return a;
 	}
 
 }

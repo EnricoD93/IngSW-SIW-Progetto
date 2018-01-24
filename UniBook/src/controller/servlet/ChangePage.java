@@ -119,10 +119,6 @@ public class ChangePage extends HttpServlet {
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 					avvisi=avvDao.findAllByCourse(codice);
-					for (Avviso avviso : avvisi) {
-						System.out.println(avviso.getDatareale());
-						System.out.println(avviso.getText());
-					}
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("advices", avvisi);

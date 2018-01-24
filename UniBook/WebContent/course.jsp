@@ -125,12 +125,25 @@
 							<div class="card">
 								<div class="header">
 									<h2>
-										<small>Pubblicato il ${avviso.datareale}</small>
+										<strong>${avviso.titolo}</strong> <small>Pubblicato il
+											${avviso.datareale}</small>
 										<c:if test="${currentUser.matricola==currentCourse.docente }">
-											<div class="header-dropdown">
-												<a href="javascript:delAdvice(${avviso.id})"> <i class="material-icons"
-													title="Elimina Avviso">close</i></a>
-											</div>
+											<ul class="header-dropdown m-r--5">
+												<li class="dropdown"><a href="javascript:void(0);"
+													class="dropdown-toggle" data-toggle="dropdown"
+													role="button" aria-haspopup="true" aria-expanded="false">
+														<i class="material-icons">more_vert</i>
+												</a>
+													<ul class="dropdown-menu pull-right">
+														<li><a
+															href="javascript:modifyAdvice(${avviso.id})"
+															class=" waves-effect waves-block"><i
+																class="material-icons">edit</i>Modifica Avviso</a></li>
+														<li><a href="javascript:delAdvice(${avviso.id})"
+															class=" waves-effect waves-block"><i
+																class="material-icons">close</i>Elimina Avviso</a></li>
+													</ul></li>
+											</ul>
 										</c:if>
 									</h2>
 								</div>
@@ -160,9 +173,10 @@
 							</div>
 						</div>
 						<div class="hidden" id="txteditor">
+						<input class="hidden" id="idadvice" value="new">
 							<input type="text" class="form-control"
-								placeholder="Titolo Avviso" id="advicetitle">
-							<textarea name="myeditor"></textarea>
+								placeholder="Titolo Avviso" id="advicetitle" autofocus>
+							<textarea name="myeditor" id="myeditor"></textarea>
 
 						</div>
 
