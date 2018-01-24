@@ -21,6 +21,36 @@
 		<div class="container-fluid">
 		<input id="ruolo" class="hidden" value="${currentUser.ruolo}">
 			<div class="corsiTitle" align="center">Calendario Personale</div>
+				<div class="info-box-3 bg-unibook hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">event</i>
+						</div>
+						<div class="content">
+							<div class="text">Eventi</div>
+							<div class="number count-to" data-from="0" data-to="${listaSoloEventi}"
+								data-speed="1000" data-fresh-interval="20">
+								<script type="text/javascript">
+									$('.number').countTo();
+								</script>
+								${listaSoloEventi}
+							</div>
+						</div>
+					</div>
+					<div class="info-box-3 bg-unibook hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">event</i>
+						</div>
+						<div class="content">
+							<div class="text">Lezioni</div>
+							<div class="number count-to" data-from="0" data-to="${listaSoloLezioni}"
+								data-speed="1000" data-fresh-interval="20">
+								<script type="text/javascript">
+									$('.number').countTo();
+								</script>
+								${listaSoloLezioni}
+							</div>
+						</div>
+					</div>
 			<c:if test="${currentUser.ruolo == 1}">
 			<div class="input-group col-sm-3">
 					<div class="switch">

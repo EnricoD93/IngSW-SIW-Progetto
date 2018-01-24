@@ -25,4 +25,5 @@ public interface LezioneDao {
 
 	public void eliminaLezioniDalCalendario(List<Evento> listaEventiCal, List<Evento> listaLezioni,
 			CalendarioPersonaleDao calendarioPersonaleDao, String matricola);
+	public List<Lezione> findLezioni();
 }

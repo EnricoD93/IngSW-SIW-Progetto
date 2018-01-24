@@ -9,6 +9,7 @@ public interface EventoDao {
 	public void save(Evento Evento);  // Create
 	public Evento findByPrimaryKey(String title);     // Retrieve
 	public List<Evento> findAll();       
+	public List<Evento>findEvent();
 	public void update(Evento evento); //Update
 	public void delete(Evento evento);
 }

@@ -69,7 +69,7 @@
 <script src="js/admin.js"></script>
 <script src="js/demo.js"></script>
 <script src="javascript/notificationManager.js"></script>
-
+<script src="plugins/jquery-countto/jquery.countTo.js"></script>
 </head>
 <body class="theme-red">
 	<!-- Page Loader -->
@@ -341,7 +341,7 @@
 							class="material-icons">library_books</i> <span>I miei
 								Corsi</span>
 					</a></li>
-					<li><a href="page?request=calendario"> <i
+					<li><a href="calendarManager?request=Eventi"> <i
 							class="material-icons">date_range</i> <span>Calendario
 								personale</span>
 					</a></li>

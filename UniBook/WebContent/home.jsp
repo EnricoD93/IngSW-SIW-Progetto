@@ -11,7 +11,7 @@
 	name="viewport">
 <title>Home | UniBook</title>
 </head>
-<script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">

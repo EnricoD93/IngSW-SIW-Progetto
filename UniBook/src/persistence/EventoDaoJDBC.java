@@ -4,14 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.course.Corso;
 import model.course.CorsoDiLaurea;
 import model.user.CalendarioPersonale;
 import model.user.Evento;
+import model.user.GiornoCalendario;
 import persistence.dao.EventoDao;
 
-public class EventoDaoJDBC implements EventoDao{
+public class EventoDaoJDBC implements EventoDao {
 	private DataSource dataSource;
 
 	public EventoDaoJDBC(DataSource dataSource) {
@@ -22,8 +25,8 @@ public class EventoDaoJDBC implements EventoDao{
 	public void save(Evento evento) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			if(evento.getId()==-1) 
-			evento.setId(IdBroker.getId(connection));
+			if (evento.getId() == -1)
+				evento.setId(IdBroker.getId(connection));
 			String insert = "insert into evento(id,title,inizio,fine,nota) values (?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, evento.getId());
@@ -31,7 +34,7 @@ public class EventoDaoJDBC implements EventoDao{
 			statement.setTimestamp(3, evento.getInizio());
 			statement.setTimestamp(4, evento.getFine());
 			statement.setString(5, evento.getNota());
-			
+
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -42,7 +45,7 @@ public class EventoDaoJDBC implements EventoDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -55,7 +58,7 @@ public class EventoDaoJDBC implements EventoDao{
 			statement.setString(1, title);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				evento= new Evento();
+				evento = new Evento();
 				evento.setTitle(result.getString("title"));
 			}
 		} catch (SQLException e) {
@@ -66,26 +69,84 @@ public class EventoDaoJDBC implements EventoDao{
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
-		}	
+		}
 		return evento;
 	}
 
 	@Override
 	public List<Evento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Evento> eventi = new ArrayList<>();
+		try {
+			Evento evento;
+			PreparedStatement statement;
+			String query = "select * from evento";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				evento = new Evento();
+				evento.setId(result.getInt("id"));
+				evento.setInizio(result.getTimestamp("inizio"));
+				evento.setFine(result.getTimestamp("fine"));
+				evento.setTitle(result.getString("title"));
+				evento.setNota(result.getString("nota"));
+				eventi.add(evento);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return eventi;
 	}
 
 	@Override
 	public void update(Evento evento) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(Evento evento) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public List<Evento> findEvent() {
+
+		Connection connection = this.dataSource.getConnection();
+		List<Evento> eventi = new ArrayList<>();
+		try {
+			Evento evento;
+			PreparedStatement statement;
+			String query = "select *\r\n" + "from evento e\r\n" + "where NOT EXISTS(select * \r\n"
+					+ "                from lezione\r\n" + "                where lezione.id=e.id)";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				evento = new Evento();
+				evento.setId(result.getInt("id"));
+				evento.setInizio(result.getTimestamp("inizio"));
+				evento.setFine(result.getTimestamp("fine"));
+				evento.setTitle(result.getString("title"));
+				evento.setNota(result.getString("nota"));
+				eventi.add(evento);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return eventi;
 	}
 
 }

@@ -18,24 +18,47 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.course.Aula;
+import model.course.Corso;
 import model.course.Lezione;
 import model.user.CalendarioPersonale;
 import model.user.Evento;
 import model.user.GiornoCalendario;
 import model.user.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.UtenteDao;
 
 public class CalendarManager extends HttpServlet {
 
 	String request;
 	String matricola;
 	List<Evento> listaEventi;
+	List<Evento> listaSoloEventi;
+	List<Lezione> listaSoloLezioni;
 	Utente currentUser;
-
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Utente currentUser = (Utente) req.getSession().getAttribute("currentUser");
+		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+		LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Corso> corsi= utenteDao.getCorsiDocente(currentUser.getMatricola());
+		AulaDao aula=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+		List<Aula> aule=aula.findAll();
+		req.setAttribute("corsi", corsi);
+		req.setAttribute("aule", aule);
+		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+		listaSoloEventi = eventoDao.findEvent();
+		listaSoloLezioni= lezioneDao.findLezioni();
+		System.out.println("listaSoloEventi"+ listaSoloEventi.size());
+		req.setAttribute("listaSoloEventi", listaSoloEventi.size());
+		req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
+		req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		JSONObject result = new JSONObject();
@@ -43,10 +66,18 @@ public class CalendarManager extends HttpServlet {
 		HttpSession session = req.getSession();
 		request = req.getParameter("request");
 		matricola = req.getParameter("matricola");
+		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 		if (request.equals("Eventi")) {
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
+
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
+			listaSoloEventi = eventoDao.findEvent();
+			LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+			listaSoloLezioni= lezioneDao.findLezioni();
+			req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
+			System.out.println("listaSoloEventi"+ listaSoloEventi.size());
+			req.setAttribute("listaSoloEventi", listaSoloEventi.size());
 			for (int i = 0; i < listaEventi.size(); i++) {
 				JSONObject evento = new JSONObject();
 				try {
@@ -86,7 +117,7 @@ public class CalendarManager extends HttpServlet {
 			Timestamp startT = null;
 			Timestamp endT = null;
 			String title = req.getParameter("title");
-			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
 			try {
