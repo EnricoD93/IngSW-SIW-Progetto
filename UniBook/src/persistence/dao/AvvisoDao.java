@@ -13,5 +13,5 @@ public interface AvvisoDao {
 	public List<Avviso> findAllByCourse(Long codice);
 	public void update(Avviso avviso); // Update
 
-	public void delete(Avviso avviso); // Delete
+	public void delete(Long id);
 }

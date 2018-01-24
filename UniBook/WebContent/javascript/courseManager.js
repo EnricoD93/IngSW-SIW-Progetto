@@ -325,7 +325,9 @@ function saveAdvice(){
 			swal(
 					"Avviso pubblicato",
 					"L'avviso è stato pubblicato con successo.",
-					"success");
+					"success").then(() => {
+						window.location.href="page?request=corso&id="+corso;
+					});
 		},
 		error : function(data) {
 		}
@@ -338,6 +340,60 @@ function saveAdvice(){
 	$('#preview').addClass("hidden");
 	$('#advicebutton').removeClass("hidden");
 	$('#saveadvicebutton').addClass("hidden");
+}
+
+function delAdvice(id){
+	var corso=$('#codice').val();
+	$
+	.ajax({
+		type : "GET",
+		url : "showcourse",
+		datatype : 'text',
+		data : {
+			id:id,
+			richiesta: "eliminaAvviso",
+			codice:corso
+		},
+		success : function(data) {
+			swal(
+					"Avviso eliminato",
+					"L'avviso è stato eliminato con successo.",
+					"success").then(() => {
+						window.location.href="page?request=corso&id="+corso;
+					});
+			
+		},
+		error : function(data) {
+		}
+
+	});
+}
+
+function modifyAdvice(id){
+	var corso=$('#codice').val();
+	$
+	.ajax({
+		type : "GET",
+		url : "showcourse",
+		datatype : 'text',
+		data : {
+			id:id,
+			richiesta: "eliminaAvviso",
+			codice:corso
+		},
+		success : function(data) {
+			swal(
+					"Avviso eliminato",
+					"L'avviso è stato eliminato con successo.",
+					"success").then(() => {
+						window.location.href="page?request=corso&id="+corso;
+					});
+			
+		},
+		error : function(data) {
+		}
+
+	});
 }
 
 

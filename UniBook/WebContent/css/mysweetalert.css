@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+.swal-overlay {
+  background-color: rgba(0, 0, 0, 0.60);
+}
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #c4161c;
+  font-size: 12px;
+}

@@ -128,7 +128,7 @@
 										<small>Pubblicato il ${avviso.datareale}</small>
 										<c:if test="${currentUser.matricola==currentCourse.docente }">
 											<div class="header-dropdown">
-												<a href=""> <i class="material-icons"
+												<a href="javascript:delAdvice(${avviso.id})"> <i class="material-icons"
 													title="Elimina Avviso">close</i></a>
 											</div>
 										</c:if>

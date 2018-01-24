@@ -62,9 +62,23 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 	}
 
 	@Override
-	public void delete(Avviso avviso) {
-		// TODO Auto-generated method stub
+	public void delete(Long id) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM avviso WHERE id = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1, id);
+			statement.executeUpdate();
 
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override

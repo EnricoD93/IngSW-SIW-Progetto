@@ -97,6 +97,10 @@ public class ShowCourse extends HttpServlet {
 			avvDao.save(avviso);
 			
 		}
+		if (richiesta.equals("eliminaAvviso")) {
+			Long id= Long.parseLong(req.getParameter("id"));
+			avvDao.delete(id);
+		}
 
 	}
 }

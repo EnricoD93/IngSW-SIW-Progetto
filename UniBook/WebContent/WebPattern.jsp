@@ -32,9 +32,8 @@
 <!-- Waves Effect Css -->
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
-<!-- Sweet Alert -->
-<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
-
+<!-- Sweet Alert Css-->
+<link href="css/mysweetalert.css" rel="stylesheet" />
 <!-- Animation Css -->
 <link href="plugins/animate-css/animate.css" rel="stylesheet" />
 
@@ -61,7 +60,7 @@
 
 <!-- Slimscroll Plugin Js -->
 <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- Waves Effect Plugin Js -->
 <script src="plugins/node-waves/waves.js"></script>
