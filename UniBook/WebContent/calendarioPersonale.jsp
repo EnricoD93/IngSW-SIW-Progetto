@@ -19,82 +19,88 @@
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
-		<input id="ruolo" class="hidden" value="${currentUser.ruolo}">
+			<input id="ruolo" class="hidden" value="${currentUser.ruolo}">
 			<div class="corsiTitle" align="center">Calendario Personale</div>
-	
-				<div class="info-box-3 bg-unibook hover-expand-effect">
-						<div class="icon">
-							<i class="material-icons">event</i>
-						</div>
-						<div class="content">
-							<div class="text">Eventi</div>
-							<div class="number count-to" data-from="0" data-to="${listaSoloEventi}"
-								data-speed="1000" data-fresh-interval="20">
-								<script type="text/javascript">
-									$('.number').countTo();
-								</script>
-								${listaSoloEventi}
-							</div>
-						</div>
-					</div>
-					<div class="info-box-3 bg-unibook hover-expand-effect">
-						<div class="icon">
-							<i class="material-icons">school</i>
-						</div>
-						<div class="content">
-							<div class="text">Lezioni</div>
-							<div class="number count-to" data-from="0" data-to="${listaSoloLezioni}"
-								data-speed="1000" data-fresh-interval="20">		
-								<script type="text/javascript">
-									$('.number').countTo();
-								</script>
-						${listaSoloLezioni}
-							</div>
-						</div>
-	
-					</div>
+			<div class="" id="counters">
 			<c:if test="${currentUser.ruolo == 1}">
-			<div class="input-group col-sm-3">
-					<div class="switch">
-						<span class="input-group-addon">Lezione </span> <label><input
-							class="switch" type="checkbox" name="lezione" id="lezione" onclick="lessonVerify()"
-							 ><span class="lever bg-unibook-switch"></span></label>
+					<div class="input-group col-sm-3" style="display:inline-block;">
+						<div class="switch">
+							<span class="input-group-addon">Lezione </span> <label><input
+								class="switch" type="checkbox" name="lezione" id="lezione"
+								onclick="lessonVerify()"><span
+								class="lever bg-unibook-switch"></span></label>
+						</div>
+
+						<div class="hidden" id="corsi">
+							<form id="form validation">
+								<span class="input-group-addon"> Corsi </span> <select
+									class="selectpicker" tabindex="-98" name="corso" id="corsoid"
+									required>
+									<c:forEach var="corso" items="${corsi}">
+
+										<option id="cor" value="${corso.codice}">${corso.nome}</option>
+
+									</c:forEach>
+								</select> <span class="input-group-addon"> Aula </span> <select
+									class="selectpicker" tabindex="-98" name="aula" id="aulaid"
+									required>
+									<c:forEach var="aula" items="${aule}">
+
+										<option id="aula" value="${aula.id}">${aula.id}</option>
+
+									</c:forEach>
+								</select>
+							</form>
+						</div>
+
+						<div class="switch">
+							<span class="input-group-addon">Evento </span> <label><input
+								class="switch" type="checkbox" checked="" name="evento"
+								onclick="eventVerify()" id="evento"><span
+								class="lever bg-unibook-switch"></span></label>
+						</div>
 					</div>
-
-					<div class="hidden" id="corsi">
-<form id="form validation">
-						<span class="input-group-addon"> Corsi </span> <select
-							class="selectpicker" tabindex="-98" name="corso" id="corsoid" 
-							required>
-							<c:forEach var="corso" items="${corsi}">
-
-								<option id="cor" value="${corso.codice}" >${corso.nome}</option>
-
-							</c:forEach>
-						</select>
-
-						<span class="input-group-addon"> Aula </span> <select
-							class="selectpicker" tabindex="-98" name="aula" id="aulaid"
-							required>
-							<c:forEach var="aula" items="${aule}">
-
-								<option id="aula" value="${aula.id}" >${aula.id}</option>
-
-							</c:forEach>
-						</select>
-</form>
+				</c:if>
+				<div class="info-box-3 myinfobox bg-unibook hover-expand-effect"
+					style="margin-right: 20px">
+					<div class="icon">
+						<i class="material-icons">event</i>
 					</div>
-
-					<div class="switch">
-						<span class="input-group-addon">Evento </span> <label><input
-							class="switch" type="checkbox" checked="" name="evento"onclick="eventVerify()"
-							id="evento"><span class="lever bg-unibook-switch"></span></label>
+					<div class="content">
+						<div class="text">Eventi</div>
+						<div class="number count-to" data-from="0"
+							data-to="${listaSoloEventi}" data-speed="1000"
+							data-fresh-interval="20">
+							<script type="text/javascript">
+								$('.number').countTo();
+							</script>
+							${listaSoloEventi}
+						</div>
 					</div>
 				</div>
-			</c:if>
+				<div class="info-box-3 myinfobox bg-unibook hover-expand-effect">
+					<div class="icon">
+						<i class="material-icons">school</i>
+					</div>
+					<div class="content">
+						<div class="text">Lezioni</div>
+						<div class="number count-to" data-from="0"
+							data-to="${listaSoloLezioni}" data-speed="1000"
+							data-fresh-interval="20">
+							<script type="text/javascript">
+								$('.number').countTo();
+							</script>
+							${listaSoloLezioni}
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+
 			<div id='wrap'>
 
-				<div id='calendar' ></div>
+				<div id='calendar'></div>
 				<input type="hidden" id="currentUser"
 					value="${currentUser.matricola}" />
 				<div style='clear: both'></div>

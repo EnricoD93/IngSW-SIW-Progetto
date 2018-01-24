@@ -70,6 +70,7 @@
 <script src="js/demo.js"></script>
 <script src="javascript/notificationManager.js"></script>
 <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+<script src="plugins/ckeditor/ckeditor.js"></script>
 </head>
 <body class="theme-red">
 	<!-- Page Loader -->
