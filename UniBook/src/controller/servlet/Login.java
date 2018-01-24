@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import model.course.Corso;
 import model.user.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.UtenteDao;
 
@@ -31,6 +32,13 @@ public class Login extends HttpServlet {
 			List<Corso> corsi = utenteDao.getCorsi(currentUser.getMatricola());
 			session.setAttribute("currentUser", currentUser);
 			session.setAttribute("corsi", corsi);
+			int size;
+			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+					.getCalendarioPersonaleDAO();
+
+			size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
+			req.setAttribute("size", size);
+			System.out.println(size);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
 		} else
 			req.getRequestDispatcher("index.html").forward(req, resp);
@@ -55,6 +63,13 @@ public class Login extends HttpServlet {
 						corsi = utenteDao.getCorsi(currentUser.getMatricola());
 						session.setAttribute("currentUser", currentUser);
 						session.setAttribute("corsi", corsi);
+						int size;
+						CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+								.getCalendarioPersonaleDAO();
+
+						size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
+						req.setAttribute("size", size);
+						System.out.println(size);
 						dispacher = req.getRequestDispatcher("home.jsp");
 						dispacher.forward(req, resp);
 

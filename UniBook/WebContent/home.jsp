@@ -11,26 +11,40 @@
 	name="viewport">
 <title>Home | UniBook</title>
 </head>
+<script src="plugins/jquery-countto/jquery.countTo.js"></script>
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
 			<div class="block-header">
 				<h2>
 					<div class="corsiTitle">Benvenuto ${currentUser.nome}&nbsp;!</div>
-
+					<div class="info-box-3 bg-unibook hover-expand-effect">
+						<div class="icon">
+							<i class="material-icons">event</i>
+						</div>
+						<div class="content">
+							<div class="text">Eventi del Giorno</div>
+							<div class="number count-to" data-from="0" data-to="${size}"
+								data-speed="1000" data-fresh-interval="20">
+								<script type="text/javascript">
+									$('.number').countTo();
+								</script>
+								${size}
+							</div>
+						</div>
+					</div>
 					</br>
 					<div class="body table-responsive">
 						<div align="center" class="corsiTitle">Corsi disponibili</div>
-						
-					
-					<div align="center">		
-					Di seguito l'elenco dei corsi del tuo corso di
-									laurea, clicca sul nome del corso per consultare la scheda del
-									corso ed iscriverti ad esso.</br> Potrai ricevere in tempo reale
-									ogni avviso.
-					</div>
-					
-						
+
+
+						<div align="center">
+							Di seguito l'elenco dei corsi del tuo corso di laurea, clicca sul
+							nome del corso per consultare la scheda del corso ed iscriverti
+							ad esso.</br> Potrai ricevere in tempo reale ogni avviso.
+						</div>
+
+
 						<table class="table table-striped">
 							<thead>
 								<tr>
