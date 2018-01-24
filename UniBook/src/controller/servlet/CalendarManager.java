@@ -87,7 +87,9 @@ public class CalendarManager extends HttpServlet {
 			Timestamp startT = null;
 			Timestamp endT = null;
 			String title = req.getParameter("title");
-
+			EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+					.getCalendarioPersonaleDAO();
 			try {
 				startT = parseDate(start);
 				endT = parseDate(end);
@@ -95,8 +97,7 @@ public class CalendarManager extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			
+
 			if (lezione) {
 				System.out.println(req.getParameter("corso"));
 				Long corso = Long.parseLong(req.getParameter("corso"));
@@ -114,20 +115,22 @@ public class CalendarManager extends HttpServlet {
 				CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
 				System.out.println("gli studenti iscritti sono :");
-				
-				Evento e = new Evento(l.getId(),title, startT, endT, "nessuna");
-				EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+
+				Evento e = new Evento(l.getId(), title, startT, endT, "nessuna");
 				System.out.println("salvo il nuovo evento " + title);
 				eventoDao.save(e);
-				CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-						.getCalendarioPersonaleDAO();
+
 				calendarioPersonaleDao.saveEvent(matricola, e);
-				
+
 				for (int i = 0; i < studentiIscritti.size(); i++) {
 					System.out.println(studentiIscritti.get(i).getNome());
 					calendarioPersonaleDao.saveEvent(studentiIscritti.get(i).getMatricola(), e);
 				}
 
+			} else {
+				Evento e = new Evento(title, startT, endT, "nessuna");
+				eventoDao.save(e);
+				calendarioPersonaleDao.saveEvent(matricola, e);
 			}
 
 		}
