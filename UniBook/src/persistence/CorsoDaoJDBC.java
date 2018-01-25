@@ -214,7 +214,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 		try {
 			Utente utente;
 			PreparedStatement statement;
-			String query = "select * from utente,iscritto where iscritto.codice = ? AND iscritto.matricola=utente.matricola";
+			String query = "select * from utente,iscritto where iscritto.codice = ? AND iscritto.matricola=utente.matricola ORDER BY utente.cognome";
 			statement = connection.prepareStatement(query);
 			statement.setLong(1, codice);
 			ResultSet result = statement.executeQuery();
