@@ -72,6 +72,7 @@ public class CalendarManager extends HttpServlet {
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 				.getCalendarioPersonaleDAO();
+		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 	
 		if (request.equals("Eventi")) {
 
@@ -139,7 +140,7 @@ public class CalendarManager extends HttpServlet {
 				Lezione l = new Lezione(corso, g, startT, endT, aula, 0);
 				lezioneDao.save(l);
 				// salvo la lezione nel calendario degli studenti
-				CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+			
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
 
 				Evento e = new Evento(l.getId(), title, startT, endT, "nessuna");
@@ -163,7 +164,17 @@ public class CalendarManager extends HttpServlet {
 			Long id = Long.parseLong(req.getParameter("id"));
 		Lezione l=lezioneDao.findByPrimaryKey(id);
 			if(l!=null) {
-				
+				Long corso= l.getCorso();
+				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
+				for (int i = 0; i < studentiIscritti.size(); i++) {
+					System.out.println(studentiIscritti.get(i).getNome());
+					Evento e= eventoDao.findByPrimaryKey(l.getId());
+					calendarioPersonaleDao.deleteEvent(studentiIscritti.get(i).getMatricola(), e);
+					calendarioPersonaleDao.deleteEvent(matricola, e);
+					eventoDao.delete(e);
+					lezioneDao.delete(l);
+				}
+
 			}else {
 				Evento e=eventoDao.findByPrimaryKey(id);
 				calendarioPersonaleDao.deleteEvent(currentUser.getMatricola(), e);
