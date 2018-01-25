@@ -115,12 +115,13 @@ function init() {
 														{
 															title : "Crea un Evento!",
 															text : "Scrivi il nome dell'evento:",
-															type : "input",
-															showCancelButton : true,
-															closeOnConfirm : false,
-															inputPlaceholder : "Nome Evento"
-														},
-														function(inputValue) {
+															content: {
+															    element: "input",
+															    attributes: {
+															      placeholder: "Nome Evento",
+															      type: "text",
+															    }}
+														}).then((inputValue)=>{
 															if (inputValue) {
 																if (inputValue === false)
 																	return false;
