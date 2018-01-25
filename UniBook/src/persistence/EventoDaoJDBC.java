@@ -53,7 +53,7 @@ public class EventoDaoJDBC implements EventoDao {
 		Connection connection = this.dataSource.getConnection();
 		Evento evento = null;
 		try {
-			String query = "select * from evento where title = ?";
+			String query = "select * from evento where id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setLong(1, id);
 			ResultSet result = statement.executeQuery();
