@@ -5353,7 +5353,7 @@ function DayEventRenderer() {
 				skinCss +
 				"'" +
 			"> " +
-			"<div class='fc-event-inner'><input class=\"hidden\" id=\"idevento"+id+"\" value=\"" + id + "\"><a href=\"javascript:rimuoviEvento("+id+")\" class=\" waves-effect waves-block\"><i class=\"material-icons\">close</i></a>";
+			"<div class='fc-event-inner'><input class=\"hidden\" id=\"idevento"+id+"\" value=\"" + id + "\"><a style=\"margin-left:80%; color: #5c0003bf;\" href=\"javascript:rimuoviEvento("+id+")\" class=\" waves-effect waves-block\"><i class=\"material-icons\">close</i></a>";
 		if (!event.allDay && segment.isStart) {
 			html +=
 				"<span class='fc-event-time'>" +

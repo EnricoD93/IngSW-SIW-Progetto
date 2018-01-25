@@ -77,7 +77,7 @@ public class ChangePage extends HttpServlet {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-			AvvisoDao avvDao=DatabaseManager.getInstance().getDaoFactory().getAvvisoDAO();
+			AvvisoDao avvDao = DatabaseManager.getInstance().getDaoFactory().getAvvisoDAO();
 			if (request != null) {
 
 				switch (request) {
@@ -89,9 +89,9 @@ public class ChangePage extends HttpServlet {
 					break;
 
 				case "calendario":
-					corsi= utenteDao.getCorsiDocente(currentUser.getMatricola());
-					AulaDao aula=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-					List<Aula> aule=aula.findAll();
+					corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
+					AulaDao aula = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+					List<Aula> aule = aula.findAll();
 					req.setAttribute("corsi", corsi);
 					req.setAttribute("aule", aule);
 					req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
@@ -118,7 +118,7 @@ public class ChangePage extends HttpServlet {
 					Long codice = Long.parseLong(req.getParameter("id"));
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
-					avvisi=avvDao.findAllByCourse(codice);
+					avvisi = avvDao.findAllByCourse(codice);
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("advices", avvisi);
@@ -174,7 +174,8 @@ public class ChangePage extends HttpServlet {
 					System.out.println(conversazioni);
 					Map<String, Integer> letti = new HashMap<String, Integer>();
 					for (Utente utente2 : conversazioni) {
-						letti.put(utente2.getMatricola(), utenteDao.findUnreadMessages(utente2.getMatricola(),currentUser.getMatricola()));
+						letti.put(utente2.getMatricola(),
+								utenteDao.findUnreadMessages(utente2.getMatricola(), currentUser.getMatricola()));
 					}
 					req.setAttribute("conversazioni", conversazioni);
 					req.setAttribute("letti", letti);
@@ -200,6 +201,17 @@ public class ChangePage extends HttpServlet {
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
 					List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
+					int media=0;
+					int votoPartenza=0;
+					if(esami.size()>0) {
+					for (int i = 0; i < esami.size(); i++) {
+					media+=esami.get(i).getVoto();
+					}
+					media/=esami.size();
+					votoPartenza=(media*11)/3;
+					}
+					req.setAttribute("media", media);
+					req.setAttribute("votoPartenza", votoPartenza);
 					req.setAttribute("esami", esami);
 					req.setAttribute("esamiIscritto", esamiIscritto);
 					req.setAttribute("esamiNonSuperati", esamiNonSuperati);

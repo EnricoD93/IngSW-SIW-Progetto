@@ -52,7 +52,7 @@ public class EsameDaoJDBC implements EsameDao {
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				esame = new Esame();
-				esame.setCorso(result.getLong("codice"));
+				esame.setCorso(result.getLong("corso"));
 				esame.setNome(result.getString("nome"));
 				esame.setCfu(result.getInt("cfu"));
 			}

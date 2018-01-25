@@ -84,7 +84,14 @@
     <servlet-name>ForgotPasswordServlet</servlet-name>
     <url-pattern>/forgotpassword</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <servlet-name>ExamsManagerServlet</servlet-name>
+    <servlet-class>controller.servlet.ExamsManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExamsManagerServlet</servlet-name>
+    <url-pattern>/examsManager</url-pattern>
+  </servlet-mapping>
   
    <servlet>
     <servlet-name>CreateCourseServlet</servlet-name>

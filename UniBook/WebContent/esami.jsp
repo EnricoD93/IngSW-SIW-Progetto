@@ -5,12 +5,19 @@
 
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="javascript/examsManager.js"></script>
 <section id="centralSection" class="content">
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
 				<div class="body">
 					<div class="corsiTitle" align="center">Esami</div>
+					<div>
+						<strong> Media: ${media}/30 &nbsp;</strong>
+					</div>
+					<div style="margin-top:5px;">
+						<strong> Voto di Partenza: ${votoPartenza}/110</strong>
+					</div>
 
 					<table class="table table-striped">
 						<thead>
@@ -35,7 +42,7 @@
 									<td><img src="images/superato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:removeExam(${esame.corso});">
 											<i class="material-icons">clear</i>
 
 										</button></td>
@@ -78,8 +85,7 @@
 						</tbody>
 					</table>
 					<div style="margin-bottom: 10px;">
-						<img src="images/superato.png"  style="margin-bottom: 5px;"  />
-						<b>Superato</b>
+						<img src="images/superato.png" style="margin-bottom: 5px;" /> <b>Superato</b>
 					</div>
 
 					<div style="margin-bottom: 10px;">
