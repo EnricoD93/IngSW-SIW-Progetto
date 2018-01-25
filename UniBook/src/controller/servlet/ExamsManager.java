@@ -27,6 +27,9 @@ public class ExamsManager extends HttpServlet {
 			utenteDao.deleteExam(currentUser.getMatricola(),e);
 			System.out.println("eliminato");
 		}
+		else if(request.equals("aggiungiEsame")) {
+		
+		}
 
 	}
 }
