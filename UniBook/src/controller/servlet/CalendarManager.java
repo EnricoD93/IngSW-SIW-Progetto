@@ -66,17 +66,19 @@ public class CalendarManager extends HttpServlet {
 		HttpSession session = req.getSession();
 		request = req.getParameter("request");
 		matricola = req.getParameter("matricola");
+		
+		//DAO
 		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+				.getCalendarioPersonaleDAO();
+	
 		if (request.equals("Eventi")) {
-			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-					.getCalendarioPersonaleDAO();
 
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
 			listaSoloEventi = eventoDao.findEvent();
-			LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 			listaSoloLezioni= lezioneDao.findLezioni();
 			req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
-			System.out.println("listaSoloEventi"+ listaSoloEventi.size());
 			req.setAttribute("listaSoloEventi", listaSoloEventi.size());
 			for (int i = 0; i < listaEventi.size(); i++) {
 				JSONObject evento = new JSONObject();
@@ -118,8 +120,6 @@ public class CalendarManager extends HttpServlet {
 			Timestamp endT = null;
 			String title = req.getParameter("title");
 
-			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-					.getCalendarioPersonaleDAO();
 			try {
 				startT = parseDate(start);
 				endT = parseDate(end);
@@ -134,9 +134,6 @@ public class CalendarManager extends HttpServlet {
 				String aula = req.getParameter("aula");
 
 				Date data = new Date(startT.getTime());
-				System.out.println("la data" + data.toString());
-				System.out.println("devo creare lezione");
-				LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 				GiornoCalendario g = new GiornoCalendario();
 				g.parseToGiornoCalendario(data);
 				Lezione l = new Lezione(corso, g, startT, endT, aula, 0);
@@ -144,10 +141,8 @@ public class CalendarManager extends HttpServlet {
 				// salvo la lezione nel calendario degli studenti
 				CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
-				System.out.println("gli studenti iscritti sono :");
 
 				Evento e = new Evento(l.getId(), title, startT, endT, "nessuna");
-				System.out.println("salvo il nuovo evento " + title);
 				eventoDao.save(e);
 
 				calendarioPersonaleDao.saveEvent(matricola, e);
@@ -164,6 +159,24 @@ public class CalendarManager extends HttpServlet {
 			}
 
 		}
+		if (request.equals("rimuoviEvento")) {
+			Long id = Long.parseLong(req.getParameter("id"));
+		Lezione l=lezioneDao.findByPrimaryKey(id);
+			if(l!=null) {
+				
+			}else {
+				Evento e=eventoDao.findByPrimaryKey(id);
+				calendarioPersonaleDao.deleteEvent(currentUser.getMatricola(), e);
+				System.out.println("dovrei aver eliminato "+ e.getId()+" dal calendario di "+currentUser.getMatricola());
+				eventoDao.delete(e);
+			}
+			
+			
+			
+			
+		
+		}
+		
 	}
 
 	private Timestamp parseDate(String str_date) throws ParseException {
