@@ -30,13 +30,12 @@ public class Login extends HttpServlet {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Utente currentUser = (Utente) session.getAttribute("currentUser");
 			List<Corso> corsi = utenteDao.getCorsi(currentUser.getMatricola());
-			session.setAttribute("currentUser", currentUser);
-			session.setAttribute("corsi", corsi);
-			int size;
+			req.setAttribute("corsi", corsi);
+
 			CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 					.getCalendarioPersonaleDAO();
 
-			size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
+			int size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
 			req.setAttribute("size", size);
 			System.out.println(size);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
@@ -51,46 +50,21 @@ public class Login extends HttpServlet {
 		List<Corso> corsi;
 
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		if (session.getAttribute("currentUser") == null) {
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 			Utente currentUser = utenteDao.findByPrimaryKey(username);
-			try {
-				if (currentUser != null) {
-					if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
-						currentUser = utenteDao.findByPrimaryKey(username);
-						corsi = utenteDao.getCorsi(currentUser.getMatricola());
-						session.setAttribute("currentUser", currentUser);
-						session.setAttribute("corsi", corsi);
-						int size;
-						CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
-								.getCalendarioPersonaleDAO();
 
-						size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
-						req.setAttribute("size", size);
-						System.out.println(size);
-						dispacher = req.getRequestDispatcher("home.jsp");
-						dispacher.forward(req, resp);
-
-					} else {
-						
-						dispacher = req.getRequestDispatcher("index.html");
-						dispacher.forward(req, resp);
-					}
+			if (currentUser != null) {
+				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
+					corsi = utenteDao.getCorsi(currentUser.getMatricola());
+					session.setAttribute("currentUser", currentUser);
 				} else {
-					// Utente non esiste
-					dispacher = req.getRequestDispatcher("index.html");
-					dispacher.forward(req, resp);
+					resp.setStatus(405);
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				dispacher = req.getRequestDispatcher("index.html");
-				dispacher.forward(req, resp);
+			} else {
+				resp.setStatus(405);
 			}
-		} else {
-			dispacher = req.getRequestDispatcher("home.jsp");
-			dispacher.forward(req, resp);
 		}
 
 	}

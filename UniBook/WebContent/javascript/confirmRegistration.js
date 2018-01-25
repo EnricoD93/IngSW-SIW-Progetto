@@ -27,7 +27,7 @@ function confirmButtonOk() {
 	});
 }
 
-function sendForgotPassword(){
+function sendForgotPassword() {
 	$.ajax({
 		type : "POST",
 		url : "sendEmail",
@@ -48,5 +48,29 @@ function sendForgotPassword(){
 		}
 
 	});
-	
+
+}
+
+function checkLogin() {
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	$.ajax({
+		type : "POST",
+		url : "home",
+		datatype : 'text',
+		data : {
+			username : username,
+			password : password
+		},
+		success : function(data) {
+			console.log("success");
+			window.location.href="home";
+		},
+		error : function(data) {
+
+			swal("", "Matricola o password errata", "error");
+
+		}
+
+	});
 }
