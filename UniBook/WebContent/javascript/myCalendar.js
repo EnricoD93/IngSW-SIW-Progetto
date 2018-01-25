@@ -89,25 +89,28 @@ function init() {
 											selectHelper : true,
 											select : function(start, end,
 													allDay) {
-										if($('#ruolo').val()==1){
-												if (document
-														.getElementById('lezione').checked == 1
-														&& $('#corsoid').val()== "") {
-													swal(
-																	"Non hai selezionato il corso",
-																	"Seleziona un corso per poter salvare la lezione",
-																	"info");
-													return;
-												}	if (document
-														.getElementById('lezione').checked == 1
-														&& $('#aulaid').val() == "") {
-													swal(
-																	"Non hai selezionato l'aula",
-																	"Seleziona un'aula per poter salvare la lezione",
-																	"info");
-													return;
+												if ($('#ruolo').val() == 1) {
+													if (document
+															.getElementById('lezione').checked == 1
+															&& $('#corsoid')
+																	.val() == "") {
+														swal(
+																"Non hai selezionato il corso",
+																"Seleziona un corso per poter salvare la lezione",
+																"info");
+														return;
+													}
+													if (document
+															.getElementById('lezione').checked == 1
+															&& $('#aulaid')
+																	.val() == "") {
+														swal(
+																"Non hai selezionato l'aula",
+																"Seleziona un'aula per poter salvare la lezione",
+																"info");
+														return;
+													}
 												}
-										}
 												swal(
 														{
 															title : "Crea un Evento!",
@@ -126,55 +129,58 @@ function init() {
 																			.showInputError("Scrivi qualcosa per memorizzare il tuo Evento!");
 																	return false
 																}
-																if($('#ruolo').val()==1){
-																$
-																		.ajax({
-																			type : "POST",
-																			url : "calendarManager",
-																			async : false,
-																			datatype : 'text',
-																			data : {
-																				matricola : $(
-																						'#currentUser')
-																						.val(),
-																				title : inputValue,
-																				request : "creaEvento",
-																				start : start
-																						.getTime(),
-																				end : end
-																						.getTime(),
-																				lezione : document
-																						.getElementById('lezione').checked,
-																				evento : document
-																						.getElementById('evento').checked,
-																				corso : $(
-																						'#corsoid')
-																						.val(),
-																			    aula : $('#aulaid').val()
-																			}
-																		});
-																}
-																else{
-																$
-																.ajax({
-																	type : "POST",
-																	url : "calendarManager",
-																	async : false,
-																	datatype : 'text',
-																	data : {
-																		matricola : $(
-																				'#currentUser')
-																				.val(),
-																		title : inputValue,
-																		request : "creaEvento",
-																		start : start
-																				.getTime(),
-																		end : end
-																				.getTime(),
-																		lezione : false,
-																		evento :false,
-																	}
-																});
+																if ($('#ruolo')
+																		.val() == 1) {
+																	$
+																			.ajax({
+																				type : "POST",
+																				url : "calendarManager",
+																				async : false,
+																				datatype : 'text',
+																				data : {
+																					matricola : $(
+																							'#currentUser')
+																							.val(),
+																					title : inputValue,
+																					request : "creaEvento",
+																					start : start
+																							.getTime(),
+																					end : end
+																							.getTime(),
+																					lezione : document
+																							.getElementById('lezione').checked,
+																					evento : document
+																							.getElementById('evento').checked,
+																					corso : $(
+																							'#corsoid')
+																							.val(),
+																					aula : $(
+																							'#aulaid')
+																							.val()
+																				}
+																			});
+																} else {
+																	$
+																			.ajax({
+																				type : "POST",
+																				url : "calendarManager",
+																				async : false,
+																				datatype : 'text',
+																				data : {
+																					matricola : $(
+																							'#currentUser')
+																							.val(),
+																					title : inputValue,
+																					request : "creaEvento",
+																					start : start
+																							.getTime(),
+																					end : end
+																							.getTime(),
+																					lezione : false,
+																					evento : false
+																					
+																				}
+																			});
 																}
 																swal(
 																		"Ben Fatto!",
@@ -188,7 +194,8 @@ function init() {
 																					title : inputValue,
 																					start : start,
 																					end : end,
-																					allDay : allDay
+																					allDay : allDay,
+																					id: id
 																				},
 																				true // make
 																		// the
@@ -331,7 +338,8 @@ function getEvent() {
 					end : new Date(data.result[i].annoFi,
 							data.result[i].meseFi, data.result[i].giornoFi),
 					className : 'success',
-					url : 'http://google.com/'
+					id : 1
+
 				};
 				events.push(event);
 
@@ -343,7 +351,7 @@ function getEvent() {
 	return events;
 }
 function lessonVerify() {
-	console.log("sono in verify ")
+	console.log("sono in verify ");
 	var evento = document.getElementById('evento').checked;
 	var lezione = document.getElementById('lezione').checked;
 	console.log(evento);
@@ -356,7 +364,7 @@ function lessonVerify() {
 	}
 };
 function eventVerify() {
-	console.log("sono in verify ")
+	console.log("sono in verify ");
 	var evento = document.getElementById('evento').checked;
 	var lezione = document.getElementById('lezione').checked;
 	console.log(evento);
@@ -365,5 +373,22 @@ function eventVerify() {
 		$('#lezione').prop('checked', false);
 		$('#corsi').addClass("hidden");
 	}
+};
+function rimuoviEvento(id) {
+	$.ajax({
+		type : "POST",
+		url : "calendarManager",
+		async : false,
+		datatype : 'text',
+		data : {
+			matricola : $('#currentUser').val(),
+			request : "rimuoviEvento",
+			id : id
+		},
+		success : function(data) {
+			swal("Evento Rimosso", "Evento eliminato correttamente dal calendario", "success");
+		}
+		
+	});
 };
 

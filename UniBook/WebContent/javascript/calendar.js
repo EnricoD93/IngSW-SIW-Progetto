@@ -60,6 +60,7 @@ var defaults = {
 	// locale
 	isRTL: false,
 	firstDay: 0,
+	id:0,
 	monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
 	monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'],
 	dayNames: ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],
@@ -5311,6 +5312,7 @@ function DayEventRenderer() {
 		var isRTL = opt('isRTL');
 		var event = segment.event;
 		var url = event.url;
+		var id= event.id;
 
 		// generate the list of CSS classNames
 		var classNames = [ 'fc-event', 'fc-event-hori' ];
@@ -5340,6 +5342,7 @@ function DayEventRenderer() {
 		}else{
 			html += "<div";
 		}
+		console.log("iddddddddddd"+id);
 		html +=
 			" class='" + classNames.join(' ') + "'" +
 			" style=" +
@@ -5348,8 +5351,8 @@ function DayEventRenderer() {
 				"left:" + segment.left + "px;" +
 				skinCss +
 				"'" +
-			">" +
-			"<div class='fc-event-inner'>";
+			"> " +
+			"<div class='fc-event-inner'><input class=\"hidden\" id=\"idevento\" value=\"" + id + "\"><a href=\"javascript:rimuoviEvento($('#idevento').val())\" class=\" waves-effect waves-block\"><i class=\"material-icons\">close</i></a>";
 		if (!event.allDay && segment.isStart) {
 			html +=
 				"<span class='fc-event-time'>" +

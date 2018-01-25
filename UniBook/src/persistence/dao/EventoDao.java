@@ -7,7 +7,7 @@ import model.user.Evento;
 
 public interface EventoDao {
 	public void save(Evento Evento);  // Create
-	public Evento findByPrimaryKey(String title);     // Retrieve
+	public Evento findByPrimaryKey(Long id);     // Retrieve
 	public List<Evento> findAll();       
 	public List<Evento>findEvent();
 	public void update(Evento evento); //Update

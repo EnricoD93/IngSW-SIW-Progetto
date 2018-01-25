@@ -49,17 +49,17 @@ public class EventoDaoJDBC implements EventoDao {
 	}
 
 	@Override
-	public Evento findByPrimaryKey(String title) {
+	public Evento findByPrimaryKey(Long id) {
 		Connection connection = this.dataSource.getConnection();
 		Evento evento = null;
 		try {
 			String query = "select * from evento where title = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, title);
+			statement.setLong(1, id);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				evento = new Evento();
-				evento.setTitle(result.getString("title"));
+				evento.setId(result.getLong("id"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
