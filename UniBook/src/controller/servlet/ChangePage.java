@@ -99,7 +99,7 @@ public class ChangePage extends HttpServlet {
 
 				case "corsi":
 					if (currentUser.getRuolo() == 0) {
-						List<Integer> percentuali;
+						Map<Long, Integer> percentuali = new HashMap<Long, Integer>();
 						corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
 						DescrizioneCorsoDao descrizioneCorsoDao = DatabaseManager.getInstance().getDaoFactory()
 								.getDescrizioneCorsoDao();
@@ -110,9 +110,9 @@ public class ChangePage extends HttpServlet {
 						
 						int presenze=utenteDao.findPresenze(currentUser.getMatricola(), codice);
 						int percentuale=(presenze*100)/ore;
-						System.out.println("la percentuale è "+ percentuale + " di "+ ore);
-						req.setAttribute("percentuale", percentuale);
+					percentuali.put(corsi.get(i).getCodice(), percentuale);
 						}
+						req.setAttribute("percentuali", percentuali);
 
 					} else if (currentUser.getRuolo() == 1) {
 						corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
