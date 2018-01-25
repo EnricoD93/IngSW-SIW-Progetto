@@ -22,11 +22,13 @@ $(document).ready(function(){
 function iscriviStudente(codice, matricola) {
 	swal({
 		title : "Inserisci la tua password per iscriverti",
-		type : "input",
-		inputType : "password",
-		showCancelButton : true,
-		closeOnConfirm : false
-	}, function(typedPassword) {
+		content: {
+		    element: "input",
+		    attributes: {
+		      placeholder: "Password",
+		      type: "password",
+		    }}
+	}).then((typedPassword) => {
 		$.ajax({
 			type : "GET",
 			url : "iscrivistudente",
@@ -66,11 +68,13 @@ function iscriviStudenteM(codice) {
 	console.log(codice);
 	swal({
 		title : "Inserisci la matricola dello studente da iscrivere",
-		type : "input",
-		inputType : "number",
-		showCancelButton : true,
-		closeOnConfirm : false
-	}, function(matricola) {
+		content: {
+		    element: "input",
+		    attributes: {
+		      placeholder: "Matricola",
+		      type: "number",
+		    }}
+	}).then((matricola)=> {
 		$.ajax({
 			type : "GET",
 			url : "iscrivistudente",
@@ -126,12 +130,13 @@ function confermaElimina(matricola, codice) {
 	swal(
 			{
 				title : "Inserisci la tua password per confermare la cancellazione dell'iscrizione",
-				type : "input",
-				inputType : "password",
-				showCancelButton : true,
-				closeOnConfirm : false
-			},
-			function(typedPassword) {
+				content: {
+				    element: "input",
+				    attributes: {
+				      placeholder: "Password",
+				      type: "password",
+				    }}
+			}).then((typedPassword) =>  {
 				$
 						.ajax({
 							type : "GET",
@@ -165,12 +170,13 @@ function confermaEliminaM(matricola, codice) {
 	swal(
 			{
 				title : "Inserisci la tua password per confermare la cancellazione dell'iscrizione",
-				type : "input",
-				inputType : "password",
-				showCancelButton : true,
-				closeOnConfirm : false
-			},
-			function(typedPassword) {
+				content: {
+				    element: "input",
+				    attributes: {
+				      placeholder: "Password",
+				      type: "password",
+				    }}
+			}).then((typedPassword) =>   {
 				$
 						.ajax({
 							type : "GET",
@@ -207,12 +213,13 @@ function confermaEliminaCorso(matricola, codice) {
 	swal(
 			{
 				title : "Inserisci la tua password per confermare l'eliminazione del Corso",
-				type : "input",
-				inputType : "password",
-				showCancelButton : true,
-				closeOnConfirm : false
-			},
-			function(typedPassword) {
+				content: {
+				    element: "input",
+				    attributes: {
+				      placeholder: "Password",
+				      type: "password",
+				    }}
+			}).then((typedPassword) =>  {
 				$
 						.ajax({
 							type : "POST",

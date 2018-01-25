@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script src="plugins/ckeditor/ckeditor.js"></script>
+<script src="javascript/courseManager.js" type="text/javascript"></script>
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <body>

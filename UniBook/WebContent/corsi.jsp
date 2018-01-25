@@ -5,6 +5,9 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+<script src="javascript/courseManager.js" type="text/javascript"></script>
+</head>
 <section id="centralSection" class="content">
 	<div class="container-fluid">
 		<div class="block-header">

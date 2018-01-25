@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html>
-<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<script src="javascript/courseManager.js" type="text/javascript"></script>
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
