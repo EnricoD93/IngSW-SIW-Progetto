@@ -138,6 +138,7 @@ public class CreateCourse extends HttpServlet {
 				GiornoCalendario fine = new GiornoCalendario();
 				inizio.parseToGiornoCalendario(g.parseToDate(dataInizio));
 				fine.parseToGiornoCalendario(g.parseToDate(dataFine));
+				fine.setGiorno(fine.getGiorno()+1);
 
 				// calcolo delle lezioni specifiche che il corso prevede
 				if (lunedì != null) {
