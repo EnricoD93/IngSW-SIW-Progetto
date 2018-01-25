@@ -7,11 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.course.Corso;
-import model.course.CorsoDiLaurea;
-import model.user.CalendarioPersonale;
 import model.user.Evento;
-import model.user.GiornoCalendario;
 import persistence.dao.EventoDao;
 
 public class EventoDaoJDBC implements EventoDao {
@@ -112,8 +108,21 @@ public class EventoDaoJDBC implements EventoDao {
 
 	@Override
 	public void delete(Evento evento) {
-		// TODO Auto-generated method stub
-
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String delete = "delete FROM evento WHERE id = ? ";
+			PreparedStatement statement = connection.prepareStatement(delete);
+			statement.setLong(1,evento.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override

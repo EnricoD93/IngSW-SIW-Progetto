@@ -1139,6 +1139,7 @@ function EventManager(options, _sources) {
 				}
 				e.title = event.title;
 				e.url = event.url;
+				e.id=event.id;
 				e.allDay = event.allDay;
 				e.className = event.className;
 				e.editable = event.editable;
@@ -5352,7 +5353,7 @@ function DayEventRenderer() {
 				skinCss +
 				"'" +
 			"> " +
-			"<div class='fc-event-inner'><input class=\"hidden\" id=\"idevento\" value=\"" + id + "\"><a href=\"javascript:rimuoviEvento($('#idevento').val())\" class=\" waves-effect waves-block\"><i class=\"material-icons\">close</i></a>";
+			"<div class='fc-event-inner'><input class=\"hidden\" id=\"idevento"+id+"\" value=\"" + id + "\"><a href=\"javascript:rimuoviEvento("+id+")\" class=\" waves-effect waves-block\"><i class=\"material-icons\">close</i></a>";
 		if (!event.allDay && segment.isStart) {
 			html +=
 				"<span class='fc-event-time'>" +

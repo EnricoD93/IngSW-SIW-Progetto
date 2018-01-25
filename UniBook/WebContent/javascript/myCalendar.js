@@ -158,8 +158,10 @@ function init() {
 																					aula : $(
 																							'#aulaid')
 																							.val()
+																				},success: function(data){
+																					id: data.id
 																				}
-																			});
+																			})
 																} else {
 																	$
 																			.ajax({
@@ -179,7 +181,9 @@ function init() {
 																							.getTime(),
 																					lezione : false,
 																					evento : false
-																					
+																				
+																				},success: function(data){
+																					id: data.id
 																				}
 																			});
 																}
@@ -196,7 +200,7 @@ function init() {
 																					start : start,
 																					end : end,
 																					allDay : allDay,
-																					id: id
+																					id:id
 																				},
 																				true // make
 																		// the
@@ -339,7 +343,7 @@ function getEvent() {
 					end : new Date(data.result[i].annoFi,
 							data.result[i].meseFi, data.result[i].giornoFi),
 					className : 'success',
-					id : 1
+					id : data.result[i].id
 
 				};
 				events.push(event);
@@ -376,6 +380,8 @@ function eventVerify() {
 	}
 };
 function rimuoviEvento(id) {
+	var ev="#idevento"+id;
+	console.log($(ev).val());
 	$.ajax({
 		type : "POST",
 		url : "calendarManager",
@@ -384,7 +390,7 @@ function rimuoviEvento(id) {
 		data : {
 			matricola : $('#currentUser').val(),
 			request : "rimuoviEvento",
-			id : id
+			id : $(ev).val()
 		},
 		success : function(data) {
 			swal("Evento Rimosso", "Evento eliminato correttamente dal calendario", "success");
