@@ -11,7 +11,9 @@ import java.util.List;
 import model.course.Corso;
 import model.user.Esame;
 import model.user.EsameSuperato;
+import model.user.Evento;
 import model.user.Utente;
+import persistence.dao.LezioneDao;
 import persistence.dao.UtenteDao;
 
 public class UtenteDaoJDBC implements UtenteDao {
@@ -747,8 +749,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 		try {
 			String delete = "delete FROM superato WHERE studente = ? AND esame= ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setString(1,matricola);
-			statement.setLong(2,exam.getCorso());
+			statement.setString(1, matricola);
+			statement.setLong(2, exam.getCorso());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -759,7 +761,34 @@ public class UtenteDaoJDBC implements UtenteDao {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		
+
+	}
+
+	@Override
+	public int findPresenze(String matricola, Long corso) {
+		int count = 0;
+		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Evento> lezioni = lezione.findCourseLessons(corso);
+		for (int i = 0; i < lezioni.size(); i++) {
+
+			Connection connection = this.dataSource.getConnection();
+			String query = "select count(*) from presenza where studente=? AND lezione=?";
+			PreparedStatement statement;
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setString(1, matricola);
+				statement.setLong(2, lezioni.get(i).getId());
+				ResultSet result = statement.executeQuery();
+				while (result.next()) {
+					count += result.getInt("count");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return count;
 	}
 
 }

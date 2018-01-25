@@ -31,12 +31,12 @@
 								<c:if test="${currentUser.ruolo == 0 }">
 									<th></th>
 								</c:if>
-
+								<th>Frequenza</th>
 							</tr>
 
 						</thead>
 						<tbody>
-							<c:forEach var="corso" items="${corsi}">
+							<c:forEach var="corso" items="${corsi}" varStatus="loop">
 								<tr name="corsoSelezionato" value="${corso.codice}"
 									style="cursor: pointer;">
 									<th scope="row"><a
@@ -67,7 +67,13 @@
 
 											</button>
 										</c:if></td>
+									<td><c:if test="${currentUser.ruolo==0 }">
+											<div class="progress-bar" role="progressbar"
+												aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
+												style="width: 75%;">${percentuale}%</div>
+										</c:if></td>
 								</tr>
+
 							</c:forEach>
 						</tbody>
 					</table>

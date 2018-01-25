@@ -56,6 +56,8 @@ public interface UtenteDao {
 	
 	public void deletePresenze(Long lezione);
 	
+	public int findPresenze(String matricola, Long corso);
+	
 	public int findUnreadMessages(String dest,String mitt);
 
 	public int findAllUnreadMessages(String utente);

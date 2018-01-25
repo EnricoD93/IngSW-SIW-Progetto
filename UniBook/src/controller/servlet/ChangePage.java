@@ -99,7 +99,21 @@ public class ChangePage extends HttpServlet {
 
 				case "corsi":
 					if (currentUser.getRuolo() == 0) {
+						List<Integer> percentuali;
 						corsi = utenteDao.getCorsiIscritto(currentUser.getMatricola());
+						DescrizioneCorsoDao descrizioneCorsoDao = DatabaseManager.getInstance().getDaoFactory()
+								.getDescrizioneCorsoDao();
+						for (int i = 0; i < corsi.size(); i++) {
+							Long codice = corsi.get(i).getCodice();
+							int ore = descrizioneCorsoDao.findByPrimaryKey(codice).getOreLezione()
+									+ descrizioneCorsoDao.findByPrimaryKey(codice).getOreEsercitazione();
+						
+						int presenze=utenteDao.findPresenze(currentUser.getMatricola(), codice);
+						int percentuale=(presenze*100)/ore;
+						System.out.println("la percentuale è "+ percentuale + " di "+ ore);
+						req.setAttribute("percentuale", percentuale);
+						}
+
 					} else if (currentUser.getRuolo() == 1) {
 						corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
 					}
@@ -201,14 +215,14 @@ public class ChangePage extends HttpServlet {
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
 					List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
-					int media=0;
-					int votoPartenza=0;
-					if(esami.size()>0) {
-					for (int i = 0; i < esami.size(); i++) {
-					media+=esami.get(i).getVoto();
-					}
-					media/=esami.size();
-					votoPartenza=(media*11)/3;
+					int media = 0;
+					int votoPartenza = 0;
+					if (esami.size() > 0) {
+						for (int i = 0; i < esami.size(); i++) {
+							media += esami.get(i).getVoto();
+						}
+						media /= esami.size();
+						votoPartenza = (media * 11) / 3;
 					}
 					req.setAttribute("media", media);
 					req.setAttribute("votoPartenza", votoPartenza);
