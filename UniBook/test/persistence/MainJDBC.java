@@ -132,9 +132,10 @@ public class MainJDBC {
 			Utente cianciaruso = new Utente("333", "Nuccia", "Cianciaruso", date, "NCCCRC87H76H473S",
 					"cianciaruso@mat.unical.it", "NNNNNN", corsoDiLaureaInformatica.getCodice(), 1, "111111");
 			cianciaruso.setProfileImagePath("images/profileImages/cianci.jpg");
-			Utente marino = new Utente("222", "Giuseppe", "Marino", date, "GPPMNR64Y34G764L", "marino@mat.unical.it",
+			Utente fuduli = new Utente("222", "Antonio", "Fuduli", date, "FDLNTN64Y34G764L", "fuduli@mat.unical.it",
 					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			fuduli.setProfileImagePath("images/profileImages/fuduli.jpg");
 			docenteDao.save(ricca);
 			docenteDao.save(grasso);
 			docenteDao.save(vanbon);
@@ -146,7 +147,7 @@ public class MainJDBC {
 			docenteDao.save(reale);
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);
-			docenteDao.save(marino);
+			docenteDao.save(fuduli);
 
 			// CalendarioPersonale calendarioPersonaleRicca = new
 			// CalendarioPersonale(ricca.getMatricola());
@@ -234,8 +235,8 @@ public class MainJDBC {
 					ricca.getCognome(), ricca.getNome(), dataI, dataF);
 			Corso corsoRicercaO = new Corso(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getAnno(),
 					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", corsoRicerca.getOreLezione(), corsoRicerca.getOreLezione(), "link al materiale",
-					marino.getMatricola(), corsoRicerca.getCorsoDiLaurea(), corsoRicerca.getCfu(), marino.getCognome(),
-					marino.getNome(), dataI, dataF);
+					fuduli.getMatricola(), corsoRicerca.getCorsoDiLaurea(), corsoRicerca.getCfu(), fuduli.getCognome(),
+					fuduli.getNome(), dataI, dataF);
 			Corso corsoFond = new Corso(corsoFondamenti.getCodice(), corsoFondamenti.getNome(), corsoFondamenti.getAnno(),
 					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", corsoFondamenti.getOreLezione(), corsoFondamenti.getOreLezione(), "link al materiale",
 					perri.getMatricola(), corsoFondamenti.getCorsoDiLaurea(), corsoFondamenti.getCfu(), perri.getCognome(),

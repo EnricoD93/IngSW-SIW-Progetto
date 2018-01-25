@@ -41,24 +41,26 @@ public class CalendarManager extends HttpServlet {
 	List<Evento> listaSoloEventi;
 	List<Lezione> listaSoloLezioni;
 	Utente currentUser;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Utente currentUser = (Utente) req.getSession().getAttribute("currentUser");
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		LezioneDao lezioneDao= DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
-		List<Corso> corsi= utenteDao.getCorsiDocente(currentUser.getMatricola());
-		AulaDao aula=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-		List<Aula> aule=aula.findAll();
+		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Corso> corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
+		AulaDao aula = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+		List<Aula> aule = aula.findAll();
 		req.setAttribute("corsi", corsi);
 		req.setAttribute("aule", aule);
 		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 		listaSoloEventi = eventoDao.findEvent();
-		listaSoloLezioni= lezioneDao.findLezioni();
-		System.out.println("listaSoloEventi"+ listaSoloEventi.size());
+		listaSoloLezioni = lezioneDao.findLezioni();
+		System.out.println("listaSoloEventi" + listaSoloEventi.size());
 		req.setAttribute("listaSoloEventi", listaSoloEventi.size());
 		req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
 		req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
 	}
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		JSONObject result = new JSONObject();
@@ -66,19 +68,19 @@ public class CalendarManager extends HttpServlet {
 		HttpSession session = req.getSession();
 		request = req.getParameter("request");
 		matricola = req.getParameter("matricola");
-		
-		//DAO
+
+		// DAO
 		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
 				.getCalendarioPersonaleDAO();
 		CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-	
+
 		if (request.equals("Eventi")) {
 
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
 			listaSoloEventi = eventoDao.findEvent();
-			listaSoloLezioni= lezioneDao.findLezioni();
+			listaSoloLezioni = lezioneDao.findLezioni();
 			req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
 			req.setAttribute("listaSoloEventi", listaSoloEventi.size());
 			for (int i = 0; i < listaEventi.size(); i++) {
@@ -97,7 +99,7 @@ public class CalendarManager extends HttpServlet {
 					evento.put("annoFi", cal.get(Calendar.YEAR));
 					evento.put("meseFi", cal.get(Calendar.MONTH));
 					evento.put("giornoFi", cal.get(Calendar.DAY_OF_MONTH));
-					evento.put("id",listaEventi.get(i).getId());
+					evento.put("id", listaEventi.get(i).getId());
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -122,7 +124,7 @@ public class CalendarManager extends HttpServlet {
 			Timestamp endT = null;
 			String title = req.getParameter("title");
 			Evento e;
-			JSONObject json= new JSONObject();
+			JSONObject json = new JSONObject();
 			try {
 				startT = parseDate(start);
 				endT = parseDate(end);
@@ -142,10 +144,10 @@ public class CalendarManager extends HttpServlet {
 				Lezione l = new Lezione(corso, g, startT, endT, aula, 0);
 				lezioneDao.save(l);
 				// salvo la lezione nel calendario degli studenti
-			
+
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
 
-			    e = new Evento(l.getId(), title, startT, endT, "nessuna");
+				e = new Evento(l.getId(), title, startT, endT, "nessuna");
 				eventoDao.save(e);
 
 				calendarioPersonaleDao.saveEvent(matricola, e);
@@ -156,51 +158,46 @@ public class CalendarManager extends HttpServlet {
 				}
 
 			} else {
-				e= new Evento(title, startT, endT, "nessuna");
+				e = new Evento(title, startT, endT, "nessuna");
 				eventoDao.save(e);
 				calendarioPersonaleDao.saveEvent(matricola, e);
 			}
 
-try {
-	json.put("id",e.getId());
-} catch (JSONException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
-resp.setContentType("application/json");
-resp.getWriter().print(json);
+			try {
+				json.put("id", e.getId());
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			resp.setContentType("application/json");
+			resp.getWriter().print(json);
 		}
 		if (request.equals("rimuoviEvento")) {
 			Long id = Long.parseLong(req.getParameter("id"));
-		Lezione l=lezioneDao.findByPrimaryKey(id);
-			if(l!=null) {
-				Long corso= l.getCorso();
+			Lezione l = lezioneDao.findByPrimaryKey(id);
+			if (l != null) {
+				Long corso = l.getCorso();
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
 				for (int i = 0; i < studentiIscritti.size(); i++) {
 					System.out.println(studentiIscritti.get(i).getNome());
-System.out.println(l.getId()+"id");
-					Evento e= eventoDao.findByPrimaryKey(l.getId());
+					System.out.println(l.getId() + "id");
+					Evento e = eventoDao.findByPrimaryKey(l.getId());
 					System.out.println(e.getTitle());
 					calendarioPersonaleDao.deleteEvent(studentiIscritti.get(i).getMatricola(), e);
-					calendarioPersonaleDao.deleteEvent(matricola, e);
 					eventoDao.delete(e);
 					lezioneDao.delete(l);
 				}
 
-			}else {
-				System.out.println("servlet id "+ id);
-				Evento e=eventoDao.findByPrimaryKey(id);
+			} else {
+				System.out.println("servlet id " + id);
+				Evento e = eventoDao.findByPrimaryKey(id);
 				calendarioPersonaleDao.deleteEvent(matricola, e);
-				System.out.println("dovrei aver eliminato "+ e.getId()+" dal calendario di "+matricola);
+				System.out.println("dovrei aver eliminato " + e.getId() + " dal calendario di " + matricola);
 				eventoDao.delete(e);
 			}
-			
-			
-			
-			
-		
+
 		}
-		
+
 	}
 
 	private Timestamp parseDate(String str_date) throws ParseException {
