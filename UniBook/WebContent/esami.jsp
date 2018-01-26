@@ -5,6 +5,17 @@
 
 <!DOCTYPE html>
 <html>
+<link
+	href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
+	rel="stylesheet">
+<script src="javascript/orarioGiorni.js"></script>
+<script src="plugins/momentjs/moment.js"></script>
+<script src="plugins/momentjs/moment.min.js"></script>
+<script src="javascript/data.js"></script>
+<script
+	src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<script src="js/pages/forms/basic-form-elements.js"></script>
+<script src="plugins/jquery-validation/jquery.validate.js"></script>
 <script type="text/javascript" src="javascript/examsManager.js"></script>
 <section id="centralSection" class="content">
 	<div class="container-fluid">
@@ -59,7 +70,7 @@
 									<td><img src="images/frequentando.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:addExam(${esame.corso})">
 											<i class="material-icons">add</i>
 
 										</button></td>

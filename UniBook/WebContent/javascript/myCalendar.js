@@ -190,8 +190,7 @@ function init() {
 																swal(
 																		"Ben Fatto!",
 																		"Evento creato con successo!",
-																		"success");
-
+																		"success").then(()=>{window.location.href="calendarManager?request=Eventi"});
 																calendar
 																		.fullCalendar(
 																				'renderEvent',
@@ -382,20 +381,34 @@ function eventVerify() {
 function rimuoviEvento(id) {
 	var ev="#idevento"+id;
 	console.log($(ev).val());
-	$.ajax({
-		type : "POST",
-		url : "calendarManager",
-		async : false,
-		datatype : 'text',
-		data : {
-			matricola : $('#currentUser').val(),
-			request : "rimuoviEvento",
-			id : $(ev).val()
-		},
-		success : function(data) {
-			swal("Evento Rimosso", "Evento eliminato correttamente dal calendario", "success");
-		}
-		
-	});
+	swal({
+		  title: "Sei sicuro che vuoi eliminare l'evento selezionato?",
+		  text: "Una volta eliminato non puoi più recuperarlo!",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  $.ajax({
+					type : "POST",
+					url : "calendarManager",
+					async : false,
+					datatype : 'text',
+					data : {
+						matricola : $('#currentUser').val(),
+						request : "rimuoviEvento",
+						id : $(ev).val()
+					},
+					success : function(data) {
+					}
+					
+				});
+		    swal("Evento Rimosso", "Evento eliminato correttamente dal calendario", {
+		      icon: "success",
+		    }).then(()=>{window.location.href="calendarManager?request=Eventi"});
+		  } 
+		});
+	
 };
 
