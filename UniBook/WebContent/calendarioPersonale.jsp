@@ -50,6 +50,47 @@
 
 									</c:forEach>
 								</select>
+								<div>
+											<span class="input-group-addon">  Dalle </span> <select
+												class="selectpicker" tabindex="-98" name="oraInizio" id="oraInizio">
+
+												<option value="0000-00-00 08:30:00.00">08:30</option>
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+
+											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
+											</span> <select class="selectpicker" tabindex="-98"
+												name="oraFine" id="oraFine">
+
+												<option value="0000-00-00 09:30:00.00">09:30</option>
+												<option value="0000-00-00 10:30:00.00">10:30</option>
+												<option value="0000-00-00 11:30:00.00">11:30</option>
+												<option value="0000-00-00 12:30:00.00">12:30</option>
+												<option value="0000-00-00 14:00:00.00">14:00</option>
+												<option value="0000-00-00 15:00:00.00">15:00</option>
+												<option value="0000-00-00 16:00:00.00">16:00</option>
+												<option value="0000-00-00 17:00:00.00">17:00</option>
+												<option value="0000-00-00 18:00:00.00">18:00</option>
+												<option value="0000-00-00 19:00:00.00">19:00</option>
+
+
+											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
+													lezione: &nbsp;</b>
+											</span> <span class="input-group-addon"><input type="radio"
+												name="tipolezione" id="lezione"
+												class="radio-col-unibook" checked> <label
+												for="lezione">Lezione</label> <input type="radio"
+												name="tipolezione" id="esercitazione"
+												class="radio-col-unibook"> <label
+												for="esercitazione" class="m-l-20">Esercitazione</label></span>
+								</div>
 							</form>
 						</div>
 

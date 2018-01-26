@@ -48,32 +48,6 @@ public class SignUpForCourse extends HttpServlet {
 					resp.setStatus(405);
 					return;
 				} else {
-					
-					JSONObject json= new JSONObject();
-					try {
-						json.put("matricola", studente.getMatricola());
-						json.put("nome", studente.getNome());
-						json.put("cognome", studente.getCognome());
-						json.put("path", studente.getProfileImagePath());
-						json.put("email", studente.getEmail());
-						json.put("codicefiscale", studente.getCodicefiscale());
-						json.put("docente", u.getMatricola());
-						json.put("currentUserMatr", currentUser.getMatricola());
-						json.put("currentCourseDoc", corsoDao.findByPrimaryKey(codice).getDocente());
-						json.put("loop", corsoDao.getStudentiIscritti(codice).size()+1);
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					resp.setContentType("application/json");
-					resp.getWriter().print(json);
-					//req.setAttribute("matricola", studente.getMatricola());
-					//req.setAttribute("nome", studente.getNome());
-					//req.setAttribute("cognome", studente.getCognome());
-					//req.setAttribute("email", studente.getEmail());
-					//req.setAttribute("codicefiscale", studente.getCodicefiscale());
-					//req.setAttribute("docente",u.getMatricola());
 					udao.iscriviStudente(matricola, codice);
 
 					for (int i = 0; i < listaLezioni.size(); i++) {
