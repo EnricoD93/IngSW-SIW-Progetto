@@ -95,7 +95,7 @@ function iscriviStudenteM(codice) {
 							+"style=\"background-image: url('"+data.path+"')\"></div>"
 								+"</a></td><td scope=\"row\"><a href=\"page?request=profilo&id="+data.matricola+"\">"+data.cognome+"&nbsp;"+data.nome+"</a></td>"
 								+"<td>"+data.matricola+"</td>	<c:if test=\""+data.currentUserMatr+"=="+data.currentCourseDoc+"\">"
-								+"<td>"+data.codicefiscale+"</td></c:if><td>"+data.docente+"</td><td><c:if test=\""+data.currentUserMatr+"=="+data.currentCourseDoc+"\">"
+								+"<td>"+data.codicefiscale+"</td></c:if><td>"+data.email+"</td><td><c:if test=\""+data.currentUserMatr+"=="+data.currentCourseDoc+"\">"
 								+"<button type=\"button\" id=\"eliminaStudente\" onclick=\"javascript:confermaEliminaM("+data.matricola+","+codice+")\""
 								+"class=\"bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float\"title=\"Elimina Studente\">"
 								+"<i class=\"material-icons\">delete</i></button></c:if></td><c:if test=\""+data.currentCourseDoc+"=="+data.currentUserMatr+"\">"
