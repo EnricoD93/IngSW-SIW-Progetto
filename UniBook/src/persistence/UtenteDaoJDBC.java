@@ -702,7 +702,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void salvaPresenza(String matricola, Long lezione) {
-		System.out.println(lezione + "fuck" + matricola);
+		System.out.println(lezione + " " + matricola);
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into presenza(studente,lezione) values (?,?)";

@@ -18,10 +18,12 @@ import org.json.JSONObject;
 
 import model.course.Avviso;
 import model.course.Corso;
+import model.course.Lezione;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AvvisoDao;
 import persistence.dao.CorsoDao;
+import persistence.dao.LezioneDao;
 import persistence.dao.UtenteDao;
 
 public class ShowCourse extends HttpServlet {
@@ -85,6 +87,11 @@ public class ShowCourse extends HttpServlet {
 			String matricola = req.getParameter("matricola");
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			String checked = req.getParameter("checked");
+			LezioneDao lezioneDao=DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+			Lezione lez=lezioneDao.findByPrimaryKey(lezione);
+			Long diff=lez.getOraFine().getTime()-lez.getOraInizio().getTime();
+			Timestamp t= new Timestamp(diff);
+			System.out.println("la differenza è "+ diff);
 			u.salvaPresenza(matricola, lezione);
 		}
 		if (richiesta.equals("salvaAvviso")) {

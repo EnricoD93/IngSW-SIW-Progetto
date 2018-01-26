@@ -84,23 +84,23 @@ function iscriviStudenteM(codice) {
 				matricola : matricola,
 				request : "iscrizioneM"
 			},
-			success : function(data) {
+			success : function(data,codice) {
 				swal("Iscrizione avvenuta",
 						"L'iscrizione dello studente al corso è avvenuta con successo.",
 						"success");
 				var studenti= $('students');
 				var lastRow=studenti.last();
 				var tr=$('<tr></tr>');
-				tr.html("<td>${loop.index+1}</td><td><a href=\"page?request=profilo&id=${studente.matricola}\"><div class=\"profile-pic-xs\""
-							+"style=\"background-image: url('${studente.profileImagePath}')\"></div>"
-								+"</a></td><td scope=\"row\"><a href=\"page?request=profilo&id="+data.matricola+"\">${studente.cognome}&nbsp;${studente.nome}</a></td>"
-								+"<td>"+data.matricola+"</td>	<c:if test=\"${currentUser.matricola==currentCourse.docente}\">"
-								+"<td>${studente.codicefiscale}</td></c:if><td>${studente.email}</td><td><c:if test=\"${currentUser.matricola==currentCourse.docente}\">"
-								+"<button type=\"button\" id=\"eliminaStudente\" onclick=\"javascript:confermaEliminaM(${studente.matricola},${currentCourse.codice})\""
+				tr.html("<td>"+data.loop+"</td><td><a href=\"page?request=profilo&id="+data.matricola+"\"><div class=\"profile-pic-xs\""
+							+"style=\"background-image: url('"+data.path+"')\"></div>"
+								+"</a></td><td scope=\"row\"><a href=\"page?request=profilo&id="+data.matricola+"\">"+data.cognome+"&nbsp;"+data.nome+"</a></td>"
+								+"<td>"+data.matricola+"</td>	<c:if test=\""+data.currentUserMatr+"=="+data.currentCourseDoc+"\">"
+								+"<td>"+data.codicefiscale+"</td></c:if><td>"+data.docente+"</td><td><c:if test=\""+data.currentUserMatr+"=="+data.currentCourseDoc+"\">"
+								+"<button type=\"button\" id=\"eliminaStudente\" onclick=\"javascript:confermaEliminaM("+data.matricola+","+codice+")\""
 								+"class=\"bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float\"title=\"Elimina Studente\">"
-								+"<i class=\"material-icons\">delete</i></button></c:if></td><c:if test=\"${currentCourse.docente==currentUser.matricola}\">"
-								+"<td style=\"padding-top: 16px; padding-left: 35px;\"><input type=\"checkbox\" id=\"${studente.matricola}\"name=\"${studente.matricola}\"> " +
-								+		"<label for=\"${studente.matricola}\"></label></td></c:if>");
+								+"<i class=\"material-icons\">delete</i></button></c:if></td><c:if test=\""+data.currentCourseDoc+"=="+data.currentUserMatr+"\">"
+								+"<td style=\"padding-top: 16px; padding-left: 35px;\"><input type=\"checkbox\" id=\""+data.matricola+"\"name=\""+data.matricola+"\"> " +
+								+		"<label for=\""+data.matricola+"\"></label></td></c:if>");
 				var lastRow=$('#lastRow');
 				lastRow.before(tr);
 			},
@@ -198,10 +198,13 @@ function confermaEliminaM(matricola, codice) {
 									});
 							},
 							error : function(data) {
+								if (data.status === 401) {
+									swal("Password errata!", "Riprova.\n", "error");
+								}else{
 								swal(
 										"Lo studente non è iscritto a questo corso",
 										"Non puoi cancellare uno studente da un corso al quale non è iscritto",
-										"error");
+										"error");}
 							}
 
 						});
