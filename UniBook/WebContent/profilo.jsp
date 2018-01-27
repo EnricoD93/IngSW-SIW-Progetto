@@ -50,43 +50,108 @@
 							</div>
 						</div>
 					</c:if>
-					<table class="table table-striped">
-						<tbody>
+					<div class="profile" id="profile">
+						<table class="table table-striped">
+							<tbody>
 
-							<tr>
-								<th scope="row">Nome:&nbsp;&nbsp;${profilo.nome}
-									${profilo.cognome}</th>
-							</tr>
-							<c:if test="${currentUser.matricola==profilo.matricola }">
 								<tr>
-									<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
+									<th scope="row">Nome:&nbsp;&nbsp;${profilo.nome}
+										${profilo.cognome}</th>
 								</tr>
-							</c:if>
-							<c:if test="${currentUser.matricola==profilo.matricola }">
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
+									</tr>
+								</c:if>
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
+									</tr>
+
+								</c:if>
+
 								<tr>
-									<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
-								</tr>
-
-							</c:if>
-
-							<tr>
-								<th><c:if test="${profilo.ruolo == 0 }">
+									<th><c:if test="${profilo.ruolo == 0 }">
 							Ruolo:&nbsp;&nbsp;Studente
 							</c:if> <c:if test="${profilo.ruolo == 1 }">
 							Ruolo:&nbsp;&nbsp;Docente
 							</c:if></th>
-							</tr>
-							<tr>
-								<th>Email:&nbsp;&nbsp;${profilo.email}</th>
-							</tr>
-							<c:if test="${currentUser.matricola==profilo.matricola }">
-								<tr>
-									<th>Data di
-										Nascita:&nbsp;&nbsp;${profilo.getDataNascitaString()}</th>
 								</tr>
-							</c:if>
-						</tbody>
-					</table>
+								<tr>
+									<th>Email:&nbsp;&nbsp;${profilo.email}</th>
+								</tr>
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Data di
+											Nascita:&nbsp;&nbsp;${profilo.getDataNascitaString()}</th>
+									</tr>
+								</c:if>
+							</tbody>
+						</table>
+					</div>
+					<div class="modify hidden" id="modify">
+						<table class="table table-striped">
+							<tbody>
+
+								<tr>
+									<th scope="row">Nome:&nbsp;&nbsp;${profilo.nome}
+										${profilo.cognome}</th>
+								</tr>
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
+									</tr>
+								</c:if>
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
+									</tr>
+
+								</c:if>
+								<tr>
+									<th><c:if test="${profilo.ruolo == 0 }">
+							Ruolo:&nbsp;&nbsp;Studente
+							</c:if> <c:if test="${profilo.ruolo == 1 }">
+							Ruolo:&nbsp;&nbsp;Docente
+							</c:if></th>
+								</tr>
+								<tr>
+									<th style="display: -webkit-inline-box;">Email:&nbsp;&nbsp;
+										<input name="email" id="email"cols="30" rows="5"
+										class="form-control no-resize hidden" value="${profilo.email}"
+										required> <label class="form-label"></label>&nbsp;
+										<button id="modificaEmail" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaEmail();">
+											<span>Modifica</span>
+										</button>	
+										<button  id="modificaEmailConfirm" type="button" class="btn bg-unibook waves-effect hidden" >
+											<i class="material-icons">check</i>
+										</button>
+									</th>
+								</tr>
+								<c:if test="${currentUser.matricola==profilo.matricola }">
+									<tr>
+										<th>Data di
+											Nascita:&nbsp;&nbsp;${profilo.getDataNascitaString()}</th>
+									</tr>
+								</c:if>
+							
+								<tr>
+									<th style="display: -webkit-inline-box;">Password:&nbsp;&nbsp;
+										<input name="password" id="password" cols="30" rows="5"
+										class="form-control no-resize hidden" value="${profilo.password}"
+										required> <label class="form-label"></label>&nbsp;
+										<button id="modificaPassword" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaPassword();">
+											<span>Modifica</span>
+										</button>
+										<button  id="modificaPasswordConfirm" type="button" class="btn bg-unibook waves-effect hidden" onclick="javascript:confermaModificaPassword();">
+											<i class="material-icons">check</i>
+										</button>
+									</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
 				</div>
 			</h2>
 		</div>

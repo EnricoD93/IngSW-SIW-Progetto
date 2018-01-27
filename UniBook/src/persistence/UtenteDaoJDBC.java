@@ -794,4 +794,27 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return count;
 	}
 
+	@Override
+	public void passwordModify(String matricola, String password) {
+		
+			Connection connection = this.dataSource.getConnection();
+			PreparedStatement statement;
+			String query = "UPDATE utente " + "SET password = ? " + "WHERE matricola = ?";
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setString(1, password);
+				statement.setString(2, matricola);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+	}
+
 }

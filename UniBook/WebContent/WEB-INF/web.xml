@@ -151,6 +151,14 @@
     <servlet-name>CalendarManagerServlet</servlet-name>
     <url-pattern>/calendarManager</url-pattern>
   </servlet-mapping>
+      <servlet>
+    <servlet-name>ProfileManagerServlet</servlet-name>
+    <servlet-class>controller.servlet.ProfileManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfileManagerServlet</servlet-name>
+    <url-pattern>/profileManager</url-pattern>
+  </servlet-mapping>
   
   <session-config>
   	<session-timeout>15</session-timeout>

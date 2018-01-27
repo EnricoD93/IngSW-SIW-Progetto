@@ -63,4 +63,6 @@ public interface UtenteDao {
 	public int findAllUnreadMessages(String utente);
 
 	public void deleteExam(String matricola, Esame e);
+	 
+	public void passwordModify(String matricola, String password);
 }
