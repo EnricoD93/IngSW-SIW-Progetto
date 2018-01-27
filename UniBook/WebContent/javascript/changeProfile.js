@@ -37,3 +37,24 @@ function confermaModificaPassword(){
 	});
 	
 };
+function confermaModificaEmail(){
+	var valore=$('#email').val();
+	console.log(valore);
+	$.ajax({
+		url : 'profileManager',
+		type : 'POST',
+		datatype : 'text',
+		data :{
+			request : "modificaEmail",
+			inputEmail: $('#email').val()
+		},
+		success : function(data) {
+			console.log("code "+data.code);
+			
+			swal("Email modificata","La tua email è stata modificata!","success");
+		},
+	 	error: function() { 
+	 		swal("Email non modificata","La tua email non è stata modificata!","error");
+     }    
+	});
+};

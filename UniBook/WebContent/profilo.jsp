@@ -123,7 +123,7 @@
 										<button id="modificaEmail" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaEmail();">
 											<span>Modifica</span>
 										</button>	
-										<button  id="modificaEmailConfirm" type="button" class="btn bg-unibook waves-effect hidden" >
+										<button  id="modificaEmailConfirm" type="button" class="btn bg-unibook waves-effect hidden" onclick="javascript:confermaModificaEmail();">
 											<i class="material-icons">check</i>
 										</button>
 									</th>
