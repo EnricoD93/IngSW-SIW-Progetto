@@ -134,8 +134,17 @@ public class MainJDBC {
 			cianciaruso.setProfileImagePath("images/profileImages/cianci.jpg");
 			Utente fuduli = new Utente("222", "Antonio", "Fuduli", date, "FDLNTN64Y34G764L", "fuduli@mat.unical.it",
 					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
-			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			fuduli.setProfileImagePath("images/profileImages/fuduli.jpg");
+			Utente montoro = new Utente("999", "Luigi", "Montoro", date, "LGUMNT64Y35F761T", "montoro@mat.unical.it",
+					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
+			montoro.setProfileImagePath("images/profileImages/montoro.jpg");
+			Utente rija = new Utente("121", "Maurizio", "Rija", date, "MRZRJI70G15Z323T", "rija@unical.it",
+					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
+			rija.setProfileImagePath("images/profileImages/rija.jpg");
+			Utente solferino = new Utente("131", "Viviana", "Solferino", date, "SLFVIV66T45T656Y", "solferino@unical.it",
+					"PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111");
+			solferino.setProfileImagePath("images/profileImages/solferino.jpg");
+			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(ricca);
 			docenteDao.save(grasso);
 			docenteDao.save(vanbon);
@@ -148,6 +157,9 @@ public class MainJDBC {
 			docenteDao.save(perri);
 			docenteDao.save(cianciaruso);
 			docenteDao.save(fuduli);
+			docenteDao.save(montoro);
+			docenteDao.save(rija);
+			docenteDao.save(solferino);
 
 			// CalendarioPersonale calendarioPersonaleRicca = new
 			// CalendarioPersonale(ricca.getMatricola());
