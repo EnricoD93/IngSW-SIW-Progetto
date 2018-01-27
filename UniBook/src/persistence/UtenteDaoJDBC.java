@@ -667,19 +667,22 @@ public class UtenteDaoJDBC implements UtenteDao {
 		List<Esame> esamiSuperati = new ArrayList<>();
 		try {
 			Esame esame;
-			String query = "select *\r\n" + "from esame e\r\n" + "where NOT EXISTS (select*\r\n"
-					+ "from corso,corsodilaurea ,utente u\r\n" + "where e.corso=corso.codice AND\r\n"
-					+ "		corso.corsodilaurea=corsodilaurea.codice AND\r\n"
-					+ "        u.corsodilaurea=corsodilaurea.codice\r\n" + "        AND NOT EXISTS (select *\r\n"
-					+ "                  from superato s\r\n"
-					+ "                 where e.corso=s.esame AND s.studente=? AND s.studente=u.matricola) AND NOT EXISTS (select*\r\n"
-					+ "																					from  iscritto\r\n"
-					+ "												where iscritto.codice=e.corso AND iscritto.matricola=? AND u.matricola=iscritto.matricola))";
+			String query = "select *\r\n" + 
+					"from esame e\r\n" + 
+					"where EXISTS (select *\r\n" + 
+					"from descrizionecorso cor, corsodilaurea cdl, utente u\r\n" + 
+					"where e.corso=cor.codice AND cdl.codice=cor.corsodilaurea AND u.matricola=? AND u.corsodilaurea=cdl.codice) AND\r\n" + 
+					"NOT EXISTS(select *\r\n" + 
+					"          from superato s, utente u\r\n" + 
+					"          where s.esame=e.corso AND u.matricola=s.studente AND u.matricola=?) AND NOT EXISTS(select *\r\n" + 
+					"          from iscritto i, utente u\r\n" + 
+					"          where i.codice=e.corso AND u.matricola=i.matricola AND u.matricola=?)";
 			PreparedStatement statement;
 
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			statement.setString(2, matricola);
+			statement.setString(3, matricola);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				esame = new Esame();

@@ -32,6 +32,7 @@ public class ExamsManager extends HttpServlet {
 			System.out.println("eliminato");
 		} else if (request.equals("aggiungiEsame")) {
 			String data = req.getParameter("data");
+			System.out.println("data "+data);
 			String votoS = req.getParameter("voto");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date parsedDate;

@@ -25,7 +25,6 @@ function addExam(corso) {
 	date.classList = "datepicker form-control";
 	date.placeholder = "Seleziona una data";
 	date.required = true;
-	date.autofocus = true;
 	span.classList = "input-group-addon";
 	span.append("Voto: ")
 	var voti = [ "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
@@ -51,13 +50,16 @@ function addExam(corso) {
 		text : 'Inserisci data e voto di conseguimento dell\'esame',
 		content : div
 
-	}).then(()=>{$.ajax({
+	}).then(()=>{
+		$.ajax({
 		url : "examsManager",
 		type : "POST",
 		datatype : 'text',
 		data : {
 			request : "aggiungiEsame",
-			corso : corso
+			corso : corso,
+			data : $('#dataesame').val(),
+			voto : $('#votoesame').val()
 		},
 		success : function() {
 			swal("Aggiunto", "Esame aggiunto con successo", "success").then(()=>{window.location.href="page?request=esami"});

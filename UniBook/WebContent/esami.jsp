@@ -97,7 +97,7 @@
 									<td><img src="images/nonfrequentato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:void(0);">
+											style="margin-left: 39px;" onclick="javascript:addExam(${esame.corso})">
 											<i class="material-icons">add</i>
 
 										</button></td>
