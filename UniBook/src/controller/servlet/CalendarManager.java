@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -137,12 +138,39 @@ public class CalendarManager extends HttpServlet {
 				System.out.println(req.getParameter("corso"));
 				Long corso = Long.parseLong(req.getParameter("corso"));
 				String aula = req.getParameter("aula");
+				String oraInizio= req.getParameter("oraInizio");
+				String oraFine= req.getParameter("oraFine");
 
-				Date data = new Date(startT.getTime());
+				
 				GiornoCalendario g = new GiornoCalendario();
+				g.setGiornoDellaSettimana("Martedì");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+				java.util.Date parsedDate;
+				Timestamp oraIn=null;
+				Timestamp oraFin=null;
+				try {
+					System.out.println(oraInizio);
+					parsedDate = dateFormat.parse(oraInizio);
+			
+				oraIn = new java.sql.Timestamp(parsedDate.getTime());
+				parsedDate = dateFormat.parse(oraFine);
+				oraFin = new java.sql.Timestamp(parsedDate.getTime());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				Date data = new Date(startT.getTime());
+				System.out.println(data.toLocalDate());
+				g = new GiornoCalendario();
 				g.parseToGiornoCalendario(data);
-				Lezione l = new Lezione(corso, g, startT, endT, aula, 0);
+				Lezione l = new Lezione(corso, g, oraIn, oraFin, aula, 0);
 				lezioneDao.save(l);
+				
+				Long diff=oraFin.getTime()-oraIn.getTime();
+				Timestamp differenza= new Timestamp(diff);
+				System.out.println("la differenza è "+differenza);
 				// salvo la lezione nel calendario degli studenti
 
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);

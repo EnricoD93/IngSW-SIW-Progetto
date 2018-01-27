@@ -84,25 +84,12 @@ function iscriviStudenteM(codice) {
 				matricola : matricola,
 				request : "iscrizioneM"
 			},
-			success : function(data) {
+			success : function() {
 				swal("Iscrizione avvenuta",
 						"L'iscrizione dello studente al corso è avvenuta con successo.",
-						"success");
-				var studenti= $('students');
-				var lastRow=studenti.last();
-				var tr=$('<tr></tr>');
-				tr.html("<td>${loop.index+1}</td><td><a href=\"page?request=profilo&id=${studente.matricola}\"><div class=\"profile-pic-xs\""
-							+"style=\"background-image: url('${studente.profileImagePath}')\"></div>"
-								+"</a></td><td scope=\"row\"><a href=\"page?request=profilo&id="+data.matricola+"\">${studente.cognome}&nbsp;${studente.nome}</a></td>"
-								+"<td>"+data.matricola+"</td>	<c:if test=\"${currentUser.matricola==currentCourse.docente}\">"
-								+"<td>${studente.codicefiscale}</td></c:if><td>${studente.email}</td><td><c:if test=\"${currentUser.matricola==currentCourse.docente}\">"
-								+"<button type=\"button\" id=\"eliminaStudente\" onclick=\"javascript:confermaEliminaM(${studente.matricola},${currentCourse.codice})\""
-								+"class=\"bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float\"title=\"Elimina Studente\">"
-								+"<i class=\"material-icons\">delete</i></button></c:if></td><c:if test=\"${currentCourse.docente==currentUser.matricola}\">"
-								+"<td style=\"padding-top: 16px; padding-left: 35px;\"><input type=\"checkbox\" id=\"${studente.matricola}\"name=\"${studente.matricola}\"> " +
-								+		"<label for=\"${studente.matricola}\"></label></td></c:if>");
-				var lastRow=$('#lastRow');
-				lastRow.before(tr);
+						"success").then(() => {
+							window.location.href="page?request=listaStudenti&codice="+codice;
+						});
 			},
 			error : function(data) {
 				if (data.status === 405) {
@@ -198,10 +185,13 @@ function confermaEliminaM(matricola, codice) {
 									});
 							},
 							error : function(data) {
+								if (data.status === 401) {
+									swal("Password errata!", "Riprova.\n", "error");
+								}else{
 								swal(
 										"Lo studente non è iscritto a questo corso",
 										"Non puoi cancellare uno studente da un corso al quale non è iscritto",
-										"error");
+										"error");}
 							}
 
 						});

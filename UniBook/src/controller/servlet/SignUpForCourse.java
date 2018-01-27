@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import model.course.Corso;
 import model.course.Lezione;
 import model.user.Evento;
@@ -26,6 +29,7 @@ public class SignUpForCourse extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String request = req.getParameter("request");
+		Utente currentUser=(Utente) session.getAttribute("currentUser");
 		UtenteDao udao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		Long codice = Long.parseLong(req.getParameter("codice"));
 		Utente u = (Utente) session.getAttribute("currentUser");
@@ -36,6 +40,7 @@ public class SignUpForCourse extends HttpServlet {
 		List<Evento> listaEventiCal = calendarioPersonaleDao.findAllEventsUtente(u.getMatricola());
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
+		CorsoDao corsoDao=DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 		if (request.equals("iscrizioneM")) {
 			Utente studente=udao.findByPrimaryKey(matricola);
 			if (studente != null) {
@@ -43,12 +48,6 @@ public class SignUpForCourse extends HttpServlet {
 					resp.setStatus(405);
 					return;
 				} else {
-					req.setAttribute("matricola", studente.getMatricola());
-					req.setAttribute("nome", studente.getNome());
-					req.setAttribute("cognome", studente.getCognome());
-					req.setAttribute("email", studente.getEmail());
-					req.setAttribute("codicefiscale", studente.getCodicefiscale());
-					req.setAttribute("docente",u.getMatricola());
 					udao.iscriviStudente(matricola, codice);
 
 					for (int i = 0; i < listaLezioni.size(); i++) {

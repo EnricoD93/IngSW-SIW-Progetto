@@ -157,7 +157,10 @@ function init() {
 																							.val(),
 																					aula : $(
 																							'#aulaid')
-																							.val()
+																							.val(),
+																					oraInizio: $('#oraInizio').val(),
+																					
+																					oraFine: $('#oraFine').val()
 																				},success: function(data){
 																					id: data.id
 																				}
