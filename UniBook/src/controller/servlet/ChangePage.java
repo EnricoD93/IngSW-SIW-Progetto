@@ -215,14 +215,27 @@ public class ChangePage extends HttpServlet {
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
 					List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
-					int media = 0;
-					int votoPartenza = 0;
+					double mediaProv = 0;
+					double votoPartenzaProv = 0;
+					int votoPartenza=0;
+					int media=0;
+					int lode=0;
 					if (esami.size() > 0) {
 						for (int i = 0; i < esami.size(); i++) {
-							media += esami.get(i).getVoto();
+							if(esami.get(i).getVoto()==31) {
+								lode++;
+								esami.get(i).setVoto(30);
+							}
+							mediaProv += esami.get(i).getVoto();
 						}
-						media /= esami.size();
-						votoPartenza = (media * 11) / 3;
+						mediaProv /= esami.size();
+						media=(int) Math.round(mediaProv);
+						System.out.println(media);
+						votoPartenzaProv = (media * 11) / 3;
+						votoPartenzaProv =Math.round(votoPartenzaProv);
+						votoPartenzaProv=votoPartenzaProv+(lode*0.2);
+						votoPartenzaProv =Math.round(votoPartenzaProv);
+						votoPartenza=(int) votoPartenzaProv;
 					}
 					req.setAttribute("media", media);
 					req.setAttribute("votoPartenza", votoPartenza);

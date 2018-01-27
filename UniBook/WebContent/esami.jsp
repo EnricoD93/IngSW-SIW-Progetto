@@ -26,7 +26,7 @@
 					<div>
 						<strong> Media: ${media}/30 &nbsp;</strong>
 					</div>
-					<div style="margin-top:5px;">
+					<div style="margin-top: 5px;">
 						<strong> Voto di Partenza: ${votoPartenza}/110</strong>
 					</div>
 
@@ -49,11 +49,20 @@
 									</a></td>
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
-									<td><b>${esame.voto}</b></td>
+									<td><b> <c:choose>
+												<c:when test="${esame.voto==31}">
+  												 30L
+  												</c:when>
+												<c:otherwise>
+  												 ${esame.voto}
+  												</c:otherwise>
+											</c:choose>
+									</b></td>
 									<td><img src="images/superato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:removeExam(${esame.corso});">
+											style="margin-left: 39px;"
+											onclick="javascript:removeExam(${esame.corso});">
 											<i class="material-icons">clear</i>
 
 										</button></td>
@@ -70,7 +79,8 @@
 									<td><img src="images/frequentando.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:addExam(${esame.corso})">
+											style="margin-left: 39px;"
+											onclick="javascript:addExam(${esame.corso})">
 											<i class="material-icons">add</i>
 
 										</button></td>
