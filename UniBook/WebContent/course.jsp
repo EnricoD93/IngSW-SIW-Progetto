@@ -8,7 +8,7 @@
 <script src="plugins/ckeditor/ckeditor.js"></script>
 <script src="javascript/courseManager.js" type="text/javascript"></script>
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
