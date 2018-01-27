@@ -70,7 +70,6 @@ public class ChangePage extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		System.out.println(session.getAttribute("currentUser"));
 		request = req.getParameter("request");
 		if (session.getAttribute("currentUser") != null) {
 			Utente currentUser = (Utente) session.getAttribute("currentUser");
