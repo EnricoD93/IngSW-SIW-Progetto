@@ -9,6 +9,7 @@ import java.util.List;
 
 import model.course.Aula;
 import model.course.Corso;
+import model.user.Esame;
 import model.user.GiornoCalendario;
 import model.user.Utente;
 import persistence.dao.CorsoDao;
@@ -244,6 +245,56 @@ public class CorsoDaoJDBC implements CorsoDao {
 			}
 		}
 		return utenti;
+	}
+
+	@Override
+	public void setPropedeutico(Long esame, Long corso) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "insert into propedeutico(esame,corso) values (?,?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, esame);
+			statement.setLong(2, corso);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public List<Esame> getEsamiPropedeutici(Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		List<Esame> esami = new ArrayList<>();
+		try {
+			Esame esame;
+			String query = "select * from esame,propedeutico where esame.corso=propedeutico.esame AND propedeutico.corso=?";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setLong(1, codice);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				esame = new Esame();
+				esame.setCorso(result.getLong("corso"));
+				esame.setNome(result.getString("nome"));
+				esame.setCfu(result.getInt("cfu"));
+				esami.add(esame);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return esami;
 	}
 
 	

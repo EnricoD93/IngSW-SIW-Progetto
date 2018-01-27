@@ -40,7 +40,7 @@ public class ChangePage extends HttpServlet {
 	List<Aula> aule;
 	List<Corso> corsi;
 	List<Avviso> avvisi;
-
+	List<Esame> esami;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -132,8 +132,10 @@ public class ChangePage extends HttpServlet {
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 					avvisi = avvDao.findAllByCourse(codice);
+					esami=corsoDao.getEsamiPropedeutici(codice);
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
+					req.setAttribute("esami", esami);
 					req.setAttribute("advices", avvisi);
 					req.getRequestDispatcher("course.jsp").forward(req, resp);
 					break;

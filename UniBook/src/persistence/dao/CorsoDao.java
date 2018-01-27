@@ -3,6 +3,7 @@ package persistence.dao;
 import java.util.List;
 
 import model.course.Corso;
+import model.user.Esame;
 import model.user.Utente;
 
 public interface CorsoDao {
@@ -13,4 +14,6 @@ public interface CorsoDao {
 	public void delete(Corso corso); //Delete
 	public Utente getDocente(String matricola);
 	public List<Utente> getStudentiIscritti(Long codice);
+	public void setPropedeutico(Long esame,Long corso);
+	public List<Esame> getEsamiPropedeutici(Long corso);
 }
