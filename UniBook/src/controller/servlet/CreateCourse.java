@@ -138,8 +138,8 @@ public class CreateCourse extends HttpServlet {
 				GiornoCalendario fine = new GiornoCalendario();
 				inizio.parseToGiornoCalendario(g.parseToDate(dataInizio));
 				fine.parseToGiornoCalendario(g.parseToDate(dataFine));
-				fine.setGiorno(fine.getGiorno() + 1);
-
+				fine.setGiorno(fine.getGiorno());
+				fine.next();
 				// calcolo delle lezioni specifiche che il corso prevede
 				if (lunedì != null) {
 					lezioni.addAll(cal.getLezioniCorso(lunedì.getCorso(), inizio, fine,
@@ -170,7 +170,7 @@ public class CreateCourse extends HttpServlet {
 
 				// creazione del corso
 
-				String[] propedeuticità=req.getParameterValues("prop");
+				String[] propedeuticità = req.getParameterValues("prop");
 				DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory()
 						.getDescrizioneCorsoDao();
 				DescrizioneCorso corso = descCorsoDao.findByPrimaryKey(Long.parseLong(codiceCorso));
