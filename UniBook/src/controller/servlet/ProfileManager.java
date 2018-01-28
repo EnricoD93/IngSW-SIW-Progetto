@@ -32,18 +32,22 @@ public class ProfileManager extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Utente currentUser = (Utente) req.getSession().getAttribute("currentUser");
 		String request = req.getParameter("request");
+		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		code = generateCode();
 		if (request.equals("modificaPassword")) {
 			String inputPassword = req.getParameter("inputPassword");
-			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			utenteDao.passwordModify(currentUser.getMatricola(), inputPassword);
-		} else if (request.equals("modificaEmail")) {
+		} else if(request.equals("modificaEmail")) {
+				String inputEmail = req.getParameter("inputEmail");
+				utenteDao.emailModify(currentUser.getMatricola(), inputEmail);
+			} if (request.equals("codiceVerificaEmail")) {
 			String inputEmail = req.getParameter("inputEmail");
 		sendVerificationCode(req,resp,inputEmail,currentUser.getNome(),currentUser.getMatricola());
-		System.out.println("il codice inviato è "+ code);
+		utenteDao.setVerifyCode(currentUser.getMatricola(), code);
 		JSONObject json= new JSONObject();
 		try {
-			json.put("code", code);
+			json.put("jsonCode", code);
+			json.put("user", currentUser.getMatricola());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,11 +81,8 @@ public class ProfileManager extends HttpServlet {
 		} catch (final Exception ex) {
 			ex.printStackTrace();
 			resultMessage = "There were an error: " + ex.getMessage();
-		} finally {
-			req.setAttribute("Message", resultMessage);
-			req.getRequestDispatcher("emailVerify.jsp").forward(req, resp);
-		}
-		System.out.println(resultMessage);
+		} 
+
 	}
 	
 	@Override

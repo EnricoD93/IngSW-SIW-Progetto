@@ -51,18 +51,22 @@ public interface UtenteDao {
 	public List<Esame> findEsamiIscritto(String matricola);
 
 	public List<Esame> findEsamiNonSuperati(String matricola);
-	
-	public void salvaPresenza(String matricola,Long lezione);
-	
+
+	public void salvaPresenza(String matricola, Long lezione);
+
 	public void deletePresenze(Long lezione);
-	
+
 	public int findPresenze(String matricola, Long corso);
-	
-	public int findUnreadMessages(String dest,String mitt);
+
+	public int findUnreadMessages(String dest, String mitt);
 
 	public int findAllUnreadMessages(String utente);
 
 	public void deleteExam(String matricola, Esame e);
-	 
+
 	public void passwordModify(String matricola, String password);
+
+	public void emailModify(String matricola, String email);
+
+	public void setVerifyCode(String matricola, String code);
 }

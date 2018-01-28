@@ -10,6 +10,7 @@
 	<div class="container-fluid">
 		<div class="block-header">
 			<h2>
+			<input class="hidden" id="currentUser" value="${currentUser.verifyCode}">
 				<div class="body table-responsive">
 					<div align="center" class="corsiTitle">Profilo:</div>
 					<div align="center">

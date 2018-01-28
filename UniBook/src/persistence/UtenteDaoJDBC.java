@@ -816,5 +816,47 @@ public class UtenteDaoJDBC implements UtenteDao {
 			}
 		
 	}
+	@Override
+	public void emailModify(String matricola, String email) {
+		
+			Connection connection = this.dataSource.getConnection();
+			PreparedStatement statement;
+			String query = "UPDATE utente " + "SET email = ? " + "WHERE matricola = ?";
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setString(1, email);
+				statement.setString(2, matricola);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		
+	}
+	@Override
+	public void setVerifyCode(String matricola, String code) {
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE utente " + "SET verifycode = ? " + "WHERE matricola = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, code);
+			statement.setString(2, matricola);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
 
 }

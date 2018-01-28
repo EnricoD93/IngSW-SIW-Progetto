@@ -19,8 +19,6 @@ function modificaPassword(){
 
 };
 function confermaModificaPassword(){
-	var valore=$('#password').val();
-	console.log(valore);
 	$.ajax({
 		url : 'profileManager',
 		type : 'POST',
@@ -38,20 +36,50 @@ function confermaModificaPassword(){
 	
 };
 function confermaModificaEmail(){
-	var valore=$('#email').val();
-	console.log(valore);
 	$.ajax({
 		url : 'profileManager',
 		type : 'POST',
 		datatype : 'text',
 		data :{
-			request : "modificaEmail",
+			request : "codiceVerificaEmail",
 			inputEmail: $('#email').val()
 		},
 		success : function(data) {
-			console.log("code "+data.code);
+			swal({
+				  title: "Codice di Verifica",
+				  text: "Inserisci il codice di verifica che ti è stato appena inviato sulla nuova email",
+				  content: {
+					    element: "input",
+					    attributes: {
+					      placeholder: "Codice di verifica",
+					      type: "text",
+					    }}
+				}).then(function (code){
+					if (code == "") {
+						swal.showInputError("Devi inserire il codice di verifica!");
+						return false
+					}
+					if(code==data.jsonCode){
+						
+						$.ajax({
+							url : 'profileManager',
+							type : 'POST',
+							datatype : 'text',
+							data :{
+								request : "modificaEmail",
+								inputEmail: $('#email').val()
+							},success: function(){
+						
+									swal("Email cambiata!", "La tue Email è stata modificata con successo", "success").then(() => {
+											window.location.href="page?request=profilo&id="+data.user;
+										})
+							 }
+						});
+					}else{
+						swal("Il codice è errato","Il codice inserito non corrisponde a quello inviato!","error");
+					}
+				})
 			
-			swal("Email modificata","La tua email è stata modificata!","success");
 		},
 	 	error: function() { 
 	 		swal("Email non modificata","La tua email non è stata modificata!","error");
