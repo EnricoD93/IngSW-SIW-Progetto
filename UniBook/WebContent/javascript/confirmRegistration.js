@@ -21,6 +21,18 @@ function showWarningMessage() {
 			"Ricontrolla il codice inserito.\n Richiedi un nuovo codice cliccando su \"Invia\" oppure clicca su \"Cambia\" per modificare l'email inserita precedentemente.");
 }
 function confirmButtonOk() {
+	$("#username").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#btnlogin").click();
+	    }
+	});
+	
+	$("#password").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#btnlogin").click();
+	    }
+	});
+	
 	$('#confirmButtonOk').click(function() {
 		if (verified == true)
 			window.location.replace("index.html");
