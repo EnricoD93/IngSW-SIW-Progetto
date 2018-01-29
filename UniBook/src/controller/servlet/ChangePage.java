@@ -163,7 +163,7 @@ public class ChangePage extends HttpServlet {
 					DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory()
 							.getDescrizioneCorsoDao();
 					listaAule = aulaDao.findAll();
-					listaCorsi = descrizioneDao.findAll();
+					listaCorsi = descrizioneDao.findNotCreatedCourses();
 					req.setAttribute("listaCorsi", listaCorsi);
 					req.setAttribute("listaAule", listaAule);
 					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);

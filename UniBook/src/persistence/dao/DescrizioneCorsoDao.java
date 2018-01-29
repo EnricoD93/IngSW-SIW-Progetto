@@ -12,4 +12,5 @@ public interface DescrizioneCorsoDao {
 	public List<DescrizioneCorso> findAll();       
 	public void update(DescrizioneCorso descrizioneCorso); //Update
 	public void delete(DescrizioneCorso descrizioneCorso); //Delete
+	public List<DescrizioneCorso> findNotCreatedCourses();
 }

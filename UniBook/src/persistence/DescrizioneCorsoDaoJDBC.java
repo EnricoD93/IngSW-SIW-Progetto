@@ -97,7 +97,6 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				descrizioneCorso.setCfu(result.getInt("cfu"));
 				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
 				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
-				System.out.println("C'è la descrizione del corso di "+ descrizioneCorso.getNome());
 				listaCorsi.add(descrizioneCorso);
 			}
 		} catch (SQLException e) {
@@ -136,6 +135,39 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public List<DescrizioneCorso> findNotCreatedCourses() {
+		Connection connection = this.dataSource.getConnection();
+		List<DescrizioneCorso> listaCorsi = new ArrayList<>();
+		try {
+			DescrizioneCorso descrizioneCorso;
+			PreparedStatement statement;
+			String query = "select * from descrizionecorso d where not exists(select * from corso where d.codice=corso.codice)";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				descrizioneCorso = new DescrizioneCorso();
+				descrizioneCorso.setCodice(result.getLong("codice"));
+				descrizioneCorso.setNome(result.getString("nome"));
+				descrizioneCorso.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				descrizioneCorso.setAnno(result.getInt("anno"));
+				descrizioneCorso.setCfu(result.getInt("cfu"));
+				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
+				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				listaCorsi.add(descrizioneCorso);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return listaCorsi;
 	}
 
 }

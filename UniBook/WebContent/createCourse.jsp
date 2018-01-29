@@ -42,8 +42,6 @@
 											</c:forEach>
 										</select> &nbsp;
 
-
-
 									</div>
 
 									<div class="form-group">
