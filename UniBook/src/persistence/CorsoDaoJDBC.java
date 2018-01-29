@@ -232,6 +232,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 				utente.setPassword(result.getString("password"));
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
+				utente.setDescrizione(result.getString("descrizione"));
 
 				utenti.add(utente);
 			}

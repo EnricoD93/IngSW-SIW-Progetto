@@ -18,6 +18,14 @@ function modificaPassword(){
 	$('#modificaPasswordConfirm').removeClass("hidden");
 
 };
+function modificaDescrizione(){
+	
+	console.log("click");
+	$('#descrizione').removeClass("hidden");
+	$('#modificaDescrizione').addClass("hidden");
+	$('#modificaDescrizioneConfirm').removeClass("hidden");
+
+};
 function confermaModificaPassword(){
 	$.ajax({
 		url : 'profileManager',
@@ -70,7 +78,7 @@ function confermaModificaEmail(){
 								inputEmail: $('#email').val()
 							},success: function(){
 						
-									swal("Email cambiata!", "La tue Email è stata modificata con successo", "success").then(() => {
+									swal("Email cambiata!", "La tua Email è stata modificata con successo", "success").then(() => {
 											window.location.href="page?request=profilo&id="+data.user;
 										})
 							 }
@@ -86,3 +94,20 @@ function confermaModificaEmail(){
      }    
 	});
 };
+function confermaModificaDescrizione(){
+	console.log("confermaModifica");
+	$.ajax({
+		url : 'profileManager',
+		type : 'POST',
+		datatype : 'text',
+		data :{
+			request : "modificaDescrizione",
+			inputEmail: $('#descrizione').val()
+		},success: function(data){
+	
+				swal("Descrizione modificata!", "La tua descrizione è stata modificata con successo", "success").then(() => {
+						window.location.href="page?request=profilo&id="+data.user;
+					})
+		 }
+	});
+}

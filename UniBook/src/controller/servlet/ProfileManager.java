@@ -38,9 +38,21 @@ public class ProfileManager extends HttpServlet {
 			String inputPassword = req.getParameter("inputPassword");
 			utenteDao.passwordModify(currentUser.getMatricola(), inputPassword);
 		} else if(request.equals("modificaEmail")) {
-				String inputEmail = req.getParameter("inputEmail");
-				utenteDao.emailModify(currentUser.getMatricola(), inputEmail);
-			} if (request.equals("codiceVerificaEmail")) {
+			String inputEmail = req.getParameter("inputEmail");
+			utenteDao.emailModify(currentUser.getMatricola(), inputEmail);
+		}else if(request.equals("modificaDescrizione")) {
+			String inputDescrizione = req.getParameter("inputDescrizione");
+			utenteDao.descrizioneModify(currentUser.getMatricola(), inputDescrizione);
+			JSONObject json= new JSONObject();
+			try {
+				json.put("user", currentUser.getMatricola());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			resp.setContentType("application/json");
+			resp.getWriter().print(json);
+		} if (request.equals("codiceVerificaEmail")) {
 			String inputEmail = req.getParameter("inputEmail");
 		sendVerificationCode(req,resp,inputEmail,currentUser.getNome(),currentUser.getMatricola());
 		utenteDao.setVerifyCode(currentUser.getMatricola(), code);

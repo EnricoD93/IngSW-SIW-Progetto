@@ -64,6 +64,10 @@
 										<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
 									</tr>
 								</c:if>
+								<tr>
+										<th>Descrizione:&nbsp;&nbsp;${profilo.descrizione}</th>
+									</tr>
+								
 								<c:if test="${currentUser.matricola==profilo.matricola }">
 									<tr>
 										<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
@@ -103,6 +107,20 @@
 										<th>Matricola:&nbsp;&nbsp;${profilo.matricola}</th>
 									</tr>
 								</c:if>
+								
+									<th style="display: -webkit-inline-box;">Descrizione:&nbsp;&nbsp;
+										<input name="descrizione" id="descrizione"cols="30" rows="5"
+										class="form-control no-resize hidden" value="${profilo.descrizione}"
+										required> <label class="form-label"></label>&nbsp;
+										<button id="modificaDescrizione" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaDescrizione();">
+											<span>Modifica</span>
+										</button>	
+										<button  id="modificaDescrizioneConfirm" type="button" class="btn bg-unibook waves-effect hidden" onclick="javascript:confermaModificaDescrizione();">
+											<i class="material-icons">check</i>
+										</button>
+									</th>
+								
+								
 								<c:if test="${currentUser.matricola==profilo.matricola }">
 									<tr>
 										<th>Codice Fiscale:&nbsp;&nbsp;${profilo.codicefiscale}</th>
