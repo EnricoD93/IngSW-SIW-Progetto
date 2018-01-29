@@ -1,5 +1,5 @@
 var verified = false;
-$(document).ready(confirmButtonOk);
+$(document).ready(buttoninit);
 function registration(code) {
 	var fieldcode = $('#verify').val();
 	if (fieldcode == code) {
@@ -20,7 +20,19 @@ function showWarningMessage() {
 			"Codice non valido!",
 			"Ricontrolla il codice inserito.\n Richiedi un nuovo codice cliccando su \"Invia\" oppure clicca su \"Cambia\" per modificare l'email inserita precedentemente.");
 }
-function confirmButtonOk() {
+function buttoninit() {
+	$("#username").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#btnlogin").click();
+	    }
+	});
+	
+	$("#password").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#btnlogin").click();
+	    }
+	});
+	
 	$('#confirmButtonOk').click(function() {
 		if (verified == true)
 			window.location.replace("index.html");

@@ -34,10 +34,14 @@
 					<b>Registrazione quasi completa!</b>
 				</div>
 				</br> Controlla la tua posta e inserisci il codice di verifica</br>
-				<div class="input-group">
-					<span class="input-group-addon"> <i class="material-icons">lock</i>
+
+
+				<div class="myinline input-group form-group">
+					<span class="myinline input-group-addon"> <i
+						class="material-icons">lock</i>
 					</span>
 					<div class="form-line">
+
 						<input id="verify" type="text" class="form-control"
 							name="verifyCode" minlength="6" placeholder="Codice di verifica"
 							required>
@@ -47,13 +51,13 @@
 				<div class="row">
 					<button id="verifyButton"
 						onclick="javascript:registration( '${dbcode}');"
-						class="btn btn-lg bg-red waves-effect" type="submit">Verifica</button>
+						class="btn btn-lg bg-unibook waves-effect" type="submit">Verifica</button>
+					<button class="btn btn-lg bg-unibook waves-effect" type="submit">Invia</button>
+
+					<button class="btn btn-lg bg-unibook waves-effect" type="submit">
+						Cambia email</button>
 				</div>
 
-				<button class="btn btn-lg bg-red waves-effect" type="submit">Invia</button>
-
-				<button class="btn btn-lg bg-red waves-effect" type="submit">
-					Cambia email</button>
 			</div>
 		</div>
 	</div>
