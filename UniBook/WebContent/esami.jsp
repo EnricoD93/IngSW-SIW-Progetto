@@ -49,15 +49,14 @@
 									</a></td>
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
-									<td><b> <c:choose>
-												<c:when test="${esame.voto==31}">
-  												 30L
-  												</c:when>
-												<c:otherwise>
-  												 ${esame.voto}
+									<td><c:choose>
+											<c:when test="${esame.voto==31}">
+												<b> 30L</b>
+											</c:when>
+											<c:otherwise>
+  												<b>${esame.voto}</b>
   												</c:otherwise>
-											</c:choose>
-									</b></td>
+										</c:choose></td>
 									<td><img src="images/superato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
@@ -97,7 +96,8 @@
 									<td><img src="images/nonfrequentato.png" /></td>
 									<td><button type="button"
 											class="bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-											style="margin-left: 39px;" onclick="javascript:addExam(${esame.corso})">
+											style="margin-left: 39px;"
+											onclick="javascript:addExam(${esame.corso})">
 											<i class="material-icons">add</i>
 
 										</button></td>
