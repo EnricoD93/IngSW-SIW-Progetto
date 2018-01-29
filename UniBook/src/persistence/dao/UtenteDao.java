@@ -69,4 +69,6 @@ public interface UtenteDao {
 	public void emailModify(String matricola, String email);
 
 	public void setVerifyCode(String matricola, String code);
+
+	public void descrizioneModify(String matricola, String descrizione);
 }

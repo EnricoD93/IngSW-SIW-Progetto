@@ -27,7 +27,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 	public void save(Utente utente) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo,verifycode,imagepath) values (?,?,?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into utente(matricola,nome,cognome,data_nascita,codice_fiscale,email,password,corsodilaurea,ruolo,verifycode,imagepath,descrizione) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, utente.getMatricola());
 			statement.setString(2, utente.getNome());
@@ -41,6 +41,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setInt(9, utente.getRuolo());
 			statement.setString(10, utente.getVerifyCode());
 			statement.setString(11, utente.getProfileImagePath());
+			statement.setString(12,utente.getDescrizione());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -77,6 +78,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -114,6 +116,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 				utenti.add(utente);
 			}
 		} catch (SQLException e) {
@@ -372,6 +375,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 
 			}
 		} catch (SQLException e) {
@@ -438,6 +442,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 				colleagues.add(utente);
 			}
 		} catch (SQLException e) {
@@ -477,6 +482,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 				docenti.add(utente);
 			}
 		} catch (SQLException e) {
@@ -559,6 +565,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				utente.setRuolo(result.getInt("ruolo"));
 				utente.setVerifyCode(result.getString("verifycode"));
 				utente.setProfileImagePath(result.getString("imagepath"));
+				utente.setDescrizione(result.getString("descrizione"));
 				utenti.add(utente);
 			}
 		} catch (SQLException e) {
@@ -857,6 +864,28 @@ public class UtenteDaoJDBC implements UtenteDao {
 				e.printStackTrace();
 			}
 		}		
+	}
+
+	@Override
+	public void descrizioneModify(String matricola, String descrizione) {
+
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE utente " + "SET descrizione = ? " + "WHERE matricola = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, descrizione);
+			statement.setString(2, matricola);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

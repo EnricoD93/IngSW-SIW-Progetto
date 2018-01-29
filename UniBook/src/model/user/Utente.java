@@ -17,6 +17,15 @@ public class Utente {
 	private int ruolo;
 	private String verifyCode;
 	private String profileImagePath;
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+	private String descrizione;
 
 	public Utente() {
 	}
