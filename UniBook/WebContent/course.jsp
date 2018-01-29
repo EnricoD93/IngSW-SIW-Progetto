@@ -47,13 +47,13 @@
 									<th scope="row">Codice del Corso: ${currentCourse.codice}</th>
 								</tr>
 								<tr>
-									<c:if test="${currentCourse.corsoDiLaurea==733}">
-										<th>Codice del Corso: ${currentCourse.corsoDiLaurea}
-											Corso di Laurea Informatica</th>
+									<c:if test="${currentCourse.corsoDiLaurea == 0733}">
+										<th>Corso di Laurea: ${currentCourse.corsoDiLaurea} -
+											 Informatica</th>
 									</c:if>
-									<c:if test="${currentCourse.corsoDiLaurea==726}">
-										<th scope="row">Codice del Corso:
-											${currentCourse.corsoDiLaurea} - Corso di Laurea Matematica</th>
+									<c:if test="${currentCourse.corsoDiLaurea==0726}">
+										<th scope="row">Corso di Laurea :
+											${currentCourse.corsoDiLaurea} - Matematica</th>
 									</c:if>
 								</tr>
 								<tr>
@@ -95,7 +95,7 @@
 						<input type="hidden" id="codice" value="${currentCourse.codice}">
 						<div align="right">
 							<div class="bg-unibook info-box-3 hover-zoom-effect">
-								<a href="javascript:changeProfile();">
+								<a href="page?request=modificaCorso&corso=${currentCourse.codice}">
 									<div class="icon">
 										<i class="material-icons">mode_edit</i>
 									</div>

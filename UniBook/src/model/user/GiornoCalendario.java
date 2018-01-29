@@ -11,6 +11,7 @@ public class GiornoCalendario {
 	int anno;
 	int ora;
 	int minuti;
+
 	public int getOra() {
 		return ora;
 	}
@@ -62,9 +63,9 @@ public class GiornoCalendario {
 		this.giorno = g;
 		this.mese = m;
 		this.anno = a;
-		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(a, m-1, g);
+		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(a, m - 1, g);
 		giornoDellaSettimana = giorniIt[(gc3.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
-		System.out.println("sto creando il giorno con giorno della settimana "+ giornoDellaSettimana);
+		System.out.println("sto creando il giorno con giorno della settimana " + giornoDellaSettimana);
 	}
 
 	public GiornoCalendario() {
@@ -124,7 +125,7 @@ public class GiornoCalendario {
 		Calendar g = new GregorianCalendar();
 		g.setTime(d);
 		giorno = g.get(Calendar.DAY_OF_MONTH);
-		mese = g.get(Calendar.MONTH) +1;
+		mese = g.get(Calendar.MONTH) + 1;
 		anno = g.get(Calendar.YEAR);
 		giornoDellaSettimana = giorniIt[(g.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
 	}
@@ -136,6 +137,12 @@ public class GiornoCalendario {
 
 	public void stampa() {
 		System.out.println(giorno + "/" + mese + "/" + anno + " è " + giornoDellaSettimana);
+	}
+
+	@Override
+	public String toString() {
+		
+		return  anno+","+mese+","+giorno;
 	}
 
 	public void setGiornoDellaSettimana(String giornoDellaSettimana) {

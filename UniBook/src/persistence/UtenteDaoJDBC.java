@@ -872,6 +872,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 		Connection connection = this.dataSource.getConnection();
 		PreparedStatement statement;
 		String query = "UPDATE utente " + "SET descrizione = ? " + "WHERE matricola = ?";
+		System.out.println("setto descrizione");
 		try {
 			statement = connection.prepareStatement(query);
 			statement.setString(1, descrizione);

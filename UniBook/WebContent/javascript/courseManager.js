@@ -406,4 +406,16 @@ function modifyAdvice(id){
 
 	});
 }
+function modificaCorso(codice){
+	$
+	.ajax({
+		type : "GET",
+		url : "page",
+		datatype : 'text',
+		data : {
+			request: "modificaCorso",
+			corso:codice
+		}
+	});
+}
 

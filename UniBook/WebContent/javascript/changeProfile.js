@@ -95,14 +95,14 @@ function confermaModificaEmail(){
 	});
 };
 function confermaModificaDescrizione(){
-	console.log("confermaModifica");
+	console.log("confermaDescrizione"+$('#descrizione').val());
 	$.ajax({
 		url : 'profileManager',
 		type : 'POST',
 		datatype : 'text',
 		data :{
 			request : "modificaDescrizione",
-			inputEmail: $('#descrizione').val()
+			inputDescrizione: $('#descrizione').val()
 		},success: function(data){
 	
 				swal("Descrizione modificata!", "La tua descrizione è stata modificata con successo", "success").then(() => {

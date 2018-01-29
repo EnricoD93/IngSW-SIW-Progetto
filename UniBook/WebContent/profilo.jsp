@@ -109,7 +109,7 @@
 								</c:if>
 								
 									<th style="display: -webkit-inline-box;">Descrizione:&nbsp;&nbsp;
-										<input name="descrizione" id="descrizione"cols="30" rows="5"
+										<input name="descrizione" id="descrizione" cols="30" rows="5"
 										class="form-control no-resize hidden" value="${profilo.descrizione}"
 										required> <label class="form-label"></label>&nbsp;
 										<button id="modificaDescrizione" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaDescrizione();">

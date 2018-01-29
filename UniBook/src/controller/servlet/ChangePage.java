@@ -41,6 +41,7 @@ public class ChangePage extends HttpServlet {
 	List<Corso> corsi;
 	List<Avviso> avvisi;
 	List<Esame> esami;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -106,10 +107,10 @@ public class ChangePage extends HttpServlet {
 							Long codice = corsi.get(i).getCodice();
 							int ore = descrizioneCorsoDao.findByPrimaryKey(codice).getOreLezione()
 									+ descrizioneCorsoDao.findByPrimaryKey(codice).getOreEsercitazione();
-						
-						int presenze=utenteDao.findPresenze(currentUser.getMatricola(), codice);
-						int percentuale=(presenze*100)/ore;
-					percentuali.put(corsi.get(i).getCodice(), percentuale);
+
+							int presenze = utenteDao.findPresenze(currentUser.getMatricola(), codice);
+							int percentuale = (presenze * 100) / ore;
+							percentuali.put(corsi.get(i).getCodice(), percentuale);
 						}
 						req.setAttribute("percentuali", percentuali);
 
@@ -132,7 +133,7 @@ public class ChangePage extends HttpServlet {
 					Corso currentCourse = corsoDao.findByPrimaryKey(codice);
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 					avvisi = avvDao.findAllByCourse(codice);
-					esami=corsoDao.getEsamiPropedeutici(codice);
+					esami = corsoDao.getEsamiPropedeutici(codice);
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("esami", esami);
@@ -168,7 +169,72 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("listaAule", listaAule);
 					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
 					break;
+				case "modificaCorso":
+					System.out.println("entro");
+					Long corso = Long.parseLong(req.getParameter("corso"));
+					List<Aula> listaAule2;
+					listaAule2 = aulaDao.findAll();
+					req.setAttribute("listaAule", listaAule2);
+					CorsoDao corsoDao2 = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+					Corso c = corsoDao2.findByPrimaryKey(corso);
+					String inizio = c.getDataInizio().toString();
+					String fine = c.getDataFine().toString();
+					req.setAttribute("currentCourse", c);
+					DescrizioneCorsoDao descrizioneDao2 = DatabaseManager.getInstance().getDaoFactory()
+							.getDescrizioneCorsoDao();
+					List<Esame> propedeuticità = corsoDao2.getEsamiPropedeutici(c.getCodice());
+					Map<Long, Esame> prop = new HashMap<>();
+					for (Esame esame : propedeuticità) {
+						prop.put(esame.getCorso(), esame);
+					}
+					listaCorsi = descrizioneDao2.findNotCreatedCourses();
+					req.setAttribute("inizio", inizio);
+					req.setAttribute("fine", fine);
+					req.setAttribute("listaCorsi", listaCorsi);
+			
+					req.setAttribute("prop", prop);
 
+					req.getRequestDispatcher("modifyCourse.jsp").forward(req, resp);
+					break;
+				case "modificaC":
+					Long corso3 = Long.parseLong(req.getParameter("corso"));
+
+					CorsoDao corsoDao3 = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+					Corso c1 = corsoDao3.findByPrimaryKey(corso3);
+					
+				
+					
+					String giorniLezione = c1.getGiorno();
+					String[] giorni = giorniLezione.split("_");
+					ArrayList<HashMap<String, String>> lista = new ArrayList<>();
+					for (int i = 0; i < giorni.length; i++) {
+						System.out.println("giorni " + giorni[i]);
+					}
+					for (int i = 0; i < giorni.length; i++) {
+						String[] giorno = giorni[i].split(",");
+						HashMap<String, String> h = new HashMap<>();
+						h.put("giorno", giorno[0]);
+						h.put("dalle", giorno[1]);
+						h.put("alle", giorno[2]);
+						h.put("tipo", giorno[3]);
+						h.put("aula", giorno[4]);
+						
+						lista.add(h);
+					}
+
+					JSONObject json = new JSONObject();
+					try {
+						json.put("lista", lista);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					resp.setContentType("application/json");
+					resp.getWriter().print(json);
+
+					
+					
+					break;
 				case "colleghi":
 					List<Utente> colleghi;
 					colleghi = utenteDao.findColleaguesByCorsoDiLaurea(currentUser);
@@ -218,25 +284,25 @@ public class ChangePage extends HttpServlet {
 					List<Esame> esamiNonSuperati = utenteDao.findEsamiNonSuperati(currentUser.getMatricola());
 					double mediaProv = 0;
 					double votoPartenzaProv = 0;
-					int votoPartenza=0;
-					int media=0;
-					int lode=0;
+					int votoPartenza = 0;
+					int media = 0;
+					int lode = 0;
 					if (esami.size() > 0) {
 						for (int i = 0; i < esami.size(); i++) {
-							if(esami.get(i).getVoto()==31) {
+							if (esami.get(i).getVoto() == 31) {
 								lode++;
 								esami.get(i).setVoto(30);
 							}
 							mediaProv += esami.get(i).getVoto();
 						}
 						mediaProv /= esami.size();
-						media=(int) Math.round(mediaProv);
+						media = (int) Math.round(mediaProv);
 						System.out.println(media);
 						votoPartenzaProv = (media * 11) / 3;
-						votoPartenzaProv =Math.round(votoPartenzaProv);
-						votoPartenzaProv=votoPartenzaProv+(lode*0.2);
-						votoPartenzaProv =Math.round(votoPartenzaProv);
-						votoPartenza=(int) votoPartenzaProv;
+						votoPartenzaProv = Math.round(votoPartenzaProv);
+						votoPartenzaProv = votoPartenzaProv + (lode * 0.2);
+						votoPartenzaProv = Math.round(votoPartenzaProv);
+						votoPartenza = (int) votoPartenzaProv;
 					}
 					req.setAttribute("media", media);
 					req.setAttribute("votoPartenza", votoPartenza);

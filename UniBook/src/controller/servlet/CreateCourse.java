@@ -59,11 +59,11 @@ public class CreateCourse extends HttpServlet {
 			String giorniLezione = "";
 			try {
 				if (req.getParameter("lunedi") != null) {
-					giorniLezione += "lunedi ";
 					String aulaLun = req.getParameter("idAula_1");
 					String oraInizioLun = req.getParameter("oraInizioLun");
 					String oraFineLun = req.getParameter("oraFineLun");
 					GiornoCalendario g = new GiornoCalendario();
+					giorniLezione += "lunedi," + oraInizioLun + "," + oraFineLun + "," + "0" + "," + aulaLun + "_";
 					g.setGiornoDellaSettimana("Lunedì");
 					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 					Date parsedDate;
@@ -75,10 +75,10 @@ public class CreateCourse extends HttpServlet {
 					lunedì = new Lezione(Long.parseLong(codiceCorso), g, oraInLun, oraFinLun, aulaLun, 0);
 				}
 				if (req.getParameter("martedi") != null) {
-					giorniLezione += "martedi ";
 					String aulaMar = req.getParameter("idAula_2");
 					String oraInizioMar = req.getParameter("oraInizioMar");
 					String oraFineMar = req.getParameter("oraFineMar");
+					giorniLezione += "martedi," + oraInizioMar + "," + oraFineMar + "," + "0" + "," + aulaMar + "_";
 					GiornoCalendario g = new GiornoCalendario();
 					g.setGiornoDellaSettimana("Martedì");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
@@ -89,10 +89,10 @@ public class CreateCourse extends HttpServlet {
 					martedì = new Lezione(Long.parseLong(codiceCorso), g, oraInMar, oraFinMar, aulaMar, 0);
 				}
 				if (req.getParameter("mercoledi") != null) {
-					giorniLezione += "mercoledi ";
 					String aulaMer = req.getParameter("idAula_3");
 					String oraInizioMer = req.getParameter("oraInizioMer");
 					String oraFineMer = req.getParameter("oraFineMer");
+					giorniLezione += "mercoledi," + oraInizioMer + "," + oraFineMer + "," + "0" + "," + aulaMer + "_";
 					GiornoCalendario g = new GiornoCalendario();
 					g.setGiornoDellaSettimana("Mercoledì");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
@@ -103,10 +103,10 @@ public class CreateCourse extends HttpServlet {
 					mercoledì = new Lezione(Long.parseLong(codiceCorso), g, oraInMer, oraFinMer, aulaMer, 0);
 				}
 				if (req.getParameter("giovedi") != null) {
-					giorniLezione += "giovedi ";
 					String aulaGio = req.getParameter("idAula_4");
 					String oraInizioGio = req.getParameter("oraInizioGio");
 					String oraFineGio = req.getParameter("oraFineGio");
+					giorniLezione += "giovedi," + oraInizioGio + "," + oraFineGio + "," + "0" + "," + aulaGio + "_";
 					GiornoCalendario g = new GiornoCalendario();
 					g.setGiornoDellaSettimana("Giovedì");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
@@ -117,10 +117,10 @@ public class CreateCourse extends HttpServlet {
 					giovedì = new Lezione(Long.parseLong(codiceCorso), g, oraInGio, oraFinGio, aulaGio, 0);
 				}
 				if (req.getParameterValues("venerdi") != null) {
-					giorniLezione += "venerdi";
 					String aulaVen = req.getParameter("idAula_5");
 					String oraInizioVen = req.getParameter("oraInizioVen");
 					String oraFineVen = req.getParameter("oraFineVen");
+					giorniLezione += "venerdi," + oraInizioVen + "," + oraFineVen + "," + "0" + "," + aulaVen + "_";
 					GiornoCalendario g = new GiornoCalendario();
 					g.setGiornoDellaSettimana("Venerdì");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");

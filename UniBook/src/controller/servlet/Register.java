@@ -62,7 +62,7 @@ public class Register extends HttpServlet {
 			System.out.println("docente");
 
 			Utente doc = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-					Integer.parseInt(ruolo), code);
+					Integer.parseInt(ruolo), code,"ciao");
 
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(doc);
@@ -71,7 +71,7 @@ public class Register extends HttpServlet {
 			System.out.println("studente");
 
 			Utente stud = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-					Integer.parseInt(ruolo), code);
+					Integer.parseInt(ruolo), code,"ciao");
 
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(stud);

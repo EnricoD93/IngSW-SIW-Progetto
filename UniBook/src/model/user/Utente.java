@@ -31,7 +31,7 @@ public class Utente {
 	}
 
 	public Utente(String matricola, String nome, String cognome, Date dataNascita, String codicefiscale, String email,
-			String password, String corsoDiLaurea, int ruolo, String verifyCode) {
+			String password, String corsoDiLaurea, int ruolo, String verifyCode,String descrizione) {
 		this.matricola = matricola;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -42,7 +42,8 @@ public class Utente {
 		this.corsoDiLaurea = corsoDiLaurea;
 		this.ruolo = ruolo;
 		this.verifyCode = verifyCode;
-		profileImagePath = "images/profileImages/default.png";
+		this.profileImagePath = "images/profileImages/default.png";
+		this.descrizione=descrizione;
 	}
 
 	public String getMatricola() {
