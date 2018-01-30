@@ -149,7 +149,7 @@ public class CreateCourse extends HttpServlet {
 					System.out.println(listaLezioni.size());
 					// eliminazione lezioni dal calendario del docente
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
-							matricola);
+							u.getMatricola());
 
 					System.out.println("Dopo: " + listaLezioni.size());
 					// eliminazione lezioni dal db
@@ -186,7 +186,7 @@ public class CreateCourse extends HttpServlet {
 				lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 						iscritti.get(i).getMatricola());
 			}
-			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
+			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, u.getMatricola());
 			for (int i = 0; i < listaLezioni.size(); i++) {
 				lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
 			}

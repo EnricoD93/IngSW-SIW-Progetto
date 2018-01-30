@@ -45,9 +45,10 @@
 										</select> &nbsp;
 
 									</div>
-									<input class="hidden" name="codice" value="${currentCourse.codice}"> <input
-										class="hidden" id="inizio" value="${inizio}"> <input
-										class="hidden" id="fine" value="${fine}">
+
+									<input class="hidden" id="inizio" value="${inizio}"> <input
+										class="hidden" id="fine" value="${fine}">	
+										<input class="hidden" id="codice" name="codice" value="${currentCourse.codice}">
 									<div class="form-group">
 										<div class="form-line">
 											<label for="dataInizio">Selezionare la data di inizio
@@ -92,8 +93,7 @@
 									<div class="hidden" id="orarioGiorniLunedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Lunedì dalle </span> <select
-												class="selectpicker" tabindex="-98" id="lunediInizio"
-												name="oraInizioLun">
+												class="selectpicker" tabindex="-98" id="lunediInizio" name="oraInizioLun">
 
 												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
@@ -146,8 +146,7 @@
 									<div class="hidden" id="orarioGiorniMartedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Martedì dalle </span> <select
-												class="selectpicker" tabindex="-98" name="oraInizioMar"
-												id="martediInizio">
+												class="selectpicker" tabindex="-98" name="oraInizioMar" id="martediInizio">
 
 												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
@@ -199,8 +198,7 @@
 									<div class="hidden" id="orarioGiorniMercoledì">
 										<div class="input-group">
 											<span class="input-group-addon"> Mercoledì dalle </span> <select
-												class="selectpicker" tabindex="-98" id="mercolediInizio"
-												name="oraInizioMer">
+												class="selectpicker" tabindex="-98" id="mercolediInizio" name="oraInizioMer">
 
 												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
@@ -214,8 +212,8 @@
 												<option value="0000-00-00 18:00:00.00">18:00</option>
 
 											</select> <span class="input-group-addon"><b> &nbsp; alle </b>
-											</span> <select class="selectpicker" tabindex="-98"
-												id="mercolediFine" name="oraFineMer">
+											</span> <select class="selectpicker" tabindex="-98" id="mercolediFine"
+												name="oraFineMer">
 
 												<option value="0000-00-00 09:30:00.00">09:30</option>
 												<option value="0000-00-00 10:30:00.00">10:30</option>
@@ -252,8 +250,7 @@
 									<div class="hidden" id="orarioGiorniGiovedì">
 										<div class="input-group">
 											<span class="input-group-addon"> Giovedì dalle </span> <select
-												class="selectpicker" tabindex="-98" id="giovediInizio"
-												name="oraInizioGio">
+												class="selectpicker" tabindex="-98" id="giovediInizio" name="oraInizioGio">
 
 												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
@@ -305,8 +302,7 @@
 									<div class="hidden" id="orarioGiorniVenerdì">
 										<div class="input-group">
 											<span class="input-group-addon"> Venerdì dalle </span> <select
-												class="selectpicker" tabindex="-98" id="venerdiInizio"
-												name="oraInizioVen">
+												class="selectpicker" tabindex="-98" id="venerdiInizio" name="oraInizioVen">
 
 												<option value="0000-00-00 08:30:00.00">08:30</option>
 												<option value="0000-00-00 09:30:00.00">09:30</option>
