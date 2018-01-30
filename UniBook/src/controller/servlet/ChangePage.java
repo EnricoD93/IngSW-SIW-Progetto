@@ -191,10 +191,11 @@ public class ChangePage extends HttpServlet {
 						prop.put(esame.getCorso(), esame);
 					}
 					listaCorsi = descrizioneDao2.findNotCreatedCourses();
+					allCorsi=descrizioneDao2.findAll();
 					req.setAttribute("inizio", inizio);
 					req.setAttribute("fine", fine);
 					req.setAttribute("listaCorsi", listaCorsi);
-			
+					req.setAttribute("allCorsi", allCorsi);
 					req.setAttribute("prop", prop);
 
 					req.getRequestDispatcher("modifyCourse.jsp").forward(req, resp);

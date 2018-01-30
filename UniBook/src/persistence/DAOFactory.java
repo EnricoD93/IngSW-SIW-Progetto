@@ -10,6 +10,7 @@ import persistence.dao.EsameDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public abstract class DAOFactory {
@@ -28,6 +29,8 @@ public abstract class DAOFactory {
 
 	public abstract MessaggioDao getMessaggioDAO();
 
+	public abstract NotificaDao getNotificaDAO();
+
 	public abstract AulaDao getAulaDAO();
 
 	public abstract LezioneDao getLezioneDAO();
@@ -41,6 +44,7 @@ public abstract class DAOFactory {
 	public abstract EsameDao getEsameDAO();
 
 	public abstract EventoDao getEventoDAO();
+
 	public abstract AvvisoDao getAvvisoDAO();
 
 	public abstract UtilDao getUtilDAO();

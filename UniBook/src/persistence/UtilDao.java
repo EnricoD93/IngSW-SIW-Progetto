@@ -23,8 +23,8 @@ public class UtilDao {
 					+ "drop table if exists evento;" + "drop table if exists calendariopersonale;"
 					+ "drop table if exists superato;" + "drop table if exists propedeutico;"
 					+ "drop table if exists esame;" + "drop table if exists descrizionecorso;"
-					+ "drop table if exists avviso;" + "drop table if exists corso;" + "drop table if exists utente;"
-					+ "drop table if exists corsodilaurea;";
+					+ "drop table if exists avviso;" + "drop table if exists corso;" + "drop table if exists notifica;"
+					+ "drop table if exists utente;" + "drop table if exists corsodilaurea;";
 
 			PreparedStatement statement = connection.prepareStatement(delete);
 
@@ -65,7 +65,8 @@ public class UtilDao {
 					+ "create table superato(esame bigint REFERENCES esame(\"corso\"), studente VARCHAR(255) REFERENCES utente(\"matricola\"),data timestamp,voto int);"
 					+ "create table presenza(studente VARCHAR(255) REFERENCES utente(\"matricola\"), lezione bigint REFERENCES lezione (\"id\"));"
 					+ "create table avviso(\"id\" bigint primary key, titolo text, text text, corso bigint REFERENCES corso(\"codice\"),data timestamp);"
-					+ "create table propedeutico(esame bigint REFERENCES esame(\"corso\"),corso bigint REFERENCES corso(\"codice\"))";
+					+ "create table propedeutico(esame bigint REFERENCES esame(\"corso\"),corso bigint REFERENCES corso(\"codice\"));"
+					+ "create table notifica(\"id\" bigint primary key, data timestamp, testo text,type int,matricola_dest VARCHAR(255) REFERENCES utente(\"matricola\"),letta boolean);";
 
 			//
 			// + "create table afferisce(\"id\" bigint primary key, corso_codice bigint

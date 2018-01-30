@@ -32,5 +32,25 @@ function checkMessages() {
 };
 
 function checkNotifications() {
+	var notifications;
+	var user = $('#curUser').val();
+	console.log(user);
+	$.ajax({
+		type : "GET",
+		url : "checkNotifications",
+		dataType : 'text',
+		async: true,
+		data : {
+			user : user,
+			request : "notification"
+		},
+		success : function(data) {
+			var json = JSON.parse(data);
+			notifications = json.number;
+			if(notifications!=0)
+			document.getElementById("notifycount").innerHTML=notifications;
+		}
+	});
 
+	return messages;
 };

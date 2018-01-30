@@ -10,40 +10,39 @@ import persistence.dao.EsameDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class PostgresDAOFactory extends DAOFactory {
-	
-	private static  DataSource dataSource;
-	
+
+	private static DataSource dataSource;
 
 	// --------------------------------------------
 
 	static {
 		try {
 			Class.forName("org.postgresql.Driver").newInstance();
-			//questi vanno messi in file di configurazione!!!	
-//			dataSource=new DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
-			dataSource=new DataSource("jdbc:postgresql://localhost:5432/Unibook","postgres","postgres");
-		} 
-		catch (Exception e) {
-			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n"+e);
+			// questi vanno messi in file di configurazione!!!
+			// dataSource=new
+			// DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
+			dataSource = new DataSource("jdbc:postgresql://localhost:5432/Unibook", "postgres", "postgres");
+		} catch (Exception e) {
+			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n" + e);
 			e.printStackTrace();
 		}
 	}
 
-	
 	// --------------------------------------------
-	
-//	@Override
-//	public UtenteDao getStudenteDAO() {
-//		return new StudenteDaoJDBC(dataSource);
-//	}
-//
-//	@Override
-//	public UtenteDao getDocenteDAO() {
-//		return new DocenteDaoJDBC(dataSource);
-//	}
+
+	// @Override
+	// public UtenteDao getStudenteDAO() {
+	// return new StudenteDaoJDBC(dataSource);
+	// }
+	//
+	// @Override
+	// public UtenteDao getDocenteDAO() {
+	// return new DocenteDaoJDBC(dataSource);
+	// }
 
 	@Override
 	public MessaggioDao getMessaggioDAO() {
@@ -89,6 +88,7 @@ public class PostgresDAOFactory extends DAOFactory {
 	public UtenteDao getUtenteDao() {
 		return new UtenteDaoJDBC(dataSource);
 	}
+
 	@Override
 	public DescrizioneCorsoDao getDescrizioneCorsoDao() {
 		return new DescrizioneCorsoDaoJDBC(dataSource);
@@ -104,4 +104,8 @@ public class PostgresDAOFactory extends DAOFactory {
 		return new AvvisoDaoJDBC(dataSource);
 	}
 
+	@Override
+	public NotificaDao getNotificaDAO() {
+		return new NotificaDaoJDBC(dataSource);
+	}
 }
