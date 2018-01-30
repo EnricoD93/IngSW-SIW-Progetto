@@ -78,7 +78,7 @@
 									<th scope="row">Descrizione: ${currentCourse.descrizione}</th>
 								</tr>
 								<tr>
-									<th scope="row">Propedeuticità: <c:forEach var="esame" items="${esami}" varStatus="loop"> ${esame.nome}<c:if test="${!loop.last}">,</c:if> </c:forEach></th>
+									<th scope="row">Propedeuticità: <c:if test="${empty esami }">Nessuna propedeuticità</c:if><c:forEach var="esame" items="${esamesi}" varStatus="loop"> ${esame.nome}<c:if test="${!loop.last}">,</c:if> </c:forEach></th>
 								</tr>
 								<tr>
 									<th scope="row">Requisiti: ${currentCourse.requisiti}</th>

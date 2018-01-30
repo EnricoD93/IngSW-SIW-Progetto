@@ -82,10 +82,10 @@ public class CreateCourse extends HttpServlet {
 			g.parseToGiornoCalendario(g.parseToDate(dataFine));
 			c.setDataFine(g);
 			corsoDao.save(c);
+			if(propedeuticità!=null)
 			for (String string : propedeuticità) {
 				corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
 			}
-
 			// ----salvataggio delle lezioni del corso nel db e nel calendario del docente
 			// loggato----
 

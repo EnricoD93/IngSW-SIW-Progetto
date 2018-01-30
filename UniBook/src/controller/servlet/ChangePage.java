@@ -160,13 +160,16 @@ public class ChangePage extends HttpServlet {
 
 				case "creaCorso":
 					List<DescrizioneCorso> listaCorsi;
+					List<DescrizioneCorso> allCorsi;
 					List<Aula> listaAule;
 					DescrizioneCorsoDao descrizioneDao = DatabaseManager.getInstance().getDaoFactory()
 							.getDescrizioneCorsoDao();
 					listaAule = aulaDao.findAll();
 					listaCorsi = descrizioneDao.findNotCreatedCourses();
+					allCorsi=descrizioneDao.findAll();
 					req.setAttribute("listaCorsi", listaCorsi);
 					req.setAttribute("listaAule", listaAule);
+					req.setAttribute("allCorsi", allCorsi);
 					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
 					break;
 				case "modificaCorso":

@@ -48,7 +48,7 @@
 										<div class="form-line">
 											<label for="dataInizio">Selezionare la data di inizio
 												corso</label> &nbsp; <input id="dataInizio" name="dataInizio"
-												type="text" class="datepicker form-control" 
+												type="text" class="datepicker form-control"
 												placeholder="Seleziona una data" data-dtp="dtp_b4zAz"
 												required>
 										</div>
@@ -374,14 +374,14 @@
 
 									<div class="input-group">
 										<span class="input-group-addon">Propedeuticità</span> <select
-											class="selectpicker" data-live-search="true" multiple="multiple"
-											tabindex="-98" id="prop" name="prop">
-											<c:forEach var="corso" items="${listaCorsi}">
+											class="selectpicker" data-live-search="true"
+											multiple="multiple" tabindex="-98" id="prop" name="prop">
+											<c:forEach var="corso" items="${allCorsi}">
 												<option value="${corso.codice}">${corso.nome}</option>
 											</c:forEach>
 										</select>&nbsp;
 									</div>
-								
+
 									<button class="btn bg-unibook waves-effect" type="button"
 										onclick="javascript:verificaGiorni();">Crea corso</button>
 									<button id="creacorso"
