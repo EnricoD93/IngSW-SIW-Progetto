@@ -118,6 +118,7 @@ public class GiornoCalendario {
 
 		Calendar g = new java.util.GregorianCalendar(Integer.parseInt(info[3]), Integer.parseInt(info[2]),
 				Integer.parseInt(info[1]));
+		
 		return new Date(g.getTime().getTime());
 	}
 
@@ -131,7 +132,7 @@ public class GiornoCalendario {
 	}
 
 	public Date GiornoCalendarioToDate() {
-		Calendar g = new java.util.GregorianCalendar(getAnno(), getMese(), getGiorno());
+		Calendar g = new java.util.GregorianCalendar(getAnno(), getMese()-1, getGiorno());
 		return new Date(g.getTime().getTime());
 	}
 
