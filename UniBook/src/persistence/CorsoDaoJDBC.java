@@ -151,8 +151,29 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public void update(Corso corso) {
-		// TODO Auto-generated method stub
+		
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String update = "UPDATE corso SET descrizione=?,requisiti=?,giorni=?,materiale=?,data_inizio=?,data_fine=? WHERE corso.codice=?";
+			PreparedStatement statement = connection.prepareStatement(update);
+			statement.setString(1, corso.getDescrizione());
+			statement.setString(2, corso.getRequisiti());
+			statement.setString(3, corso.getGiorno());
+			statement.setString(4, corso.getMateriale());
+			statement.setDate(5, corso.getDataInizio().GiornoCalendarioToDate());
+			statement.setDate(6, corso.getDataFine().GiornoCalendarioToDate());
+			statement.setLong(7, corso.getCodice());
+			statement.executeUpdate();
 
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	@Override
@@ -296,6 +317,25 @@ public class CorsoDaoJDBC implements CorsoDao {
 			}
 		}
 		return esami;
+	}
+
+	@Override
+	public void deletePropedeutico(Long corso) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "delete FROM propedeutico WHERE corso=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, corso);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 	

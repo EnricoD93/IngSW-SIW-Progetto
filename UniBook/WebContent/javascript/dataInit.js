@@ -2,10 +2,10 @@ $(document).ready(
 		function() {
 
 			var valore = $('#inizio').val();
-			var valore = $('#fine').val();
+			var valore2 = $('#fine').val();
 
 			var arrayI = valore.split(",");
-			var arrayF = valore.split(",");
+			var arrayF = valore2.split(",");
 
 			$('#dataInizio').bootstrapMaterialDatePicker('setDate',
 					new Date(arrayI[0], arrayI[1] - 1, arrayI[2]));

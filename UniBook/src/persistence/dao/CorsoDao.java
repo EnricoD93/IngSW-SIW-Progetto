@@ -15,5 +15,6 @@ public interface CorsoDao {
 	public Utente getDocente(String matricola);
 	public List<Utente> getStudentiIscritti(Long codice);
 	public void setPropedeutico(Long esame,Long corso);
+	public void deletePropedeutico(Long corso);
 	public List<Esame> getEsamiPropedeutici(Long corso);
 }
