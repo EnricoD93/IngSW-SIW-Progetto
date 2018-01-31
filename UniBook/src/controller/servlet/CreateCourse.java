@@ -25,6 +25,7 @@ import model.course.Lezione;
 import model.user.CalendarioPersonale;
 import model.user.Evento;
 import model.user.GiornoCalendario;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
@@ -32,6 +33,7 @@ import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class CreateCourse extends HttpServlet {
@@ -54,7 +56,7 @@ public class CreateCourse extends HttpServlet {
 		// creazione di una lezione in base alle carateristiche selezionate (manca il
 		// tipo lezione)
 		if (request.equals("create")) {
-			GiornoCalendario g; 
+			GiornoCalendario g;
 			String giorniLezione = createLessons(req, resp, codiceCorso);
 			// creazione del corso
 			DescrizioneCorsoDao descCorsoDao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
@@ -82,10 +84,10 @@ public class CreateCourse extends HttpServlet {
 			g.parseToGiornoCalendario(g.parseToDate(dataFine));
 			c.setDataFine(g);
 			corsoDao.save(c);
-			if(propedeuticità!=null)
-			for (String string : propedeuticità) {
-				corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
-			}
+			if (propedeuticità != null)
+				for (String string : propedeuticità) {
+					corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
+				}
 			// ----salvataggio delle lezioni del corso nel db e nel calendario del docente
 			// loggato----
 
@@ -116,9 +118,7 @@ public class CreateCourse extends HttpServlet {
 			}
 
 		}
-		if (request.equals("cancel"))
-
-		{
+		if (request.equals("cancel")) {
 			Utente u = (Utente) session.getAttribute("currentUser");
 			String typedPassword = req.getParameter("typedPassword");
 			String matricola = req.getParameter("matricola");
@@ -137,10 +137,12 @@ public class CreateCourse extends HttpServlet {
 					LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 					List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
 					List<Utente> iscritti = corsoDao.getStudentiIscritti(codice);
-
+					NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					Timestamp t=new Timestamp(System.currentTimeMillis());
 					// eliminazione lezioni dal calendario degli studenti iscritti e elimina
 					// iscrizione degli studenti
 					for (int i = 0; i < iscritti.size(); i++) {
+						notificaDao.save(new Notifica(iscritti.get(i).getMatricola(),t,2,c.getNome()));
 						lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 								iscritti.get(i).getMatricola());
 						UtenteDao utente = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
@@ -181,22 +183,19 @@ public class CreateCourse extends HttpServlet {
 			LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 			List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
 			List<Utente> iscritti = corsoDao.getStudentiIscritti(codice);
-			
+
 			for (int i = 0; i < iscritti.size(); i++) {
 				lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 						iscritti.get(i).getMatricola());
 			}
-			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, u.getMatricola());
+			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
+					u.getMatricola());
 			for (int i = 0; i < listaLezioni.size(); i++) {
 				lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
 			}
-			
-			
-			
-			
+
 			String giorniLezione = createLessons(req, resp, codiceCorso);
-			
-			
+
 			for (int i = 0; i < lezioni.size(); i++) {
 
 				// salvataggio lezioni nel db
@@ -222,7 +221,7 @@ public class CreateCourse extends HttpServlet {
 				}
 			}
 			corsoDao.deletePropedeutico(codice);
-			
+
 			c.setDescrizione(descrizione);
 			c.setRequisiti(requisiti);
 			c.setGiorno(giorniLezione);
@@ -233,14 +232,11 @@ public class CreateCourse extends HttpServlet {
 			g = new GiornoCalendario();
 			g.parseToGiornoCalendario(g.parseToDate(dataFine));
 			c.setDataFine(g);
-			
+
 			for (String string : propedeuticità) {
 				corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
 			}
-			
-			
-			
-			
+
 			corsoDao.update(c);
 		}
 		resp.sendRedirect("page?request=corsi");

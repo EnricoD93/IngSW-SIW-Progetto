@@ -22,9 +22,9 @@ import org.json.JSONObject;
 import model.course.Aula;
 import model.course.Corso;
 import model.course.Lezione;
-import model.user.CalendarioPersonale;
 import model.user.Evento;
 import model.user.GiornoCalendario;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
@@ -32,6 +32,7 @@ import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.EventoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class CalendarManager extends HttpServlet {
@@ -170,19 +171,19 @@ public class CalendarManager extends HttpServlet {
 				
 				Long diff=oraFin.getTime()-oraIn.getTime();
 				Timestamp differenza= new Timestamp(diff);
-				System.out.println("la differenza è "+differenza);
 				// salvo la lezione nel calendario degli studenti
-
+				Corso c=corsoDao.findByPrimaryKey(corso);
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
 
 				e = new Evento(l.getId(), title, startT, endT, "nessuna");
 				eventoDao.save(e);
 
 				calendarioPersonaleDao.saveEvent(matricola, e);
-
+				NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+				Timestamp t=new Timestamp(System.currentTimeMillis());
 				for (int i = 0; i < studentiIscritti.size(); i++) {
-					System.out.println(studentiIscritti.get(i).getNome());
 					calendarioPersonaleDao.saveEvent(studentiIscritti.get(i).getMatricola(), e);
+					notificaDao.save(new Notifica(studentiIscritti.get(i).getMatricola(),t,0,c.getNome()));
 				}
 
 			} else {
@@ -206,14 +207,15 @@ public class CalendarManager extends HttpServlet {
 			if (l != null) {
 				Long corso = l.getCorso();
 				List<Utente> studentiIscritti = corsoDao.getStudentiIscritti(corso);
+				Corso c=corsoDao.findByPrimaryKey(corso);
+				NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+				Timestamp t=new Timestamp(System.currentTimeMillis());
 				for (int i = 0; i < studentiIscritti.size(); i++) {
-					System.out.println(studentiIscritti.get(i).getNome());
-					System.out.println(l.getId() + "id");
 					Evento e = eventoDao.findByPrimaryKey(l.getId());
-					System.out.println(e.getTitle());
 					calendarioPersonaleDao.deleteEvent(studentiIscritti.get(i).getMatricola(), e);
 					eventoDao.delete(e);
 					lezioneDao.delete(l);
+					notificaDao.save(new Notifica(studentiIscritti.get(i).getMatricola(),t,1,c.getNome()));
 				}
 
 			} else {

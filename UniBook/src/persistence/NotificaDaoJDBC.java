@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.user.Notifica;
@@ -109,6 +110,35 @@ public class NotificaDaoJDBC implements NotificaDao {
 			e.printStackTrace();
 		}
 		return count;
+	}
+
+	@Override
+	public List<Notifica> findAllNotifications(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		List<Notifica> notifiche = new ArrayList<>();
+		try {
+			String query = "select * from notifica where notifica.matricola_dest=? AND notifica.letta='FALSE'";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			Notifica n = null;
+			while (result.next()) {
+				n = new Notifica();
+				n.setData(result.getTimestamp("data"));
+				n.setDestinatario(result.getString("matricola_dest"));
+				n.setId(result.getLong("id"));
+				n.setLetta(result.getBoolean("letta"));
+				n.setTesto(result.getString("testo"));
+				n.parseDate(n.getData());
+				n.setType(result.getInt("type"));
+				notifiche.add(n);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return notifiche;
 	}
 
 	@Override

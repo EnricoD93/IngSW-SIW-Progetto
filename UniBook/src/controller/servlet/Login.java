@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.course.Corso;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
-import persistence.dao.CorsoDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class Login extends HttpServlet {
@@ -57,8 +58,11 @@ public class Login extends HttpServlet {
 
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
+					NotificaDao notiDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					List<Notifica> notifiche=notiDao.findAllNotifications(currentUser.getMatricola());
 					corsi = utenteDao.getCorsi(currentUser.getMatricola());
 					session.setAttribute("currentUser", currentUser);
+					session.setAttribute("notifications", notifiche);
 				} else {
 					resp.setStatus(405);
 				}

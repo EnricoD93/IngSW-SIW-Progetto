@@ -19,11 +19,13 @@ import org.json.JSONObject;
 import model.course.Avviso;
 import model.course.Corso;
 import model.course.Lezione;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AvvisoDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class ShowCourse extends HttpServlet {
@@ -101,6 +103,11 @@ public class ShowCourse extends HttpServlet {
 			String text = req.getParameter("text");
 			String title = req.getParameter("title");
 			Timestamp t = new Timestamp(System.currentTimeMillis());
+			NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+			studentiIscritti = corsoDao.getStudentiIscritti(codice);
+			for (Utente u : studentiIscritti) {
+				notificaDao.save(new Notifica(u.getMatricola(),t,3,currentCourse.getNome()));
+			}
 			Avviso avviso = new Avviso(text, title, codice, t);
 			avvDao.save(avviso);
 		}

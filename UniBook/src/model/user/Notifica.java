@@ -14,23 +14,33 @@ public class Notifica {
 	private String testo;
 	private int type;
 	static HashMap<Integer, String> testoNotifiche=new HashMap<>();
-	
-	private void init() {
-	testoNotifiche.put(0, "è stata aggiunta una lezione.");
-	testoNotifiche.put(1, "è stata rimossa una lezione.");
-	testoNotifiche.put(2, "è stato cancellato");
-	testoNotifiche.put(3, "è stato pubblicato un avviso");
-	testoNotifiche.put(4, "Sei stato rimosso dal corso di");
-	}
-
 	private long id;
 	private String datareale;
 	private boolean letta;
+	
+	private void init() {
+	testoNotifiche.put(0, "E' stata aggiunta una nuova lezione al corso di");
+	testoNotifiche.put(1, "E' stata rimossa una lezione dal corso di");
+	testoNotifiche.put(2, "E' stato cancellato il corso di");
+	testoNotifiche.put(3, "E' stato pubblicato un avviso nel corso di");
+	testoNotifiche.put(4, "Sei stato rimosso dal corso di");
+	}
+
 
 	public Notifica() {
 		init();
 	}
 
+	public Notifica(String destinatario, Timestamp currentdata,Integer type,String soggetto) {
+		init();
+		this.data = currentdata;
+		this.destinatario = destinatario;
+		this.type=type;
+		this.testo=testoNotifiche.get(type)+" "+soggetto+".";
+		System.out.println("testo:"+testo);
+		parseDate(currentdata);
+		this.letta = false;
+	}
 	public Notifica(String destinatario, Timestamp currentdata,Integer type) {
 		init();
 		this.data = currentdata;

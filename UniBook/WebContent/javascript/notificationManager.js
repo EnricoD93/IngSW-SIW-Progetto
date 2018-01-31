@@ -10,7 +10,6 @@ $(document).ready(function() {
 function checkMessages() {
 	var messages;
 	var user = $('#curUser').val();
-	console.log(user);
 	$.ajax({
 		type : "GET",
 		url : "checkNotifications",
@@ -34,7 +33,6 @@ function checkMessages() {
 function checkNotifications() {
 	var notifications;
 	var user = $('#curUser').val();
-	console.log(user);
 	$.ajax({
 		type : "GET",
 		url : "checkNotifications",
@@ -52,5 +50,5 @@ function checkNotifications() {
 		}
 	});
 
-	return messages;
+	return notifications;
 };

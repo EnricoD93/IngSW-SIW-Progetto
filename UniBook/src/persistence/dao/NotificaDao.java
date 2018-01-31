@@ -11,5 +11,6 @@ public interface NotificaDao {
 	public void update(Notifica notifica); //Update
 	public void delete(Notifica notifica); //Delete
 	public int findUnreadNotifications(String matricola);
+	public List<Notifica> findAllNotifications(String matricola);
 	public void updateUnreadNotifications(long id);
 }

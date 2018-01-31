@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +18,13 @@ import org.json.JSONObject;
 import model.course.Corso;
 import model.course.Lezione;
 import model.user.Evento;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.LezioneDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class SignUpForCourse extends HttpServlet {
@@ -62,7 +65,10 @@ public class SignUpForCourse extends HttpServlet {
 		} else if (request.equals("cancellazioneM")) {
 			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao, matricola);
 			udao.eliminaIscrizioneStudente(matricola, codice);
-
+			NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+			Timestamp t=new Timestamp(System.currentTimeMillis());
+			Corso c=corsoDao.findByPrimaryKey(codice);
+			notificaDao.save(new Notifica(u.getMatricola(),t,4,c.getNome()));
 			req.getRequestDispatcher("home").forward(req, resp);
 		} else {
 			if (u.getPassword().equals(typedPassword)) {

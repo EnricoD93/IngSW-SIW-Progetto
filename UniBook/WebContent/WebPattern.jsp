@@ -9,8 +9,8 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-	<meta name="theme-color" content="#c4161c">
-	<link rel="icon" sizes="192x192" href="highreslogo.png">
+<meta name="theme-color" content="#c4161c">
+<link rel="icon" sizes="192x192" href="highreslogo.png">
 <title>Home | UniBook</title>
 <!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -124,97 +124,52 @@
 					<li class="dropdown"><a href="javascript:void(0);"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
 							<i class="material-icons">notifications</i> <span
-							 id="notifycount" class="label-count"></span>
+							id="notifycount" class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">Notifiche</li>
 							<li class="body">
 								<ul class="menu">
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-light-green">
-												<i class="material-icons">person_add</i>
-											</div>
-											<div class="menu-info">
-												<h4>12 new members joined</h4>
-												<p>
-													<i class="material-icons">access_time</i> 14 mins ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-cyan">
-												<i class="material-icons">add_shopping_cart</i>
-											</div>
-											<div class="menu-info">
-												<h4>4 sales made</h4>
-												<p>
-													<i class="material-icons">access_time</i> 22 mins ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-red">
-												<i class="material-icons">delete_forever</i>
-											</div>
-											<div class="menu-info">
-												<h4>
-													<b>Nancy Doe</b> deleted account
-												</h4>
-												<p>
-													<i class="material-icons">access_time</i> 3 hours ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-orange">
-												<i class="material-icons">mode_edit</i>
-											</div>
-											<div class="menu-info">
-												<h4>
-													<b>Nancy</b> changed name
-												</h4>
-												<p>
-													<i class="material-icons">access_time</i> 2 hours ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-blue-grey">
-												<i class="material-icons">comment</i>
-											</div>
-											<div class="menu-info">
-												<h4>
-													<b>John</b> commented your post
-												</h4>
-												<p>
-													<i class="material-icons">access_time</i> 4 hours ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-light-green">
-												<i class="material-icons">cached</i>
-											</div>
-											<div class="menu-info">
-												<h4>
-													<b>John</b> updated status
-												</h4>
-												<p>
-													<i class="material-icons">access_time</i> 3 hours ago
-												</p>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<div class="icon-circle bg-purple">
-												<i class="material-icons">settings</i>
-											</div>
-											<div class="menu-info">
-												<h4>Settings updated</h4>
-												<p>
-													<i class="material-icons">access_time</i> Yesterday
-												</p>
-											</div>
-									</a></li>
+								<c:if test="${empty notifications }"><div align="center" class="menu-info">
+													<h4 align="center">Nessuna notifica</h4>
+												</div></c:if>
+									<c:forEach var="notification" items="${notifications}">
+										<li><a href="javascript:void(0);"> <c:choose>
+													<c:when test="${notification.type==0}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">note_add</i>
+														</div>
+													</c:when>
+													<c:when test="${notification.type==1}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">delete</i>
+														</div>
+													</c:when>
+													<c:when test="${notification.type==2}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">delete</i>
+														</div>
+													</c:when>
+													<c:when test="${notification.type==3}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">content_paste</i>
+														</div>
+													</c:when>
+													<c:when test="${notification.type==4}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">delete_forever</i>
+														</div>
+													</c:when>
+												</c:choose>
+												<div class="menu-info">
+													<h4>${notification.testo}</h4>
+													<p>
+														<i class="material-icons">access_time</i>
+														${notification.datareale}
+													</p>
+												</div>
+										</a></li>
+									</c:forEach>
 								</ul>
 							</li>
 							<li class="footer"><a href="javascript:void(0);">Vedi
@@ -224,7 +179,7 @@
 					<!-- Tasks -->
 					<li class="dropdown"><a href="page?request=messaggi"
 						role="button"> <i class="material-icons">message</i> <span
-							 id="msgcount" class="label-count"></span>
+							id="msgcount" class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">TASKS</li>

@@ -1,6 +1,7 @@
 package controller.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.user.Notifica;
 import persistence.DatabaseManager;
 import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
@@ -34,7 +36,9 @@ public class NotificationManager extends HttpServlet {
 		}
 		if (request.equals("notification")) {
 			NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+			List<Notifica> notifiche=notiDao.findAllNotifications(utente);
 			int unread = notiDao.findUnreadNotifications(utente);
+			
 			JSONObject messages = new JSONObject();
 			try {
 				messages.put("number", unread);
@@ -42,6 +46,7 @@ public class NotificationManager extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			req.getSession().setAttribute("notifications", notifiche);
 			resp.setContentType("application/json");
 			resp.getWriter().print(messages);
 		}
