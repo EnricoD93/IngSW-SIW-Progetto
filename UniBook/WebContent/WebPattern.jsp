@@ -54,7 +54,7 @@
 
 <!-- Bootstrap Core Js -->
 <script src="plugins/bootstrap/js/bootstrap.js"></script>
-
+<script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
 <!-- Select Plugin Js -->
 <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
@@ -130,9 +130,11 @@
 							<li class="header">Notifiche</li>
 							<li class="body">
 								<ul class="menu">
-								<c:if test="${empty notifications }"><div align="center" class="menu-info">
-													<h4 align="center">Nessuna notifica</h4>
-												</div></c:if>
+									<c:if test="${empty notifications }">
+										<div align="center" class="menu-info">
+											<h4 align="center">Nessuna notifica</h4>
+										</div>
+									</c:if>
 									<c:forEach var="notification" items="${notifications}">
 										<li><a href="javascript:void(0);"> <c:choose>
 													<c:when test="${notification.type==0}">

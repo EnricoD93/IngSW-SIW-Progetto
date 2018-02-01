@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,19 +37,27 @@ public class NotificationManager extends HttpServlet {
 		}
 		if (request.equals("notification")) {
 			NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
-			List<Notifica> notifiche=notiDao.findAllNotifications(utente);
+			List<Notifica> notifiche = notiDao.findAllNotifications(utente);
 			int unread = notiDao.findUnreadNotifications(utente);
-			
+			Notifica last = notifiche.get(0);
 			JSONObject messages = new JSONObject();
+			JSONObject lastNotify = new JSONObject();
+			JSONArray array = new JSONArray();
 			try {
 				messages.put("number", unread);
+				lastNotify.put("id", last.getId());
+				lastNotify.put("type", last.getType());
+				lastNotify.put("data", last.getDatareale());
+				lastNotify.put("testo", last.getTesto());
+				array.put(messages);
+				array.put(lastNotify);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			req.getSession().setAttribute("notifications", notifiche);
 			resp.setContentType("application/json");
-			resp.getWriter().print(messages);
+			resp.getWriter().print(array);
 		}
 	}
 }

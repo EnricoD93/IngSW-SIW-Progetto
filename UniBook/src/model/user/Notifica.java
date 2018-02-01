@@ -1,5 +1,6 @@
 package model.user;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,8 +8,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-public class Notifica {
+public class Notifica implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3662826029891335483L;
 	private Timestamp data;
 	private String destinatario;
 	private String testo;
