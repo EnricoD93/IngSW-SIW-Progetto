@@ -24,8 +24,7 @@
 
 
 <!-- Bootstrap Css -->
-<link href="plugins/bootstrap-select/css/bootstrap-select.css"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 
@@ -56,7 +55,7 @@
 <script src="plugins/bootstrap/js/bootstrap.js"></script>
 <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
 <!-- Select Plugin Js -->
-<script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
 <!-- Slimscroll Plugin Js -->
 <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -123,8 +122,9 @@
 					<!-- Notifications -->
 					<li class="dropdown"><a href="javascript:void(0);"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
-							<i class="material-icons">notifications</i> <span
-							id="notifycount" class="label-count"></span>
+							<i class="material-icons">notifications</i><input class="hidden"
+							id="notcnt" value="${notifications.size() }"> <span id="notifycount"
+							class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">Notifiche</li>
