@@ -39,18 +39,23 @@ public class NotificationManager extends HttpServlet {
 			NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 			List<Notifica> notifiche = notiDao.findAllNotifications(utente);
 			int unread = notiDao.findUnreadNotifications(utente);
-			Notifica last = notifiche.get(0);
+			Notifica last = null;
+			if (notifiche.size() > 0) {
+				last = notifiche.get(0);
+			}
 			JSONObject messages = new JSONObject();
 			JSONObject lastNotify = new JSONObject();
 			JSONArray array = new JSONArray();
 			try {
 				messages.put("number", unread);
-				lastNotify.put("id", last.getId());
-				lastNotify.put("type", last.getType());
-				lastNotify.put("data", last.getDatareale());
-				lastNotify.put("testo", last.getTesto());
+				if (last != null) {
+					lastNotify.put("id", last.getId());
+					lastNotify.put("type", last.getType());
+					lastNotify.put("data", last.getDatareale());
+					lastNotify.put("testo", last.getTesto());
+					array.put(lastNotify);
+				}
 				array.put(messages);
-				array.put(lastNotify);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
