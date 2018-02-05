@@ -65,7 +65,6 @@ public class GiornoCalendario {
 		this.anno = a;
 		java.util.GregorianCalendar gc3 = new java.util.GregorianCalendar(a, m - 1, g);
 		giornoDellaSettimana = giorniIt[(gc3.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1)];
-		System.out.println("sto creando il giorno con giorno della settimana " + giornoDellaSettimana);
 	}
 
 	public GiornoCalendario() {

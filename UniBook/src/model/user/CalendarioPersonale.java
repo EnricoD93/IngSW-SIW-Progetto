@@ -66,7 +66,6 @@ public class CalendarioPersonale {
 				LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 				GiornoCalendario g = new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno());
 				List<Lezione> lezioni = lezioneDao.findAll();
-				System.out.println("lezioni" + lezioni.size());
 				if (!coincidenti)
 					for (int j = 0; j < lezioni.size(); j++) {
 						if (lezioni.get(j).getData().uguale(g)) {
