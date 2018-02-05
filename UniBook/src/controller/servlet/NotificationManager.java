@@ -53,9 +53,9 @@ public class NotificationManager extends HttpServlet {
 					lastNotify.put("type", last.getType());
 					lastNotify.put("data", last.getDatareale());
 					lastNotify.put("testo", last.getTesto());
-					array.put(lastNotify);
 				}
 				array.put(messages);
+				array.put(lastNotify);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
