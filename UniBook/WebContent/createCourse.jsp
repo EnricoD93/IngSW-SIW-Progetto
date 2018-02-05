@@ -375,7 +375,7 @@
 									<div class="input-group">
 										<span class="input-group-addon">Propedeuticità</span> <select
 											class="selectpicker" data-live-search="true"
-											multiple="multiple" tabindex="-98" id="prop" name="prop">
+											multiple="multiple" tabindex="-98" id="prop" title="Nessuna Propedeuticità" name="prop">
 											<c:forEach var="corso" items="${allCorsi}">
 												<option value="${corso.codice}">${corso.nome}</option>
 											</c:forEach>
