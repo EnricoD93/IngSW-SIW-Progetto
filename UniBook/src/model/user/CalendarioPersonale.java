@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import model.course.Lezione;
+import persistence.DatabaseManager;
+import persistence.dao.LezioneDao;
 
 public class CalendarioPersonale {
 	private String matricola;
@@ -42,7 +45,7 @@ public class CalendarioPersonale {
 	}
 
 	public ArrayList<Lezione> getLezioniCorso(Long codice, GiornoCalendario inizio, GiornoCalendario fine,
-			String giorniLezione, String aula, int tipo, Timestamp oraInizio, Timestamp oraFine) {
+			String giorniLezione, String aula, int tipo, Timestamp oraInizio, Timestamp oraFine, boolean coincidenti) {
 		ArrayList<Lezione> lez = new ArrayList<>();
 		GiornoCalendario i = new GiornoCalendario(inizio.giorno, inizio.mese, inizio.anno);
 
@@ -60,8 +63,23 @@ public class CalendarioPersonale {
 
 				Timestamp oraIn = new Timestamp(cal.getTimeInMillis());
 				Timestamp oraFin = new Timestamp(calfin.getTimeInMillis());
-				lez.add(new Lezione(codice, new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno()), oraIn,
-						oraFin, aula, tipo));
+				LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+				GiornoCalendario g = new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno());
+				List<Lezione> lezioni = lezioneDao.findAll();
+				System.out.println("lezioni" + lezioni.size());
+				if (!coincidenti)
+					for (int j = 0; j < lezioni.size(); j++) {
+						if (lezioni.get(j).getData().uguale(g)) {
+							coincidenti = true;
+							System.out.println("COINCIDENTI=TRUE");
+							break;
+						}
+
+						System.out.println(
+								g.giorno + "/" + g.mese + "/" + g.anno + " != " + lezioni.get(j).getData().giorno + "/"
+										+ lezioni.get(j).getData().mese + "/" + lezioni.get(j).getData().anno);
+					}
+				lez.add(new Lezione(codice, g, oraIn, oraFin, aula, tipo));
 			}
 		}
 

@@ -88,8 +88,37 @@ public class LezioneDaoJDBC implements LezioneDao {
 
 	@Override
 	public List<Lezione> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = this.dataSource.getConnection();
+		List<Lezione> lezioni = new ArrayList<>();
+		try {
+			Lezione lezione;
+			PreparedStatement statement;
+			String query = "select * from lezione";
+			statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				lezione = new Lezione();
+				lezione.setId(result.getInt("id"));
+				lezione.setAula(result.getString("aula"));
+				lezione.setCorso(result.getLong("corso"));
+				GiornoCalendario g= new GiornoCalendario();
+				g.parseToGiornoCalendario(result.getDate("data"));
+				lezione.setData(g);
+				lezione.setOraInizio(result.getTimestamp("ora_inizio"));
+				lezione.setOraFine(result.getTimestamp("ora_fine"));
+				lezione.setTipo(result.getInt("tipo"));
+				lezioni.add(lezione);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return lezioni;
 	}
 
 	@Override

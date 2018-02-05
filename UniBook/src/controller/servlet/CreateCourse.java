@@ -137,12 +137,12 @@ public class CreateCourse extends HttpServlet {
 					LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 					List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
 					List<Utente> iscritti = corsoDao.getStudentiIscritti(codice);
-					NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
-					Timestamp t=new Timestamp(System.currentTimeMillis());
+					NotificaDao notificaDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					Timestamp t = new Timestamp(System.currentTimeMillis());
 					// eliminazione lezioni dal calendario degli studenti iscritti e elimina
 					// iscrizione degli studenti
 					for (int i = 0; i < iscritti.size(); i++) {
-						notificaDao.save(new Notifica(iscritti.get(i).getMatricola(),t,2,c.getNome()));
+						notificaDao.save(new Notifica(iscritti.get(i).getMatricola(), t, 2, c.getNome()));
 						lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 								iscritti.get(i).getMatricola());
 						UtenteDao utente = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
@@ -261,6 +261,7 @@ public class CreateCourse extends HttpServlet {
 		Lezione giovedì = null;
 		Lezione venerdì = null;
 		String giorniLezione = "";
+		boolean coincidenti = false;
 		try {
 			if (req.getParameter("lunedi") != null) {
 				String aulaLun = req.getParameter("idAula_1");
@@ -348,30 +349,33 @@ public class CreateCourse extends HttpServlet {
 			if (lunedì != null) {
 				lezioni.addAll(
 						cal.getLezioniCorso(lunedì.getCorso(), inizio, fine, lunedì.getData().getGiornoDellaSettimana(),
-								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine()));
+								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine(), coincidenti));
 			}
 			if (martedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(martedì.getCorso(), inizio, fine,
 						martedì.getData().getGiornoDellaSettimana(), martedì.getAula(), 0, martedì.getOraInizio(),
-						martedì.getOraFine()));
+						martedì.getOraFine(), coincidenti));
 			}
 			if (mercoledì != null) {
 				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine,
 						mercoledì.getData().getGiornoDellaSettimana(), mercoledì.getAula(), 0, mercoledì.getOraInizio(),
-						mercoledì.getOraFine()));
+						mercoledì.getOraFine(), coincidenti));
 			}
 			if (giovedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(giovedì.getCorso(), inizio, fine,
 						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), 0, giovedì.getOraInizio(),
-						giovedì.getOraFine()));
+						giovedì.getOraFine(), coincidenti));
 				System.out.println("la size di lezioni è " + lezioni.size());
 			}
 			if (venerdì != null) {
 				lezioni.addAll(cal.getLezioniCorso(venerdì.getCorso(), inizio, fine,
 						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), 0, venerdì.getOraInizio(),
-						venerdì.getOraFine()));
+						venerdì.getOraFine(), coincidenti));
 			}
-
+			System.out.println("COINCIDENTI è "+ coincidenti);
+			if (coincidenti) {
+				System.out.println("coincidenti");
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

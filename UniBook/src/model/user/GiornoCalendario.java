@@ -205,4 +205,10 @@ public class GiornoCalendario {
 			return false;
 		return true;
 	}
+
+	public boolean uguale(GiornoCalendario fine) {
+		if (giorno == fine.giorno && mese == fine.mese && anno == fine.anno)
+			return true;
+		return false;
+	}
 }
