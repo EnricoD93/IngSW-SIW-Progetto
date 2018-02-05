@@ -41,7 +41,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			statement.setInt(9, utente.getRuolo());
 			statement.setString(10, utente.getVerifyCode());
 			statement.setString(11, utente.getProfileImagePath());
-			statement.setString(12,utente.getDescrizione());
+			statement.setString(12, utente.getDescrizione());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -513,6 +513,12 @@ public class UtenteDaoJDBC implements UtenteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
 		}
 		return count;
 	}
@@ -534,6 +540,12 @@ public class UtenteDaoJDBC implements UtenteDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
 		}
 		return count;
 	}
@@ -674,16 +686,13 @@ public class UtenteDaoJDBC implements UtenteDao {
 		List<Esame> esamiSuperati = new ArrayList<>();
 		try {
 			Esame esame;
-			String query = "select *\r\n" + 
-					"from esame e\r\n" + 
-					"where EXISTS (select *\r\n" + 
-					"from descrizionecorso cor, corsodilaurea cdl, utente u\r\n" + 
-					"where e.corso=cor.codice AND cdl.codice=cor.corsodilaurea AND u.matricola=? AND u.corsodilaurea=cdl.codice) AND\r\n" + 
-					"NOT EXISTS(select *\r\n" + 
-					"          from superato s, utente u\r\n" + 
-					"          where s.esame=e.corso AND u.matricola=s.studente AND u.matricola=?) AND NOT EXISTS(select *\r\n" + 
-					"          from iscritto i, utente u\r\n" + 
-					"          where i.codice=e.corso AND u.matricola=i.matricola AND u.matricola=?)";
+			String query = "select *\r\n" + "from esame e\r\n" + "where EXISTS (select *\r\n"
+					+ "from descrizionecorso cor, corsodilaurea cdl, utente u\r\n"
+					+ "where e.corso=cor.codice AND cdl.codice=cor.corsodilaurea AND u.matricola=? AND u.corsodilaurea=cdl.codice) AND\r\n"
+					+ "NOT EXISTS(select *\r\n" + "          from superato s, utente u\r\n"
+					+ "          where s.esame=e.corso AND u.matricola=s.studente AND u.matricola=?) AND NOT EXISTS(select *\r\n"
+					+ "          from iscritto i, utente u\r\n"
+					+ "          where i.codice=e.corso AND u.matricola=i.matricola AND u.matricola=?)";
 			PreparedStatement statement;
 
 			statement = connection.prepareStatement(query);
@@ -795,6 +804,12 @@ public class UtenteDaoJDBC implements UtenteDao {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
 			}
 		}
 
@@ -803,48 +818,50 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 	@Override
 	public void passwordModify(String matricola, String password) {
-		
-			Connection connection = this.dataSource.getConnection();
-			PreparedStatement statement;
-			String query = "UPDATE utente " + "SET password = ? " + "WHERE matricola = ?";
+
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE utente " + "SET password = ? " + "WHERE matricola = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, password);
+			statement.setString(2, matricola);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				statement = connection.prepareStatement(query);
-				statement.setString(1, password);
-				statement.setString(2, matricola);
-				statement.executeUpdate();
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 			}
-		
+		}
+
 	}
+
 	@Override
 	public void emailModify(String matricola, String email) {
-		
-			Connection connection = this.dataSource.getConnection();
-			PreparedStatement statement;
-			String query = "UPDATE utente " + "SET email = ? " + "WHERE matricola = ?";
+
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE utente " + "SET email = ? " + "WHERE matricola = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			statement.setString(2, matricola);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				statement = connection.prepareStatement(query);
-				statement.setString(1, email);
-				statement.setString(2, matricola);
-				statement.executeUpdate();
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 			}
-		
+		}
+
 	}
+
 	@Override
 	public void setVerifyCode(String matricola, String code) {
 		Connection connection = this.dataSource.getConnection();
@@ -863,7 +880,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 	}
 
 	@Override

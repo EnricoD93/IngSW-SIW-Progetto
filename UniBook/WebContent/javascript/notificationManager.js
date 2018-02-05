@@ -4,7 +4,7 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 60000)
+	}, 1000)
 });
 
 function checkMessages() {
@@ -32,7 +32,8 @@ function checkNotifications() {
 	var notifications;
 	var lastNotify;
 	var user = $('#curUser').val();
-	var currentnotification = document.getElementById('notifycount').innerHTML;
+	var currentnotification = document.getElementById('notcnt').value;
+	console.log(currentnotification);
 	$
 			.ajax({
 				type : "GET",
@@ -47,9 +48,9 @@ function checkNotifications() {
 					var json = JSON.parse(data);
 					notifications = json[0];
 					lastNotify=json[1];
-					if (notifications.number != 0
-							&& currentnotification != notifications.number) {
-						document.getElementById("notifycount").innerHTML = notifications.number;
+					if (notifications.number != 0)
+					document.getElementById("notifycount").innerHTML = notifications.number;
+					if (currentnotification != notifications.number) {
 						showNotification('',lastNotify.testo,"right");
 					}
 				}

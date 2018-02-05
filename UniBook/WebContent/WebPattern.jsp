@@ -123,8 +123,9 @@
 					<!-- Notifications -->
 					<li class="dropdown"><a href="javascript:void(0);"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
-							<i class="material-icons">notifications</i> <span
-							id="notifycount" class="label-count"></span>
+							<i class="material-icons">notifications</i><input class="hidden"
+							id="notcnt" value="${notifications.size() }"> <span id="notifycount"
+							class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">Notifiche</li>
