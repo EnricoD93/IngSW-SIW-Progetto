@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import model.course.Corso;
@@ -815,9 +816,90 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 		return count;
 	}
-	
-	
+	@Override
+	public void deletePresenzeStudente(String matricola, Long corso) {
+		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Evento> lezioni = lezione.findCourseLessons(corso);
+		for (int i = 0; i < lezioni.size(); i++) {
 
+			Connection connection = this.dataSource.getConnection();
+			String query = "delete * from presenza where studente=? AND lezione=?";
+			PreparedStatement statement;
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setString(1, matricola);
+				statement.setLong(2, lezioni.get(i).getId());
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
+			}
+		}
+
+	}
+	@Override
+	public HashMap<String,Long> findAllPresenze(Long corso) {
+		HashMap<String,Long> map=new HashMap<>();
+		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Evento> lezioni = lezione.findCourseLessons(corso);
+		for (int i = 0; i < lezioni.size(); i++) {
+
+			Connection connection = this.dataSource.getConnection();
+			String query = "select * from presenza where lezione=?";
+			PreparedStatement statement;
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setLong(1, lezioni.get(i).getId());
+				ResultSet result = statement.executeQuery();
+				while (result.next()) {
+					map.put(result.getString("studente"), result.getLong("lezione"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
+			}
+		}
+
+		return map;
+	}
+	
+	@Override
+	public void deleteAllPresenze(Long corso) {
+		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+		List<Evento> lezioni = lezione.findCourseLessons(corso);
+		for (int i = 0; i < lezioni.size(); i++) {
+
+			Connection connection = this.dataSource.getConnection();
+			String query = "delete FROM presenza where lezione=?";
+			PreparedStatement statement;
+			try {
+				statement = connection.prepareStatement(query);
+				statement.setLong(1, lezioni.get(i).getId());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
+			}
+		}
+
+	}
 	@Override
 	public void passwordModify(String matricola, String password) {
 

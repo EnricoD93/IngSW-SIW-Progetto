@@ -1,6 +1,7 @@
 package persistence.dao;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,12 @@ public interface UtenteDao {
 	public void deletePresenze(Long lezione);
 
 	public int findPresenze(String matricola, Long corso);
+
+	public void deletePresenzeStudente(String matricola, Long corso);
+
+	public HashMap<String, Long> findAllPresenze(Long corso);
+
+	public void deleteAllPresenze(Long corso);
 
 	public int findUnreadMessages(String dest, String mitt);
 
