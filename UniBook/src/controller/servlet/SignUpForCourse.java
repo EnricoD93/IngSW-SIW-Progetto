@@ -68,7 +68,8 @@ public class SignUpForCourse extends HttpServlet {
 			NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 			Timestamp t=new Timestamp(System.currentTimeMillis());
 			Corso c=corsoDao.findByPrimaryKey(codice);
-			notificaDao.save(new Notifica(u.getMatricola(),t,4,c.getNome()));
+			notificaDao.save(new Notifica(matricola,t,4,c.getNome()));
+			System.out.println("cancello");
 			req.getRequestDispatcher("home").forward(req, resp);
 		} else {
 			if (u.getPassword().equals(typedPassword)) {
@@ -95,6 +96,10 @@ public class SignUpForCourse extends HttpServlet {
 					}
 				}
 				if (request.equals("cancellazione")) {
+					NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					Timestamp t=new Timestamp(System.currentTimeMillis());
+					Corso c=corsoDao.findByPrimaryKey(codice);
+					notificaDao.save(new Notifica(matricola,t,4,c.getNome()));
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 							matricola);
 					udao.eliminaIscrizioneStudente(matricola, codice);

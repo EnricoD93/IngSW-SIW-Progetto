@@ -44,7 +44,6 @@ public class CorsoDaoJDBC implements CorsoDao {
 			statement.setString(14, corso.getNomeDocente());
 			statement.setDate(15, corso.getDataInizio().GiornoCalendarioToDate());
 			statement.setDate(16, corso.getDataFine().GiornoCalendarioToDate());
-			
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -84,10 +83,10 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
-				GiornoCalendario g=new GiornoCalendario();
+				GiornoCalendario g = new GiornoCalendario();
 				g.parseToGiornoCalendario(result.getDate("data_inizio"));
 				corso.setDataInizio(g);
-				g=new GiornoCalendario();
+				g = new GiornoCalendario();
 				g.parseToGiornoCalendario(result.getDate("data_fine"));
 				corso.setDataFine(g);
 			}
@@ -110,7 +109,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 		try {
 			Corso corso;
 			PreparedStatement statement;
-			String query = "select * from corso";
+			String query = "select * from corso ORDER BY corso.codice";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
@@ -129,10 +128,10 @@ public class CorsoDaoJDBC implements CorsoDao {
 				corso.setCfu(result.getInt("cfu"));
 				corso.setCognomeDocente(result.getString("cognomeDocente"));
 				corso.setNomeDocente(result.getString("nomeDocente"));
-				GiornoCalendario g=new GiornoCalendario();
+				GiornoCalendario g = new GiornoCalendario();
 				g.parseToGiornoCalendario(result.getDate("data_inizio"));
 				corso.setDataInizio(g);
-				g=new GiornoCalendario();
+				g = new GiornoCalendario();
 				g.parseToGiornoCalendario(result.getDate("data_fine"));
 				corso.setDataFine(g);
 				corsi.add(corso);
@@ -151,7 +150,7 @@ public class CorsoDaoJDBC implements CorsoDao {
 
 	@Override
 	public void update(Corso corso) {
-		
+
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String update = "UPDATE corso SET descrizione=?,requisiti=?,giorni=?,materiale=?,data_inizio=?,data_fine=? WHERE corso.codice=?";
@@ -338,5 +337,23 @@ public class CorsoDaoJDBC implements CorsoDao {
 		}
 	}
 
-	
+	@Override
+	public void deleteAvvisi(Long codice) {
+		Connection connection = this.dataSource.getConnection();
+		try {
+			String insert = "delete FROM avviso WHERE corso=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setLong(1, codice);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+	}
+
 }

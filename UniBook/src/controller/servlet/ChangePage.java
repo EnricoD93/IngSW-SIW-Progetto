@@ -2,7 +2,10 @@ package controller.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,7 +112,7 @@ public class ChangePage extends HttpServlet {
 									+ descrizioneCorsoDao.findByPrimaryKey(codice).getOreEsercitazione();
 
 							int presenze = utenteDao.findPresenze(currentUser.getMatricola(), codice);
-							int percentuale = (presenze * 100) / ore;
+							int percentuale = ((presenze*3) * 100) / ore;
 							percentuali.put(corsi.get(i).getCodice(), percentuale);
 						}
 						req.setAttribute("percentuali", percentuali);
@@ -134,9 +137,47 @@ public class ChangePage extends HttpServlet {
 					Utente courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
 					avvisi = avvDao.findAllByCourse(codice);
 					esami = corsoDao.getEsamiPropedeutici(codice);
+					String giorniLezione = currentCourse.getGiorno();
+					String[] giorni = giorniLezione.split("_");
+					ArrayList<HashMap<String, String>> lista = new ArrayList<>();
+					for (int i = 0; i < giorni.length; i++) {
+						String[] giorno = giorni[i].split(",");
+						HashMap<String, String> h = new HashMap<>();
+						h.put("giorno", giorno[0]);
+						try {
+							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+							Date parsedDate;
+							parsedDate = dateFormat.parse(giorno[1]);;
+							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+							giorno[1] = sdf.format(parsedDate);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						h.put("dalle", giorno[1]);
+						try {
+							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+							Date parsedDate;
+							parsedDate = dateFormat.parse(giorno[2]);;
+							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+							giorno[2] = sdf.format(parsedDate);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						h.put("alle", giorno[2]);
+						h.put("tipo", giorno[3]);
+						h.put("aula", giorno[4]);
+
+						lista.add(h);
+					}
+					for (HashMap<String, String> hashMap : lista) {
+						System.out.println(hashMap);
+					}
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("esami", esami);
+					req.setAttribute("giorni", lista);
 					req.setAttribute("advices", avvisi);
 					req.getRequestDispatcher("course.jsp").forward(req, resp);
 					break;
@@ -166,7 +207,7 @@ public class ChangePage extends HttpServlet {
 							.getDescrizioneCorsoDao();
 					listaAule = aulaDao.findAll();
 					listaCorsi = descrizioneDao.findNotCreatedCourses();
-					allCorsi=descrizioneDao.findAll();
+					allCorsi = descrizioneDao.findAll();
 					req.setAttribute("listaCorsi", listaCorsi);
 					req.setAttribute("listaAule", listaAule);
 					req.setAttribute("allCorsi", allCorsi);
@@ -191,7 +232,7 @@ public class ChangePage extends HttpServlet {
 						prop.put(esame.getCorso(), esame);
 					}
 					listaCorsi = descrizioneDao2.findNotCreatedCourses();
-					allCorsi=descrizioneDao2.findAll();
+					allCorsi = descrizioneDao2.findAll();
 					req.setAttribute("inizio", inizio);
 					req.setAttribute("fine", fine);
 					req.setAttribute("listaCorsi", listaCorsi);
@@ -205,30 +246,28 @@ public class ChangePage extends HttpServlet {
 
 					CorsoDao corsoDao3 = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 					Corso c1 = corsoDao3.findByPrimaryKey(corso3);
-					
-				
-					
-					String giorniLezione = c1.getGiorno();
-					String[] giorni = giorniLezione.split("_");
-					ArrayList<HashMap<String, String>> lista = new ArrayList<>();
-					for (int i = 0; i < giorni.length; i++) {
-						System.out.println("giorni " + giorni[i]);
+
+					String giorniLezione1 = c1.getGiorno();
+					String[] giorni1 = giorniLezione1.split("_");
+					ArrayList<HashMap<String, String>> lista1 = new ArrayList<>();
+					for (int i = 0; i < giorni1.length; i++) {
+						System.out.println("giorni " + giorni1[i]);
 					}
-					for (int i = 0; i < giorni.length; i++) {
-						String[] giorno = giorni[i].split(",");
+					for (int i = 0; i < giorni1.length; i++) {
+						String[] giorno1 = giorni1[i].split(",");
 						HashMap<String, String> h = new HashMap<>();
-						h.put("giorno", giorno[0]);
-						h.put("dalle", giorno[1]);
-						h.put("alle", giorno[2]);
-						h.put("tipo", giorno[3]);
-						h.put("aula", giorno[4]);
-						
-						lista.add(h);
+						h.put("giorno", giorno1[0]);
+						h.put("dalle", giorno1[1]);
+						h.put("alle", giorno1[2]);
+						h.put("tipo", giorno1[3]);
+						h.put("aula", giorno1[4]);
+
+						lista1.add(h);
 					}
 
 					JSONObject json = new JSONObject();
 					try {
-						json.put("lista", lista);
+						json.put("lista", lista1);
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -236,8 +275,6 @@ public class ChangePage extends HttpServlet {
 					resp.setContentType("application/json");
 					resp.getWriter().print(json);
 
-					
-					
 					break;
 				case "colleghi":
 					List<Utente> colleghi;

@@ -29,6 +29,7 @@ public class Notifica implements Serializable{
 	testoNotifiche.put(2, "E' stato cancellato il corso di");
 	testoNotifiche.put(3, "E' stato pubblicato un avviso nel corso di");
 	testoNotifiche.put(4, "Sei stato rimosso dal corso di");
+	testoNotifiche.put(5, "Hai creato un Corso con lezioni coincidenti.");
 	}
 
 
@@ -42,7 +43,6 @@ public class Notifica implements Serializable{
 		this.destinatario = destinatario;
 		this.type=type;
 		this.testo=testoNotifiche.get(type)+" "+soggetto+".";
-		System.out.println("testo:"+testo);
 		parseDate(currentdata);
 		this.letta = false;
 	}

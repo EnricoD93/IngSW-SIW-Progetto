@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.util.EmailSender;
+import model.user.CalendarioPersonale;
 import model.user.GiornoCalendario;
 import model.user.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.UtenteDao;
 
 public class Register extends HttpServlet {
@@ -56,25 +58,29 @@ public class Register extends HttpServlet {
 		giornoCalendario.parseToGiornoCalendario(date);
 		System.out.println("la mia data personale presa dal database è ");
 		giornoCalendario.stampa();
-
+		
 		switch (ruolo) {
 		case "1":
-			System.out.println("docente");
 
 			Utente doc = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
 					Integer.parseInt(ruolo), code,"ciao");
 
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(doc);
+			CalendarioPersonale calendarioPersonale = new CalendarioPersonale(doc.getMatricola());
+			CalendarioPersonaleDao cdao=DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
+			cdao.save(calendarioPersonale);
 			break;
 		case "0":
-			System.out.println("studente");
 
 			Utente stud = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
 					Integer.parseInt(ruolo), code,"ciao");
 
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(stud);
+			CalendarioPersonale calendarioPersonale2 = new CalendarioPersonale(stud.getMatricola());
+			CalendarioPersonaleDao cdao2=DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
+			cdao2.save(calendarioPersonale2);
 			break;
 		default:
 			break;

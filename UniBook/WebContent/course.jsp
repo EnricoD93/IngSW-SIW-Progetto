@@ -8,7 +8,6 @@
 <script src="plugins/ckeditor/ckeditor.js"></script>
 <script src="javascript/courseManager.js" type="text/javascript"></script>
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 	<section id="centralSection" class="content">
 		<div class="container-fluid">
@@ -64,7 +63,9 @@
 								</tr>
 
 								<tr>
-									<th scope="row">Giorni di Lezione: ${currentCourse.giorno}</th>
+									<th scope="row">Giorni di Lezione: <c:forEach var="giorno" items="${giorni}" varStatus="loop"> ${giorno['giorno']} dalle ${ giorno['dalle']} alle ${ giorno['alle']
+									 }<c:if test="${!loop.last}">,</c:if> </c:forEach>
+									</th>
 								</tr>
 								<tr>
 									<th scope="row">Ore di Lezione:
@@ -75,16 +76,16 @@
 										${currentCourse.oreEsercitazione}</th>
 								</tr>
 								<tr>
-									<th scope="row">Descrizione: ${currentCourse.descrizione}</th>
+									<th scope="row">Descrizione:<br> ${currentCourse.descrizione}</th>
 								</tr>
 								<tr>
-									<th scope="row">Propedeuticità: <c:if test="${empty esami }">Nessuna propedeuticità</c:if><c:forEach var="esame" items="${esamesi}" varStatus="loop"> ${esame.nome}<c:if test="${!loop.last}">,</c:if> </c:forEach></th>
+									<th scope="row">Propedeuticità: <c:if test="${empty esami }">Nessuna propedeuticità</c:if><c:forEach var="esame" items="${esami}" varStatus="loop"> ${esame.nome}<c:if test="${!loop.last}">,</c:if> </c:forEach></th>
 								</tr>
 								<tr>
-									<th scope="row">Requisiti: ${currentCourse.requisiti}</th>
+									<th scope="row">Requisiti: <br> ${currentCourse.requisiti}</th>
 								</tr>
 								<tr>
-									<th scope="row">Materiale: ${currentCourse.materiale}</th>
+									<th scope="row">Materiale: <br> ${currentCourse.materiale}</th>
 								</tr>
 
 

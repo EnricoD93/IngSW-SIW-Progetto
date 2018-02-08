@@ -38,6 +38,8 @@ import persistence.dao.UtenteDao;
 
 public class CreateCourse extends HttpServlet {
 	ArrayList<Lezione> lezioni;
+	public String coincidenti = "NC";
+	Utente user;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +52,7 @@ public class CreateCourse extends HttpServlet {
 		String dataInizio = req.getParameter("dataInizio");
 		String dataFine = req.getParameter("dataFine");
 		String[] propedeuticità = req.getParameterValues("prop");
-		Utente user = (Utente) req.getSession().getAttribute("currentUser");
+		user = (Utente) req.getSession().getAttribute("currentUser");
 		lezioni = new ArrayList<>();
 
 		// creazione di una lezione in base alle carateristiche selezionate (manca il
@@ -160,6 +162,7 @@ public class CreateCourse extends HttpServlet {
 					}
 					// eliminazione del corso
 					corsoDao.deletePropedeutico(codice);
+					corsoDao.deleteAvvisi(codice);
 					corsoDao.delete(c);
 				}
 			} else {
@@ -188,8 +191,11 @@ public class CreateCourse extends HttpServlet {
 				lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 						iscritti.get(i).getMatricola());
 			}
+			
+			
 			lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 					u.getMatricola());
+			
 			for (int i = 0; i < listaLezioni.size(); i++) {
 				lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
 			}
@@ -233,10 +239,11 @@ public class CreateCourse extends HttpServlet {
 			g.parseToGiornoCalendario(g.parseToDate(dataFine));
 			c.setDataFine(g);
 
-			for (String string : propedeuticità) {
-				corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
-			}
-
+			if (propedeuticità != null)
+				for (String string : propedeuticità) {
+					System.out.println(string);
+					corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
+				}
 			corsoDao.update(c);
 		}
 		resp.sendRedirect("page?request=corsi");
@@ -261,7 +268,7 @@ public class CreateCourse extends HttpServlet {
 		Lezione giovedì = null;
 		Lezione venerdì = null;
 		String giorniLezione = "";
-		boolean coincidenti = false;
+
 		try {
 			if (req.getParameter("lunedi") != null) {
 				String aulaLun = req.getParameter("idAula_1");
@@ -349,32 +356,45 @@ public class CreateCourse extends HttpServlet {
 			if (lunedì != null) {
 				lezioni.addAll(
 						cal.getLezioniCorso(lunedì.getCorso(), inizio, fine, lunedì.getData().getGiornoDellaSettimana(),
-								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine(), coincidenti));
+								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine(), this));
 			}
 			if (martedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(martedì.getCorso(), inizio, fine,
 						martedì.getData().getGiornoDellaSettimana(), martedì.getAula(), 0, martedì.getOraInizio(),
-						martedì.getOraFine(), coincidenti));
+						martedì.getOraFine(), this));
 			}
 			if (mercoledì != null) {
 				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine,
 						mercoledì.getData().getGiornoDellaSettimana(), mercoledì.getAula(), 0, mercoledì.getOraInizio(),
-						mercoledì.getOraFine(), coincidenti));
+						mercoledì.getOraFine(), this));
 			}
 			if (giovedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(giovedì.getCorso(), inizio, fine,
 						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), 0, giovedì.getOraInizio(),
-						giovedì.getOraFine(), coincidenti));
+						giovedì.getOraFine(), this));
 				System.out.println("la size di lezioni è " + lezioni.size());
 			}
 			if (venerdì != null) {
 				lezioni.addAll(cal.getLezioniCorso(venerdì.getCorso(), inizio, fine,
 						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), 0, venerdì.getOraInizio(),
-						venerdì.getOraFine(), coincidenti));
+						venerdì.getOraFine(), this));
 			}
-			System.out.println("COINCIDENTI è "+ coincidenti);
-			if (coincidenti) {
-				System.out.println("coincidenti");
+			System.out.println("Coincidenti è " + coincidenti);
+			if (coincidenti.equals("C")) {
+				new Thread() {
+					public void run() {
+						try {
+							Thread.sleep(5000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						NotificaDao nd = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+						Notifica n = new Notifica(user.getMatricola(), new Timestamp(System.currentTimeMillis()), 5);
+						nd.save(n);
+					};
+				}.start();
+
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

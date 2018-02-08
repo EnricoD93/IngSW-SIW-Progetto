@@ -164,7 +164,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso, corsodilaurea,utente where corso.corsodilaurea=corsodilaurea.codice\r\n"
-					+ "AND utente.matricola=?\r\n" + "AND utente.corsodilaurea=corsodilaurea.codice\r\n";
+					+ "AND utente.matricola=?\r\n" + "AND utente.corsodilaurea=corsodilaurea.codice\r\n ORDER BY corso.codice";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -213,7 +213,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			PreparedStatement statement;
 			String query = "select * from corso,utente,iscritto where corso.codice=iscritto.codice\r\n"
 					+ "AND utente.matricola=?\r\n" + " AND utente.ruolo=0\r\n"
-					+ "AND utente.matricola=iscritto.matricola\r\n";
+					+ "AND utente.matricola=iscritto.matricola\r\n ORDER BY corso.codice";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -277,7 +277,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso,utente where utente.ruolo=1\r\n" + "AND utente.matricola=?\r\n"
-					+ "AND corso.docente=utente.matricola\r\n";
+					+ "AND corso.docente=utente.matricola\r\n ORDER BY corso.codice";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -420,7 +420,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 		Connection connection = this.dataSource.getConnection();
 		List<Utente> colleagues;
 		try {
-			String query = "select * from utente where corsodilaurea = ? AND ruolo = ? AND matricola != ?";
+			String query = "select * from utente where corsodilaurea = ? AND ruolo = ? AND matricola != ? ORDER BY utente.cognome";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, u.getCorsoDiLaurea());
 			statement.setInt(2, u.getRuolo());
@@ -462,7 +462,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 		Connection connection = this.dataSource.getConnection();
 		List<Utente> docenti;
 		try {
-			String query = "select * from utente where ruolo = ?";
+			String query = "select * from utente where ruolo = ? ORDER BY utente.cognome";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, 1);
 			ResultSet result = statement.executeQuery();
@@ -815,6 +815,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 		return count;
 	}
+	
+	
 
 	@Override
 	public void passwordModify(String matricola, String password) {

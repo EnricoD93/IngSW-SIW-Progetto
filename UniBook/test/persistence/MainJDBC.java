@@ -81,12 +81,6 @@ public class MainJDBC {
 		try {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ITALIAN);
 			Date date;
-
-			date = format.parse("1999-02-02");
-			Utente st = new Utente("111", "Ciccio", "Rossi", date, "RFFDSS43D23J878K", "ciccio@studenti.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
-			Utente st2 = new Utente("100", "Giuseppe", "Verdi", date, "GPPVDR97Y76T518D", "verdi@studenti.unical.it",
-					"DDDDDD", corsoDiLaureaMatematica.getCodice(), 0, "111111", "ciao");
 			date = format.parse("1993-06-19");
 			Utente st3 = new Utente("169983", "Enrico", "De Cicco", date, "DCCNRC93H19Z112B",
 					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
@@ -96,8 +90,7 @@ public class MainJDBC {
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st4.setProfileImagePath("images/profileImages/169991.jpg");
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			studenteDao.save(st);
-			studenteDao.save(st2);
+
 			studenteDao.save(st3);
 			studenteDao.save(st4);
 
@@ -237,34 +230,7 @@ public class MainJDBC {
 			descCorso.save(corsoFisica);
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
-			GiornoCalendario dataI = new GiornoCalendario(2, 10, 2017);
-			GiornoCalendario dataF = new GiornoCalendario(10, 1, 2018);
-			Corso corsoIngegneriaSW = new Corso(corsoIngegneria.getCodice(), corsoIngegneria.getNome(),
-					corsoIngegneria.getAnno(), "Corso Base di Ingegneria del Software", "Lunedi e Mercoledi",
-					"Fondamenti di Informatica,Programmazione ad Oggetti,Interfacce Grafiche e programmazione ad eventi",
-					corsoIngegneria.getOreLezione(), corsoIngegneria.getOreEsercitazione(), "link al materiale",
-					ricca.getMatricola(), corsoIngegneria.getCorsoDiLaurea(), corsoIngegneria.getCfu(),
-					ricca.getCognome(), ricca.getNome(), dataI, dataF);
-			Corso corsoProgrammazioneAdOggetti = new Corso(corsoOggetti.getCodice(), corsoOggetti.getNome(),
-					corsoOggetti.getAnno(), "Lunedi e Giovedi", "Corso Avanzato di Informatica",
-					"Fondamenti di Informatica", corsoOggetti.getOreLezione(), corsoOggetti.getOreEsercitazione(),
-					"link al materiale", ricca.getMatricola(), corsoOggetti.getCorsoDiLaurea(), corsoOggetti.getCfu(),
-					ricca.getCognome(), ricca.getNome(), dataI, dataF);
-			Corso corsoRicercaO = new Corso(corsoRicerca.getCodice(), corsoRicerca.getNome(), corsoRicerca.getAnno(),
-					"Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito", corsoRicerca.getOreLezione(),
-					corsoRicerca.getOreLezione(), "link al materiale", fuduli.getMatricola(),
-					corsoRicerca.getCorsoDiLaurea(), corsoRicerca.getCfu(), fuduli.getCognome(), fuduli.getNome(),
-					dataI, dataF);
-			Corso corsoFond = new Corso(corsoFondamenti.getCodice(), corsoFondamenti.getNome(),
-					corsoFondamenti.getAnno(), "Corso Base di Geometria", "Martedi e Mercoledi", "Nessun requisito",
-					corsoFondamenti.getOreLezione(), corsoFondamenti.getOreLezione(), "link al materiale",
-					perri.getMatricola(), corsoFondamenti.getCorsoDiLaurea(), corsoFondamenti.getCfu(),
-					perri.getCognome(), perri.getNome(), dataI, dataF);
-			CorsoDao corsoDao = factory.getCorsoDAO();
-			corsoDao.save(corsoRicercaO);
-			corsoDao.save(corsoFond);
-			corsoDao.save(corsoIngegneriaSW);
-			corsoDao.save(corsoProgrammazioneAdOggetti);
+			
 			EsameDao esameDao = factory.getEsameDAO();
 
 			Esame esameFondamenti = new Esame(corsoFondamenti.getCodice(), corsoFondamenti.getNome(),
@@ -312,32 +278,16 @@ public class MainJDBC {
 			esameDao.save(esameOggetti);
 			esameDao.save(esameAnalisi);
 			esameDao.save(esameFondamenti);
-			studenteDao.iscriviStudente(st.getMatricola(), corsoIngegneriaSW.getCodice());
-			studenteDao.iscriviStudente(st2.getMatricola(), corsoIngegneriaSW.getCodice());
-			studenteDao.iscriviStudente(st3.getMatricola(), corsoIngegneriaSW.getCodice());
-			studenteDao.iscriviStudente(st4.getMatricola(), corsoIngegneriaSW.getCodice());
-			studenteDao.iscriviStudente(st3.getMatricola(), corsoRicercaO.getCodice());
-			studenteDao.iscriviStudente(st4.getMatricola(), corsoRicercaO.getCodice());
-			studenteDao.superaEsame(st3.getMatricola(), esameIngegneria, new Timestamp(System.currentTimeMillis()), 30);
-			studenteDao.superaEsame(st3.getMatricola(), esameOggetti, new Timestamp(System.currentTimeMillis()), 18);
 
 			// controlla qua
 			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
 			CalendarioPersonale calendarioPersonaleM = new CalendarioPersonale(st4.getMatricola());
 			CalendarioPersonale calendarioPersonaleE = new CalendarioPersonale(st3.getMatricola());
 			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
-			Lezione lezione = new Lezione(corsoIngegneriaSW.getCodice(), dataI,
-					new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()),
-					aulaMT5.getId(), 0);
-			LezioneDao lezioneDao = factory.getLezioneDAO();
-			lezioneDao.save(lezione);
-			calendarioPersonaleSt.aggiungiLezione(lezione);
 			calendarioPersonaleDao.save(calendarioPersonaleSt);
 			calendarioPersonaleDao.save(calendarioPersonaleM);
 			calendarioPersonaleDao.save(calendarioPersonaleE);
-			// System.out.println("la size degli eventi del calendario è
-			// "+calendarioPersonaleSt.getEventi().size());
-			// System.out.println(calendarioPersonaleDao.findByPrimaryKey(ricca.getMatricola()).getEventi().get(0).getAnno());
+		
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			Messaggio messaggio1 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve", t);
@@ -365,25 +315,6 @@ public class MainJDBC {
 			
 			// Functionaaaaa!!
 
-			for (Aula aula : aulaDao.findAll()) {
-				System.out.println("L'aula è la " + aula.getId() + " appartiene al corso di laurea "
-						+ aula.getCorsoDiLaurea() + " ha a disposizione " + aula.getPosti());
-			}
-
-			for (Corso cor : studenteDao.getCorsi(st.getMatricola())) {
-				System.out.println("Il corso è quello di " + cor.getNome() + " è di " + cor.getCfu());
-			}
-
-			System.out.println(corsoDao.getDocente("555").getNome() + " " + corsoDao.getDocente("555").getCognome());
-
-			for (Corso cor : studenteDao.getCorsiIscritto(st.getMatricola())) {
-				System.out.println(
-						"Il corso a cui " + st.getNome() + " " + st.getCognome() + " è iscritto è " + cor.getNome());
-			}
-			for (Corso cor : docenteDao.getCorsiDocente(ricca.getMatricola())) {
-				System.out.println("Il corso di cui " + ricca.getNome() + " " + ricca.getCognome() + " è titolare è "
-						+ cor.getNome());
-			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -391,6 +322,7 @@ public class MainJDBC {
 
 		// FUNCTIONAAAAAA!
 		// Da register.java non lo so provare :)
+		System.out.println("done");
 	}
 
 }

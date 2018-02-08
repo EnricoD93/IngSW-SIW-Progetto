@@ -75,7 +75,7 @@ public class EsameDaoJDBC implements EsameDao {
 		try {
 			Esame esame;
 			PreparedStatement statement;
-			String query = "select * from esame";
+			String query = "select * from esame ORDER BY esame.codice";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {

@@ -1,12 +1,12 @@
 package controller.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import model.course.Avviso;
 import model.course.Corso;
 import model.course.Lezione;
+import model.user.Esame;
 import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
@@ -34,6 +35,8 @@ public class ShowCourse extends HttpServlet {
 	List<Utente> studentiIscritti;
 	String richiesta = "vuota";
 	List<Avviso> avvisi;
+	List<Esame> propedeutici;
+	List<String> giorni;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,8 +52,32 @@ public class ShowCourse extends HttpServlet {
 		if (richiesta.equals("mostraCorso")) {
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
 			avvisi = avvDao.findAllByCourse(codice);
+			propedeutici = corsoDao.getEsamiPropedeutici(codice);
+			String giorniLezione = currentCourse.getGiorno();
+			System.err.println(giorniLezione);
+			String[] giorni = giorniLezione.split("_");
+			ArrayList<HashMap<String, String>> lista = new ArrayList<>();
+			for (int i = 0; i < giorni.length; i++) {
+				System.out.println("giorni " + giorni[i]);
+			}
+			for (int i = 0; i < giorni.length; i++) {
+				String[] giorno = giorni[i].split(",");
+				HashMap<String, String> h = new HashMap<>();
+				h.put("giorno", giorno[0]);
+				h.put("dalle", giorno[1]);
+				h.put("alle", giorno[2]);
+				h.put("tipo", giorno[3]);
+				h.put("aula", giorno[4]);
+
+				lista.add(h);
+			}
+			for (HashMap<String, String> hashMap : lista) {
+				System.out.println(hashMap);
+			}
 			req.setAttribute("courseDocente", courseDocente);
+			req.setAttribute("esami", propedeutici);
 			req.setAttribute("currentCourse", currentCourse);
+			req.setAttribute("giorni",giorni);
 			req.setAttribute("studentiIscritti", studentiIscritti);
 			req.setAttribute("advices", avvisi);
 		}
@@ -89,11 +116,8 @@ public class ShowCourse extends HttpServlet {
 			String matricola = req.getParameter("matricola");
 			UtenteDao u = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			String checked = req.getParameter("checked");
-			LezioneDao lezioneDao=DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
-			Lezione lez=lezioneDao.findByPrimaryKey(lezione);
-			Long diff=lez.getOraFine().getTime()-lez.getOraInizio().getTime();
-			Timestamp t= new Timestamp(diff);
-			System.out.println("la differenza è "+ diff);
+			LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
+			Lezione lez = lezioneDao.findByPrimaryKey(lezione);
 			u.salvaPresenza(matricola, lezione);
 		}
 		if (richiesta.equals("salvaAvviso")) {
@@ -103,10 +127,10 @@ public class ShowCourse extends HttpServlet {
 			String text = req.getParameter("text");
 			String title = req.getParameter("title");
 			Timestamp t = new Timestamp(System.currentTimeMillis());
-			NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+			NotificaDao notificaDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 			studentiIscritti = corsoDao.getStudentiIscritti(codice);
 			for (Utente u : studentiIscritti) {
-				notificaDao.save(new Notifica(u.getMatricola(),t,3,currentCourse.getNome()));
+				notificaDao.save(new Notifica(u.getMatricola(), t, 3, currentCourse.getNome()));
 			}
 			Avviso avviso = new Avviso(text, title, codice, t);
 			avvDao.save(avviso);

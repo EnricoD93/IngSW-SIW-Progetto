@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import controller.servlet.CreateCourse;
 import model.course.Lezione;
 import persistence.DatabaseManager;
 import persistence.dao.LezioneDao;
@@ -45,7 +46,7 @@ public class CalendarioPersonale {
 	}
 
 	public ArrayList<Lezione> getLezioniCorso(Long codice, GiornoCalendario inizio, GiornoCalendario fine,
-			String giorniLezione, String aula, int tipo, Timestamp oraInizio, Timestamp oraFine, boolean coincidenti) {
+			String giorniLezione, String aula, int tipo, Timestamp oraInizio, Timestamp oraFine, CreateCourse coincidenti) {
 		ArrayList<Lezione> lez = new ArrayList<>();
 		GiornoCalendario i = new GiornoCalendario(inizio.giorno, inizio.mese, inizio.anno);
 
@@ -66,11 +67,11 @@ public class CalendarioPersonale {
 				LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 				GiornoCalendario g = new GiornoCalendario(i.getGiorno(), i.getMese(), i.getAnno());
 				List<Lezione> lezioni = lezioneDao.findAll();
-				if (!coincidenti)
+				if (coincidenti.coincidenti.equals("NC"))
 					for (int j = 0; j < lezioni.size(); j++) {
 						if (lezioni.get(j).getData().uguale(g)) {
-							coincidenti = true;
-							System.out.println("COINCIDENTI=TRUE");
+							coincidenti.coincidenti = "C";
+							System.out.println("COINCIDENTI è "+coincidenti.coincidenti);
 							break;
 						}
 

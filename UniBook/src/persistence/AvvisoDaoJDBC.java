@@ -83,7 +83,7 @@ public class AvvisoDaoJDBC implements AvvisoDao {
 		Connection connection = this.dataSource.getConnection();
 		List<Avviso> avvisi;
 		try {
-			String query = "SELECT * FROM avviso WHERE avviso.corso=?";
+			String query = "SELECT * FROM avviso WHERE avviso.corso=? ORDER BY avviso.data DESC";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setLong(1, codice);
 

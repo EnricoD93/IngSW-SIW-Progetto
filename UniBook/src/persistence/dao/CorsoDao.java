@@ -17,4 +17,5 @@ public interface CorsoDao {
 	public void setPropedeutico(Long esame,Long corso);
 	public void deletePropedeutico(Long corso);
 	public List<Esame> getEsamiPropedeutici(Long corso);
+	public void deleteAvvisi(Long codice);
 }
