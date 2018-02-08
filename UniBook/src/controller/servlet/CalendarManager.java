@@ -210,13 +210,15 @@ public class CalendarManager extends HttpServlet {
 				Corso c=corsoDao.findByPrimaryKey(corso);
 				NotificaDao notificaDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 				Timestamp t=new Timestamp(System.currentTimeMillis());
+				Evento e = eventoDao.findByPrimaryKey(l.getId());
 				for (int i = 0; i < studentiIscritti.size(); i++) {
-					Evento e = eventoDao.findByPrimaryKey(l.getId());
 					calendarioPersonaleDao.deleteEvent(studentiIscritti.get(i).getMatricola(), e);
-					eventoDao.delete(e);
-					lezioneDao.delete(l);
 					notificaDao.save(new Notifica(studentiIscritti.get(i).getMatricola(),t,1,c.getNome()));
-				}
+				}	
+				calendarioPersonaleDao.deleteEvent(matricola, e);
+				eventoDao.delete(e);
+					lezioneDao.delete(l);
+				
 
 			} else {
 				System.out.println("servlet id " + id);
