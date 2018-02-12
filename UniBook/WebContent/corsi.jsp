@@ -67,23 +67,21 @@
 
 											</button>
 										</c:if></td>
-									<td><div class="progress">
-											<c:if test="${currentUser.ruolo==0}">
+									<c:if test="${currentUser.ruolo==0}">
+										<td><div class="progress">
 												<c:if test="${percentuali[corso.codice]<=75}">
 													<div class="progress-bar bg-unibook" role="progressbar"
 														aria-valuenow="${percentuali[corso.codice]}"
 														aria-valuemin="0" aria-valuemax="100"
 														style="width: ${percentuali[corso.codice]}%;">${percentuali[corso.codice]}%</div>
 												</c:if>
-											</c:if>
-											<c:if test="${currentUser.ruolo==0}">
 												<c:if test="${percentuali[corso.codice]>75}">
 													<div class="progress-bar bg-green" role="progressbar"
 														aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
 														style="width: ${percentuali[corso.codice]}%; background-color: green">${percentuali[corso.codice]}%</div>
 												</c:if>
-											</c:if>
-										</div></td>
+											</div></td>
+									</c:if>
 								</tr>
 
 							</c:forEach>

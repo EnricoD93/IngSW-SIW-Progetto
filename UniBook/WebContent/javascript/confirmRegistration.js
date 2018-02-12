@@ -13,7 +13,7 @@ function registration(code) {
 
 function showRegistrationMessage() {
 	swal("Registrazione completata!", "Adesso accedi per continuare.",
-			"success");
+			"success").then(()=>{window.location.href="home"});
 }
 function showWarningMessage() {
 	swal(

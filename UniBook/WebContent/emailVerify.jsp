@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" type="text/css">
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<link href="css/mysweetalert.css" rel="stylesheet">
 <link href="plugins/node-waves/waves.css" rel="stylesheet" />
 
 <link href="plugins/animate-css/animate.css" rel="stylesheet" />
@@ -102,7 +102,7 @@
 	</div>
 	<script src="plugins/jquery/jquery.min.js"></script>
 	<script src="javascript/confirmRegistration.js"></script>
-	<script src="plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/pages/ui/dialogs.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.js"></script>
 	<script src="plugins/node-waves/waves.js"></script>

@@ -156,7 +156,7 @@
 							
 								<tr>
 									<th style="display: -webkit-inline-box;">Password:&nbsp;&nbsp;
-										<input name="password" id="password" cols="30" rows="5"
+										<input type="password" name="password" id="password" cols="30" rows="5"
 										class="form-control no-resize hidden" value="${profilo.password}"
 										required> <label class="form-label"></label>&nbsp;
 										<button id="modificaPassword" type="button" class="btn bg-unibook waves-effect" onclick="javascript:modificaPassword();">
@@ -170,6 +170,21 @@
 							</tbody>
 						</table>
 					</div>
+						<c:if test="${currentUser.matricola!=profilo.matricola }">
+							<div align="right">
+								<div class="bg-unibook info-box-3 hover-zoom-effect">
+									<a
+										href="page?request=conversazione&id=${profilo.matricola}">
+										<div class="icon">
+											<i class="material-icons">message</i>
+										</div>
+										<div class="content">
+											<div class="text">Invia Messaggio</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</c:if>
 
 				</div>
 			</h2>
@@ -177,11 +192,6 @@
 	</div>
 </section>
 
-<c:if test="${currentUser==null}">
-	<%
-		response.sendRedirect("index.html");
-	%>
-</c:if>
 <script src="javascript/uploadImage.js" type="text/javascript"></script>
 <script src="plugins/sweetalert/sweetalert.min.js"></script>
 <script src="js/pages/ui/dialogs.js"></script>

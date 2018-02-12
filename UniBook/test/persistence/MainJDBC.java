@@ -89,10 +89,30 @@ public class MainJDBC {
 			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st4.setProfileImagePath("images/profileImages/169991.jpg");
+			
+			Utente st5 = new Utente("169984", "Marco", "De Luca", date, "DLCMRC95T64T253R",
+					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+			st5.setProfileImagePath("images/profileImages/169984.jpg");
+			
+			Utente st6 = new Utente("169985", "Nicola", "Greco", date, "GRCNCL95T54Y153T",
+					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+			st6.setProfileImagePath("images/profileImages/169985.jpg");
+			
+			Utente st7 = new Utente("169986", "Cristian", "De Marco", date, "DMRCRS95T46H564T",
+					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+			st7.setProfileImagePath("images/profileImages/169986.jpg");
+			Utente st8 = new Utente("169987", "Nuccia", "Oliverio", date, "LVRNCC95T67G463B",
+					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+			st8.setProfileImagePath("images/profileImages/169987.jpg");
+			
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 
 			studenteDao.save(st3);
 			studenteDao.save(st4);
+			studenteDao.save(st5);
+			studenteDao.save(st6);
+			studenteDao.save(st7);
+			studenteDao.save(st8);
 
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
@@ -290,23 +310,12 @@ public class MainJDBC {
 		
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
-			Messaggio messaggio1 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve", t);
-			messaggioDao.save(messaggio1);
-			t = new Timestamp(System.currentTimeMillis());
 			Messaggio messaggio2 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve prof,\r\n"
 					+ "Ricordo che sul calendario che mostrate di solito a lezione è fissata una prova per il 21/11 su Git e JUnit.\r\n"
 					+ "Volevo chiedervi se è confermato che ci sarà, visto che in questa settimana non c’è stata alcuna lezione per chiedervelo di persona.\r\n"
 					+ "Grazie in anticipo,\r\n" + "De Cicco E.\r\n", t);
 			messaggioDao.save(messaggio2);
 			t = new Timestamp(System.currentTimeMillis());
-			Messaggio messaggio3 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Come stai?", t);
-			messaggioDao.save(messaggio3);
-			t = new Timestamp(System.currentTimeMillis());
-			Messaggio messaggio4 = new Messaggio(ricca.getMatricola(), st3.getMatricola(), "Bene", t);
-
-			t = new Timestamp(System.currentTimeMillis());
-			Messaggio messaggio = new Messaggio(st3.getMatricola(), perri.getMatricola(), "Salve perri", t);
-			messaggioDao.save(messaggio);
 
 			NotificaDao notificaDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 			t = new Timestamp(System.currentTimeMillis());

@@ -34,6 +34,7 @@
 						</div>
 					</div>
 					</br>
+				
 					<div class="body table-responsive">
 						<div align="center" class="corsiTitle">Corsi disponibili</div>
 
