@@ -32,19 +32,19 @@ public class ExamsManager extends HttpServlet {
 			System.out.println("eliminato");
 		} else if (request.equals("aggiungiEsame")) {
 			String data = req.getParameter("data");
-			System.out.println("data "+data);
+			System.out.println("data " + data);
 			String votoS = req.getParameter("voto");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date parsedDate;
 			try {
 				parsedDate = dateFormat.parse(data);
 				Timestamp timestamp = new Timestamp(parsedDate.getTime());
-			int voto;
-			if (votoS.equals("30L"))
-				voto = 31;
-			else
-				voto = Integer.parseInt(votoS);
-			utenteDao.superaEsame(currentUser.getMatricola(), e, timestamp, voto);
+				int voto;
+				if (votoS.equals("30L"))
+					voto = 31;
+				else
+					voto = Integer.parseInt(votoS);
+				utenteDao.superaEsame(currentUser.getMatricola(), e, timestamp, voto);
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
