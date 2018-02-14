@@ -10,11 +10,11 @@
 		<div class="block-header">
 			<h2>
 				<br>
-				<div align="left" class="corsiTitle">
+				<div align="left" class="corsiTitle" style="margin-left:300px;">
 					<font color="#C4161C"><img alt="chiSiamo"
 					src="images/chiSiamo.png" width="70px">Chi Siamo</font>
 				</div>
-				<div align="left">
+				<div align="center">
 					<b>Siamo due studenti presso il dipartimento di informatica
 						dell'Università della Calabria. Il nostro interesse<br> è
 						rivolto verso tutto ciò che riguarda programmazione software e
@@ -33,11 +33,11 @@
 					<div class="profile-pic pic-margin-right"
 						style="background-image: url('images/profileImages/169983.jpg');"></div>
 				</div>
-				<div align="left" class="corsiTitle"  style="margin-left:20px;">
+				<div align="left" class="corsiTitle" style="margin-left:263px;">
 					<font color="#C4161C"><img alt="abilita"
 					src="images/abilita.png" width="90px">Le nostre abilità</font>
 				</div>
-				<div align="left" class=" table table-responsive"  style="margin-left:60px;">
+				<div align="left" class=" table table-responsive" style="margin-left:263px;">
 					<table class="table-hover dashboard-task-infos">
 						<thead>
 							<tr>
@@ -90,11 +90,11 @@
 					</table>
 				</div>
 			</h2>
-			<div class="corsiTitle" style="margin-left:40px;">
+			<div class="corsiTitle" style="margin-left:310px;">
 				<font color="#C4161C"><img alt="contattaci"
 					src="images/contattaci.png" width="50px" >&nbsp;&nbsp;Contattaci</font>
 			</div>
-			<div style="float: left; margin-top:25px; margin-left:70px;"> <font size="3"><b>martyvolley23@gmail.com</b></font></div>
+			<div style="float: left; margin-top:25px; margin-left:160px;"> <font size="3"><b>martyvolley23@gmail.com</b></font></div>
 			<img alt="" src="images/imgMail.png" style="float: left; width:150px;">
 			<div  style="float: left; margin-top:50px;"><font size="3"><b>enricodecicco93@gmail.com</b></font> </div>
 		</div>
