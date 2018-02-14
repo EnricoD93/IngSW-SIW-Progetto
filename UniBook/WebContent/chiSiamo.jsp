@@ -70,7 +70,7 @@
 								<td>Perl</td>
 								<td>
 									<div class="progress">
-										<div class="progress-bar bg-light-blue" role="progressbar"
+										<div class="progress-bar bg-red" role="progressbar"
 											aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"
 											style="width: 72%"></div>
 									</div>
