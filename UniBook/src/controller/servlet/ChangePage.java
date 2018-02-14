@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +35,7 @@ import persistence.dao.AulaDao;
 import persistence.dao.AvvisoDao;
 import persistence.dao.CorsoDao;
 import persistence.dao.DescrizioneCorsoDao;
+import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.UtenteDao;
@@ -318,7 +320,15 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("utenteConversazione", u);
 					req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
 					break;
-
+				case "listaEsami":
+					EsameDao esameDao=DatabaseManager.getInstance().getDaoFactory().getEsameDAO();
+					List<Esame> listaEsami=new ArrayList<>();
+					System.out.println("sono qua");
+					listaEsami.addAll(utenteDao.findEsamiSuperati(currentUser.getMatricola()));
+					listaEsami.addAll(utenteDao.findEsamiIscritto(currentUser.getMatricola()));
+					listaEsami.addAll(utenteDao.findEsamiNonSuperati(currentUser.getMatricola()));
+					req.setAttribute("listaEsami", listaEsami);
+					req.getRequestDispatcher("media.jsp").forward(req, resp);
 				case "esami":
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());

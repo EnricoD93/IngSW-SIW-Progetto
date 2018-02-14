@@ -52,6 +52,11 @@ function verificaGiorni() {
 				"Devi selezionare almeno un giorno in cui tenere la lezione",
 				"error");
 	}
-};
 
+};
+function getEsami(){
+	console.log("esami");
+
+			window.location.href="page?request=listaEsami";
+}
 

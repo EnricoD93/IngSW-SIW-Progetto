@@ -314,7 +314,7 @@
 					<li><a href="javascript:void(0)"> <i
 							class="material-icons">my_location</i> <span>Dove siamo</span>
 					</a></li>
-					<li><a href="javascript:void(0)"> <i
+					<li><a href="chiSiamo.jsp"> <i
 							class="material-icons">info</i> <span>Chi siamo</span>
 					</a></li>
 

@@ -13444,6 +13444,14 @@ html.ie11 .bs-searchbox .form-control {
 	padding-bottom: 15px;
 	font-weight: bold;
 }
+.pic-margin-left{
+	 float: left;
+	 margin-left: 160px;
+}
+.pic-margin-right{
+	 float: right;
+	 margin-right: 160px;
+}
 
 footer {
 	color: white;

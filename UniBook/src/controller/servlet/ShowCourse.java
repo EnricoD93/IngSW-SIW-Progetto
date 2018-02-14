@@ -48,39 +48,39 @@ public class ShowCourse extends HttpServlet {
 		AvvisoDao avvDao = DatabaseManager.getInstance().getDaoFactory().getAvvisoDAO();
 		currentCourse = corsoDao.findByPrimaryKey(codice);
 		courseDocente = utenteDao.findByPrimaryKey(currentCourse.getDocente());
-
-		if (richiesta.equals("mostraCorso")) {
-			studentiIscritti = corsoDao.getStudentiIscritti(codice);
-			avvisi = avvDao.findAllByCourse(codice);
-			propedeutici = corsoDao.getEsamiPropedeutici(codice);
-			String giorniLezione = currentCourse.getGiorno();
-			System.err.println(giorniLezione);
-			String[] giorni = giorniLezione.split("_");
-			ArrayList<HashMap<String, String>> lista = new ArrayList<>();
-			for (int i = 0; i < giorni.length; i++) {
-				System.out.println("giorni " + giorni[i]);
-			}
-			for (int i = 0; i < giorni.length; i++) {
-				String[] giorno = giorni[i].split(",");
-				HashMap<String, String> h = new HashMap<>();
-				h.put("giorno", giorno[0]);
-				h.put("dalle", giorno[1]);
-				h.put("alle", giorno[2]);
-				h.put("tipo", giorno[3]);
-				h.put("aula", giorno[4]);
-
-				lista.add(h);
-			}
-			for (HashMap<String, String> hashMap : lista) {
-				System.out.println(hashMap);
-			}
-			req.setAttribute("courseDocente", courseDocente);
-			req.setAttribute("esami", propedeutici);
-			req.setAttribute("currentCourse", currentCourse);
-			req.setAttribute("giorni",giorni);
-			req.setAttribute("studentiIscritti", studentiIscritti);
-			req.setAttribute("advices", avvisi);
-		}
+//
+//		if (richiesta.equals("mostraCorso")) {
+//			studentiIscritti = corsoDao.getStudentiIscritti(codice);
+//			avvisi = avvDao.findAllByCourse(codice);
+//			propedeutici = corsoDao.getEsamiPropedeutici(codice);
+//			String giorniLezione = currentCourse.getGiorno();
+//			System.err.println(giorniLezione);
+//			String[] giorni = giorniLezione.split("_");
+//			ArrayList<HashMap<String, String>> lista = new ArrayList<>();
+//			for (int i = 0; i < giorni.length; i++) {
+//				System.out.println("giorni " + giorni[i]);
+//			}
+//			for (int i = 0; i < giorni.length; i++) {
+//				String[] giorno = giorni[i].split(",");
+//				HashMap<String, String> h = new HashMap<>();
+//				h.put("giorno", giorno[0]);
+//				h.put("dalle", giorno[1]);
+//				h.put("alle", giorno[2]);
+//				h.put("tipo", giorno[3]);
+//				h.put("aula", giorno[4]);
+//
+//				lista.add(h);
+//			}
+//			for (HashMap<String, String> hashMap : lista) {
+//				System.out.println(hashMap);
+//			}
+//			req.setAttribute("courseDocente", courseDocente);
+//			req.setAttribute("esami", propedeutici);
+//			req.setAttribute("currentCourse", currentCourse);
+//			req.setAttribute("giorni",giorni);
+//			req.setAttribute("studentiIscritti", studentiIscritti);
+//			req.setAttribute("advices", avvisi);
+//		}
 		if (richiesta.equals("eliminaIscrizioneStudente")) {
 			String matricolaStudente = req.getParameter("matricolaStudente");
 			utenteDao.eliminaIscrizioneStudente(matricolaStudente, currentCourse.getCodice());

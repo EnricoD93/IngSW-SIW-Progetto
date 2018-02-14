@@ -28,6 +28,12 @@
 					</div>
 					<div style="margin-top: 5px;">
 						<strong> Voto di Partenza: ${votoPartenza}/110</strong>
+						<div align="right">
+							<button id="calcolaMedia" type="button"
+								class="btn bg-unibook waves-effect" onclick="javascript:getEsami();">
+								Calcola la <br> tua media
+							 </button>
+						</div>
 					</div>
 
 					<table class="table table-striped">
@@ -54,8 +60,8 @@
 												<b> 30L</b>
 											</c:when>
 											<c:otherwise>
-  												<b>${esame.voto}</b>
-  												</c:otherwise>
+												<b>${esame.voto}</b>
+											</c:otherwise>
 										</c:choose></td>
 									<td><img src="images/superato.png" /></td>
 									<td><button type="button"
