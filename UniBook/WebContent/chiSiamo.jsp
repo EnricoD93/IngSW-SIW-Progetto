@@ -10,12 +10,12 @@
 		<div class="block-header">
 			<h2>
 				<br>
-				<div align="left" class="corsiTitle" style="margin-left:300px;">
+				<div align="center" class="corsiTitle" style="width: 90%;">
 					<font color="#C4161C"><img alt="chiSiamo"
-					src="images/chiSiamo.png" width="70px">Chi Siamo</font>
+						src="images/chiSiamo.png" width="70px">Chi Siamo</font>
 				</div>
 				<div align="center">
-					<b>Siamo due studenti presso il dipartimento di informatica
+					<b>Siamo due studenti presso il Dipartimento di Informatica
 						dell'Università della Calabria. Il nostro interesse<br> è
 						rivolto verso tutto ciò che riguarda programmazione software e
 						sicurezza web
@@ -33,15 +33,15 @@
 					<div class="profile-pic pic-margin-right"
 						style="background-image: url('images/profileImages/169983.jpg');"></div>
 				</div>
-				<div align="left" class="corsiTitle" style="margin-left:263px;">
+				<div align="center" class="corsiTitle" style="width: 90%;">
 					<font color="#C4161C"><img alt="abilita"
-					src="images/abilita.png" width="90px">Le nostre abilità</font>
+						src="images/abilita.png" width="90px">Le nostre abilità</font>
 				</div>
-				<div align="left" class=" table table-responsive" style="margin-left:263px;">
-					<table class="table-hover dashboard-task-infos">
+				<div align="center" class=" table table-responsive">
+					<table class="table-hover dashboard-task-infos" style="width: 70%;">
 						<thead>
 							<tr>
-								<th>Linguaggio di Programmazione</th>
+								<th>Linguaggio</th>
 								<th>Progress</th>
 							</tr>
 						</thead>
@@ -60,7 +60,7 @@
 								<td>Java</td>
 								<td>
 									<div class="progress">
-										<div class="progress-bar bg-blue" role="progressbar"
+										<div class="progress-bar bg-yellow" role="progressbar"
 											aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
 											style="width: 90%"></div>
 									</div>
@@ -77,6 +77,16 @@
 								</td>
 							</tr>
 							<tr>
+								<td>Html</td>
+								<td>
+									<div class="progress">
+										<div class="progress-bar bg-blue" role="progressbar"
+											aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
+											style="width: 90%"></div>
+									</div>
+								</td>
+							</tr>
+							<tr>
 								<td>Sql</td>
 								<td>
 									<div class="progress">
@@ -86,17 +96,42 @@
 									</div>
 								</td>
 							</tr>
+							<tr>
+								<td>JavaScript</td>
+								<td>
+									<div class="progress">
+										<div class="progress-bar bg-purple" role="progressbar"
+											aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+											style="width: 85%"></div>
+									</div>
+								</td>
+							</tr>
+								<tr>
+								<td>Css</td>
+								<td>
+									<div class="progress">
+										<div class="progress-bar bg-blue-grey" role="progressbar"
+											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+											style="width: 80%"></div>
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
 			</h2>
-			<div class="corsiTitle" style="margin-left:310px;">
+			<div align="center" class="corsiTitle" style="width: 90%;">
 				<font color="#C4161C"><img alt="contattaci"
-					src="images/contattaci.png" width="50px" >&nbsp;&nbsp;Contattaci</font>
+					src="images/contattaci.png" width="50px">&nbsp;&nbsp;Contattaci</font>
 			</div>
-			<div style="float: left; margin-top:25px; margin-left:160px;"> <font size="3"><b>martyvolley23@gmail.com</b></font></div>
-			<img alt="" src="images/imgMail.png" style="float: left; width:150px;">
-			<div  style="float: left; margin-top:50px;"><font size="3"><b>enricodecicco93@gmail.com</b></font> </div>
+			<div style="float: left; margin-top: 25px; margin-left: 20%;">
+				<font size="3"><b>martyvolley23@gmail.com</b></font>
+			</div>
+			<img alt="" src="images/imgMail.png"
+				style="float: left; width: 150px;">
+			<div style="float: left; margin-top: 50px;">
+				<font size="3"><b>enricodecicco93@gmail.com</b></font>
+			</div>
 		</div>
 
 	</div>
