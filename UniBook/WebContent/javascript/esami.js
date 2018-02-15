@@ -34,5 +34,11 @@ function calcolaMedia() {
 		}
 	}
 	var media = somma / sommaCrediti;
+	console.log(media);
+	if(media>0){
 	document.getElementById("media").innerHTML = media;
+	}else{
+		media="Non hai inserito nessun valore!"
+		document.getElementById("media").innerHTML = media;
+	}
 }
