@@ -11,19 +11,21 @@
 </head>
 <section id="centralSection" class="content">
 	<body>
-		<div>
-			<div class="corsiTitle" id="med">
-				Media:
-				<div id="media"></div>
-			</div>
+
+
+		<div align="left" class="corsiTitle" id="med">
+			<font color="#C4161C"><img alt="calcolatrice"
+				src="images/calculator.png" width="40px">&nbsp;Media:</font>
+		<div  class="corsiTitle"id="media">	</div>
 		</div>
-		<h4>
-			<span>Clicca per aggiungere una riga</span>
-		<button
-			class="btn bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
-			title="Studenti iscritti" onclick="addExam();">
-			<i class="material-icons">add</i>
-		</button>	</h4>
+		<h4 >
+			<span style="margin-top:50px;">Clicca per aggiungere una riga</span>
+			<button
+				class="btn bg-unibook btn-circle-lg-xs waves-effect waves-circle waves-float"
+				title="Studenti iscritti" onclick="addExam();">
+				<i class="material-icons">add</i>
+			</button>
+		</h4>
 
 		<table class="table table-striped" id="table">
 			<thead>
@@ -35,9 +37,9 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input id="value1" type="number"></td>
-					<td><input id="crediti1" type="number"></td>
-					<td><input id="voto1" type="number"></td>
+					<td><input class="form-control" id="value1" type="number"></td>
+					<td><input class="form-control" id="crediti1" type="number"></td>
+					<td><input class="form-control" id="voto1" type="number"></td>
 				</tr>
 			</tbody>
 		</table>
