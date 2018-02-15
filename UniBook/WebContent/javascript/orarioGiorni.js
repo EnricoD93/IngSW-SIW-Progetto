@@ -56,7 +56,6 @@ function verificaGiorni() {
 };
 function getEsami(){
 	console.log("esami");
-
-			window.location.href="page?request=listaEsami";
+			window.location.href="media.jsp";
 }
 

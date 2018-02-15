@@ -320,15 +320,6 @@ public class ChangePage extends HttpServlet {
 					req.setAttribute("utenteConversazione", u);
 					req.getRequestDispatcher("conversazioni.jsp").forward(req, resp);
 					break;
-				case "listaEsami":
-					EsameDao esameDao=DatabaseManager.getInstance().getDaoFactory().getEsameDAO();
-					List<Esame> listaEsami=new ArrayList<>();
-					System.out.println("sono qua");
-					listaEsami.addAll(utenteDao.findEsamiSuperati(currentUser.getMatricola()));
-					listaEsami.addAll(utenteDao.findEsamiIscritto(currentUser.getMatricola()));
-					listaEsami.addAll(utenteDao.findEsamiNonSuperati(currentUser.getMatricola()));
-					req.setAttribute("listaEsami", listaEsami);
-					req.getRequestDispatcher("media.jsp").forward(req, resp);
 				case "esami":
 					List<EsameSuperato> esami = utenteDao.findEsamiSuperati(currentUser.getMatricola());
 					List<Esame> esamiIscritto = utenteDao.findEsamiIscritto(currentUser.getMatricola());
