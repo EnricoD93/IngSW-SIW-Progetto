@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 			<div class="block-header">
 				<h2>
-					<div class="corsiTitle">Benvenuto ${currentUser.nome}&nbsp;!</div>
+					<div class="corsiTitle">Benvenuto ${currentUser.matricola}&nbsp;!</div>
 					<div class="info-box-3 bg-unibook hover-expand-effect">
 						<div class="icon">
 							<i class="material-icons">event</i>
