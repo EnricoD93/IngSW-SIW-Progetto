@@ -875,31 +875,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 		return map;
 	}
 	
-	@Override
-	public void deleteAllPresenze(Long corso) {
-		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
-		List<Evento> lezioni = lezione.findCourseLessons(corso);
-		for (int i = 0; i < lezioni.size(); i++) {
 
-			Connection connection = this.dataSource.getConnection();
-			String query = "delete FROM presenza where lezione=?";
-			PreparedStatement statement;
-			try {
-				statement = connection.prepareStatement(query);
-				statement.setLong(1, lezioni.get(i).getId());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					throw new PersistenceException(e.getMessage());
-				}
-			}
-		}
-
-	}
 	@Override
 	public void passwordModify(String matricola, String password) {
 

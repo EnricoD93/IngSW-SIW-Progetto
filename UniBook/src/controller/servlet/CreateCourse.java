@@ -146,7 +146,6 @@ public class CreateCourse extends HttpServlet {
 					// eliminazione lezioni dal calendario degli studenti iscritti e elimina
 					// iscrizione degli studenti
 					UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-					utenteDao.deleteAllPresenze(codice);
 					for (int i = 0; i < iscritti.size(); i++) {
 						notificaDao.save(new Notifica(iscritti.get(i).getMatricola(), t, 2, c.getNome()));
 						lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
@@ -162,6 +161,7 @@ public class CreateCourse extends HttpServlet {
 					System.out.println("Dopo: " + listaLezioni.size());
 					// eliminazione lezioni dal db
 					for (int i = 0; i < listaLezioni.size(); i++) {
+						utenteDao.deletePresenze(listaLezioni.get(i).getId());
 						lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
 					}
 					// eliminazione del corso
@@ -191,7 +191,6 @@ public class CreateCourse extends HttpServlet {
 			List<Evento> listaLezioni = lezioneDao.findCourseLessons(codice);
 			List<Utente> iscritti = corsoDao.getStudentiIscritti(codice);
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			utenteDao.deleteAllPresenze(codice);
 			for (int i = 0; i < iscritti.size(); i++) {
 
 
@@ -203,6 +202,7 @@ public class CreateCourse extends HttpServlet {
 					u.getMatricola());
 
 			for (int i = 0; i < listaLezioni.size(); i++) {
+				utenteDao.deletePresenze(listaLezioni.get(i).getId());
 				lezioneDao.deleteLessonByEvent(listaLezioni.get(i));
 			}
 

@@ -225,7 +225,9 @@ function confermaEliminaCorso(matricola, codice) {
 								swal(
 										"Eliminazione avvenuta",
 										"Il corso è stato cancellata con successo.",
-										"success");
+										"success").then(() => {
+											window.location.href="page?request=corsi";
+										});;
 							},
 							error : function(data) {
 								if (data.status === 405) {

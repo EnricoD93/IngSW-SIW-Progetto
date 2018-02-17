@@ -31,7 +31,9 @@
 								<c:if test="${currentUser.ruolo == 0 }">
 									<th></th>
 								</c:if>
-								<th>Frequenza</th>
+								<c:if test="${currentUser.ruolo == 0 }">
+									<th>Frequenza</th>
+								</c:if>
 							</tr>
 
 						</thead>

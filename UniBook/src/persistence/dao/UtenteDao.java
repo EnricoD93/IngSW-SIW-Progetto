@@ -63,7 +63,6 @@ public interface UtenteDao {
 
 	public HashMap<String, Long> findAllPresenze(Long corso);
 
-	public void deleteAllPresenze(Long corso);
 
 	public int findUnreadMessages(String dest, String mitt);
 

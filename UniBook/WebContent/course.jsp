@@ -28,7 +28,7 @@
 								<button type="submit"
 									class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 									title="Studenti iscritti">
-									<i class="material-icons">people</i>
+									<i class="material-icons" style="display:list-item;">people</i>
 								</button>
 							</form>
 						</div>

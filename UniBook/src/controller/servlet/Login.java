@@ -47,8 +47,6 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		RequestDispatcher dispacher;
-		List<Corso> corsi;
 
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		if (session.getAttribute("currentUser") == null) {
@@ -60,7 +58,6 @@ public class Login extends HttpServlet {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					NotificaDao notiDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 					List<Notifica> notifiche=notiDao.findAllNotifications(currentUser.getMatricola());
-					corsi = utenteDao.getCorsi(currentUser.getMatricola());
 					session.setAttribute("currentUser", currentUser);
 					session.setAttribute("notifications", notifiche);
 				} else {

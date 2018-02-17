@@ -38,7 +38,7 @@
 								style="margin-left: 700px;"
 								class="bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 								title="Aggiungi Studente">
-								<i class="material-icons">person_add</i>
+								<i class="material-icons" style="display:list-item;">person_add</i>
 							</button>
 
 						</c:if>
