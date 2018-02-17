@@ -84,12 +84,12 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione" id="lezione"
+												name="tipolezione1" id="lezione1"
 												class="radio-col-unibook" checked> <label
-												for="lezione">Lezione</label> <input type="radio"
-												name="tipolezione" id="esercitazione"
+												for="lezione1">Lezione</label> <input type="radio"
+												name="tipolezione1" id="esercitazione1"
 												class="radio-col-unibook"> <label
-												for="esercitazione" class="m-l-20">Esercitazione</label></span>
+												for="esercitazione1" class="m-l-20">Esercitazione</label></span>
 								</div>
 							</form>
 						</div>

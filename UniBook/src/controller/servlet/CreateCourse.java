@@ -112,7 +112,13 @@ public class CreateCourse extends HttpServlet {
 				cal2.set(Calendar.MINUTE, 30);
 				Date dateEventoIn = (Date) cal2.getTime();
 				Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-				Evento e = new Evento(lezioni.get(i).getId(), "Lezione " + corso.getNome(), ev1, ev1, "ProvaLezione");
+				String title;
+				if(lezioni.get(i).getTipo()==0)
+					title="Lezione";
+				else 
+					title="Esercitazione";
+				System.out.println("title = "+title);
+				Evento e = new Evento(lezioni.get(i).getId(), title +" "+ corso.getNome(), ev1, ev1, "ProvaLezione");
 				e.setId(lezioni.get(i).getId());
 				eventoDao.save(e);
 
@@ -145,7 +151,7 @@ public class CreateCourse extends HttpServlet {
 					Timestamp t = new Timestamp(System.currentTimeMillis());
 					// eliminazione lezioni dal calendario degli studenti iscritti e elimina
 					// iscrizione degli studenti
-					UtenteDao utenteDao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+					UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 					for (int i = 0; i < iscritti.size(); i++) {
 						notificaDao.save(new Notifica(iscritti.get(i).getMatricola(), t, 2, c.getNome()));
 						lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
@@ -193,7 +199,6 @@ public class CreateCourse extends HttpServlet {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			for (int i = 0; i < iscritti.size(); i++) {
 
-
 				lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 						iscritti.get(i).getMatricola());
 			}
@@ -207,7 +212,6 @@ public class CreateCourse extends HttpServlet {
 			}
 
 			String giorniLezione = createLessons(req, resp, codiceCorso);
-		
 
 			for (int i = 0; i < lezioni.size(); i++) {
 
@@ -222,7 +226,12 @@ public class CreateCourse extends HttpServlet {
 				cal2.set(Calendar.MINUTE, 30);
 				Date dateEventoIn = (Date) cal2.getTime();
 				Timestamp ev1 = new Timestamp(dateEventoIn.getTime());
-				Evento e = new Evento(lezioni.get(i).getId(), "Lezione " + c.getNome(), ev1, ev1, "ProvaLezione");
+				String title;
+				if(lezioni.get(i).getTipo()==0)
+					title="Lezione";
+				else 
+					title="Esercitazione";
+				Evento e = new Evento(lezioni.get(i).getId(), title +" "+ c.getNome(), ev1, ev1, "ProvaLezione");
 				e.setId(lezioni.get(i).getId());
 				eventoDao.save(e);
 
@@ -275,12 +284,19 @@ public class CreateCourse extends HttpServlet {
 		Lezione giovedì = null;
 		Lezione venerdì = null;
 		String giorniLezione = "";
+		int type = 0;
 
 		try {
 			if (req.getParameter("lunedi") != null) {
 				String aulaLun = req.getParameter("idAula_1");
 				String oraInizioLun = req.getParameter("oraInizioLun");
 				String oraFineLun = req.getParameter("oraFineLun");
+				String tipo = req.getParameter("tipolezione_1");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
+				System.out.println("tipo="+type);
 				GiornoCalendario g = new GiornoCalendario();
 				giorniLezione += "lunedi," + oraInizioLun + "," + oraFineLun + "," + "0" + "," + aulaLun + "_";
 				g.setGiornoDellaSettimana("Lunedì");
@@ -291,12 +307,17 @@ public class CreateCourse extends HttpServlet {
 				Timestamp oraInLun = new java.sql.Timestamp(parsedDate.getTime());
 				parsedDate = dateFormat.parse(oraFineLun);
 				Timestamp oraFinLun = new java.sql.Timestamp(parsedDate.getTime());
-				lunedì = new Lezione(Long.parseLong(codiceCorso), g, oraInLun, oraFinLun, aulaLun, 0);
+				lunedì = new Lezione(Long.parseLong(codiceCorso), g, oraInLun, oraFinLun, aulaLun, type);
 			}
 			if (req.getParameter("martedi") != null) {
 				String aulaMar = req.getParameter("idAula_2");
 				String oraInizioMar = req.getParameter("oraInizioMar");
 				String oraFineMar = req.getParameter("oraFineMar");
+				String tipo = req.getParameter("tipolezione_2");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
 				giorniLezione += "martedi," + oraInizioMar + "," + oraFineMar + "," + "0" + "," + aulaMar + "_";
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Martedì");
@@ -305,12 +326,17 @@ public class CreateCourse extends HttpServlet {
 				Timestamp oraInMar = new java.sql.Timestamp(parsedDate.getTime());
 				parsedDate = dateFormat.parse(oraFineMar);
 				Timestamp oraFinMar = new java.sql.Timestamp(parsedDate.getTime());
-				martedì = new Lezione(Long.parseLong(codiceCorso), g, oraInMar, oraFinMar, aulaMar, 0);
+				martedì = new Lezione(Long.parseLong(codiceCorso), g, oraInMar, oraFinMar, aulaMar, type);
 			}
 			if (req.getParameter("mercoledi") != null) {
 				String aulaMer = req.getParameter("idAula_3");
 				String oraInizioMer = req.getParameter("oraInizioMer");
 				String oraFineMer = req.getParameter("oraFineMer");
+				String tipo = req.getParameter("tipolezione_3");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
 				giorniLezione += "mercoledi," + oraInizioMer + "," + oraFineMer + "," + "0" + "," + aulaMer + "_";
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Mercoledì");
@@ -319,12 +345,17 @@ public class CreateCourse extends HttpServlet {
 				Timestamp oraInMer = new java.sql.Timestamp(parsedDate.getTime());
 				parsedDate = dateFormat.parse(oraFineMer);
 				Timestamp oraFinMer = new java.sql.Timestamp(parsedDate.getTime());
-				mercoledì = new Lezione(Long.parseLong(codiceCorso), g, oraInMer, oraFinMer, aulaMer, 0);
+				mercoledì = new Lezione(Long.parseLong(codiceCorso), g, oraInMer, oraFinMer, aulaMer, type);
 			}
 			if (req.getParameter("giovedi") != null) {
 				String aulaGio = req.getParameter("idAula_4");
 				String oraInizioGio = req.getParameter("oraInizioGio");
 				String oraFineGio = req.getParameter("oraFineGio");
+				String tipo = req.getParameter("tipolezione_4");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
 				giorniLezione += "giovedi," + oraInizioGio + "," + oraFineGio + "," + "0" + "," + aulaGio + "_";
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Giovedì");
@@ -333,12 +364,17 @@ public class CreateCourse extends HttpServlet {
 				Timestamp oraInGio = new java.sql.Timestamp(parsedDate.getTime());
 				parsedDate = dateFormat.parse(oraFineGio);
 				Timestamp oraFinGio = new java.sql.Timestamp(parsedDate.getTime());
-				giovedì = new Lezione(Long.parseLong(codiceCorso), g, oraInGio, oraFinGio, aulaGio, 0);
+				giovedì = new Lezione(Long.parseLong(codiceCorso), g, oraInGio, oraFinGio, aulaGio, type);
 			}
 			if (req.getParameterValues("venerdi") != null) {
 				String aulaVen = req.getParameter("idAula_5");
 				String oraInizioVen = req.getParameter("oraInizioVen");
 				String oraFineVen = req.getParameter("oraFineVen");
+				String tipo = req.getParameter("tipolezione_5");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
 				giorniLezione += "venerdi," + oraInizioVen + "," + oraFineVen + "," + "0" + "," + aulaVen + "_";
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Venerdì");
@@ -347,7 +383,7 @@ public class CreateCourse extends HttpServlet {
 				Timestamp oraInVen = new java.sql.Timestamp(parsedDate.getTime());
 				parsedDate = dateFormat.parse(oraFineVen);
 				Timestamp oraFinVen = new java.sql.Timestamp(parsedDate.getTime());
-				venerdì = new Lezione(Long.parseLong(codiceCorso), g, oraInVen, oraFinVen, aulaVen, 0);
+				venerdì = new Lezione(Long.parseLong(codiceCorso), g, oraInVen, oraFinVen, aulaVen, type);
 			}
 
 			// salvataggio data inizio e fine del corso
@@ -363,27 +399,27 @@ public class CreateCourse extends HttpServlet {
 			if (lunedì != null) {
 				lezioni.addAll(
 						cal.getLezioniCorso(lunedì.getCorso(), inizio, fine, lunedì.getData().getGiornoDellaSettimana(),
-								lunedì.getAula(), 0, lunedì.getOraInizio(), lunedì.getOraFine(), this));
+								lunedì.getAula(), lunedì.getTipo(), lunedì.getOraInizio(), lunedì.getOraFine(), this));
 			}
 			if (martedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(martedì.getCorso(), inizio, fine,
-						martedì.getData().getGiornoDellaSettimana(), martedì.getAula(), 0, martedì.getOraInizio(),
+						martedì.getData().getGiornoDellaSettimana(), martedì.getAula(), martedì.getTipo() , martedì.getOraInizio(),
 						martedì.getOraFine(), this));
 			}
 			if (mercoledì != null) {
 				lezioni.addAll(cal.getLezioniCorso(mercoledì.getCorso(), inizio, fine,
-						mercoledì.getData().getGiornoDellaSettimana(), mercoledì.getAula(), 0, mercoledì.getOraInizio(),
+						mercoledì.getData().getGiornoDellaSettimana(), mercoledì.getAula(), mercoledì.getTipo(), mercoledì.getOraInizio(),
 						mercoledì.getOraFine(), this));
 			}
 			if (giovedì != null) {
 				lezioni.addAll(cal.getLezioniCorso(giovedì.getCorso(), inizio, fine,
-						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), 0, giovedì.getOraInizio(),
+						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), giovedì.getTipo(), giovedì.getOraInizio(),
 						giovedì.getOraFine(), this));
 				System.out.println("la size di lezioni è " + lezioni.size());
 			}
 			if (venerdì != null) {
 				lezioni.addAll(cal.getLezioniCorso(venerdì.getCorso(), inizio, fine,
-						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), 0, venerdì.getOraInizio(),
+						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), venerdì.getTipo(), venerdì.getOraInizio(),
 						venerdì.getOraFine(), this));
 			}
 			System.out.println("Coincidenti è " + coincidenti);

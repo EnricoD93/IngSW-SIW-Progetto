@@ -121,10 +121,10 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_1" id="lezione_1"
+												name="tipolezione_1" id="lezione_1" value="lezione"
 												class="radio-col-unibook" checked> <label
 												for="lezione_1">Lezione</label> <input type="radio"
-												name="tipolezione_1" id="esercitazione_1"
+												name="tipolezione_1" id="esercitazione_1" value="esercitazione"
 												class="radio-col-unibook"> <label
 												for="esercitazione_1" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
@@ -173,10 +173,10 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_2" id="lezione_2"
+												name="tipolezione_2" id="lezione_2" value="lezione"
 												class="radio-col-unibook" checked> <label
 												for="lezione_2">Lezione</label> <input type="radio"
-												name="tipolezione_2" id="esercitazione_2"
+												name="tipolezione_2" id="esercitazione_2" value="esercitazione"
 												class="radio-col-unibook"> <label
 												for="esercitazione_2" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
@@ -225,10 +225,10 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_3" id="lezione_3"
+												name="tipolezione_3" id="lezione_3" value="lezione"
 												class="radio-col-unibook" checked> <label
 												for="lezione_3">Lezione</label> <input type="radio"
-												name="tipolezione_3" id="esercitazione_3"
+												name="tipolezione_3" id="esercitazione_3" value="esercitazione"
 												class="radio-col-unibook"> <label
 												for="esercitazione_3" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
@@ -277,10 +277,10 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_4" id="lezione_4"
+												name="tipolezione_4" id="lezione_4" value="lezione"
 												class="radio-col-unibook" checked> <label
 												for="lezione_4">Lezione</label> <input type="radio"
-												name="tipolezione_4" id="esercitazione_4"
+												name="tipolezione_4" id="esercitazione_4" value="esercitazione"
 												class="radio-col-unibook"> <label
 												for="esercitazione_4" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select
@@ -329,10 +329,10 @@
 											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_5" id="lezione_5"
+												name="tipolezione_5" id="lezione_5" value="lezione"
 												class="radio-col-unibook" checked> <label
 												for="lezione_5">Lezione</label> <input type="radio"
-												name="tipolezione_5" id="esercitazione_5"
+												name="tipolezione_5" id="esercitazione_5" value="esercitazione"
 												class="radio-col-unibook"> <label
 												for="esercitazione_5" class="m-l-20">Esercitazione</label></span>&nbsp;
 											<span class="input-group-addon"> Aula: </span> <select

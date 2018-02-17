@@ -138,7 +138,12 @@ public class CalendarManager extends HttpServlet {
 				String aula = req.getParameter("aula");
 				String oraInizio= req.getParameter("oraInizio");
 				String oraFine= req.getParameter("oraFine");
-
+				int type=0;
+				String tipo = req.getParameter("tipolezione_5");
+				if (tipo.equals("esercitazione"))
+					type = 1;
+				else
+					type = 0;
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Martedì");
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
@@ -162,7 +167,7 @@ public class CalendarManager extends HttpServlet {
 				System.out.println(data.toLocalDate());
 				g = new GiornoCalendario();
 				g.parseToGiornoCalendario(data);
-				Lezione l = new Lezione(corso, g, oraIn, oraFin, aula, 0);
+				Lezione l = new Lezione(corso, g, oraIn, oraFin, aula,type);
 				lezioneDao.save(l);
 				
 				// salvo la lezione nel calendario degli studenti iscritti
