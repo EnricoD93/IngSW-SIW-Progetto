@@ -311,7 +311,7 @@
 								class="material-icons">collections_bookmark</i> <span>Esami</span>
 						</a></li>
 					</c:if>
-					<li><a href="javascript:void(0)"> <i
+					<li><a href="map.jsp"> <i
 							class="material-icons">my_location</i> <span>Dove siamo</span>
 					</a></li>
 					<li><a href="chiSiamo.jsp"> <i

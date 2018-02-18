@@ -115,7 +115,7 @@
 					data-toggle="collapse" data-target="#navbar-collapse"
 					aria-expanded="false"></a> <a href="javascript:void(0);"
 					class="bars"></a> <a class="navbar-brand" href="home"><logoimg>
-					<image src="logo.png"></image></logoimg></a>
+					<img src="logo.png"></img></logoimg></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse"></div>
 		</div>
