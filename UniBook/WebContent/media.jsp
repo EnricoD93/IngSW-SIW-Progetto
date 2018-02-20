@@ -37,7 +37,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><input class="form-control" id="value1" type="number"></td>
+					<td><input class="form-control" id="value1" ></td>
 					<td><input class="form-control" id="crediti1" type="number"></td>
 					<td><input class="form-control" id="voto1" type="number"></td>
 				</tr>

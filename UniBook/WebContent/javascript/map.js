@@ -20,6 +20,7 @@ function initMap() {
 		map : map,
 
 	});
+	
 
 	var infoWindow = new google.maps.InfoWindow({
 		content : '<h4 align="left">Unical</h4> <img style="width:100%;" src="images/unical.jpg"></img><h4> <a href="http://www.unical.it/portale"><span>www.unical.it</span></a></h4>',
