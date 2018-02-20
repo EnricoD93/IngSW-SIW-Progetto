@@ -191,7 +191,6 @@ $.AdminBSB.rightSideBar = {
 *  You can manage the search bar
 *  
 */
-var $searchBar = $('.search-bar');
 $.AdminBSB.search = {
     activate: function () {
         var _this = this;
@@ -202,24 +201,24 @@ $.AdminBSB.search = {
         });
 
         //Close search click event
-        $searchBar.find('.close-search').on('click', function () {
+        $('.search-bar').find('.close-search').on('click', function () {
             _this.hideSearchBar();
         });
 
         //ESC key on pressed
-        $searchBar.find('input[type="text"]').on('keyup', function (e) {
+        $('.search-bar').find('input[type="text"]').on('keyup', function (e) {
             if (e.keyCode == 27) {
                 _this.hideSearchBar();
             }
         });
     },
     showSearchBar: function () {
-        $searchBar.addClass('open');
-        $searchBar.find('input[type="text"]').focus();
+    	$('.search-bar').addClass('open');
+    	$('.search-bar').find('input[type="text"]').focus();
     },
     hideSearchBar: function () {
-        $searchBar.removeClass('open');
-        $searchBar.find('input[type="text"]').val('');
+    	$('.search-bar').removeClass('open');
+    	$('.search-bar').find('input[type="text"]').val('');
     }
 }
 //==========================================================================================================================
