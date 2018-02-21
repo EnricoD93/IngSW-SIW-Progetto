@@ -10,7 +10,7 @@ function initMap() {
 	}
 	// New Map
 	var map = new google.maps.Map(document.getElementById('map'), options);
-
+	var image = 'images/marker.png';
 	// add Marker
 	var marker = new google.maps.Marker({
 		position : {
@@ -18,7 +18,7 @@ function initMap() {
 			lng : 16.225432
 		},
 		map : map,
-
+		icon: image
 	});
 	
 
