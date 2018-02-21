@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	search();
 	checkMessages();
 	checkNotifications();
 	window.setInterval(function() {
@@ -107,4 +108,28 @@ function showNotification(colorName, text, placementFrom, placementAlign,
 								+ '<a href="{3}" target="{4}" data-notify="url"></a>'
 								+ '</div>'
 					});
+}
+
+function search() {
+	var searchtext = $('#searchbarinput');
+	var list = $('#elements');
+	var elements = document.getElementsByName("searchelements");
+	searchtext.on('input', function() {
+		var reg=new RegExp(searchtext.val(),"i");
+		if (searchtext.val() != "") {
+			for (var i = 0; i < elements.length; i++) {
+				var text=elements[i].value;
+				if (text.match(reg)) {
+					elements[i].classList="list-group-item";
+				} else {
+					elements[i].classList="list-group-item hidden";
+				}
+			}
+
+			list.removeClass("hidden");
+		} else {
+			list.addClass("hidden");
+		}
+
+	});
 }

@@ -13453,6 +13453,48 @@ html.ie11 .bs-searchbox .form-control {
 	 margin-right: 190px;
 }
 
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color:black;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #C4161C;
+  background: #C4161C;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 footer {
 	color: white;
 	align-content: center;

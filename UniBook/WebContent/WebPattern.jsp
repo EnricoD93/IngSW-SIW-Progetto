@@ -24,7 +24,8 @@
 
 
 <!-- Bootstrap Css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
 
@@ -55,7 +56,8 @@
 <script src="plugins/bootstrap/js/bootstrap.js"></script>
 <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
 <!-- Select Plugin Js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
 <!-- Slimscroll Plugin Js -->
 <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -104,27 +106,38 @@
 					class="bars"></a> <a class="navbar-brand" href="home"><logoimg>
 					<image src="logo.png"></image></logoimg></a>
 			</div>
-	<div class="nav navbar search-bar">
-		<div class="search-icon">
-			<i class="material-icons">search</i>
-		</div>
-		<input type="text" placeholder="START TYPING...">
-		<div class="close-search">
-			<i class="material-icons">close</i>
-		</div>
-	</div>
+
 			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<div class="wrap">
+					<div class="search">
+						<input type="text" id="searchbarinput" onchange="search();"
+							class="searchTerm" placeholder="Cerca...">
+						<button type="button" class="searchButton">
+							<i class="material-icons">search</i>
+						</button>
+					</div>
+					<div id="elements" class="list-group" >
+						<c:forEach var="utente" items="${tuttiutenti}">
+							<button type="button" name="searchelements"
+								class="list-group-item hidden" id=${utente.matricola } value="${utente.matricola}${utente.nome}${utente.cognome}">${utente.nome}&nbsp;${utente.cognome}</button>
+						</c:forEach>
+						<c:forEach var="aula" items="${tutteaule}">
+							<button type="button" name="searchelements"
+								class="list-group-item hidden" id=${aula.id } value ="${aula.id}${aula.ubicazione}">${aula.id}&nbsp;${aula.ubicazione}</button>
+						</c:forEach>
+						<c:forEach var="corso" items="${tutticorsi}">
+							<button type="button" name="searchelements"
+								class="list-group-item hidden" id=${corso.codice } value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
+						</c:forEach>
+					</div>
+				</div>
 				<ul class="nav navbar-nav navbar-right">
-					<!-- Call Search -->
-					<li><a href="javascript:void(0);" class="js-search"
-						data-close="true"><i class="material-icons">search</i></a></li>
-					<!-- #END# Call Search -->
 					<!-- Notifications -->
 					<li class="dropdown"><a href="javascript:void(0);"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
 							<i class="material-icons">notifications</i><input class="hidden"
-							id="notcnt" value="${notifications.size() }"> <span id="notifycount"
-							class="label-count"></span>
+							id="notcnt" value="${notifications.size() }"> <span
+							id="notifycount" class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="header">Notifiche</li>
@@ -311,11 +324,11 @@
 								class="material-icons">collections_bookmark</i> <span>Esami</span>
 						</a></li>
 					</c:if>
-					<li><a href="map.jsp"> <i
-							class="material-icons">my_location</i> <span>Dove siamo</span>
+					<li><a href="map.jsp"> <i class="material-icons">my_location</i>
+							<span>Dove siamo</span>
 					</a></li>
-					<li><a href="chiSiamo.jsp"> <i
-							class="material-icons">info</i> <span>Chi siamo</span>
+					<li><a href="chiSiamo.jsp"> <i class="material-icons">info</i>
+							<span>Chi siamo</span>
 					</a></li>
 
 

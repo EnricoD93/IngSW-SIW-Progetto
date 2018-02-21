@@ -3,18 +3,20 @@ package controller.servlet;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.course.Aula;
 import model.course.Corso;
 import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
+import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
+import persistence.dao.CorsoDao;
 import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
@@ -57,9 +59,18 @@ public class Login extends HttpServlet {
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
 					NotificaDao notiDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					CorsoDao corsiDao=DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+					AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 					List<Notifica> notifiche=notiDao.findAllNotifications(currentUser.getMatricola());
+					List<Utente> tuttiutenti=utenteDao.findAll();
+					List<Corso> tutticorsi=corsiDao.findAll();
+					List<Aula> tutteaule=aulaDao.findAll();
 					session.setAttribute("currentUser", currentUser);
+					session.setAttribute("tutteaule", tutteaule);
+					session.setAttribute("tuttiutenti", tuttiutenti);
+					session.setAttribute("tutticorsi", tutticorsi);
 					session.setAttribute("notifications", notifiche);
+					
 				} else {
 					resp.setStatus(405);
 				}
