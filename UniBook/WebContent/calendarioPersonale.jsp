@@ -81,15 +81,17 @@
 												<option value="0000-00-00 19:00:00.00">19:00</option>
 
 
-											</select> <span class="input-group-addon"> <b> &nbsp; Tipo
+											</select> <!-- <span class="input-group-addon"> <b> &nbsp; Tipo
 													lezione: &nbsp;</b>
 											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione1" id="lezione1"
+												name="tipolezione_6" id="lezione6" value="lezione"
 												class="radio-col-unibook" checked> <label
-												for="lezione1">Lezione</label> <input type="radio"
-												name="tipolezione1" id="esercitazione1"
+												for="lezione6">Lezione</label> <input type="radio"
+												name="tipolezione_6" id="esercitazione6" value="esercitazione"
 												class="radio-col-unibook"> <label
-												for="esercitazione1" class="m-l-20">Esercitazione</label></span>
+												for="esercitazione6" class="m-l-20">Esercitazione</label></span>
+							
+							 --> 
 								</div>
 							</form>
 						</div>

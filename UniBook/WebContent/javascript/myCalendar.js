@@ -358,11 +358,8 @@ function getEvent() {
 	return events;
 }
 function lessonVerify() {
-	console.log("sono in verify ");
 	var evento = document.getElementById('evento').checked;
 	var lezione = document.getElementById('lezione').checked;
-	console.log(evento);
-	console.log(lezione);
 	if (lezione == 1) {
 		$('#evento').prop('checked', false);
 		$('#corsi').removeClass("hidden");
@@ -371,11 +368,8 @@ function lessonVerify() {
 	}
 };
 function eventVerify() {
-	console.log("sono in verify ");
 	var evento = document.getElementById('evento').checked;
 	var lezione = document.getElementById('lezione').checked;
-	console.log(evento);
-	console.log(lezione);
 	if (lezione == 1 && evento == 1) {
 		$('#lezione').prop('checked', false);
 		$('#corsi').addClass("hidden");
@@ -383,7 +377,6 @@ function eventVerify() {
 };
 function rimuoviEvento(id) {
 	var ev="#idevento"+id;
-	console.log($(ev).val());
 	swal({
 		  title: "Sei sicuro che vuoi eliminare l'evento selezionato?",
 		  text: "Una volta eliminato non puoi più recuperarlo!",

@@ -139,11 +139,13 @@ public class CalendarManager extends HttpServlet {
 				String oraInizio= req.getParameter("oraInizio");
 				String oraFine= req.getParameter("oraFine");
 				int type=0;
-				String tipo = req.getParameter("tipolezione_5");
-				if (tipo.equals("esercitazione"))
-					type = 1;
-				else
-					type = 0;
+//				String tipo = req.getParameter("tipolezione_6");
+				System.out.println("corso "+corso);
+//				System.out.println("tipoLezione "+tipo);
+//				if (tipo.equals("esercitazione"))
+//					type = 1;
+//				else
+//					type = 0;
 				GiornoCalendario g = new GiornoCalendario();
 				g.setGiornoDellaSettimana("Martedì");
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");

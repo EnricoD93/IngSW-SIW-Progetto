@@ -5343,7 +5343,6 @@ function DayEventRenderer() {
 		}else{
 			html += "<div";
 		}
-		console.log("iddddddddddd"+id);
 		html +=
 			" class='" + classNames.join(' ') + "'" +
 			" style=" +
