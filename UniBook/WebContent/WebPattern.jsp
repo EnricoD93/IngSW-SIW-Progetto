@@ -107,8 +107,9 @@
 					<image src="logo.png"></image></logoimg></a>
 			</div>
 
-			<div class="collapse navbar-collapse" id="navbar-collapse">
-				<div class="wrap">
+			<div class="collapse navbar-collapse slimScrollDiv" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+				<div class="wrap dropdown">
 					<div class="search">
 						<input type="text" id="searchbarinput" onchange="search();"
 							class="searchTerm" placeholder="Cerca...">
@@ -116,22 +117,24 @@
 							<i class="material-icons">search</i>
 						</button>
 					</div>
-					<div id="elements" class="list-group" >
-						<c:forEach var="utente" items="${tuttiutenti}">
-							<button type="button" name="searchelements"
-								class="list-group-item hidden" id=${utente.matricola } value="${utente.matricola}${utente.nome}${utente.cognome}">${utente.nome}&nbsp;${utente.cognome}</button>
-						</c:forEach>
-						<c:forEach var="aula" items="${tutteaule}">
-							<button type="button" name="searchelements"
-								class="list-group-item hidden" id=${aula.id } value ="${aula.id}${aula.ubicazione}">${aula.id}&nbsp;${aula.ubicazione}</button>
-						</c:forEach>
-						<c:forEach var="corso" items="${tutticorsi}">
-							<button type="button" name="searchelements"
-								class="list-group-item hidden" id=${corso.codice } value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
-						</c:forEach>
-					</div>
 				</div>
-				<ul class="nav navbar-nav navbar-right">
+				<div id="elements" class="list-group searchlist slimScrollBar">
+					<c:forEach var="utente" items="${tuttiutenti}">
+						<button type="button" name="searchelements"
+							class="list-group-item hidden" id=${utente.matricola }
+							value="${utente.matricola}${utente.nome}${utente.cognome}">${utente.nome}&nbsp;${utente.cognome}</button>
+					</c:forEach>
+					<c:forEach var="aula" items="${tutteaule}">
+						<button type="button" name="searchelements"
+							class="list-group-item hidden" id=${aula.id }
+							value="${aula.id}${aula.ubicazione}">${aula.id}&nbsp;${aula.ubicazione}</button>
+					</c:forEach>
+					<c:forEach var="corso" items="${tutticorsi}">
+						<button type="button" name="searchelements"
+							class="list-group-item hidden" id=${corso.codice }
+							value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
+					</c:forEach>
+				</div>
 					<!-- Notifications -->
 					<li class="dropdown"><a href="javascript:void(0);"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">

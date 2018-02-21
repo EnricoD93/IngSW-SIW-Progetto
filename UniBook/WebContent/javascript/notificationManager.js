@@ -123,6 +123,7 @@ function search() {
 					elements[i].classList="list-group-item";
 				} else {
 					elements[i].classList="list-group-item hidden";
+
 				}
 			}
 
