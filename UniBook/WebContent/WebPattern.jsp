@@ -107,45 +107,52 @@
 					<image src="logo.png"></image></logoimg></a>
 			</div>
 
-			<div class="collapse navbar-collapse slimScrollDiv" id="navbar-collapse">
+			<div class="collapse navbar-collapse slimScrollDiv"
+				id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-				<div class="wrap dropdown">
-					<div class="search">
-						<input type="text" id="searchbarinput" onchange="search();"
-							class="searchTerm" placeholder="Cerca...">
-						<button type="button" class="searchButton">
-							<i class="material-icons">search</i>
-						</button>
+					<div class="wrap dropdown">
+						<div class="search">
+							<input type="text" id="searchbarinput" onchange="search();"
+								class="searchTerm" placeholder="Cerca...">
+							<button type="button" class="searchButton">
+								<i class="material-icons">search</i>
+							</button>
+						</div>
 					</div>
-				</div>
-				<div id="elements" class="list-group searchlist slimScrollBar">
-					<c:forEach var="utente" items="${tuttiutenti}">
-						<button type="button" name="searchelements"
-							class="list-group-item hidden" id=${utente.matricola }
-							value="${utente.matricola}${utente.nome}${utente.cognome}">${utente.nome}&nbsp;${utente.cognome}</button>
-					</c:forEach>
-					<c:forEach var="aula" items="${tutteaule}">
-						<button type="button" name="searchelements"
-							class="list-group-item hidden" id=${aula.id }
-							value="${aula.id}${aula.ubicazione}">${aula.id}&nbsp;${aula.ubicazione}</button>
-					</c:forEach>
-					<c:forEach var="corso" items="${tutticorsi}">
-						<button type="button" name="searchelements"
-							class="list-group-item hidden" id=${corso.codice }
-							value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
-					</c:forEach>
-				</div>
+					<div id="elements" class="list-group searchlist slimScrollBar">
+						<c:forEach var="utente" items="${tuttiutenti}">
+							<a href="page?request=profilo&id=${utente.matricola}">
+								<button type="button" name="searchelements"
+									class="list-group-item hidden" id=${utente.matricola }
+									value="${utente.matricola}${utente.nome}${utente.cognome}">${utente.nome}&nbsp;${utente.cognome}</button>
+							</a>
+						</c:forEach>
+						<c:forEach var="aula" items="${tutteaule}">
+							<a href="page?request=aule">
+								<button type="button" name="searchelements"
+									class="list-group-item hidden" id=${aula.id }
+									value="${aula.id}${aula.ubicazione}">${aula.id}&nbsp;${aula.ubicazione}</button>
+							</a>
+						</c:forEach>
+						<c:forEach var="corso" items="${tutticorsi}">
+						<a href="page?request=corso&id=${corso.codice}">
+							<button type="button" name="searchelements"
+								class="list-group-item hidden" id=${corso.codice }
+								value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
+						</a>
+						</c:forEach>
+					</div>
 					<!-- Notifications -->
-					<li class="dropdown"><a href="javascript:void(0);"
+					<li class="dropdown"><a onclick="readNotifications();"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
 							<i class="material-icons">notifications</i><input class="hidden"
-							id="notcnt" value="${notifications.size() }"> <span
+							id="notcnt" value="${newnotifications}"> <span
 							id="notifycount" class="label-count"></span>
 					</a>
-						<ul class="dropdown-menu">
+						<ul class="dropdown-menu" style="top:200%;width:500px; height:1000px; left: -830%;">
 							<li class="header">Notifiche</li>
 							<li class="body">
-								<ul class="menu">
+								<ul class="menu" style="height:auto;">
 									<c:if test="${empty notifications }">
 										<div align="center" class="menu-info">
 											<h4 align="center">Nessuna notifica</h4>
@@ -178,6 +185,11 @@
 															<i class="material-icons">delete_forever</i>
 														</div>
 													</c:when>
+													<c:when test="${notification.type==5}">
+														<div class="icon-circle bg-unibook">
+															<i class="material-icons">warning</i>
+														</div>
+													</c:when>
 												</c:choose>
 												<div class="menu-info">
 													<h4>${notification.testo}</h4>
@@ -190,74 +202,13 @@
 									</c:forEach>
 								</ul>
 							</li>
-							<li class="footer"><a href="javascript:void(0);">Vedi
-									tutte le notifiche</a></li>
 						</ul></li>
 					<!-- #END# Notifications -->
 					<!-- Tasks -->
 					<li class="dropdown"><a href="page?request=messaggi"
 						role="button"> <i class="material-icons">message</i> <span
 							id="msgcount" class="label-count"></span>
-					</a>
-						<ul class="dropdown-menu">
-							<li class="header">TASKS</li>
-							<li class="body">
-								<ul class="menu tasks">
-									<li><a href="javascript:void(0);">
-											<h4>
-												Footer display issue <small>32%</small>
-											</h4>
-											<div class="progress">
-												<div class="progress-bar bg-pink" role="progressbar"
-													aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-													style="width: 32%"></div>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<h4>
-												Make new buttons <small>45%</small>
-											</h4>
-											<div class="progress">
-												<div class="progress-bar bg-cyan" role="progressbar"
-													aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-													style="width: 45%"></div>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<h4>
-												Create new dashboard <small>54%</small>
-											</h4>
-											<div class="progress">
-												<div class="progress-bar bg-teal" role="progressbar"
-													aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-													style="width: 54%"></div>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<h4>
-												Solve transition issue <small>65%</small>
-											</h4>
-											<div class="progress">
-												<div class="progress-bar bg-orange" role="progressbar"
-													aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-													style="width: 65%"></div>
-											</div>
-									</a></li>
-									<li><a href="javascript:void(0);">
-											<h4>
-												Answer GitHub questions <small>92%</small>
-											</h4>
-											<div class="progress">
-												<div class="progress-bar bg-purple" role="progressbar"
-													aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-													style="width: 92%"></div>
-											</div>
-									</a></li>
-								</ul>
-							</li>
-							<li class="footer"><a href="javascript:void(0);">View
-									All Tasks</a></li>
-						</ul></li>
+					</a></li>
 					<!-- #END# Tasks -->
 					<li class="pull-right"><a href="javascript:void(0);"
 						class="js-right-sidebar" data-close="true"><i

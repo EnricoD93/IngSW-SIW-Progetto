@@ -173,9 +173,8 @@ public class ChangePage extends HttpServlet {
 
 						lista.add(h);
 					}
-					for (HashMap<String, String> hashMap : lista) {
-						System.out.println(hashMap);
-					}
+					
+					
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("esami", esami);
@@ -216,7 +215,6 @@ public class ChangePage extends HttpServlet {
 					req.getRequestDispatcher("createCourse.jsp").forward(req, resp);
 					break;
 				case "modificaCorso":
-					System.out.println("entro");
 					Long corso = Long.parseLong(req.getParameter("corso"));
 					List<Aula> listaAule2;
 					listaAule2 = aulaDao.findAll();
@@ -252,9 +250,7 @@ public class ChangePage extends HttpServlet {
 					String giorniLezione1 = c1.getGiorno();
 					String[] giorni1 = giorniLezione1.split("_");
 					ArrayList<HashMap<String, String>> lista1 = new ArrayList<>();
-					for (int i = 0; i < giorni1.length; i++) {
-						System.out.println("giorni " + giorni1[i]);
-					}
+					
 					for (int i = 0; i < giorni1.length; i++) {
 						String[] giorno1 = giorni1[i].split(",");
 						HashMap<String, String> h = new HashMap<>();
@@ -295,7 +291,6 @@ public class ChangePage extends HttpServlet {
 				case "messaggi":
 					List<Utente> conversazioni;
 					conversazioni = utenteDao.findMessageSendersByMatricola(currentUser.getMatricola());
-					System.out.println(conversazioni);
 					Map<String, Integer> letti = new HashMap<String, Integer>();
 					for (Utente utente2 : conversazioni) {
 						letti.put(utente2.getMatricola(),
@@ -339,7 +334,6 @@ public class ChangePage extends HttpServlet {
 						}
 						mediaProv /= esami.size();
 						media = (int) Math.round(mediaProv);
-						System.out.println(media);
 						votoPartenzaProv = (media * 11) / 3;
 						votoPartenzaProv = Math.round(votoPartenzaProv);
 						votoPartenzaProv = votoPartenzaProv + (lode * 0.2);

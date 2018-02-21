@@ -11,8 +11,6 @@
 	$(document).ready(function() {
 		$('html, body').animate({
 			scrollTop : $('body').offset().bottom
-		//scrollTop: $('#your-id').offset().top
-		//scrollTop: $('.your-class').offset().top
 		}, 'slow');
 		window.scrollTo(0, document.body.scrollHeight);
 

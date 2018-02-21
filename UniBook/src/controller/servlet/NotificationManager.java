@@ -61,8 +61,13 @@ public class NotificationManager extends HttpServlet {
 				e.printStackTrace();
 			}
 			req.getSession().setAttribute("notifications", notifiche);
+			req.getSession().setAttribute("newnotifications", unread);
 			resp.setContentType("application/json");
 			resp.getWriter().print(array);
+		}
+		if (request.equals("updateNotifications")) {
+			NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+			notiDao.updateUnreadNotification(utente);
 		}
 	}
 }

@@ -123,7 +123,7 @@ public class NotificaDaoJDBC implements NotificaDao {
 		Connection connection = this.dataSource.getConnection();
 		List<Notifica> notifiche = new ArrayList<>();
 		try {
-			String query = "select * from notifica where notifica.matricola_dest=? AND notifica.letta='FALSE' ORDER BY notifica.data DESC";
+			String query = "select * from notifica where notifica.matricola_dest=? ORDER BY notifica.data DESC";
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
@@ -154,8 +154,23 @@ public class NotificaDaoJDBC implements NotificaDao {
 	}
 
 	@Override
-	public void updateUnreadNotification(long id) {
-
+	public void updateUnreadNotification(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE notifica " + "SET letta = true " + "WHERE matricola_dest = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

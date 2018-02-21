@@ -57,7 +57,6 @@ public class CalendarManager extends HttpServlet {
 		req.setAttribute("aule", aule);
 		listaSoloEventi = eventoDao.findEvent();
 		listaSoloLezioni = lezioneDao.findLezioni();
-		System.out.println("listaSoloEventi" + listaSoloEventi.size());
 		req.setAttribute("listaSoloEventi", listaSoloEventi.size());
 		req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
 		req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
@@ -133,14 +132,12 @@ public class CalendarManager extends HttpServlet {
 			}
 
 			if (lezione) {
-				System.out.println(req.getParameter("corso"));
 				Long corso = Long.parseLong(req.getParameter("corso"));
 				String aula = req.getParameter("aula");
 				String oraInizio= req.getParameter("oraInizio");
 				String oraFine= req.getParameter("oraFine");
 				int type=0;
 //				String tipo = req.getParameter("tipolezione_6");
-				System.out.println("corso "+corso);
 //				System.out.println("tipoLezione "+tipo);
 //				if (tipo.equals("esercitazione"))
 //					type = 1;
@@ -153,7 +150,6 @@ public class CalendarManager extends HttpServlet {
 				Timestamp oraIn=null;
 				Timestamp oraFin=null;
 				try {
-					System.out.println(oraInizio);
 					parsedDate = dateFormat.parse(oraInizio);
 			
 				oraIn = new java.sql.Timestamp(parsedDate.getTime());
@@ -166,7 +162,6 @@ public class CalendarManager extends HttpServlet {
 				
 				
 				Date data = new Date(startT.getTime());
-				System.out.println(data.toLocalDate());
 				g = new GiornoCalendario();
 				g.parseToGiornoCalendario(data);
 				Lezione l = new Lezione(corso, g, oraIn, oraFin, aula,type);

@@ -5,7 +5,7 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 10000)
+	}, 1000)
 });
 
 function checkMessages() {
@@ -34,7 +34,6 @@ function checkNotifications() {
 	var lastNotify;
 	var user = $('#curUser').val();
 	var currentnotification = document.getElementById('notcnt');
-	console.log(currentnotification);
 	$
 			.ajax({
 				type : "GET",
@@ -49,8 +48,6 @@ function checkNotifications() {
 					var json = JSON.parse(data);
 					notifications = json[0];
 					lastNotify = json[1];
-					console.log(currentnotification.value);
-					console.log(notifications.number);
 					if (notifications.number != 0)
 						document.getElementById("notifycount").innerHTML = notifications.number;
 					if (currentnotification.value != notifications.number) {
@@ -109,20 +106,38 @@ function showNotification(colorName, text, placementFrom, placementAlign,
 								+ '</div>'
 					});
 }
+function readNotifications() {
+	var user = $('#curUser').val();
+	var currentnotification = document.getElementById('notcnt');
+	$.ajax({
+		type : "GET",
+		url : "checkNotifications",
+		dataType : 'text',
+		async : true,
+		data : {
+			user : user,
+			request : "updateNotifications"
+		},
+		success : function(data) {
+			document.getElementById("notifycount").innerHTML="";
+			currentnotification.value=0;
+		}
+	});
+};
 
 function search() {
 	var searchtext = $('#searchbarinput');
 	var list = $('#elements');
 	var elements = document.getElementsByName("searchelements");
 	searchtext.on('input', function() {
-		var reg=new RegExp(searchtext.val(),"i");
+		var reg = new RegExp(searchtext.val(), "i");
 		if (searchtext.val() != "") {
 			for (var i = 0; i < elements.length; i++) {
-				var text=elements[i].value;
+				var text = elements[i].value;
 				if (text.match(reg)) {
-					elements[i].classList="list-group-item";
+					elements[i].classList = "list-group-item";
 				} else {
-					elements[i].classList="list-group-item hidden";
+					elements[i].classList = "list-group-item hidden";
 
 				}
 			}
