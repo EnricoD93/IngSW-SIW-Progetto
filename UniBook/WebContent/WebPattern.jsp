@@ -119,7 +119,7 @@
 							</button>
 						</div>
 					</div>
-					<div id="elements" class="list-group searchlist slimScrollBar">
+					<div id="elements" class="list-group searchlist slimScrollBar hidden">
 						<c:forEach var="utente" items="${tuttiutenti}">
 							<a href="page?request=profilo&id=${utente.matricola}">
 								<button type="button" name="searchelements"

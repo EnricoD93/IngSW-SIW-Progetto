@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html>
-<link href="plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <section id="centralSection" class="content">
 	<div class="container-fluid">
 		<div class="block-header">
@@ -193,7 +192,6 @@
 </section>
 
 <script src="javascript/uploadImage.js" type="text/javascript"></script>
-<script src="plugins/sweetalert/sweetalert.min.js"></script>
 <script src="js/pages/ui/dialogs.js"></script>
 <script src="plugins/jquery-validation/jquery.validate.js"></script>
 </html>
