@@ -103,8 +103,8 @@
 				<a href="javascript:void(0);" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-collapse"
 					aria-expanded="false"></a> <a href="javascript:void(0);"
-					class="bars"></a> <a class="navbar-brand" href="home"><logoimg>
-					<image src="logo.png"></image></logoimg></a>
+					class="bars"></a> <a class="navbar-brand" href="home"><logoimg> <img src="logo.png" width="150" height="52,5"style="margin-top: 20px;
+    margin-left: 10px;"></logoimg></a>
 			</div>
 
 			<div class="collapse navbar-collapse slimScrollDiv"

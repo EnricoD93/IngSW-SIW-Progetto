@@ -117,7 +117,6 @@ public class CreateCourse extends HttpServlet {
 					title="Lezione";
 				else 
 					title="Esercitazione";
-				System.out.println("title = "+title);
 				Evento e = new Evento(lezioni.get(i).getId(), title +" "+ corso.getNome(), ev1, ev1, "ProvaLezione");
 				e.setId(lezioni.get(i).getId());
 				eventoDao.save(e);
@@ -159,12 +158,10 @@ public class CreateCourse extends HttpServlet {
 						UtenteDao utente = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 						utente.eliminaIscrizioneStudente(iscritti.get(i).getMatricola(), codice);
 					}
-					System.out.println(listaLezioni.size());
 					// eliminazione lezioni dal calendario del docente
 					lezioneDao.eliminaLezioniDalCalendario(listaEventiCal, listaLezioni, calendarioPersonaleDao,
 							u.getMatricola());
 
-					System.out.println("Dopo: " + listaLezioni.size());
 					// eliminazione lezioni dal db
 					for (int i = 0; i < listaLezioni.size(); i++) {
 						utenteDao.deletePresenze(listaLezioni.get(i).getId());
@@ -185,7 +182,6 @@ public class CreateCourse extends HttpServlet {
 			GiornoCalendario g;
 			Utente u = (Utente) session.getAttribute("currentUser");
 			String matricola = req.getParameter("matricola");
-			System.out.println(codiceCorso);
 			Long codice = Long.parseLong(req.getParameter("codice"));
 			CorsoDao corsoDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
 			Corso c = corsoDao.findByPrimaryKey(codice);
@@ -257,7 +253,6 @@ public class CreateCourse extends HttpServlet {
 
 			if (propedeuticità != null)
 				for (String string : propedeuticità) {
-					System.out.println(string);
 					corsoDao.setPropedeutico(Long.parseLong(string), Long.parseLong(codiceCorso));
 				}
 			corsoDao.update(c);
@@ -296,7 +291,6 @@ public class CreateCourse extends HttpServlet {
 					type = 1;
 				else
 					type = 0;
-				System.out.println("tipo="+type);
 				GiornoCalendario g = new GiornoCalendario();
 				giorniLezione += "lunedi," + oraInizioLun + "," + oraFineLun + "," + "0" + "," + aulaLun + "_";
 				g.setGiornoDellaSettimana("Lunedì");
@@ -415,14 +409,12 @@ public class CreateCourse extends HttpServlet {
 				lezioni.addAll(cal.getLezioniCorso(giovedì.getCorso(), inizio, fine,
 						giovedì.getData().getGiornoDellaSettimana(), giovedì.getAula(), giovedì.getTipo(), giovedì.getOraInizio(),
 						giovedì.getOraFine(), this));
-				System.out.println("la size di lezioni è " + lezioni.size());
 			}
 			if (venerdì != null) {
 				lezioni.addAll(cal.getLezioniCorso(venerdì.getCorso(), inizio, fine,
 						venerdì.getData().getGiornoDellaSettimana(), venerdì.getAula(), venerdì.getTipo(), venerdì.getOraInizio(),
 						venerdì.getOraFine(), this));
 			}
-			System.out.println("Coincidenti è " + coincidenti);
 			if (coincidenti.equals("C")) {
 				new Thread() {
 					public void run() {
