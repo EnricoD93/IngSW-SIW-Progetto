@@ -52,7 +52,6 @@ public class Notifica implements Serializable{
 		this.destinatario = destinatario;
 		this.type=type;
 		this.testo=testoNotifiche.get(type);
-		System.out.println("testo:"+testo);
 		parseDate(currentdata);
 		this.letta = false;
 	}

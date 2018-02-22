@@ -29,7 +29,6 @@ public class UtilDao {
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
-			System.out.println("Executed drop database");
 
 		} catch (SQLException e) {
 
@@ -83,7 +82,6 @@ public class UtilDao {
 			PreparedStatement statement = connection.prepareStatement(create);
 
 			statement.executeUpdate();
-			System.out.println("Executed create database");
 
 		} catch (SQLException e) {
 

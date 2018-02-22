@@ -59,7 +59,7 @@ public class MainJDBC {
 		Aula aulaMT13 = new Aula("MT13", 32, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 		Aula aulaMT14 = new Aula("MT14", 24, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 		Aula aulaMT15 = new Aula("MT15", 45, corsoDiLaureaMatematica.getCodice(), "Cubo 31A - Primo piano");
-		Aula lab31B = new Aula("Laboratorio 31 B", 45, corsoDiLaureaInformatica.getCodice(),
+		Aula lab31B = new Aula("Laboratorio31B", 45, corsoDiLaureaInformatica.getCodice(),
 				"Cubo 31B - Secondo piano");
 
 		AulaDao aulaDao = factory.getAulaDAO();
@@ -177,19 +177,7 @@ public class MainJDBC {
 			docenteDao.save(rija);
 			docenteDao.save(solferino);
 
-			// CalendarioPersonale calendarioPersonaleRicca = new
-			// CalendarioPersonale(ricca.getMatricola());
-			// CalendarioPersonale calendarioPersonalePerri = new
-			// CalendarioPersonale(perri.getMatricola());
-			// CalendarioPersonale calendarioPersonaleCianciaruso = new
-			// CalendarioPersonale(cianciaruso.getMatricola());
-			// CalendarioPersonale calendarioPersonaleMarino = new
-			// CalendarioPersonale(marino.getMatricola());
-
-			// calendarioPersonaleDao.save(calendarioPersonaleRicca);
-			// calendarioPersonaleDao.save(calendarioPersonalePerri);
-			// calendarioPersonaleDao.save(calendarioPersonaleCianciaruso);
-			// calendarioPersonaleDao.save(calendarioPersonaleMarino);
+		
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1,
 					corsoDiLaureaInformatica.getCodice(), 12, 48, 48);
 			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(27005730), "Analisi Matematica", 1,
@@ -299,14 +287,7 @@ public class MainJDBC {
 			esameDao.save(esameAnalisi);
 			esameDao.save(esameFondamenti);
 
-			// controlla qua
-			CalendarioPersonale calendarioPersonaleSt = new CalendarioPersonale(ricca.getMatricola());
-			CalendarioPersonale calendarioPersonaleM = new CalendarioPersonale(st4.getMatricola());
-			CalendarioPersonale calendarioPersonaleE = new CalendarioPersonale(st3.getMatricola());
-			CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
-			calendarioPersonaleDao.save(calendarioPersonaleSt);
-			calendarioPersonaleDao.save(calendarioPersonaleM);
-			calendarioPersonaleDao.save(calendarioPersonaleE);
+		
 		
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
@@ -322,16 +303,14 @@ public class MainJDBC {
 			Notifica notifica = new Notifica(st3.getMatricola(), t, 2);
 			notificaDao.save(notifica);
 			
-			// Functionaaaaa!!
+		
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		// FUNCTIONAAAAAA!
-		// Da register.java non lo so provare :)
-		System.out.println("done");
+
 	}
 
 }
