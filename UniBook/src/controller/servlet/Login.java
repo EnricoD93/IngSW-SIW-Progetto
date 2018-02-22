@@ -40,7 +40,6 @@ public class Login extends HttpServlet {
 
 			int size = calendarioPersonaleDao.findAllEventsUtente(currentUser.getMatricola()).size();
 			req.setAttribute("size", size);
-			System.out.println(size);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
 		} else
 			req.getRequestDispatcher("index.html").forward(req, resp);

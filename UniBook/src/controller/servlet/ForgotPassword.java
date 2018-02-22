@@ -25,7 +25,6 @@ public class ForgotPassword extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String email=req.getParameter("email");
-		System.out.println(email);
 		UtenteDao udao=DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		Utente u=udao.findUtenteByEmail(email);
 		sendPassword(req, resp, email, u);
@@ -57,7 +56,6 @@ public class ForgotPassword extends HttpServlet {
 			req.setAttribute("Message", resultMessage);
 			req.getRequestDispatcher("index.html").forward(req, resp);
 		}
-		System.out.println(resultMessage);
 	}
 	
 	

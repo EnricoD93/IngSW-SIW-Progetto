@@ -24,7 +24,6 @@ public class ExamsManager extends HttpServlet {
 		Utente currentUser = (Utente) req.getSession().getAttribute("currentUser");
 		EsameDao esameDao = DatabaseManager.getInstance().getDaoFactory().getEsameDAO();
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-		System.out.println(request);
 		Long corso = Long.parseLong(req.getParameter("corso"));
 		Esame e = esameDao.findByPrimaryKey(corso);
 		if (request.equals("rimuoviEsame")) {
@@ -32,7 +31,6 @@ public class ExamsManager extends HttpServlet {
 			System.out.println("eliminato");
 		} else if (request.equals("aggiungiEsame")) {
 			String data = req.getParameter("data");
-			System.out.println("data " + data);
 			String votoS = req.getParameter("voto");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date parsedDate;

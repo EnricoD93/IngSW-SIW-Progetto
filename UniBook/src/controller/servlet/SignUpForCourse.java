@@ -69,7 +69,6 @@ public class SignUpForCourse extends HttpServlet {
 			Timestamp t=new Timestamp(System.currentTimeMillis());
 			Corso c=corsoDao.findByPrimaryKey(codice);
 			notificaDao.save(new Notifica(matricola,t,4,c.getNome()));
-			System.out.println("cancello");
 			req.getRequestDispatcher("home").forward(req, resp);
 		} else {
 			if (u.getPassword().equals(typedPassword)) {

@@ -42,7 +42,6 @@ public class ProfileManager extends HttpServlet {
 			utenteDao.emailModify(currentUser.getMatricola(), inputEmail);
 		}else if(request.equals("modificaDescrizione")) {
 			String inputDescrizione = req.getParameter("inputDescrizione");
-			System.out.println("input"+inputDescrizione);
 			utenteDao.descrizioneModify(currentUser.getMatricola(), inputDescrizione);
 			JSONObject json= new JSONObject();
 			try {

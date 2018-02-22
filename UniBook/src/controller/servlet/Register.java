@@ -41,22 +41,17 @@ public class Register extends HttpServlet {
 		String matricola = req.getParameter("usermatr");
 		String mailto = req.getParameter("email");
 		String dataNascita = req.getParameter("dataNascita");
-		System.out.println(dataNascita);
 		String codicef = req.getParameter("codf");
 		String password = req.getParameter("password");
 		String ruolo = req.getParameter("role");
 		code = generateCode();
 		String cdl = req.getParameter("cdl");
-		System.out.println(cdl);
 
 		GiornoCalendario giornoCalendario = new GiornoCalendario();
 
 		// Date date = new Date(giornoCalendario.parse(dataNascita));
-		System.out.println("la data del dataPicker è " + dataNascita);
 		Date date = giornoCalendario.parseToDate(dataNascita);
-		System.out.println("la data nel database è " + date.toString());
 		giornoCalendario.parseToGiornoCalendario(date);
-		System.out.println("la mia data personale presa dal database è ");
 		giornoCalendario.stampa();
 		
 		switch (ruolo) {
@@ -117,7 +112,6 @@ public class Register extends HttpServlet {
 			req.setAttribute("Message", resultMessage);
 			req.getRequestDispatcher("emailVerify.jsp").forward(req, resp);
 		}
-		System.out.println(resultMessage);
 	}
 
 	@Override
