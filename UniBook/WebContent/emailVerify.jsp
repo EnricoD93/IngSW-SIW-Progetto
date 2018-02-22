@@ -25,7 +25,7 @@
 <body id="body" class="signup-page">
 	<div class="signup-box">
 		<div class="logo">
-			<a href="index.html"><img src="logo.png"></a> <small>Piattaforma
+			<a href="index.html"><img src="logo.png" width="200" height="70"></a> <small>Piattaforma
 				di comunicazione Docente-Studente</small>
 		</div>
 		<div class="card">
