@@ -25,11 +25,21 @@
 								<input type="hidden" name="request" value=listaStudenti>
 								<input type="hidden" name="codice"
 									value="${currentCourse.codice}">
+
+								<div align="right" class="corsiTitle" >
+									<font color="#C4161C" size="5">&nbsp;Studenti iscritti</font>
+								
+
 								<button type="submit"
 									class="btn bg-unibook btn-circle-lg waves-effect waves-circle waves-float"
 									title="Studenti iscritti">
-									<i class="material-icons" style="display:list-item;">people</i>
-								</button>
+									<i class="material-icons" style="display: list-item;">people</i>
+								</button></div>
+								
+								
+
+
+
 							</form>
 						</div>
 
@@ -48,7 +58,7 @@
 								<tr>
 									<c:if test="${currentCourse.corsoDiLaurea == 0733}">
 										<th>Corso di Laurea: ${currentCourse.corsoDiLaurea} -
-											 Informatica</th>
+											Informatica</th>
 									</c:if>
 									<c:if test="${currentCourse.corsoDiLaurea==0726}">
 										<th scope="row">Corso di Laurea :
@@ -63,8 +73,10 @@
 								</tr>
 
 								<tr>
-									<th scope="row">Giorni di Lezione: <c:forEach var="giorno" items="${giorni}" varStatus="loop"> ${giorno['giorno']} dalle ${ giorno['dalle']} alle ${ giorno['alle']
-									 }<c:if test="${!loop.last}">,</c:if> </c:forEach>
+									<th scope="row">Giorni di Lezione: <c:forEach var="giorno"
+											items="${giorni}" varStatus="loop"> ${giorno['giorno']} dalle ${ giorno['dalle']} alle ${ giorno['alle']
+									 }<c:if test="${!loop.last}">,</c:if>
+										</c:forEach>
 									</th>
 								</tr>
 								<tr>
@@ -76,16 +88,26 @@
 										${currentCourse.oreEsercitazione}</th>
 								</tr>
 								<tr>
-									<th scope="row">Descrizione:<br> ${currentCourse.descrizione}</th>
+									<th scope="row">Descrizione:<br>
+										${currentCourse.descrizione}
+									</th>
 								</tr>
 								<tr>
-									<th scope="row">Propedeuticità: <c:if test="${empty esami }">Nessuna propedeuticità</c:if><c:forEach var="esame" items="${esami}" varStatus="loop"> ${esame.nome}<c:if test="${!loop.last}">,</c:if> </c:forEach></th>
+									<th scope="row">Propedeuticità: <c:if
+											test="${empty esami }">Nessuna propedeuticità</c:if> <c:forEach
+											var="esame" items="${esami}" varStatus="loop"> ${esame.nome}<c:if
+												test="${!loop.last}">,</c:if>
+										</c:forEach></th>
 								</tr>
 								<tr>
-									<th scope="row">Requisiti: <br> ${currentCourse.requisiti}</th>
+									<th scope="row">Requisiti: <br>
+										${currentCourse.requisiti}
+									</th>
 								</tr>
 								<tr>
-									<th scope="row">Materiale: <br> ${currentCourse.materiale}</th>
+									<th scope="row">Materiale: <br>
+										${currentCourse.materiale}
+									</th>
 								</tr>
 
 
@@ -96,7 +118,8 @@
 						<input type="hidden" id="codice" value="${currentCourse.codice}">
 						<div align="right">
 							<div class="bg-unibook info-box-3 hover-zoom-effect">
-								<a href="page?request=modificaCorso&corso=${currentCourse.codice}">
+								<a
+									href="page?request=modificaCorso&corso=${currentCourse.codice}">
 									<div class="icon">
 										<i class="material-icons">mode_edit</i>
 									</div>
@@ -140,8 +163,7 @@
 														<i class="material-icons">more_vert</i>
 												</a>
 													<ul class="dropdown-menu pull-right">
-														<li><a
-															href="javascript:modifyAdvice(${avviso.id})"
+														<li><a href="javascript:modifyAdvice(${avviso.id})"
 															class=" waves-effect waves-block"><i
 																class="material-icons">edit</i>Modifica Avviso</a></li>
 														<li><a href="javascript:delAdvice(${avviso.id})"
@@ -178,9 +200,9 @@
 							</div>
 						</div>
 						<div class="hidden" id="txteditor">
-						<input class="hidden" id="idadvice" value="new">
-							<input type="text" class="form-control"
-								placeholder="Titolo Avviso" id="advicetitle" autofocus>
+							<input class="hidden" id="idadvice" value="new"> <input
+								type="text" class="form-control" placeholder="Titolo Avviso"
+								id="advicetitle" autofocus>
 							<textarea name="myeditor" id="myeditor"></textarea>
 
 						</div>
