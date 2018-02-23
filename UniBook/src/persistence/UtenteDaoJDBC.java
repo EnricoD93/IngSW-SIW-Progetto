@@ -527,14 +527,15 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
-	public List<Messaggio> findUnreadMessages(String dest) {
+	public List<Messaggio> findAllUnreadMessages(String dest, String mitt) {
 		Connection connection = this.dataSource.getConnection();
 		List<Messaggio> mess;
 		try {
-			String query = "select * from messaggio where messaggio.matricola_dest=? AND messaggio.letta='FALSE'";
+			String query = "select * from messaggio where messaggio.matricola_dest=? AND messaggio.matricola_mitt=? AND messaggio.letta='FALSE'";
 			PreparedStatement statement;
 			statement = connection.prepareStatement(query);
-			statement.setString(1, dest);
+			statement.setString(2, dest);
+			statement.setString(1, mitt);
 			ResultSet result = statement.executeQuery();
 			mess = new ArrayList<>();
 			Messaggio m;
@@ -546,6 +547,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				m.setDestinatario(result.getString("matricola_dest"));
 				m.setMittente(result.getString("matricola_mitt"));
 				m.setLetta(result.getBoolean("letta"));
+				m.setTesto(result.getString("testo"));
 				mess.add(m);
 			}
 		} catch (SQLException e) {

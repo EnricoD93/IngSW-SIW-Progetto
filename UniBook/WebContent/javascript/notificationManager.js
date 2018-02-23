@@ -25,6 +25,8 @@ function checkMessages() {
 			messages = json.number;
 			if (messages != 0)
 				document.getElementById("msgcount").innerHTML = messages;
+			else
+				document.getElementById("msgcount").innerHTML = "";
 		}
 	});
 };
