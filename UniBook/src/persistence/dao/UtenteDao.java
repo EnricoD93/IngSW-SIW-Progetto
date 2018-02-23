@@ -8,6 +8,7 @@ import java.util.Map;
 import model.course.Corso;
 import model.user.Esame;
 import model.user.EsameSuperato;
+import model.user.Messaggio;
 import model.user.Utente;
 
 public interface UtenteDao {
@@ -63,10 +64,11 @@ public interface UtenteDao {
 
 	public HashMap<String, Long> findAllPresenze(Long corso);
 
-
 	public int findUnreadMessages(String dest, String mitt);
 
 	public int findAllUnreadMessages(String utente);
+
+	public List<Messaggio> findUnreadMessages(String utente);
 
 	public void deleteExam(String matricola, Esame e);
 

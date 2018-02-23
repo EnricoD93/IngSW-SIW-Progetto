@@ -17,24 +17,31 @@
 		<div class="container-fluid">
 			<div class="block-header">
 				<h2>
-					<div class="corsiTitle">Benvenuto ${currentUser.matricola}&nbsp;!</div>
-					<div class="info-box-3 bg-unibook hover-expand-effect">
-						<div class="icon">
-							<i class="material-icons">event</i>
+					<div class="corsiTitle">Ciao ${currentUser.nome}&nbsp;! 😉</div>
+
+					<br>
+					<div class="descrizione" style="margin-bottom: 50px;">
+						Di seguito trovi tutti i corsi del dipartimento al quale risulti
+						iscritto. <br>
+					</div>
+					<div class="list-group" style="margin-bottom:50px;">
+						<div class="list-group-item">
+							<div class="list-group-item-heading">Iscriversi ad un corso</div>
+							<div class="list-group-item-text">Per iscriverti ad un
+								corso clicca sul nome del corso al quale vuoi iscriverti e in
+								seguito clicca su Iscriviti.</div>
 						</div>
-						<div class="content">
-							<div class="text">Eventi del Giorno</div>
-							<div class="number count-to" data-from="0" data-to="${size}"
-								data-speed="1000" data-fresh-interval="20">
-								<script type="text/javascript">
-									$('.number').countTo();
-								</script>
-								${size}
-							</div>
+						<div class="list-group-item">
+							<div class="list-group-item-heading">Inviare un messaggio
+								ad un utente</div>
+							<div class="list-group-item-text">Per inviare un messaggio
+								ad un altro utente clicca sul profilo e seleziona Docenti o
+								Colleghi. Seleziona il profilo dell'utente al quale vuoi inviare
+								il messaggio e in seguit clicca su Invia messaggio.</div>
 						</div>
 					</div>
-					</br>
-				
+
+
 					<div class="body table-responsive">
 						<div align="center" class="corsiTitle">Corsi disponibili</div>
 

@@ -13,6 +13,7 @@ import model.course.Corso;
 import model.user.Esame;
 import model.user.EsameSuperato;
 import model.user.Evento;
+import model.user.Messaggio;
 import model.user.Utente;
 import persistence.dao.LezioneDao;
 import persistence.dao.UtenteDao;
@@ -165,7 +166,8 @@ public class UtenteDaoJDBC implements UtenteDao {
 			Corso corso;
 			PreparedStatement statement;
 			String query = "select * from corso, corsodilaurea,utente where corso.corsodilaurea=corsodilaurea.codice\r\n"
-					+ "AND utente.matricola=?\r\n" + "AND utente.corsodilaurea=corsodilaurea.codice\r\n ORDER BY corso.codice";
+					+ "AND utente.matricola=?\r\n"
+					+ "AND utente.corsodilaurea=corsodilaurea.codice\r\n ORDER BY corso.codice";
 			statement = connection.prepareStatement(query);
 			statement.setString(1, matricola);
 			ResultSet result = statement.executeQuery();
@@ -525,6 +527,40 @@ public class UtenteDaoJDBC implements UtenteDao {
 	}
 
 	@Override
+	public List<Messaggio> findUnreadMessages(String dest) {
+		Connection connection = this.dataSource.getConnection();
+		List<Messaggio> mess;
+		try {
+			String query = "select * from messaggio where messaggio.matricola_dest=? AND messaggio.letta='FALSE'";
+			PreparedStatement statement;
+			statement = connection.prepareStatement(query);
+			statement.setString(1, dest);
+			ResultSet result = statement.executeQuery();
+			mess = new ArrayList<>();
+			Messaggio m;
+			while (result.next()) {
+				m = new Messaggio();
+				m.setData(result.getTimestamp("data"));
+				m.setId(result.getLong("id"));
+				m.parseDate(m.getData());
+				m.setDestinatario(result.getString("matricola_dest"));
+				m.setMittente(result.getString("matricola_mitt"));
+				m.setLetta(result.getBoolean("letta"));
+				mess.add(m);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return mess;
+	}
+
+	@Override
 	public int findUnreadMessages(String mitt, String dest) {
 		Connection connection = this.dataSource.getConnection();
 		int count = 0;
@@ -816,6 +852,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 		return count;
 	}
+
 	@Override
 	public void deletePresenzeStudente(String matricola, Long corso) {
 		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
@@ -829,7 +866,7 @@ public class UtenteDaoJDBC implements UtenteDao {
 				statement = connection.prepareStatement(query);
 				statement.setString(1, matricola);
 				statement.setLong(2, lezioni.get(i).getId());
-			
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -843,9 +880,10 @@ public class UtenteDaoJDBC implements UtenteDao {
 		}
 
 	}
+
 	@Override
-	public HashMap<String,Long> findAllPresenze(Long corso) {
-		HashMap<String,Long> map=new HashMap<>();
+	public HashMap<String, Long> findAllPresenze(Long corso) {
+		HashMap<String, Long> map = new HashMap<>();
 		LezioneDao lezione = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		List<Evento> lezioni = lezione.findCourseLessons(corso);
 		for (int i = 0; i < lezioni.size(); i++) {
@@ -874,7 +912,6 @@ public class UtenteDaoJDBC implements UtenteDao {
 
 		return map;
 	}
-	
 
 	@Override
 	public void passwordModify(String matricola, String password) {

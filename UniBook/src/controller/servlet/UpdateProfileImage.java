@@ -69,7 +69,9 @@ public class UpdateProfileImage extends HttpServlet {
 		final File outputfile = new File(newPath);
 		final String newPath2 = split[0] + "images/" + folder + "/" + fileName;
 		final File outputfile2 = new File(newPath2);
-		ImageIO.write(image, "png", outputfile2);
+		System.out.println(newPath);
+		System.out.println(newPath2);
+		//ImageIO.write(image, "png", outputfile2);
 		ImageIO.write(image, "png", outputfile);
 	}
 	

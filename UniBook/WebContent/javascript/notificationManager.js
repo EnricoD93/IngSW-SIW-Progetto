@@ -5,7 +5,7 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 1000)
+	}, 3000);
 });
 
 function checkMessages() {
