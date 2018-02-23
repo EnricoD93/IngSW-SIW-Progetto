@@ -30,9 +30,10 @@
 						<strong> Voto di Partenza: ${votoPartenza}/110</strong>
 						<div align="right">
 							<button id="calcolaMedia" type="button"
-								class="btn bg-unibook waves-effect" onclick="javascript:getEsami();">
+								class="btn bg-unibook waves-effect"
+								onclick="javascript:getEsami();">
 								Calcola la <br> tua media
-							 </button>
+							</button>
 						</div>
 					</div>
 
@@ -51,8 +52,7 @@
 							<c:forEach var="esame" items="${esami}">
 								<tr name="esameSelezionato" value="${esame.corso}">
 									<th scope="row">${esame.corso}</th>
-									<td><a href="page?request=corso&id=${esame.corso}">${esame.nome}
-									</a></td>
+									<td>${esame.nome}</td>
 									<td>${esame.cfu}</td>
 									<td>${esame.datareale}</td>
 									<td><c:choose>
@@ -94,8 +94,7 @@
 							<c:forEach var="esame" items="${esamiNonSuperati}">
 								<tr name="esameSelezionato" value="${esame.corso}">
 									<th scope="row">${esame.corso}</th>
-									<td><a href="page?request=corso&id=${esame.corso}">${esame.nome}
-									</a></td>
+									<td>${esame.nome}</td>
 									<td>${esame.cfu}</td>
 									<td>-</td>
 									<td>-</td>
