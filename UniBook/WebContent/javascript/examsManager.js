@@ -49,23 +49,12 @@ function addExam(corso) {
 		title : 'Inserisci Data e Voto',
 		text : 'Inserisci data e voto di conseguimento dell\'esame',
 		buttons: {
-			  cancel: {
-			    text: "Cancel",
-			    value: null,
-			    visible: false,
-			    className: "",
-			    closeModal: true,
-			  },
-			  confirm: {
-			    text: "OK",
-			    value: true,
-			    visible: true,
-			    className: "",
-			    closeModal: true
-			  }},
+			  catch:"Aggiungi",
+				  cancel:"Annulla"},
 		closeOnClickOutside: false,
 		content : div
-	}).then(()=>{
+	}).then((value)=>{if(value!=null){
+		console.log(value);
 		if($('#dataesame').val()!=""){
 		$.ajax({
 		url : "examsManager",
@@ -86,7 +75,7 @@ function addExam(corso) {
 	});
 	}else{
 		swal("Seleziona una data","","error");
-	}
+	}}
 	});
 	$('#dataesame').bootstrapMaterialDatePicker('setDate', moment());
 };
