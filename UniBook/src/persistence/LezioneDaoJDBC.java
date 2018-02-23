@@ -241,7 +241,7 @@ public class LezioneDaoJDBC implements LezioneDao {
 		try {
 			Lezione lezione;
 			PreparedStatement statement;
-			String query = "select *\r\n" + "from lezione l\r\n" + "where NOT EXISTS(select * \r\n"
+			String query = "select * " + "from lezione l\r\n" + "where NOT EXISTS(select * \r\n"
 					+ "                from evento\r\n" + "                where evento.id=l.id)";
 			statement = connection.prepareStatement(query);
 			ResultSet result = statement.executeQuery();

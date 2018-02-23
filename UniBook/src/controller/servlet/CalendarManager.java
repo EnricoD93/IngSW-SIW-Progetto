@@ -40,8 +40,8 @@ public class CalendarManager extends HttpServlet {
 	String request;
 	String matricola;
 	List<Evento> listaEventi;
-	List<Evento> listaSoloEventi;
-	List<Lezione> listaSoloLezioni;
+	int listaSoloEventi;
+	int listaSoloLezioni;
 	Utente currentUser;
 
 	@Override
@@ -50,15 +50,17 @@ public class CalendarManager extends HttpServlet {
 		UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 		LezioneDao lezioneDao = DatabaseManager.getInstance().getDaoFactory().getLezioneDAO();
 		EventoDao eventoDao = DatabaseManager.getInstance().getDaoFactory().getEventoDAO();
+		CalendarioPersonaleDao calendarioPersonaleDao = DatabaseManager.getInstance().getDaoFactory()
+				.getCalendarioPersonaleDAO();
 		AulaDao aula = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
 		List<Corso> corsi = utenteDao.getCorsiDocente(currentUser.getMatricola());
 		List<Aula> aule = aula.findAll();
 		req.setAttribute("corsi", corsi);
 		req.setAttribute("aule", aule);
-		listaSoloEventi = eventoDao.findEvent();
-		listaSoloLezioni = lezioneDao.findLezioni();
-		req.setAttribute("listaSoloEventi", listaSoloEventi.size());
-		req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
+		listaSoloEventi = calendarioPersonaleDao.findNumberEvents(currentUser.getMatricola());
+		listaSoloLezioni = calendarioPersonaleDao.findNumberLessons(currentUser.getMatricola());
+		req.setAttribute("listaSoloEventi", listaSoloEventi);
+		req.setAttribute("listaSoloLezioni", listaSoloLezioni);
 		req.getRequestDispatcher("calendarioPersonale.jsp").forward(req, resp);
 	}
 
@@ -81,10 +83,10 @@ public class CalendarManager extends HttpServlet {
 		if (request.equals("Eventi")) {
 
 			listaEventi = calendarioPersonaleDao.findAllEventsUtente(matricola);
-			listaSoloEventi = eventoDao.findEvent();
-			listaSoloLezioni = lezioneDao.findLezioni();
-			req.setAttribute("listaSoloLezioni", listaSoloLezioni.size());
-			req.setAttribute("listaSoloEventi", listaSoloEventi.size());
+			listaSoloEventi = calendarioPersonaleDao.findNumberEvents(matricola);
+			listaSoloLezioni = calendarioPersonaleDao.findNumberLessons(matricola);
+			req.setAttribute("listaSoloLezioni", listaSoloLezioni);
+			req.setAttribute("listaSoloEventi", listaSoloEventi);
 			for (int i = 0; i < listaEventi.size(); i++) {
 				JSONObject evento = new JSONObject();
 				try {
@@ -184,6 +186,7 @@ public class CalendarManager extends HttpServlet {
 				}
 			} else {
 				//creo un evento e lo aggiungo nel calendario dell'utente loggato
+				System.out.println("creo un evento");
 				e = new Evento(title, startT, endT, "nessuna");
 				eventoDao.save(e);
 				calendarioPersonaleDao.saveEvent(matricola, e);

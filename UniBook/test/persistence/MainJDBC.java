@@ -42,7 +42,7 @@ public class MainJDBC {
 		util.createDatabase();
 
 		// ISTANZE FISSE
-
+		CalendarioPersonaleDao calendarioPersonaleDao = factory.getCalendarioPersonaleDAO();
 		CorsoDiLaurea corsoDiLaureaInformatica = new CorsoDiLaurea("0733", "Informatica");
 		CorsoDiLaurea corsoDiLaureaMatematica = new CorsoDiLaurea("0726", "Matematica");
 		CorsoDiLaureaDao corsoDiLaureaDao = factory.getCorsoDiLaureaDAO();
@@ -59,8 +59,7 @@ public class MainJDBC {
 		Aula aulaMT13 = new Aula("MT13", 32, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 		Aula aulaMT14 = new Aula("MT14", 24, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 		Aula aulaMT15 = new Aula("MT15", 45, corsoDiLaureaMatematica.getCodice(), "Cubo 31A - Primo piano");
-		Aula lab31B = new Aula("Laboratorio31B", 45, corsoDiLaureaInformatica.getCodice(),
-				"Cubo 31B - Secondo piano");
+		Aula lab31B = new Aula("Laboratorio31B", 45, corsoDiLaureaInformatica.getCodice(), "Cubo 31B - Secondo piano");
 
 		AulaDao aulaDao = factory.getAulaDAO();
 		aulaDao.save(aulaMT1);
@@ -89,22 +88,29 @@ public class MainJDBC {
 			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st4.setProfileImagePath("images/profileImages/169991.jpg");
-			
-			Utente st5 = new Utente("169984", "Marco", "De Luca", date, "DLCMRC95T64T253R",
-					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+
+			Utente st5 = new Utente("169984", "Marco", "De Luca", date, "DLCMRC95T64T253R", "enricodecicco93@gmail.com",
+					"asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st5.setProfileImagePath("images/profileImages/169984.jpg");
-			
-			Utente st6 = new Utente("169985", "Nicola", "Greco", date, "GRCNCL95T54Y153T",
-					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+
+			Utente st6 = new Utente("169985", "Nicola", "Greco", date, "GRCNCL95T54Y153T", "enricodecicco93@gmail.com",
+					"asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st6.setProfileImagePath("images/profileImages/169985.jpg");
-			
+
 			Utente st7 = new Utente("169986", "Cristian", "De Marco", date, "DMRCRS95T46H564T",
 					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st7.setProfileImagePath("images/profileImages/169986.jpg");
 			Utente st8 = new Utente("169987", "Nuccia", "Oliverio", date, "LVRNCC95T67G463B",
 					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st8.setProfileImagePath("images/profileImages/169987.jpg");
-			
+
+			CalendarioPersonale calSt3= new CalendarioPersonale(st3.getMatricola());
+			CalendarioPersonale calSt4= new CalendarioPersonale(st4.getMatricola());
+			CalendarioPersonale calSt5= new CalendarioPersonale(st5.getMatricola());
+			CalendarioPersonale calSt6= new CalendarioPersonale(st6.getMatricola());
+			CalendarioPersonale calSt7= new CalendarioPersonale(st7.getMatricola());
+			CalendarioPersonale calSt8= new CalendarioPersonale(st8.getMatricola());
+
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 
 			studenteDao.save(st3);
@@ -113,7 +119,13 @@ public class MainJDBC {
 			studenteDao.save(st6);
 			studenteDao.save(st7);
 			studenteDao.save(st8);
-
+			
+			calendarioPersonaleDao.save(calSt3);
+			calendarioPersonaleDao.save(calSt4);
+			calendarioPersonaleDao.save(calSt5);
+			calendarioPersonaleDao.save(calSt6);
+			calendarioPersonaleDao.save(calSt7);
+			calendarioPersonaleDao.save(calSt8);
 			Date dateRicca = format.parse("1964-05-12");
 			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
 					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111", "ciao");
@@ -160,7 +172,10 @@ public class MainJDBC {
 			Utente solferino = new Utente("131", "Viviana", "Solferino", date, "SLFVIV66T45T656Y",
 					"solferino@unical.it", "PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111", "ciao");
 			solferino.setProfileImagePath("images/profileImages/solferino.jpg");
+			
+
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			
 			docenteDao.save(ricca);
 			docenteDao.save(grasso);
 			docenteDao.save(vanbon);
@@ -177,7 +192,42 @@ public class MainJDBC {
 			docenteDao.save(rija);
 			docenteDao.save(solferino);
 
-		
+
+			CalendarioPersonale calRicca= new CalendarioPersonale(ricca.getMatricola());
+			CalendarioPersonale calGrasso= new CalendarioPersonale(grasso.getMatricola());
+			CalendarioPersonale calVanBon= new CalendarioPersonale(vanbon.getMatricola());
+			CalendarioPersonale calTerra= new CalendarioPersonale(terra.getMatricola());
+			CalendarioPersonale calSpataro= new CalendarioPersonale(spataro.getMatricola());
+			CalendarioPersonale calCali= new CalendarioPersonale(cali.getMatricola());
+			CalendarioPersonale calRullo= new CalendarioPersonale(rullo.getMatricola());
+			CalendarioPersonale calLeone= new CalendarioPersonale(leone.getMatricola());
+			CalendarioPersonale calReale= new CalendarioPersonale(reale.getMatricola());
+			CalendarioPersonale calPerri= new CalendarioPersonale(perri.getMatricola());
+			CalendarioPersonale calCianciaruso= new CalendarioPersonale(cianciaruso.getMatricola());
+			CalendarioPersonale calFuduli= new CalendarioPersonale(fuduli.getMatricola());
+			CalendarioPersonale calMontoro= new CalendarioPersonale(montoro.getMatricola());
+			CalendarioPersonale calRija= new CalendarioPersonale(rija.getMatricola());
+			CalendarioPersonale calSolferino= new CalendarioPersonale(solferino.getMatricola());
+ 
+			
+			
+			calendarioPersonaleDao.save(calRicca);
+			calendarioPersonaleDao.save(calGrasso);
+			calendarioPersonaleDao.save(calVanBon);
+			calendarioPersonaleDao.save(calTerra);
+			calendarioPersonaleDao.save(calSpataro);
+			calendarioPersonaleDao.save(calCali);
+			calendarioPersonaleDao.save(calRullo);
+			calendarioPersonaleDao.save(calLeone);
+			calendarioPersonaleDao.save(calReale);
+			calendarioPersonaleDao.save(calPerri);
+			calendarioPersonaleDao.save(calCianciaruso);
+			calendarioPersonaleDao.save(calFuduli);
+			calendarioPersonaleDao.save(calMontoro);
+			calendarioPersonaleDao.save(calRija);
+			calendarioPersonaleDao.save(calSolferino);
+			
+
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1,
 					corsoDiLaureaInformatica.getCodice(), 12, 48, 48);
 			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(27005730), "Analisi Matematica", 1,
@@ -238,7 +288,7 @@ public class MainJDBC {
 			descCorso.save(corsoFisica);
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
-			
+
 			EsameDao esameDao = factory.getEsameDAO();
 
 			Esame esameFondamenti = new Esame(corsoFondamenti.getCodice(), corsoFondamenti.getNome(),
@@ -287,8 +337,6 @@ public class MainJDBC {
 			esameDao.save(esameAnalisi);
 			esameDao.save(esameFondamenti);
 
-		
-		
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
 			Messaggio messaggio2 = new Messaggio(st3.getMatricola(), ricca.getMatricola(), "Salve prof,\r\n"
@@ -302,14 +350,11 @@ public class MainJDBC {
 			t = new Timestamp(System.currentTimeMillis());
 			Notifica notifica = new Notifica(st3.getMatricola(), t, 2);
 			notificaDao.save(notifica);
-			
-		
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 	}
 

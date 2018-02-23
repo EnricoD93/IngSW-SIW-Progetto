@@ -18,7 +18,11 @@ public interface CalendarioPersonaleDao {
 
 	public List<Evento> findAllEventsUtente(String matricola);
 
+	public  int findNumberEvents(String matricola);
+
 	public void saveEvent(String matricola, Evento evento);
 
 	public void deleteEvent(String matricola, Evento evento);
+
+	public int findNumberLessons(String matricola);
 }

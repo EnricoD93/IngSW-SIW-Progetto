@@ -166,6 +166,63 @@ public class CalendarioPersonaleDaoJDBC implements CalendarioPersonaleDao {
 			}
 		}
 	}
+	@Override
+	public int findNumberEvents(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		int count=0;
+		try {
+			PreparedStatement statement;
+			String query = "select count(evento)\r\n" + 
+					"from evento, contiene, calendariopersonale \r\n" + 
+					"where evento.id=contiene.evento AND contiene.calendariopersonale=calendariopersonale \r\n" + 
+					"AND calendariopersonale.matricola=? AND NOT EXISTS (select e\r\n" + 
+					"                                                          	from lezione, evento e\r\n" + 
+					"                                                          	where lezione.id=evento.id AND e.id=lezione.id)";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				count = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return count;
+	}
+	@Override
+	public int findNumberLessons(String matricola) {
+		Connection connection = this.dataSource.getConnection();
+		int count=0;
+		try {
+			PreparedStatement statement;
+			String query = "select count(evento)\r\n" + 
+					"	from lezione, contiene, calendariopersonale\r\n" + 
+					"	where lezione.id=contiene.evento AND contiene.calendariopersonale=calendariopersonale \r\n" + 
+					"	AND calendariopersonale.matricola=?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, matricola);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				count = result.getInt("count");
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return count;
+	}
 
+	
 
 }
