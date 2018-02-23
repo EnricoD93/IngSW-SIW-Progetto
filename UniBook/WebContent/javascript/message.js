@@ -3,7 +3,7 @@ $(document)
 				function() {
 					window.setInterval(function() {
 						checkNewMessage();
-					}, 3000);
+					}, 1000);
 					$('#text').keypress(function(e) {
 						if (e.keyCode == 13)
 							$('#send').click();
@@ -61,6 +61,7 @@ $(document)
 				});
 function checkNewMessage() {
 	var mitt = $('#mitt').val();
+	var dest = $('#dest').val();
 	$
 			.ajax({
 				url : 'checkNotifications',
@@ -68,21 +69,20 @@ function checkNewMessage() {
 				datatype : 'text',
 				data : {
 					request : "newmessage",
-					user : mitt
+					user : dest,
+					mitt : mitt
 				},
 				success : function(data) {
-					console.log(data);
 					var messages = $('messages');
 					var lastRow = messages.last();
-					for (var i = 0; i < data.lenght; i++) {
-						console.log(data[i].text);
+					for (var i = 0; i < data.length; i++) {
 						var div = $('<div></div>');
 						div
 								.html("<div class=\"card\" style=\"border-radius: 5px; margin-right: 10%\"><div class=\"mycontainer\">"
 										+ "<p style=\"font-size: 16px;\">"
 										+ data[i].text
 										+ "</p><span class=\"time-left\">"
-										+ data[i].date
+										+ data[i].datar
 										+ "&thinsp;</span>"
 										+ "</div> </div>");
 						var lastRow = $('#lastRow');

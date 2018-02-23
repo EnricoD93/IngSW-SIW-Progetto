@@ -68,7 +68,7 @@ public interface UtenteDao {
 
 	public int findAllUnreadMessages(String utente);
 
-	public List<Messaggio> findUnreadMessages(String utente);
+	public List<Messaggio> findAllUnreadMessages(String utente, String dest);
 
 	public void deleteExam(String matricola, Esame e);
 

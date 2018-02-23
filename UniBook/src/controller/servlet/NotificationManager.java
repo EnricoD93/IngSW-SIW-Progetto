@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import model.user.Messaggio;
 import model.user.Notifica;
 import persistence.DatabaseManager;
+import persistence.dao.MessaggioDao;
 import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
@@ -38,7 +39,9 @@ public class NotificationManager extends HttpServlet {
 		}
 		if (request.equals("newmessage")) {
 			UtenteDao udao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			List<Messaggio> messages = udao.findUnreadMessages(utente);
+			MessaggioDao mdao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+			String mitt = req.getParameter("mitt");
+			List<Messaggio> messages = udao.findAllUnreadMessages(utente, mitt);
 			JSONArray array = new JSONArray();
 			try {
 				for (Messaggio messaggio : messages) {
@@ -50,6 +53,8 @@ public class NotificationManager extends HttpServlet {
 					message.put("mitt", messaggio.getMittente());
 					message.put("text", messaggio.getTesto());
 					array.put(message);
+					mdao.updateUnreadMessages(messaggio.getId());
+
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

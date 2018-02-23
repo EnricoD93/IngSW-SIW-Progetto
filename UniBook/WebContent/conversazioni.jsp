@@ -19,21 +19,24 @@
 </head>
 <section id="centralSection" class="content"
 	style="overflow: auto; margin: 70px 0px 0px 300px;">
-	<div class="content"
-		style="background-color: #C4161C; position: fixed; width: 100%; z-index: 5">
-		<div class="image">
-			<div class="profile-pic-xs"
-				style="background-image: url('${utenteConversazione.profileImagePath}')">
+	<a href="page?request=profilo&id=${utenteConversazione.matricola}">
+		<div class="content"
+			style="background-color: #C4161C; position: fixed; width: 100%; z-index: 5">
+			<div class="image">
+				<div class="profile-pic-xs"
+					style="background-image: url('${utenteConversazione.profileImagePath}')">
+				</div>
 			</div>
+			<c:if test="${currentUser.ruolo==0}">
+				<div style="margin-left: 25%; color: white; font-size: 30px;">
+					${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
+			</c:if>
+			<c:if test="${currentUser.ruolo==1}">
+				<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
+					${utenteConversazione.matricola}</div>
+			</c:if>
 		</div>
-		<c:if test="${currentUser.ruolo==0}">
-			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
-		</c:if>
-		<c:if test="${currentUser.ruolo==1}">
-			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
-				${utenteConversazione.matricola}</div>
-		</c:if>
-	</div>
+	</a>
 	<div class="container-fluid" style="margin-top: 100px">
 		<div class="block-header">
 			<br>
