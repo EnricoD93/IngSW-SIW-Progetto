@@ -27,7 +27,9 @@
 			</div>
 		</div>
 		<c:if test="${currentUser.ruolo==0}">
-			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</div>
+			<div style="margin-left: 25%; color: white; font-size: 30px;">
+				<a href="page?request=profilo&id=${utenteConversazione.matricola}">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}</a>
+			</div>
 		</c:if>
 		<c:if test="${currentUser.ruolo==1}">
 			<div style="margin-left: 25%; color: white; font-size: 30px;">${utenteConversazione.nome}&thinsp;${utenteConversazione.cognome}&nbsp;Matr.
