@@ -35,6 +35,15 @@ public class Register extends HttpServlet {
 	static private final int LENGHT = 6;
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String mailto = (String) req.getSession().getAttribute("mailto");
+		String nome = (String) req.getSession().getAttribute("nome");
+		String matricola = (String) req.getSession().getAttribute("matricola");
+		System.out.println("invio a "+ mailto+"--"+nome+"--"+matricola);
+		sendVerificationCode(req, resp, mailto, nome, matricola);
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String nome = req.getParameter("username");
 		String cognome = req.getParameter("userlastname");
@@ -46,35 +55,37 @@ public class Register extends HttpServlet {
 		String ruolo = req.getParameter("role");
 		code = generateCode();
 		String cdl = req.getParameter("cdl");
-
+		req.getSession().setAttribute("mailto", mailto);
+		req.getSession().setAttribute("nome", nome);
+		req.getSession().setAttribute("matricola", matricola);
 		GiornoCalendario giornoCalendario = new GiornoCalendario();
 
 		// Date date = new Date(giornoCalendario.parse(dataNascita));
 		Date date = giornoCalendario.parseToDate(dataNascita);
 		giornoCalendario.parseToGiornoCalendario(date);
 		giornoCalendario.stampa();
-		
+
 		switch (ruolo) {
 		case "1":
 
 			Utente doc = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-					Integer.parseInt(ruolo), code,"ciao");
+					Integer.parseInt(ruolo), code, "ciao");
 
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			docenteDao.save(doc);
 			CalendarioPersonale calendarioPersonale = new CalendarioPersonale(doc.getMatricola());
-			CalendarioPersonaleDao cdao=DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
+			CalendarioPersonaleDao cdao = DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
 			cdao.save(calendarioPersonale);
 			break;
 		case "0":
 
 			Utente stud = new Utente(matricola, nome, cognome, date, codicef, mailto, password, cdl,
-					Integer.parseInt(ruolo), code,"ciao");
+					Integer.parseInt(ruolo), code, "ciao");
 
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			studenteDao.save(stud);
 			CalendarioPersonale calendarioPersonale2 = new CalendarioPersonale(stud.getMatricola());
-			CalendarioPersonaleDao cdao2=DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
+			CalendarioPersonaleDao cdao2 = DatabaseManager.getInstance().getDaoFactory().getCalendarioPersonaleDAO();
 			cdao2.save(calendarioPersonale2);
 			break;
 		default:

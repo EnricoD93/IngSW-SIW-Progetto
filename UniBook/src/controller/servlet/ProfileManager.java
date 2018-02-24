@@ -54,7 +54,9 @@ public class ProfileManager extends HttpServlet {
 			resp.getWriter().print(json);
 		} if (request.equals("codiceVerificaEmail")) {
 			String inputEmail = req.getParameter("inputEmail");
-		sendVerificationCode(req,resp,inputEmail,currentUser.getNome(),currentUser.getMatricola());
+			if(currentUser==null) {
+				currentUser=utenteDao.findByPrimaryKey((String)req.getSession().getAttribute("matricola"));
+			}sendVerificationCode(req,resp,inputEmail,currentUser.getNome(),currentUser.getMatricola());
 		utenteDao.setVerifyCode(currentUser.getMatricola(), code);
 		JSONObject json= new JSONObject();
 		try {

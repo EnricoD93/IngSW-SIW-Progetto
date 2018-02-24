@@ -86,3 +86,72 @@ function checkLogin() {
 
 	});
 }
+function invia(){
+	console.log("invio");
+	$.ajax({
+		type : "GET",
+		url : "register",
+		success : function(data) {
+			swal("Email Inviata", "L'email è stata nuovamente inviata aggiorna la posta ricevuta e inserisci il codice ricevuto", "success");
+		}
+	});
+}
+
+function modificaEmail(){
+	
+	console.log("click");
+	$('#email').removeClass("hidden");
+	$('#modificaEmailConfirm').removeClass("hidden");
+
+}
+function confermaModificaEmail(){
+	$.ajax({
+		url : 'profileManager',
+		type : 'POST',
+		datatype : 'text',
+		data :{
+			request : "codiceVerificaEmail",
+			inputEmail: $('#email').val()
+		},
+		success : function(data) {
+			swal({
+				  title: "Codice di Verifica",
+				  text: "Inserisci il codice di verifica che ti è stato appena inviato sulla nuova email",
+				  content: {
+					    element: "input",
+					    attributes: {
+					      placeholder: "Codice di verifica",
+					      type: "text",
+					    }}
+				}).then(function (code){
+					if (code == "") {
+						swal.showInputError("Devi inserire il codice di verifica!");
+						return false
+					}
+					if(code==data.jsonCode){
+						
+						$.ajax({
+							url : 'profileManager',
+							type : 'POST',
+							datatype : 'text',
+							data :{
+								request : "modificaEmail",
+								inputEmail: $('#email').val()
+							},success: function(){
+						
+									swal("Email cambiata!", "La tua Email è stata modificata con successo", "success").then(() => {
+											window.location.href="page?request=profilo&id="+data.user;
+										})
+							 }
+						});
+					}else{
+						swal("Il codice è errato","Il codice inserito non corrisponde a quello inviato!","error");
+					}
+				})
+			
+		},
+	 	error: function() { 
+	 		swal("Email non modificata","La tua email non è stata modificata!","error");
+     }    
+	});
+};
