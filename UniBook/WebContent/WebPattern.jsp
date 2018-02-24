@@ -103,8 +103,9 @@
 				<a href="javascript:void(0);" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-collapse"
 					aria-expanded="false"></a> <a href="javascript:void(0);"
-					class="bars"></a> <a class="navbar-brand" href="home"><logoimg> <img src="logo.png" width="150" height="52,5"style="margin-top: 20px;
-    margin-left: 10px;"></logoimg></a>
+					class="bars"></a> <a class="navbar-brand" href="home"><logoimg>
+					<img src="logo.png" width="150" height="52,5"
+						style="margin-top: 20px; margin-left: 10px;"></logoimg></a>
 			</div>
 
 			<div class="collapse navbar-collapse slimScrollDiv"
@@ -119,7 +120,8 @@
 							</button>
 						</div>
 					</div>
-					<div id="elements" class="list-group searchlist slimScrollBar hidden">
+					<div id="elements"
+						class="list-group searchlist slimScrollBar hidden">
 						<c:forEach var="utente" items="${tuttiutenti}">
 							<a href="page?request=profilo&id=${utente.matricola}">
 								<button type="button" name="searchelements"
@@ -135,11 +137,11 @@
 							</a>
 						</c:forEach>
 						<c:forEach var="corso" items="${tutticorsi}">
-						<a href="page?request=corso&id=${corso.codice}">
-							<button type="button" name="searchelements"
-								class="list-group-item hidden" id=${corso.codice }
-								value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
-						</a>
+							<a href="page?request=corso&id=${corso.codice}">
+								<button type="button" name="searchelements"
+									class="list-group-item hidden" id=${corso.codice }
+									value="${corso.codice}${corso.nome}${corso.nomeDocente}${corso.cognomeDocente }">${corso.nome}&nbsp;-&nbsp;${corso.nomeDocente}&nbsp;${corso.cognomeDocente }</button>
+							</a>
 						</c:forEach>
 					</div>
 					<!-- Notifications -->
@@ -149,10 +151,11 @@
 							id="notcnt" value="${newnotifications}"> <span
 							id="notifycount" class="label-count"></span>
 					</a>
-						<ul class="dropdown-menu" style="top:200%;width:500px; height:1000px; left: -830%;">
+						<ul class="dropdown-menu"
+							style="top: 200%; width: 500px; height: 1000px; left: -830%;">
 							<li class="header">Notifiche</li>
 							<li class="body">
-								<ul class="menu" style="height:auto;">
+								<ul class="menu" style="height: auto;">
 									<c:if test="${empty notifications }">
 										<div align="center" class="menu-info">
 											<h4 align="center">Nessuna notifica</h4>
@@ -210,9 +213,6 @@
 							id="msgcount" class="label-count"></span>
 					</a></li>
 					<!-- #END# Tasks -->
-					<li class="pull-right"><a href="javascript:void(0);"
-						class="js-right-sidebar" data-close="true"><i
-							class="material-icons">settings</i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -297,34 +297,6 @@
 			<!-- #Footer -->
 		</aside>
 		<!-- #END# Left Sidebar -->
-		<!-- Right Sidebar -->
-		<aside id="rightsidebar" class="right-sidebar">
-			<ul class="nav nav-tabs tab-nav-right" role="tablist">
-				<li role="presentation" class="active"><a href="settings"
-					data-toggle="tab">Impostazioni</a></li>
-			</ul>
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane fade in active in active"
-					id="settings">
-					<div class="demo-settings">
-						<p>Impostazioni generali</p>
-						<ul class="setting-list">
-							<li><span>Notifiche</span>
-								<div class="switch">
-									<label><input type="checkbox" checked><span
-										class="lever"></span></label>
-								</div></li>
-							<li><span>Aggiornamenti automatici</span>
-								<div class="switch">
-									<label><input type="checkbox" checked><span
-										class="lever"></span></label>
-								</div></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</aside>
-		<!-- #END# Right Sidebar -->
 	</section>
 </body>
 
