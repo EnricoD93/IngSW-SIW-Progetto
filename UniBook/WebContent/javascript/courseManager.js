@@ -20,8 +20,14 @@ $(document).ready(function(){
 
 
 function iscriviStudente(codice, matricola) {
+	var codice=codice;
+	var matricola=matricola;
 	swal({
 		title : "Inserisci la tua password per iscriverti",
+		buttons: {
+			  confirm:"Ok",
+			  cancel:"Annulla"},
+			  closeOnClickOutside: false,
 		content: {
 		    element: "input",
 		    attributes: {
@@ -29,6 +35,7 @@ function iscriviStudente(codice, matricola) {
 		      type: "password",
 		    }}
 	}).then((typedPassword) => {
+		if(typedPassword!=null){
 		$.ajax({
 			type : "GET",
 			url : "iscrivistudente",
@@ -52,7 +59,7 @@ function iscriviStudente(codice, matricola) {
 					swal("Risulti già iscritto a questo corso", "", "error");
 				}
 				if (data.status === 401) {
-					swal("Password errata!", "Riprova.\n", "error");
+					swal("Password errata!", "Riprova.\n", "error").then(()=>{iscriviStudente(codice, matricola)});
 				}
 				if (data.status === 403) {
 					swal("Nello stesso giorno ci sono più eventi");
@@ -60,12 +67,11 @@ function iscriviStudente(codice, matricola) {
 				}
 			}
 
-		});
+		});}
 	});
 };
 
 function iscriviStudenteM(codice) {
-	console.log(codice);
 	swal({
 		title : "Inserisci la matricola dello studente da iscrivere",
 		content: {
@@ -114,9 +120,15 @@ function sleep (time) {
 	}
 
 function confermaElimina(matricola, codice) {
+	var matricola=matricola;
+	var codice=codice;
 	swal(
 			{
 				title : "Inserisci la tua password per confermare la cancellazione dell'iscrizione",
+				buttons: {
+					  confirm:"Ok",
+					  cancel:"Annulla"},
+					  closeOnClickOutside: false,
 				content: {
 				    element: "input",
 				    attributes: {
@@ -124,6 +136,7 @@ function confermaElimina(matricola, codice) {
 				      type: "password",
 				    }}
 			}).then((typedPassword) =>  {
+				if(typedPassword!=null){
 				$
 						.ajax({
 							type : "GET",
@@ -143,20 +156,33 @@ function confermaElimina(matricola, codice) {
 								
 							},
 							error : function(data) {
-								swal(
-										"Non risulti iscritto a questo corso",
-										"Non puoi cancellarti da un corso al quale non sei iscritto",
-										"error");
+								if (data.status === 405) {
+									swal("Lo studente risulta già iscritto a questo corso", "", "error");
+								}
+								if (data.status === 401) {
+									swal("Password errata!", "Riprova.\n", "error").then(()=>{confermaElimina(matricola, codice)});
+								}
+								if (data.status === 403) {
+									swal("Lo studente inserito non esiste","", "error");
+								
+								}
 							}
 
-						});
+						});}
 			});
 
 };
+
 function confermaEliminaM(matricola, codice) {
+	var matricola=matricola;
+	var codice=codice;
 	swal(
 			{
 				title : "Inserisci la tua password per confermare la cancellazione dell'iscrizione",
+				buttons: {
+					  confirm:"Ok",
+					  cancel:"Annulla"},
+					  closeOnClickOutside: false,
 				content: {
 				    element: "input",
 				    attributes: {
@@ -164,7 +190,8 @@ function confermaEliminaM(matricola, codice) {
 				      type: "password",
 				    }}
 			}).then((typedPassword) =>   {
-				$
+				if(typedPassword!=null){
+					$
 						.ajax({
 							type : "GET",
 							url : "iscrivistudente",
@@ -185,16 +212,19 @@ function confermaEliminaM(matricola, codice) {
 									});
 							},
 							error : function(data) {
+								if (data.status === 405) {
+									swal("Lo studente risulta già iscritto a questo corso", "", "error");
+								}
 								if (data.status === 401) {
-									swal("Password errata!", "Riprova.\n", "error");
-								}else{
-								swal(
-										"Lo studente non è iscritto a questo corso",
-										"Non puoi cancellare uno studente da un corso al quale non è iscritto",
-										"error");}
+									swal("Password errata!", "Riprova.\n", "error").then(()=>{confermaEliminaM(matricola, codice)});
+								}
+								if (data.status === 403) {
+									swal("Lo studente inserito non esiste","", "error");
+								
+								}
 							}
 
-						});
+						});}
 			});
 
 };
@@ -203,6 +233,10 @@ function confermaEliminaCorso(matricola, codice) {
 	swal(
 			{
 				title : "Inserisci la tua password per confermare l'eliminazione del Corso",
+				buttons: {
+					  confirm:"Ok",
+					  cancel:"Annulla"},
+					  closeOnClickOutside: false,
 				content: {
 				    element: "input",
 				    attributes: {
@@ -210,6 +244,7 @@ function confermaEliminaCorso(matricola, codice) {
 				      type: "password",
 				    }}
 			}).then((typedPassword) =>  {
+				if(typedPassword!=null){
 				$
 						.ajax({
 							type : "POST",
@@ -234,11 +269,11 @@ function confermaEliminaCorso(matricola, codice) {
 									swal("Non sei il titolare di questo corso", "Non puoi cancellare un corso del quale non sei titolare", "error");
 								}
 								if (data.status === 401) {
-									swal("Password errata!", "Riprova.\n", "error");
+									swal("Password errata!", "Riprova.\n", "error").then(()=>{confermaEliminaCorso(matricola, codice)});
 								}
 							}
 
-						});
+						});}
 			});
 
 };
