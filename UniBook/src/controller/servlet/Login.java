@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 			req.setAttribute("size", size);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
 		} else
-			req.getRequestDispatcher("index.html").forward(req, resp);
+			req.getRequestDispatcher("login").forward(req, resp);
 	}
 
 	@Override
@@ -57,19 +57,19 @@ public class Login extends HttpServlet {
 
 			if (currentUser != null) {
 				if (password.equals(utenteDao.findByPrimaryKey(username).getPassword())) {
-					NotificaDao notiDao=DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
-					CorsoDao corsiDao=DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
-					AulaDao aulaDao=DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
-					List<Notifica> notifiche=notiDao.findAllNotifications(currentUser.getMatricola());
-					List<Utente> tuttiutenti=utenteDao.findAll();
-					List<Corso> tutticorsi=corsiDao.findAll();
-					List<Aula> tutteaule=aulaDao.findAll();
+					NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
+					CorsoDao corsiDao = DatabaseManager.getInstance().getDaoFactory().getCorsoDAO();
+					AulaDao aulaDao = DatabaseManager.getInstance().getDaoFactory().getAulaDAO();
+					List<Notifica> notifiche = notiDao.findAllNotifications(currentUser.getMatricola());
+					List<Utente> tuttiutenti = utenteDao.findAll();
+					List<Corso> tutticorsi = corsiDao.findAll();
+					List<Aula> tutteaule = aulaDao.findAll();
 					session.setAttribute("currentUser", currentUser);
 					session.setAttribute("tutteaule", tutteaule);
 					session.setAttribute("tuttiutenti", tuttiutenti);
 					session.setAttribute("tutticorsi", tutticorsi);
 					session.setAttribute("notifications", notifiche);
-					
+
 				} else {
 					resp.setStatus(405);
 				}

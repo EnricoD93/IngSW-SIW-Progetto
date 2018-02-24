@@ -114,7 +114,7 @@ public class ChangePage extends HttpServlet {
 									+ descrizioneCorsoDao.findByPrimaryKey(codice).getOreEsercitazione();
 
 							int presenze = utenteDao.findPresenze(currentUser.getMatricola(), codice);
-							int percentuale = ((presenze*3) * 100) / ore;
+							int percentuale = ((presenze * 3) * 100) / ore;
 							percentuali.put(corsi.get(i).getCodice(), percentuale);
 						}
 						req.setAttribute("percentuali", percentuali);
@@ -149,7 +149,8 @@ public class ChangePage extends HttpServlet {
 						try {
 							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 							Date parsedDate;
-							parsedDate = dateFormat.parse(giorno[1]);;
+							parsedDate = dateFormat.parse(giorno[1]);
+							;
 							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 							giorno[1] = sdf.format(parsedDate);
 						} catch (ParseException e) {
@@ -160,7 +161,8 @@ public class ChangePage extends HttpServlet {
 						try {
 							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 							Date parsedDate;
-							parsedDate = dateFormat.parse(giorno[2]);;
+							parsedDate = dateFormat.parse(giorno[2]);
+							;
 							SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 							giorno[2] = sdf.format(parsedDate);
 						} catch (ParseException e) {
@@ -173,8 +175,7 @@ public class ChangePage extends HttpServlet {
 
 						lista.add(h);
 					}
-					
-					
+
 					req.setAttribute("courseDocente", courseDocente);
 					req.setAttribute("currentCourse", currentCourse);
 					req.setAttribute("esami", esami);
@@ -250,7 +251,7 @@ public class ChangePage extends HttpServlet {
 					String giorniLezione1 = c1.getGiorno();
 					String[] giorni1 = giorniLezione1.split("_");
 					ArrayList<HashMap<String, String>> lista1 = new ArrayList<>();
-					
+
 					for (int i = 0; i < giorni1.length; i++) {
 						String[] giorno1 = giorni1[i].split(",");
 						HashMap<String, String> h = new HashMap<>();
@@ -357,7 +358,7 @@ public class ChangePage extends HttpServlet {
 				req.getRequestDispatcher("home").forward(req, resp);
 			}
 		} else {
-			req.getRequestDispatcher("home").forward(req, resp);
+			req.getRequestDispatcher("login").forward(req, resp);
 		}
 	}
 

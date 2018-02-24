@@ -35,51 +35,52 @@
 <body class="login-page">
 	<div class="login-box">
 		<div class="logo">
-			<a href="home"><img src="logo.png" width="50%" height="50%"></a> <small>Piattaforma
-				di comunicazione Docente-Studente</small>
+			<a href="/UniBook"><img src="logo.png" width="50%" height="50%"></a>
+			<small>Piattaforma di comunicazione Docente-Studente</small>
 		</div>
 		<div class="card">
 			<div class="body">
-					<div class="msg">
-						<font size="3">Accedi per iniziare</font>
+				<div class="msg">
+					<font size="3">Accedi per iniziare</font>
+				</div>
+				<div class="myinline input-group ">
+					<span class="myinline input-group-addon "> <i
+						class="material-icons">person</i>
+					</span>
+					<div class="form-line">
+						<input type="number" class="form-control" id="username"
+							name="username" placeholder="Matricola" required autofocus>
 					</div>
-					<div class="myinline input-group ">
-						<span class="myinline input-group-addon "> <i
-							class="material-icons">person</i>
-						</span>
-						<div class="form-line">
-							<input type="number" class="form-control" id="username" name="username"
-								placeholder="Matricola" required autofocus>
-						</div>
+				</div>
+				<div class="myinline input-group ">
+					<span class="myinline input-group-addon "> <i
+						class="material-icons">lock</i>
+					</span>
+					<div class="form-line">
+						<input type="password" class="form-control" id="password"
+							name="password" placeholder="Password" required>
 					</div>
-					<div class="myinline input-group ">
-						<span class="myinline input-group-addon "> <i
-							class="material-icons">lock</i>
-						</span>
-						<div class="form-line">
-							<input type="password" class="form-control" id="password" name="password"
-								placeholder="Password" required>
-						</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-8 p-t-5">
+						<input type="checkbox" name="rememberme" id="rememberme"
+							class="filled-in chk-col-red"> <label for="rememberme">Ricordami</label>
 					</div>
-					<div class="row">
-						<div class="col-xs-8 p-t-5">
-							<input type="checkbox" name="rememberme" id="rememberme"
-								class="filled-in chk-col-red"> <label for="rememberme">Ricordami</label>
-						</div>
-						<div class="col-xs-4">
-							<button id="btnlogin" class="btn btn-block bg-unibook waves-effect"
-								onclick="checkLogin()" type="submit">Accedi</button>
-						</div>
+					<div class="col-xs-4">
+						<button id="btnlogin"
+							class="btn btn-block bg-unibook waves-effect"
+							onclick="checkLogin()" type="submit">Accedi</button>
 					</div>
-					<div class="row m-t-15 m-b--20">
-						<div class="col-xs-6">
-							<a href="register.html"><font color="grey">Registrati!</font></a>
-						</div>
-						<div class="col-xs-6 align-right ">
-							<a href="forgot-password.html"><font color="grey">Hai
-									dimenticato la tua password?</font></a>
-						</div>
+				</div>
+				<div class="row m-t-15 m-b--20">
+					<div class="col-xs-6">
+						<a href="registration"><font color="grey">Registrati!</font></a>
 					</div>
+					<div class="col-xs-6 align-right ">
+						<a href="forgot"><font color="grey">Hai dimenticato la
+								tua password?</font></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
