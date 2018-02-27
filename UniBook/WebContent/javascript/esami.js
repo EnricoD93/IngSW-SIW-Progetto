@@ -1,12 +1,14 @@
 function addExam() {
-	console.log("sono qua");
 	var table = document.getElementById("table");
 	var cella = table.insertRow(1);
 	var l = document.getElementById("table").rows.length - 1;
-	console.log(l);
-	cella.innerHTML = "<link href=\"css/style.css\" rel=\"stylesheet\"><td><input class=\"form-control\" id=\"value" + l
-			+ "\" ></td><td><input class=\"form-control\"id=\"crediti" + l
-			+ "\" type=\"number\" ></td>" + "<td><input class=\"form-control\" id=\"voto" + l
+	cella.innerHTML = "<link href=\"css/style.css\" rel=\"stylesheet\"><td><input class=\"form-control\" id=\"value"
+			+ l
+			+ "\" ></td><td><input class=\"form-control\"id=\"crediti"
+			+ l
+			+ "\" type=\"number\" ></td>"
+			+ "<td><input class=\"form-control\" id=\"voto"
+			+ l
 			+ "\" type=\"number\" ></td>";
 }
 function calcolaMedia() {
@@ -35,10 +37,10 @@ function calcolaMedia() {
 	}
 	var media = somma / sommaCrediti;
 	console.log(media);
-	if(media>0){
-	document.getElementById("media").innerHTML = media;
-	}else{
-		media="Non hai inserito nessun valore!"
+	if (media > 0) {
+		document.getElementById("media").innerHTML = media;
+	} else {
+		media = "Non hai inserito nessun valore!"
 		document.getElementById("media").innerHTML = media;
 	}
 }

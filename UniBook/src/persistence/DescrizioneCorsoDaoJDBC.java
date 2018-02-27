@@ -12,7 +12,7 @@ import model.course.Corso;
 import model.course.DescrizioneCorso;
 import persistence.dao.DescrizioneCorsoDao;
 
-public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
+public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao {
 	private DataSource dataSource;
 
 	public DescrizioneCorsoDaoJDBC(DataSource dataSource) {
@@ -43,7 +43,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
 				descrizioneCorso.setCorsoDiLaurea(result.getString("corsodilaurea"));
 				descrizioneCorso.setCfu(result.getInt("cfu"));
-				
+
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
@@ -101,7 +101,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
-		}	 finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 	@Override
 	public void update(DescrizioneCorso descrizioneCorso) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -160,7 +160,41 @@ public class DescrizioneCorsoDaoJDBC implements DescrizioneCorsoDao{
 			}
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());
-		}	 finally {
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return listaCorsi;
+	}
+
+	@Override
+	public List<DescrizioneCorso> findByCDL(String cdl) {
+		Connection connection = this.dataSource.getConnection();
+		List<DescrizioneCorso> listaCorsi = new ArrayList<>();
+		try {
+			DescrizioneCorso descrizioneCorso;
+			PreparedStatement statement;
+			String query = "select * from descrizionecorso where corsodilaurea=? ORDER BY descrizionecorso.nome";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, cdl);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				descrizioneCorso = new DescrizioneCorso();
+				descrizioneCorso.setCodice(result.getLong("codice"));
+				descrizioneCorso.setNome(result.getString("nome"));
+				descrizioneCorso.setCorsoDiLaurea(result.getString("corsodilaurea"));
+				descrizioneCorso.setAnno(result.getInt("anno"));
+				descrizioneCorso.setCfu(result.getInt("cfu"));
+				descrizioneCorso.setOreLezione(result.getInt("ore_lezioni"));
+				descrizioneCorso.setOreEsercitazione(result.getInt("ore_esercitazioni"));
+				listaCorsi.add(descrizioneCorso);
+			}
+		} catch (SQLException e) {
+			throw new PersistenceException(e.getMessage());
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {

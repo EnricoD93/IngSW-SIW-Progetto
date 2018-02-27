@@ -21,6 +21,27 @@ function showWarningMessage() {
 			"Ricontrolla il codice inserito.\n Richiedi un nuovo codice cliccando su \"Invia\" oppure clicca su \"Cambia\" per modificare l'email inserita precedentemente.");
 }
 function buttoninit() {
+	if(localStorage.checked=="true"){
+		console.log("cliccato");
+		$.ajax({
+			type : "POST",
+			url : "home",
+			datatype : 'text',
+			data : {
+				username : localStorage.username,
+				password : localStorage.password
+			},
+			success : function(data) {
+				window.location.href="home";
+			},
+			error : function(data) {
+
+				swal("", "Matricola o password errata", "error");
+
+			}
+
+		});
+	}
 	$("#username").keyup(function(event) {
 	    if (event.keyCode === 13) {
 	        $("#btnlogin").click();
@@ -64,6 +85,16 @@ function sendForgotPassword() {
 }
 
 function checkLogin() {
+	if ($('#rememberme').is(':checked')) {
+		console.log("entro");
+        localStorage.setItem("username",$('#username').val());
+        localStorage.setItem("password",$('#password').val());
+        localStorage.setItem("checked",true);
+    } else {
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+        localStorage.removeItem("checked");
+    }
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
 	$.ajax({
@@ -75,7 +106,6 @@ function checkLogin() {
 			password : password
 		},
 		success : function(data) {
-			console.log("success");
 			window.location.href="home";
 		},
 		error : function(data) {

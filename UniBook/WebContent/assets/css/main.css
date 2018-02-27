@@ -2856,7 +2856,7 @@ table.alt tbody tr td {
 	background-color: rgba(0, 0, 0, 0.95);
 	height: 100%;
 	left: 0;
-	opacity: 0.75;
+	opacity: 0.90;
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -3326,7 +3326,7 @@ opacity
 	background-color: rgba(0, 0, 0, 0.75);
 	height: 100%;
 	left: 0;
-	opacity: 0.60; position : absolute;
+	opacity: 0.90; position : absolute;
 	top: 0;
 	width: 100%;
 	z-index: 1;

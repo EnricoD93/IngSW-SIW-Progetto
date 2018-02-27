@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -115,7 +115,7 @@
 						<div class="search">
 							<input type="text" id="searchbarinput" onchange="search();"
 								class="searchTerm" placeholder="Cerca...">
-							<button type="button" class="searchButton">
+							<button style="cursor: move;" type="button" class="searchButton">
 								<i class="material-icons">search</i>
 							</button>
 						</div>
@@ -147,8 +147,8 @@
 					<!-- Notifications -->
 					<li class="dropdown"><a onclick="readNotifications();"
 						class="dropdown-toggle" data-toggle="dropdown" role="button">
-							<i class="material-icons">notifications</i><input class="hidden"
-							id="notcnt" value="${newnotifications}"> <span
+							<i class="material-icons" data-toggle="tooltip" title="Notifiche">notifications</i><input
+							class="hidden" id="notcnt" value="${newnotifications}"> <span
 							id="notifycount" class="label-count"></span>
 					</a>
 						<ul class="dropdown-menu"
@@ -209,8 +209,9 @@
 					<!-- #END# Notifications -->
 					<!-- Tasks -->
 					<li class="dropdown"><a href="page?request=messaggi"
-						role="button"> <i class="material-icons">message</i> <span
-							id="msgcount" class="label-count"></span>
+						role="button"> <i class="material-icons" data-toggle="tooltip"
+							title="Messaggi">message</i> <span id="msgcount"
+							class="label-count"></span>
 					</a></li>
 					<!-- #END# Tasks -->
 				</ul>
@@ -238,7 +239,8 @@
 					<div class="email">${currentUser.email}</div>
 					<div class="btn-group user-helper-dropdown">
 						<i class="material-icons" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+							aria-haspopup="true" aria-expanded="true" data-toggle="tooltip"
+							title="Opzioni">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
 							<li><a
 								href="page?request=profilo&id=${currentUser.matricola}"><i

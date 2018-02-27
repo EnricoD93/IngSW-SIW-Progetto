@@ -43,7 +43,7 @@ public class UpdateProfileImage extends HttpServlet {
 					final Utente utente = ((Utente) req.getSession().getAttribute("currentUser"));
 					utente.setProfileImagePath("images/profileImages/" + fileName);
 					UtenteDao ud = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-					ud.updateImage(utente, "images/profileImages/"+fileName);
+					ud.updateImage(utente, "images/profileImages/" + fileName);
 					writeImage(fileItem, "profileImages");
 					return;
 				}
@@ -62,18 +62,11 @@ public class UpdateProfileImage extends HttpServlet {
 		final String fileName = FilenameUtils.getName(fileItem.getName());
 		final InputStream fileContent = fileItem.getInputStream();
 		final BufferedImage image = ImageIO.read(fileContent);
-		final URL location = Test.class.getProtectionDomain().getCodeSource().getLocation();
-		final String[] split = location.getFile().split("WEB-INF");
 		final String newPath = System.getProperty("user.home") + "/git/IngSW-SIW-Progetto/UniBook/WebContent/images/"
 				+ folder + "/" + fileName;
 		final File outputfile = new File(newPath);
-		final String newPath2 = split[0] + "images/" + folder + "/" + fileName;
-		final File outputfile2 = new File(newPath2);
 		System.out.println(newPath);
-		System.out.println(newPath2);
-		//ImageIO.write(image, "png", outputfile2);
 		ImageIO.write(image, "png", outputfile);
 	}
-	
-	
+
 }
