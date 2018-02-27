@@ -24,8 +24,8 @@
 <body id="body" class="signup-page">
 	<div class="signup-box">
 		<div class="logo">
-			<a href="index.html"><img src="logo.png" width="200" height="70"></a> <small>Piattaforma
-				di comunicazione Docente-Studente</small>
+			<a href="index.html"><img src="logo.png" width="200" height="70"></a>
+			<small>Piattaforma di comunicazione Docente-Studente</small>
 		</div>
 		<div class="card">
 			<div class="body">
@@ -44,17 +44,29 @@
 						<input id="verify" type="text" class="form-control"
 							name="verifyCode" minlength="6" placeholder="Codice di verifica"
 							required>
-					</div>
 
+					</div>
 				</div>
+				<div style="display:flex;">
+					<input name="email" id="email" cols="30" rows="5"
+						class="form-control no-resize hidden" value="" required><label
+						class="form-label"></label>&nbsp;
+
+					<button id="modificaEmailConfirm" type="button"
+						class="btn btn-circle-lg-xs bg-unibook waves-effect hidden"
+						style="margin-top: 4px;" onclick="javascript:confermaModificaEmail();">
+						<i class="material-icons">check</i>
+					</button>
+				</div><br>
 				<div class="row">
 					<button id="verifyButton"
 						onclick="javascript:registration( '${dbcode}');"
 						class="btn btn-lg bg-unibook waves-effect" type="submit">Verifica</button>
-					<button class="btn btn-lg bg-unibook waves-effect" type="submit">Invia</button>
+					<button class="btn btn-lg bg-unibook waves-effect" type="submit"
+						onclick="javascript:invia();">Invia</button>
 
-					<button class="btn btn-lg bg-unibook waves-effect" type="submit">
-						Cambia email</button>
+					<button class="btn btn-lg bg-unibook waves-effect" type="button"
+						onclick="javascript:modificaEmail();">Cambia email</button>
 				</div>
 
 			</div>
