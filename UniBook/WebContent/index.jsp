@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="css/style.css" />
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
 	rel="stylesheet" type="text/css">
@@ -108,9 +109,12 @@
 					</header>
 					<p>Registra i tuoi esami sostenuti tenendo sempre traccia della
 						tua media e del tuo voto di laurea di partenza. Inoltre, puoi
-						anche testare come varia la tua media al variare dei voti.</p>
+						anche testare come varia la tua media al variare dei voti. Abbiamo
+						anche un tool per calcolare la tua media senza il bisogno di
+						registrarti.</p>
 					<ul class="actions">
-						<li><a href="#Esami" class="button alt">Scopri di più!</a></li>
+						<li><a href="#four" class="button alt scrolly">Clicca
+								qui!</a></li>
 					</ul>
 				</div>
 			</div>
@@ -230,6 +234,44 @@
 				<a id="exam" href="#listaesami" class="scrolly"></a> <br>
 				<div id="listaesami" hidden>
 
+					<div align="center" class="row" style="display: inline-block;">
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-unibook">
+								<div class="icon">
+									<i class="material-icons">functions</i>
+								</div>
+								<div class="content">
+									<div class="text">Media Aritmetica</div>
+									<div id="arit" class="number count-to" data-from="0" data-to=0
+										data-speed="1000" data-fresh-interval="20">0</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-unibook">
+								<div class="icon">
+									<i class="material-icons">functions</i>
+								</div>
+								<div class="content">
+									<div class="text">Media Ponderata</div>
+									<div id="pond" class="number count-to" data-from="0"
+										data-to="0" data-speed="1000" data-fresh-interval="20">0</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box bg-unibook">
+								<div class="icon">
+									<i class="material-icons">school</i>
+								</div>
+								<div class="content">
+									<div class="text">Voto di Laurea di partenza</div>
+									<div id="laurea" class="number count-to" data-from="0"
+										data-to="0" data-speed="1000" data-fresh-interval="20">0</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div id="informatica" hidden>
 						<table class="table table-striped" id="table">
 							<thead>
@@ -243,8 +285,8 @@
 								<c:forEach var="esame" items="${esamiI}">
 									<tr>
 										<td align="left">${esame.codice}&emsp;-&emsp;${esame.nome}</td>
-										<td>${esame.cfu}</td>
-										<td><select style="width: 70px;"
+										<td name="cfui">${esame.cfu}</td>
+										<td><select name="votoi" style="width: 70px;"
 											class="selectpicker show-tick" tabindex="-98" name="cdl">
 												<option value="none" style="background-color: black;">-</option>
 												<option value="18" style="background-color: black;">18</option>
@@ -280,9 +322,10 @@
 								<c:forEach var="esame" items="${esamiM}">
 									<tr>
 										<td>${esame.nome}</td>
-										<td>${esame.cfu}</td>
-										<td><select style="width: 300px;"
+										<td name="cfum">${esame.cfu}</td>
+										<td><select name="votom" style="width: 300px;"
 											class="selectpicker show-tick" tabindex="-98" name="cdl">
+												<option value="none" style="background-color: black;">-</option>
 												<option value="18" style="background-color: black;">18</option>
 												<option value="19" style="background-color: black;">19</option>
 												<option value="20" style="background-color: black;">20</option>
@@ -317,6 +360,9 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/exam.js"></script>
+	<script src="plugins/jquery-countto/jquery.countTo.js"></script>
+	<script src="js/pages/widgets/infobox/infobox-2.js"></script>
+	<script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 </body>
 </html>

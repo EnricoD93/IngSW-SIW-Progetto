@@ -29,6 +29,7 @@ import model.user.Esame;
 import model.user.EsameSuperato;
 import model.user.Evento;
 import model.user.Messaggio;
+import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
@@ -38,6 +39,7 @@ import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EsameDao;
 import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
+import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class ChangePage extends HttpServlet {
@@ -55,8 +57,11 @@ public class ChangePage extends HttpServlet {
 			String dest = req.getParameter("dest");
 			String mitt = req.getParameter("mitt");
 			String testo = req.getParameter("text");
+			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
+			Utente u = utenteDao.findByPrimaryKey(mitt);
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			Messaggio m = new Messaggio(mitt, dest, testo, t);
+			Notifica n = new Notifica(dest, t, u.getNome() + " " + u.getCognome(), m.getTesto());
 			String date = m.getDatareale();
 			JSONObject datareale = new JSONObject();
 			try {
@@ -66,7 +71,9 @@ public class ChangePage extends HttpServlet {
 				e.printStackTrace();
 			}
 			MessaggioDao messDao = DatabaseManager.getInstance().getDaoFactory().getMessaggioDAO();
+			NotificaDao notiDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
 			messDao.save(m);
+			notiDao.save(n);
 			resp.setContentType("application/json");
 			resp.getWriter().print(datareale);
 		}

@@ -20,7 +20,7 @@
 									<a href="page?request=profilo&id=${docente.matricola}">
 										<div class="card">
 											<div class="header bg-unibook" style="padding: 10px">
-												<h2 align="center" class="col-white">${docente.cognome}&thinsp;${docente.nome}
+												<h2 align="center" class="col-white">${docente.cognome}
 												</h2>
 											</div>
 											<div align="center" class="body">
@@ -45,29 +45,29 @@
 					<div class="corsiTitle">Corso di Laurea in Matematica</div>
 					<div class="row clearfix">
 						<c:forEach var="docente" items="${docenti}">
-						<c:if test="${docente.corsoDiLaurea==0726 }">
-							<div class="col-xs-2" style="min-width: 170px">
-								<a href="page?request=profilo&id=${docente.matricola}">
-									<div class="card">
-										<div class="header bg-unibook" style="padding: 10px">
-											<h2 align="center" class="col-white">${docente.cognome}&thinsp;${docente.nome}
-											</h2>
-										</div>
-										<div align="center" class="body">
-											<div class="image">
-												<div class="profile-pic-s"
-													style="background-image: url('${docente.profileImagePath}')">
-												</div>
+							<c:if test="${docente.corsoDiLaurea==0726 }">
+								<div class="col-xs-2" style="min-width: 170px">
+									<a href="page?request=profilo&id=${docente.matricola}">
+										<div class="card">
+											<div class="header bg-unibook" style="padding: 10px">
+												<h2 align="center" class="col-white">${docente.cognome}
+												</h2>
 											</div>
-											<c:if test="${currentUser.ruolo==1 }">
-												<div align="center">
-													<b>Matricola: </b> <br> ${docente.matricola}
+											<div align="center" class="body">
+												<div class="image">
+													<div class="profile-pic-s"
+														style="background-image: url('${docente.profileImagePath}')">
+													</div>
 												</div>
-											</c:if>
+												<c:if test="${currentUser.ruolo==1 }">
+													<div align="center">
+														<b>Matricola: </b> <br> ${docente.matricola}
+													</div>
+												</c:if>
+											</div>
 										</div>
-									</div>
-								</a>
-							</div>
+									</a>
+								</div>
 							</c:if>
 						</c:forEach>
 

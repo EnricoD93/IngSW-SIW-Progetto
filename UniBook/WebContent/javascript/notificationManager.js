@@ -5,7 +5,7 @@ $(document).ready(function() {
 	window.setInterval(function() {
 		checkMessages();
 		checkNotifications();
-	}, 3000);
+	}, 4000);
 });
 
 function checkMessages() {
@@ -50,11 +50,19 @@ function checkNotifications() {
 					var json = JSON.parse(data);
 					notifications = json[0];
 					lastNotify = json[1];
-					if (notifications.number != 0)
-						document.getElementById("notifycount").innerHTML = notifications.number;
-					if (currentnotification.value != notifications.number) {
-						showNotification('', lastNotify.testo, "right");
-						currentnotification.value = notifications.number;
+					console.log(lastNotify.type);
+					if (lastNotify.type != 6) {
+						if (notifications.number != 0)
+							document.getElementById("notifycount").innerHTML = notifications.number;
+						if (currentnotification.value != notifications.number) {
+							showNotification('', lastNotify.testo, "right");
+							currentnotification.value = notifications.number;
+						}
+					} else {
+						if (currentnotification.value != notifications.number) {
+							showNotification('', lastNotify.testo, "right");
+							currentnotification.value = notifications.number;
+						}
 					}
 				}
 			});
@@ -121,8 +129,8 @@ function readNotifications() {
 			request : "updateNotifications"
 		},
 		success : function(data) {
-			document.getElementById("notifycount").innerHTML="";
-			currentnotification.value=0;
+			document.getElementById("notifycount").innerHTML = "";
+			currentnotification.value = 0;
 		}
 	});
 };

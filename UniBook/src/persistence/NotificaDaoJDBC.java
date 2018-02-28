@@ -173,4 +173,24 @@ public class NotificaDaoJDBC implements NotificaDao {
 		}
 	}
 
+	@Override
+	public void readNotification(Long id) {
+		Connection connection = this.dataSource.getConnection();
+		PreparedStatement statement;
+		String query = "UPDATE notifica " + "SET letta = true " + "WHERE id = ?";
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

@@ -9,15 +9,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import model.course.Aula;
-import model.course.Corso;
 import model.course.CorsoDiLaurea;
 import model.course.DescrizioneCorso;
-import model.course.Lezione;
 import model.user.CalendarioPersonale;
 import model.user.Esame;
-import model.user.GiornoCalendario;
 import model.user.Messaggio;
-import model.user.Notifica;
 import model.user.Utente;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
@@ -25,7 +21,6 @@ import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EsameDao;
 import persistence.dao.MessaggioDao;
-import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
 public class MainJDBC {
@@ -35,7 +30,9 @@ public class MainJDBC {
 		cal.set(1995, Calendar.MARCH, 21); // // 21 marzo 1995
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		UtilDao util = factory.getUtilDAO();
+		System.out.println("DROP");
 		util.dropDatabase();
+		System.out.println("CREATE");
 		util.createDatabase();
 
 		// ISTANZE FISSE
@@ -79,11 +76,11 @@ public class MainJDBC {
 			Date date;
 			date = format.parse("1993-06-19");
 			Utente st3 = new Utente("169983", "Enrico", "De Cicco", date, "DCCNRC93H19Z112B",
-					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+					"enricodecicco93@gmail.com", "123456", corsoDiLaureaInformatica.getCodice(), 0, "123456", "ciao");
 			st3.setProfileImagePath("images/profileImages/169983.jpg");
 			date = format.parse("1995-10-23");
 			Utente st4 = new Utente("169991", "Martina", "Muto", date, "MTUMTN95R63H919H", "martyvolley23@gmail.com",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
+					"123456", corsoDiLaureaMatematica.getCodice(), 0, "111111", "ciao");
 			st4.setProfileImagePath("images/profileImages/169991.jpg");
 
 			Utente st5 = new Utente("169984", "Marco", "De Luca", date, "DLCMRC95T64T253R", "enricodecicco93@gmail.com",
@@ -124,8 +121,8 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calSt7);
 			calendarioPersonaleDao.save(calSt8);
 			Date dateRicca = format.parse("1964-05-12");
-			Utente ricca = new Utente("555", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K", "ricca@mat.unical.it",
-					"TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111", "ciao");
+			Utente ricca = new Utente("123456", "Francesco", "Ricca", dateRicca, "RFFDSS43D23J878K",
+					"ricca@mat.unical.it", "123456", corsoDiLaureaInformatica.getCodice(), 1, "111111", "ciao");
 			ricca.setProfileImagePath("images/profileImages/ricca.png");
 			Utente spataro = new Utente("12547", "William", "Spataro", dateRicca, "SPTWLM43D23J878K",
 					"spataro@mat.unical.it", "TTTTTT", corsoDiLaureaInformatica.getCodice(), 1, "111111", "ciao");
@@ -220,6 +217,7 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calRija);
 			calendarioPersonaleDao.save(calSolferino);
 
+			// corsi informatica
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1,
 					corsoDiLaureaInformatica.getCodice(), 12, 48, 48);
 			DescrizioneCorso corsoAnalisi = new DescrizioneCorso(new Long(27005730), "Analisi Matematica", 1,
@@ -260,7 +258,53 @@ public class MainJDBC {
 			DescrizioneCorso corsoEconomia = new DescrizioneCorso(new Long(27000035),
 					"Economia e Organizzazione Aziendale", 1, corsoDiLaureaInformatica.getCodice(), 6, 24, 72);
 
+			// corsi matematica
+			DescrizioneCorso corsoAnalisi1 = new DescrizioneCorso(new Long(27002284), "Analisi Matematica 1", 1,
+					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+			DescrizioneCorso corsoGeometria1 = new DescrizioneCorso(new Long(27005585), "Geometria 1", 1,
+					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+			DescrizioneCorso corInglese = new DescrizioneCorso(new Long(27000016), "Inglese - Matematica", 1,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corStoria = new DescrizioneCorso(new Long(27002152), "Storia della Matematica", 1,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corsoAlgebra = new DescrizioneCorso(new Long(27002038), "Algebra", 1,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoInformatica = new DescrizioneCorso(new Long(27005379), "Informatica", 1,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoMec = new DescrizioneCorso(new Long(27002034), "Meccanica e termodinamica", 1,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoAnalisi2 = new DescrizioneCorso(new Long(27002285), "Analisi Matematica 2", 2,
+					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+			DescrizioneCorso corsoGeometria2 = new DescrizioneCorso(new Long(27005606), "Geometria 2", 2,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoLabProg = new DescrizioneCorso(new Long(27002035),
+					"Laboratorio di programmazione e calcolo", 2, corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoMecc = new DescrizioneCorso(new Long(27002039), "Meccanica razionale", 2,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoMetodi = new DescrizioneCorso(new Long(27002055),
+					"Metodi analitici per la programmazione e il controllo", 2, corsoDiLaureaMatematica.getCodice(), 6,
+					24, 72);
+			DescrizioneCorso corsoComp = new DescrizioneCorso(new Long(27005225), "Matematica Computazionale", 2,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corsoFin = new DescrizioneCorso(new Long(27003011), "Matematica Finanziaria", 2,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corsolabFi = new DescrizioneCorso(new Long(27006708), "Laboratorio di fisica", 2,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corsoAnalisi3 = new DescrizioneCorso(new Long(27002286), "Analisi Matematica 3", 3,
+					corsoDiLaureaMatematica.getCodice(), 12, 24, 72);
+			DescrizioneCorso corsoGeo3 = new DescrizioneCorso(new Long(27005609), "Geometria 3", 3,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoEle = new DescrizioneCorso(new Long(27002037), "Elettricità e magnetismo", 3,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoProb = new DescrizioneCorso(new Long(27002099),
+					"Calcolo delle probabilità e statistica", 3, corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+			DescrizioneCorso corsoTeo = new DescrizioneCorso(new Long(27002042), "Teorie fisico matematiche", 3,
+					corsoDiLaureaMatematica.getCodice(), 6, 24, 72);
+			DescrizioneCorso corsoNum = new DescrizioneCorso(new Long(27002043), "Calcolo numerico e programmazione", 3,
+					corsoDiLaureaMatematica.getCodice(), 9, 24, 72);
+
 			DescrizioneCorsoDao descCorso = factory.getDescrizioneCorsoDao();
+			// salva informatica
 			descCorso.save(corsoFondamenti);
 			descCorso.save(corsoAnalisi);
 			descCorso.save(corsoOggetti);
@@ -280,6 +324,29 @@ public class MainJDBC {
 			descCorso.save(corsoFisica);
 			descCorso.save(corsoInglese);
 			descCorso.save(corsoEconomia);
+
+			// salva matematica
+			descCorso.save(corsoAnalisi1);
+			descCorso.save(corsoAnalisi2);
+			descCorso.save(corsoAnalisi3);
+			descCorso.save(corsoGeometria1);
+			descCorso.save(corsoGeometria2);
+			descCorso.save(corsoGeo3);
+			descCorso.save(corsoAlgebra);
+			descCorso.save(corsoComp);
+			descCorso.save(corsoEle);
+			descCorso.save(corsoFin);
+			descCorso.save(corsoInformatica);
+			descCorso.save(corsolabFi);
+			descCorso.save(corsoLabProg);
+			descCorso.save(corsoMec);
+			descCorso.save(corsoMecc);
+			descCorso.save(corsoMetodi);
+			descCorso.save(corsoNum);
+			descCorso.save(corsoProb);
+			descCorso.save(corsoTeo);
+			descCorso.save(corInglese);
+			descCorso.save(corStoria);
 
 			EsameDao esameDao = factory.getEsameDAO();
 
@@ -309,6 +376,36 @@ public class MainJDBC {
 			Esame esameFisica = new Esame(corsoFisica.getCodice(), corsoFisica.getNome(), corsoFisica.getCfu());
 			Esame esameInglese = new Esame(corsoInglese.getCodice(), corsoInglese.getNome(), corsoInglese.getCfu());
 			Esame esameEconomia = new Esame(corsoEconomia.getCodice(), corsoEconomia.getNome(), corsoEconomia.getCfu());
+
+			Esame corsoAnalisi1e = new Esame(corsoAnalisi1.getCodice(), corsoAnalisi1.getNome(),
+					corsoAnalisi1.getCfu());
+			Esame corsoAnalisi2e = new Esame(corsoAnalisi2.getCodice(), corsoAnalisi2.getNome(),
+					corsoAnalisi2.getCfu());
+			Esame corsoAnalisi3e = new Esame(corsoAnalisi3.getCodice(), corsoAnalisi3.getNome(),
+					corsoAnalisi3.getCfu());
+			Esame corsoGeometria1e = new Esame(corsoGeometria1.getCodice(), corsoGeometria1.getNome(),
+					corsoGeometria1.getCfu());
+			Esame corsoGeometria2e = new Esame(corsoGeometria2.getCodice(), corsoGeometria2.getNome(),
+					corsoGeometria2.getCfu());
+			Esame corsoGeo3e = new Esame(corsoGeo3.getCodice(), corsoGeo3.getNome(), corsoGeo3.getCfu());
+			Esame corsoAlgebrae = new Esame(corsoAlgebra.getCodice(), corsoAlgebra.getNome(), corsoAlgebra.getCfu());
+			Esame corsoCompe = new Esame(corsoComp.getCodice(), corsoComp.getNome(), corsoComp.getCfu());
+			Esame corsoElee = new Esame(corsoEle.getCodice(), corsoEle.getNome(), corsoEle.getCfu());
+			Esame corsoFine = new Esame(corsoFin.getCodice(), corsoFin.getNome(), corsoFin.getCfu());
+			Esame corsoInformaticae = new Esame(corsoInformatica.getCodice(), corsoInformatica.getNome(),
+					corsoInformatica.getCfu());
+			Esame corsolabFie = new Esame(corsolabFi.getCodice(), corsolabFi.getNome(), corsolabFi.getCfu());
+			Esame corsoLabProge = new Esame(corsoLabProg.getCodice(), corsoLabProg.getNome(), corsoLabProg.getCfu());
+			Esame corsoMece = new Esame(corsoMec.getCodice(), corsoMec.getNome(), corsoMec.getCfu());
+			Esame corsoMecce = new Esame(corsoMecc.getCodice(), corsoMecc.getNome(), corsoMecc.getCfu());
+			Esame corsoMetodie = new Esame(corsoMetodi.getCodice(), corsoMetodi.getNome(), corsoMetodi.getCfu());
+			Esame corsoNume = new Esame(corsoNum.getCodice(), corsoNum.getNome(), corsoNum.getCfu());
+			Esame corsoProbe = new Esame(corsoProb.getCodice(), corsoProb.getNome(), corsoProb.getCfu());
+			Esame corsoTeoe = new Esame(corsoTeo.getCodice(), corsoTeo.getNome(), corsoTeo.getCfu());
+			Esame corInglesee = new Esame(corInglese.getCodice(), corInglese.getNome(), corInglese.getCfu());
+			Esame corStoriae = new Esame(corStoria.getCodice(), corStoria.getNome(), corStoria.getCfu());
+
+			// salvo informatica
 			esameDao.save(esameEconomia);
 			esameDao.save(esameInglese);
 			esameDao.save(esameFisica);
@@ -328,6 +425,28 @@ public class MainJDBC {
 			esameDao.save(esameOggetti);
 			esameDao.save(esameAnalisi);
 			esameDao.save(esameFondamenti);
+			// salvo matematica
+			esameDao.save(corsoAnalisi1e);
+			esameDao.save(corsoAnalisi2e);
+			esameDao.save(corsoAnalisi3e);
+			esameDao.save(corsoGeometria1e);
+			esameDao.save(corsoGeometria2e);
+			esameDao.save(corsoGeo3e);
+			esameDao.save(corsoAlgebrae);
+			esameDao.save(corsoCompe);
+			esameDao.save(corsoElee);
+			esameDao.save(corsoFine);
+			esameDao.save(corsoInformaticae);
+			esameDao.save(corsolabFie);
+			esameDao.save(corsoLabProge);
+			esameDao.save(corsoMece);
+			esameDao.save(corsoMecce);
+			esameDao.save(corsoMetodie);
+			esameDao.save(corsoNume);
+			esameDao.save(corsoProbe);
+			esameDao.save(corsoTeoe);
+			esameDao.save(corInglesee);
+			esameDao.save(corStoriae);
 
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			MessaggioDao messaggioDao = factory.getMessaggioDAO();
@@ -337,10 +456,9 @@ public class MainJDBC {
 					+ "Grazie in anticipo,\r\n" + "De Cicco E.\r\n", t);
 			messaggioDao.save(messaggio2);
 			t = new Timestamp(System.currentTimeMillis());
-
+			System.out.println("FINISHED");
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

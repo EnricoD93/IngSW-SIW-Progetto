@@ -3,7 +3,7 @@ $(document)
 				function() {
 					window.setInterval(function() {
 						checkNewMessage();
-					}, 1000);
+					},3000);
 					$('#text').keypress(function(e) {
 						if (e.keyCode == 13)
 							$('#send').click();

@@ -94,8 +94,7 @@
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
 	<!-- #END# Overlay For Sidebars -->
-	<!-- Search Bar -->
-	<!-- #END# Search Bar -->
+
 	<!-- Top Bar -->
 	<nav class="navbar">
 		<div class="container-fluid">
@@ -162,46 +161,48 @@
 										</div>
 									</c:if>
 									<c:forEach var="notification" items="${notifications}">
-										<li><a href="javascript:void(0);"> <c:choose>
-													<c:when test="${notification.type==0}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">note_add</i>
-														</div>
-													</c:when>
-													<c:when test="${notification.type==1}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">delete</i>
-														</div>
-													</c:when>
-													<c:when test="${notification.type==2}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">delete</i>
-														</div>
-													</c:when>
-													<c:when test="${notification.type==3}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">content_paste</i>
-														</div>
-													</c:when>
-													<c:when test="${notification.type==4}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">delete_forever</i>
-														</div>
-													</c:when>
-													<c:when test="${notification.type==5}">
-														<div class="icon-circle bg-unibook">
-															<i class="material-icons">warning</i>
-														</div>
-													</c:when>
-												</c:choose>
-												<div class="menu-info">
-													<h4>${notification.testo}</h4>
-													<p>
-														<i class="material-icons">access_time</i>
-														${notification.datareale}
-													</p>
-												</div>
-										</a></li>
+										<c:if test="${notification.type!=6}">
+											<li><a href="javascript:void(0);"> <c:choose>
+														<c:when test="${notification.type==0}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">note_add</i>
+															</div>
+														</c:when>
+														<c:when test="${notification.type==1}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">delete</i>
+															</div>
+														</c:when>
+														<c:when test="${notification.type==2}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">delete</i>
+															</div>
+														</c:when>
+														<c:when test="${notification.type==3}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">content_paste</i>
+															</div>
+														</c:when>
+														<c:when test="${notification.type==4}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">delete_forever</i>
+															</div>
+														</c:when>
+														<c:when test="${notification.type==5}">
+															<div class="icon-circle bg-unibook">
+																<i class="material-icons">warning</i>
+															</div>
+														</c:when>
+													</c:choose>
+													<div class="menu-info">
+														<h4>${notification.testo}</h4>
+														<p>
+															<i class="material-icons">access_time</i>
+															${notification.datareale}
+														</p>
+													</div>
+											</a></li>
+										</c:if>
 									</c:forEach>
 								</ul>
 							</li>

@@ -57,7 +57,6 @@ function init() {
 										{
 											header : {
 												left : 'title',
-												center : 'agendaDay,agendaWeek,month',
 												right : 'prev,next today'
 											},
 											editable : true,

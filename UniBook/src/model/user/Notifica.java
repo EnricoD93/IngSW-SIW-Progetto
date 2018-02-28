@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-public class Notifica implements Serializable{
+public class Notifica implements Serializable {
 
 	/**
 	 * 
@@ -18,40 +18,51 @@ public class Notifica implements Serializable{
 	private String destinatario;
 	private String testo;
 	private int type;
-	static HashMap<Integer, String> testoNotifiche=new HashMap<>();
+	static HashMap<Integer, String> testoNotifiche = new HashMap<>();
 	private long id;
 	private String datareale;
 	private boolean letta;
-	
-	private void init() {
-	testoNotifiche.put(0, "E' stata aggiunta una nuova lezione al corso di");
-	testoNotifiche.put(1, "E' stata rimossa una lezione dal corso di");
-	testoNotifiche.put(2, "E' stato cancellato il corso di");
-	testoNotifiche.put(3, "E' stato pubblicato un avviso nel corso di");
-	testoNotifiche.put(4, "Sei stato rimosso dal corso di");
-	testoNotifiche.put(5, "Hai creato un Corso con lezioni coincidenti.");
-	}
 
+	private void init() {
+		testoNotifiche.put(0, "E' stata aggiunta una nuova lezione al corso di");
+		testoNotifiche.put(1, "E' stata rimossa una lezione dal corso di");
+		testoNotifiche.put(2, "E' stato cancellato il corso di");
+		testoNotifiche.put(3, "E' stato pubblicato un avviso nel corso di");
+		testoNotifiche.put(4, "Sei stato rimosso dal corso di");
+		testoNotifiche.put(5, "Hai creato un Corso con lezioni coincidenti.");
+		testoNotifiche.put(6, " ha scritto: ");
+	}
 
 	public Notifica() {
 		init();
 	}
 
-	public Notifica(String destinatario, Timestamp currentdata,Integer type,String soggetto) {
+	public Notifica(String destinatario, Timestamp currentdata, Integer type, String soggetto) {
 		init();
 		this.data = currentdata;
 		this.destinatario = destinatario;
-		this.type=type;
-		this.testo=testoNotifiche.get(type)+" "+soggetto+".";
+		this.type = type;
+		this.testo = testoNotifiche.get(type) + " " + soggetto + ".";
 		parseDate(currentdata);
 		this.letta = false;
 	}
-	public Notifica(String destinatario, Timestamp currentdata,Integer type) {
+
+	public Notifica(String destinatario, Timestamp currentdata, Integer type) {
 		init();
 		this.data = currentdata;
 		this.destinatario = destinatario;
-		this.type=type;
-		this.testo=testoNotifiche.get(type);
+		this.type = type;
+		this.testo = testoNotifiche.get(type);
+		parseDate(currentdata);
+		this.letta = false;
+	}
+
+	public Notifica(String destinatario, Timestamp currentdata, String soggetto, String testo) {
+		init();
+		this.data = currentdata;
+		this.destinatario = destinatario;
+		this.testo = soggetto + testoNotifiche.get(6) + testo;
+		this.type = 6;
 		parseDate(currentdata);
 		this.letta = false;
 	}
@@ -128,7 +139,5 @@ public class Notifica implements Serializable{
 	public static void setTestoNotifiche(HashMap<Integer, String> testoNotifiche) {
 		Notifica.testoNotifiche = testoNotifiche;
 	}
-
-	
 
 }
