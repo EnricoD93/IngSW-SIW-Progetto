@@ -249,10 +249,10 @@
 								class="material-icons">collections_bookmark</i> <span>Esami</span>
 						</a></li>
 					</c:if>
-					<li><a href="map.jsp"> <i class="material-icons">my_location</i>
+					<li><a href="mappa"> <i class="material-icons">my_location</i>
 							<span>Dove siamo</span>
 					</a></li>
-					<li><a href="chiSiamo.jsp"> <i class="material-icons">info</i>
+					<li><a href="chisiamo"> <i class="material-icons">info</i>
 							<span>Chi siamo</span>
 					</a></li>
 

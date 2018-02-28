@@ -154,6 +154,22 @@
     <url-pattern>/login</url-pattern>
 </servlet-mapping>
 
+<servlet>
+    <servlet-name>Map</servlet-name>
+    <jsp-file>/map.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Map</servlet-name>
+    <url-pattern>/mappa</url-pattern>
+</servlet-mapping><servlet>
+    <servlet-name>ChiSiamo</servlet-name>
+    <jsp-file>/chiSiamo.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ChiSiamo</servlet-name>
+    <url-pattern>/chisiamo</url-pattern>
+</servlet-mapping>
+
    <servlet>
     <servlet-name>SignUpCourseServlet</servlet-name>
     <servlet-class>controller.servlet.SignUpForCourse</servlet-class>
