@@ -35,7 +35,6 @@
 					</c:forEach>
 				</ul>
 			</div>
-			<div id="docenti"></div>
 		</div>
 	</div>
 </section>

@@ -90,9 +90,6 @@
 						</tbody>
 					</table>
 
-
-
-
 				</div>
 				<c:if test="${currentUser.ruolo == 1 }">
 					<div align="right">
@@ -112,14 +109,4 @@
 		</div>
 	</div>
 </section>
-<!--<c:if test="${currentUser.ruolo==0} && ${percentuali[corso.codice]<=10}">
-											<div class="progress-bar" role="progressbar"
-												aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-												style="width: 75%;">${percentuali[corso.codice]}%</div>
-										</c:if>
-										<c:if test="${currentUser.ruolo==0} && ${percentuali[corso.codice]>10}">
-											<div class="progress-bar" role="progressbar"
-												aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"
-												style="width: 75%; color:green">${percentuali[corso.codice]}%</div>
-										</c:if>-->
 </html>

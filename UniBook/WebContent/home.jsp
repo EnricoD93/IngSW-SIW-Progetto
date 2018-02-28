@@ -24,8 +24,8 @@
 					<div class="body table-responsive">
 
 						<div align="left">
-							Di seguito trovi l'elenco dei corsi disponibili del tuo corso di
-							laurea, consulta il corso che ti interessa cliccandoci sopra.<br>
+							Di seguito trovi l'elenco dei corsi disponibili del tuo Corso di
+							Laurea, consulta il corso che ti interessa cliccandoci sopra.<br>
 
 						</div>
 						<br>
@@ -52,7 +52,7 @@
 										src="images/iscriviti.png">&nbsp;Creare ad un corso</font>
 								</div>
 								<div class="list-group-item-text">
-									Unibook ti da la possibilità di creare un corso, inserendo
+									Unibook ti dà la possibilità di creare un corso, inserendo
 									tutte le informazioni,<br> potrai pubblicare avvisi in
 									modo semplice e rapido, per tenere sempre <br>informati
 									tutti gli studenti iscritti. Clicca su 'I miei corsi' per
@@ -71,9 +71,6 @@
 								e clicca su invia un messaggio per iniziare una conversazione.
 							</div>
 							<br>
-
-
-
 
 
 							<table class="table table-striped">

@@ -11,7 +11,6 @@
 <script src="javascript/orarioGiorni.js"></script>
 <script src="plugins/momentjs/moment.js"></script>
 <script src="plugins/momentjs/moment.min.js"></script>
-<script src="javascript/data.js"></script>
 <script
 	src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 <script src="js/pages/forms/basic-form-elements.js"></script>

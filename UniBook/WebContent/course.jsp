@@ -36,10 +36,6 @@
 									<i class="material-icons" style="display: list-item;">people</i>
 								</button></div>
 								
-								
-
-
-
 							</form>
 						</div>
 
@@ -109,7 +105,6 @@
 										${currentCourse.materiale}
 									</th>
 								</tr>
-
 
 							</tbody>
 						</table>

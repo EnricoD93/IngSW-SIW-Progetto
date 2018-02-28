@@ -80,18 +80,7 @@
 												<option value="0000-00-00 18:00:00.00">18:00</option>
 												<option value="0000-00-00 19:00:00.00">19:00</option>
 
-
-											</select> <!-- <span class="input-group-addon"> <b> &nbsp; Tipo
-													lezione: &nbsp;</b>
-											</span> <span class="input-group-addon"><input type="radio"
-												name="tipolezione_6" id="lezione6" value="lezione"
-												class="radio-col-unibook" checked> <label
-												for="lezione6">Lezione</label> <input type="radio"
-												name="tipolezione_6" id="esercitazione6" value="esercitazione"
-												class="radio-col-unibook"> <label
-												for="esercitazione6" class="m-l-20">Esercitazione</label></span>
-							
-							 --> 
+											</select> 
 								</div>
 							</form>
 						</div>
@@ -148,9 +137,6 @@
 					value="${currentUser.matricola}" />
 				<div style='clear: both'></div>
 			</div>
-
-
-
 
 		</div>
 	</section>
