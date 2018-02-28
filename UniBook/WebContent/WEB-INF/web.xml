@@ -52,7 +52,7 @@
   
     <servlet>
     <servlet-name>Index</servlet-name>
-    <jsp-file>/indextmp.html</jsp-file>
+    <jsp-file>/index.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
     <servlet-name>Index</servlet-name>

@@ -11,12 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import model.course.Aula;
 import model.course.Corso;
+import model.course.DescrizioneCorso;
 import model.user.Notifica;
 import model.user.Utente;
 import persistence.DatabaseManager;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
 import persistence.dao.CorsoDao;
+import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
 
@@ -29,7 +31,14 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		if (session.getAttribute("currentUser") != null) {
+		String request = (String) req.getParameter("request");
+		if (request != null && request.equals("media")) {
+			DescrizioneCorsoDao cdao = DatabaseManager.getInstance().getDaoFactory().getDescrizioneCorsoDao();
+			List<DescrizioneCorso> esamiI = cdao.findByCDL("0733");
+			List<DescrizioneCorso> esamiM = cdao.findByCDL("0726");
+			req.setAttribute("esamiI", esamiI);
+			req.setAttribute("esamiM", esamiM);
+		} else if (session.getAttribute("currentUser") != null) {
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 			Utente currentUser = (Utente) session.getAttribute("currentUser");
 			List<Corso> corsi = utenteDao.getCorsi(currentUser.getMatricola());

@@ -21,11 +21,9 @@ import model.user.Notifica;
 import model.user.Utente;
 import persistence.dao.AulaDao;
 import persistence.dao.CalendarioPersonaleDao;
-import persistence.dao.CorsoDao;
 import persistence.dao.CorsoDiLaureaDao;
 import persistence.dao.DescrizioneCorsoDao;
 import persistence.dao.EsameDao;
-import persistence.dao.LezioneDao;
 import persistence.dao.MessaggioDao;
 import persistence.dao.NotificaDao;
 import persistence.dao.UtenteDao;
@@ -35,7 +33,6 @@ public class MainJDBC {
 	public static void main(String[] args) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(1995, Calendar.MARCH, 21); // // 21 marzo 1995
-		Date date1 = (Date) cal.getTime();
 		DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.POSTGRESQL);
 		UtilDao util = factory.getUtilDAO();
 		util.dropDatabase();
@@ -104,12 +101,12 @@ public class MainJDBC {
 					"enricodecicco93@gmail.com", "asdasd", corsoDiLaureaInformatica.getCodice(), 0, "111111", "ciao");
 			st8.setProfileImagePath("images/profileImages/169987.jpg");
 
-			CalendarioPersonale calSt3= new CalendarioPersonale(st3.getMatricola());
-			CalendarioPersonale calSt4= new CalendarioPersonale(st4.getMatricola());
-			CalendarioPersonale calSt5= new CalendarioPersonale(st5.getMatricola());
-			CalendarioPersonale calSt6= new CalendarioPersonale(st6.getMatricola());
-			CalendarioPersonale calSt7= new CalendarioPersonale(st7.getMatricola());
-			CalendarioPersonale calSt8= new CalendarioPersonale(st8.getMatricola());
+			CalendarioPersonale calSt3 = new CalendarioPersonale(st3.getMatricola());
+			CalendarioPersonale calSt4 = new CalendarioPersonale(st4.getMatricola());
+			CalendarioPersonale calSt5 = new CalendarioPersonale(st5.getMatricola());
+			CalendarioPersonale calSt6 = new CalendarioPersonale(st6.getMatricola());
+			CalendarioPersonale calSt7 = new CalendarioPersonale(st7.getMatricola());
+			CalendarioPersonale calSt8 = new CalendarioPersonale(st8.getMatricola());
 
 			UtenteDao studenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
 
@@ -119,7 +116,7 @@ public class MainJDBC {
 			studenteDao.save(st6);
 			studenteDao.save(st7);
 			studenteDao.save(st8);
-			
+
 			calendarioPersonaleDao.save(calSt3);
 			calendarioPersonaleDao.save(calSt4);
 			calendarioPersonaleDao.save(calSt5);
@@ -172,10 +169,9 @@ public class MainJDBC {
 			Utente solferino = new Utente("131", "Viviana", "Solferino", date, "SLFVIV66T45T656Y",
 					"solferino@unical.it", "PPPPPP", corsoDiLaureaMatematica.getCodice(), 1, "111111", "ciao");
 			solferino.setProfileImagePath("images/profileImages/solferino.jpg");
-			
 
 			UtenteDao docenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDao();
-			
+
 			docenteDao.save(ricca);
 			docenteDao.save(grasso);
 			docenteDao.save(vanbon);
@@ -192,25 +188,22 @@ public class MainJDBC {
 			docenteDao.save(rija);
 			docenteDao.save(solferino);
 
+			CalendarioPersonale calRicca = new CalendarioPersonale(ricca.getMatricola());
+			CalendarioPersonale calGrasso = new CalendarioPersonale(grasso.getMatricola());
+			CalendarioPersonale calVanBon = new CalendarioPersonale(vanbon.getMatricola());
+			CalendarioPersonale calTerra = new CalendarioPersonale(terra.getMatricola());
+			CalendarioPersonale calSpataro = new CalendarioPersonale(spataro.getMatricola());
+			CalendarioPersonale calCali = new CalendarioPersonale(cali.getMatricola());
+			CalendarioPersonale calRullo = new CalendarioPersonale(rullo.getMatricola());
+			CalendarioPersonale calLeone = new CalendarioPersonale(leone.getMatricola());
+			CalendarioPersonale calReale = new CalendarioPersonale(reale.getMatricola());
+			CalendarioPersonale calPerri = new CalendarioPersonale(perri.getMatricola());
+			CalendarioPersonale calCianciaruso = new CalendarioPersonale(cianciaruso.getMatricola());
+			CalendarioPersonale calFuduli = new CalendarioPersonale(fuduli.getMatricola());
+			CalendarioPersonale calMontoro = new CalendarioPersonale(montoro.getMatricola());
+			CalendarioPersonale calRija = new CalendarioPersonale(rija.getMatricola());
+			CalendarioPersonale calSolferino = new CalendarioPersonale(solferino.getMatricola());
 
-			CalendarioPersonale calRicca= new CalendarioPersonale(ricca.getMatricola());
-			CalendarioPersonale calGrasso= new CalendarioPersonale(grasso.getMatricola());
-			CalendarioPersonale calVanBon= new CalendarioPersonale(vanbon.getMatricola());
-			CalendarioPersonale calTerra= new CalendarioPersonale(terra.getMatricola());
-			CalendarioPersonale calSpataro= new CalendarioPersonale(spataro.getMatricola());
-			CalendarioPersonale calCali= new CalendarioPersonale(cali.getMatricola());
-			CalendarioPersonale calRullo= new CalendarioPersonale(rullo.getMatricola());
-			CalendarioPersonale calLeone= new CalendarioPersonale(leone.getMatricola());
-			CalendarioPersonale calReale= new CalendarioPersonale(reale.getMatricola());
-			CalendarioPersonale calPerri= new CalendarioPersonale(perri.getMatricola());
-			CalendarioPersonale calCianciaruso= new CalendarioPersonale(cianciaruso.getMatricola());
-			CalendarioPersonale calFuduli= new CalendarioPersonale(fuduli.getMatricola());
-			CalendarioPersonale calMontoro= new CalendarioPersonale(montoro.getMatricola());
-			CalendarioPersonale calRija= new CalendarioPersonale(rija.getMatricola());
-			CalendarioPersonale calSolferino= new CalendarioPersonale(solferino.getMatricola());
- 
-			
-			
 			calendarioPersonaleDao.save(calRicca);
 			calendarioPersonaleDao.save(calGrasso);
 			calendarioPersonaleDao.save(calVanBon);
@@ -226,7 +219,6 @@ public class MainJDBC {
 			calendarioPersonaleDao.save(calMontoro);
 			calendarioPersonaleDao.save(calRija);
 			calendarioPersonaleDao.save(calSolferino);
-			
 
 			DescrizioneCorso corsoFondamenti = new DescrizioneCorso(new Long(27000002), "Fondamenti di Informatica", 1,
 					corsoDiLaureaInformatica.getCodice(), 12, 48, 48);
@@ -346,10 +338,6 @@ public class MainJDBC {
 			messaggioDao.save(messaggio2);
 			t = new Timestamp(System.currentTimeMillis());
 
-			NotificaDao notificaDao = DatabaseManager.getInstance().getDaoFactory().getNotificaDAO();
-			t = new Timestamp(System.currentTimeMillis());
-			Notifica notifica = new Notifica(st3.getMatricola(), t, 2);
-			notificaDao.save(notifica);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

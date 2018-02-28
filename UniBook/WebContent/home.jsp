@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -25,8 +25,8 @@
 
 						<div align="left">
 							Di seguito trovi l'elenco dei corsi disponibili del tuo corso di
-							laurea, consulta il corso che ti interessa cliccandoci sopra.</br>
-							
+							laurea, consulta il corso che ti interessa cliccandoci sopra.<br>
+
 						</div>
 						<br>
 
@@ -51,11 +51,13 @@
 									<font color="#C4161C"><img alt="iscriviti"
 										src="images/iscriviti.png">&nbsp;Creare ad un corso</font>
 								</div>
-								<div class="list-group-item-text">Unibook ti da la
-									possibilità di creare un corso, inserendo tutte le
-									informazioni, potrai pubblicare avvisi in modo semplice e
-									rapido, per tenere sempre informati tutti gli studenti
-									iscritti. Clicca su 'I miei corsi' per creare il tuo corso.</div>
+								<div class="list-group-item-text">
+									Unibook ti da la possibilità di creare un corso, inserendo
+									tutte le informazioni,<br> potrai pubblicare avvisi in
+									modo semplice e rapido, per tenere sempre <br>informati
+									tutti gli studenti iscritti. Clicca su 'I miei corsi' per
+									creare il tuo corso.
+								</div>
 								<br>
 							</c:if>
 							<div align="right" class="corsiTitle" style="width: 90%;">
