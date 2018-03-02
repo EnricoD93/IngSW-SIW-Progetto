@@ -141,7 +141,7 @@
 						</div>
 
 					</c:if>
-					<div align="center" class="corsiTitle">Avvisi</div>
+					<div align="center" class="corsiTitle" id="avvisi">Avvisi</div>
 					<c:if test="${empty advices}">Nessun avviso pubblicato</c:if>
 					<c:forEach var="avviso" items="${advices}">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

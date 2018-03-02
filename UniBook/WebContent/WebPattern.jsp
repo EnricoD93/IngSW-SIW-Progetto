@@ -29,9 +29,9 @@
 
 
 <script src="plugins/jquery/jquery.js"></script>
-<script src="javascript/changeProfile.js" type="text/javascript"></script>
-
-<script src="javascript/uploadImage.js" type="text/javascript"></script>
+<script src="javascript/changeProfile.js"></script>
+<script src="javascript/cookies.js"></script>
+<script src="javascript/uploadImage.js"></script>
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.js"></script>
 <script src="plugins/bootstrap-notify/bootstrap-notify.js"></script>
@@ -65,7 +65,7 @@
 	</div>
 
 	<div class="overlay"></div>
-	
+
 	<!-- Top Bar -->
 	<nav class="navbar">
 		<div class="container-fluid">
@@ -221,8 +221,8 @@
 							<li><a href="page?request=docenti"><i
 									class="material-icons">school</i>Docenti</a></li>
 							<li role="seperator" class="divider"></li>
-							<li><a href="logout"><i class="material-icons">exit_to_app</i>Log
-									Out </a></li>
+							<li><a href="javascript:logout();"><i
+									class="material-icons">exit_to_app</i>Log Out </a></li>
 						</ul>
 					</div>
 				</div>

@@ -111,3 +111,16 @@ function confermaModificaDescrizione(){
 		 }
 	});
 }
+
+function logout(){
+	  setCookie("matricola","",0);
+      setCookie("password","",0);
+	$.ajax({
+		url : 'logout',
+		type : 'GET',
+		datatype : 'text',
+		success: function(data){
+			window.location.href="/UniBook";
+		 }
+	});
+}

@@ -21,15 +21,15 @@ function showWarningMessage() {
 			"Ricontrolla il codice inserito.\n Richiedi un nuovo codice cliccando su \"Invia\" oppure clicca su \"Cambia\" per modificare l'email inserita precedentemente.");
 }
 function buttoninit() {
-	if(localStorage.checked=="true"){
-		console.log("cliccato");
+	if(checkCookie()){
+		console.log("faccio login con cookies");
 		$.ajax({
 			type : "POST",
 			url : "home",
 			datatype : 'text',
 			data : {
-				username : localStorage.username,
-				password : localStorage.password
+				username : getCookie("matricola"),
+				password : getCookie("password")
 			},
 			success : function(data) {
 				window.location.href="home";
@@ -40,8 +40,7 @@ function buttoninit() {
 
 			}
 
-		});
-	}
+		});}
 	$("#username").keyup(function(event) {
 	    if (event.keyCode === 13) {
 	        $("#btnlogin").click();
@@ -84,19 +83,17 @@ function sendForgotPassword() {
 
 }
 
+
 function checkLogin() {
-	if ($('#rememberme').is(':checked')) {
-		console.log("entro");
-        localStorage.setItem("username",$('#username').val());
-        localStorage.setItem("password",$('#password').val());
-        localStorage.setItem("checked",true);
-    } else {
-        localStorage.removeItem("username");
-        localStorage.removeItem("password");
-        localStorage.removeItem("checked");
-    }
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+	if ($('#rememberme').is(':checked')) {
+		setCookie("matricola",username,30);
+		setCookie("password",password,30);
+    } else {
+       setCookie("matricola","",0);
+       setCookie("password","",0);
+    }
 	$.ajax({
 		type : "POST",
 		url : "home",
@@ -117,7 +114,6 @@ function checkLogin() {
 	});
 }
 function invia(){
-	console.log("invio");
 	$.ajax({
 		type : "GET",
 		url : "register",
@@ -128,12 +124,11 @@ function invia(){
 }
 
 function modificaEmail(){
-	
-	console.log("click");
 	$('#email').removeClass("hidden");
 	$('#modificaEmailConfirm').removeClass("hidden");
 
 }
+
 function confermaModificaEmail(){
 	$.ajax({
 		url : 'profileManager',
